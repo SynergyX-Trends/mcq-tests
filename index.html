@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCQ Tests</title>
+  <link rel="stylesheet" href="./assets/app.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo">MCQ</div>
+        <div class="brand__text">
+          <div class="brand__title">Sylvi MCQ</div>
+          <div class="brand__sub">Internal Tests</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="card">
+      <div class="card__header">
+        <h1 class="h2">Available Tests</h1>
+        <p class="muted">Select a day to start. You will be asked for Employee ID or Full Name.</p>
+      </div>
+
+      <div id="testsGrid" class="grid"></div>
+
+      <div class="card__footer">
+        <p class="tiny muted">Hosted on GitHub Pages (static). Submissions will be sent to Google Sheets via Apps Script
+          later.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (async function () {
+      const res = await fetch("./data/tests.json", { cache: "no-store" });
+      const tests = await res.json();
+
+      const grid = document.getElementById("testsGrid");
+      grid.innerHTML = "";
+
+      tests.forEach(t => {
+        const el = document.createElement("a");
+        el.className = "testCard";
+        el.href = `./pages/test.html?testId=${encodeURIComponent(t.testId)}`;
+        el.innerHTML = `
+          <div class="testCard__title">${escapeHtml(t.title)}</div>
+          <div class="testCard__meta">
+            <span class="chip">Questions: ${t.questionCount}</span>
+            <span class="chip">Time: ${Math.round(t.durationSeconds / 60)} min</span>
+          </div>
+          <div class="testCard__cta">Start →</div>
+        `;
+        grid.appendChild(el);
+      });
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, m => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+        }[m]));
+      }
+    })();
+  </script>
+</body>
+
+</html>

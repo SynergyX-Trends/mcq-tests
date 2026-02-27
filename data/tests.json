@@ -1,0 +1,122 @@
+[
+  {
+    "testId": "day_01",
+    "title": "DAY 01 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 15,
+    "durationSeconds": 900
+  },
+  {
+    "testId": "day_02",
+    "title": "DAY 02 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_03",
+    "title": "DAY 03 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_04",
+    "title": "DAY 04 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_05",
+    "title": "DAY 05 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_06",
+    "title": "DAY 06 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_07",
+    "title": "DAY 07 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_08",
+    "title": "DAY 08 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_09",
+    "title": "DAY 09 — ONBOARDING EXECUTION DOCUMENT",
+    "questionCount": 18,
+    "durationSeconds": 900
+  },
+  {
+    "testId": "day_10",
+    "title": "DAY 10 - FLIPKART MODULE: ORDER LIFECYCLE, RETURNS & CLAIMS, PAYMENT SETTLEMENT, PROMOTIONS",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_11",
+    "title": "DAY 11 — SYSTEM BOOTSTRAP FLOW & CONFIGURATION ARCHITECTURE",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_12",
+    "title": "DAY 12 — DATABASE STRUCTURE, GLOBALS & ENVIRONMENT CONTROL",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_13",
+    "title": "DAY 13 — AUTHENTICATION LAYER & ACCESS CONTROL LOGIC",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_14",
+    "title": "DAY 14 — ORDER PROCESSING PIPELINE & STATE TRANSITIONS",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_15",
+    "title": "DAY 15 — INVENTORY FLOW, SKU HANDLING & DATA SYNCHRONIZATION",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_16",
+    "title": "DAY 16 — ERROR HANDLING, LOGGING SYSTEM & FAILSAFE MECHANISMS",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_17",
+    "title": "DAY 17 — API INTEGRATION LAYER & THIRD-PARTY CONNECTORS",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_18",
+    "title": "DAY 18 — BUSINESS RULE ENGINE & EXECUTION VALIDATION",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_19",
+    "title": "DAY 19 — DATA FLOW OPTIMIZATION & PERFORMANCE STRUCTURE",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  },
+  {
+    "testId": "day_20",
+    "title": "DAY 20 — SYSTEM CONSOLIDATION, EDGE CASES & PRODUCTION READINESS",
+    "questionCount": 20,
+    "durationSeconds": 1200
+  }
+]

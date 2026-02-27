@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCQ Test</title>
+  <link rel="stylesheet" href="../assets/app.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <a class="brand__logo link" href="../index.html" title="Back">←</a>
+        <div class="brand__text">
+          <div class="brand__title" id="hdrTitle">Sylvi MCQ</div>
+          <div class="brand__sub" id="hdrSub">Loading…</div>
+        </div>
+      </div>
+
+      <div class="hudRight">
+        <div id="timerPill" class="pill">Time: --:--</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <!-- STEP 1: IDENTITY -->
+    <section id="screenGate" class="screen">
+      <div class="card max480">
+        <div class="card__header">
+          <h1 class="h2">Enter details to start</h1>
+          <p class="muted">Employee ID or Full Name is required.</p>
+        </div>
+
+        <div class="stack">
+          <div class="field">
+            <label class="label" for="employeeId">Employee ID</label>
+            <input class="input" id="employeeId" placeholder="e.g. SYLVI_1024" />
+            <div class="help" id="empHelp"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="fullName">Full Name</label>
+            <input class="input" id="fullName" placeholder="e.g. Rahul Patel" />
+            <div class="help" id="nameHelp"></div>
+          </div>
+
+          <div class="notice tiny muted">
+            Don’t refresh during test. Answers are saved locally, but don’t risk it.
+          </div>
+
+          <button class="btn btn--primary w100" id="btnContinue">Continue</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: INSTRUCTIONS -->
+    <section id="screenIntro" class="screen hidden">
+      <div class="card max640">
+        <div class="card__header">
+          <h2 class="h2" id="introTitle">Test</h2>
+          <div class="row gap8">
+            <span class="chip" id="introQCount">Questions: -</span>
+            <span class="chip" id="introTime">Time: -</span>
+            <span class="chip">4 options each</span>
+          </div>
+        </div>
+
+        <div class="stack">
+          <ul class="list">
+            <li>Timer starts only when you click <b>Start Test</b>.</li>
+            <li>You won’t see correct answers during the test.</li>
+            <li>You can review unanswered/marked questions before final submit.</li>
+          </ul>
+
+          <div class="row spaceBetween">
+            <a class="btn btn--secondary" href="../index.html">Back</a>
+            <button class="btn btn--primary" id="btnStart">Start Test</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: TEST -->
+    <section id="screenTest" class="screen hidden">
+      <div class="layout">
+        <!-- Left navigator (desktop) -->
+        <aside class="sidebar" id="sidebar">
+          <div class="card">
+            <div class="card__header">
+              <div class="h3">Questions</div>
+              <div class="muted tiny" id="navStats">Answered 0 / 0</div>
+            </div>
+            <div id="navChips" class="chipsGrid"></div>
+            <div class="card__footer">
+              <button class="btn btn--ghost w100" id="btnReview">Review & Submit</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main question -->
+        <section class="main">
+          <div class="card">
+            <div class="card__header row spaceBetween">
+              <div>
+                <div class="muted tiny" id="qMeta">Q - / -</div>
+                <div class="h3" id="qText">Loading…</div>
+              </div>
+              <div class="row gap8">
+                <span class="chip" id="markedChip" style="display:none;">Marked</span>
+              </div>
+            </div>
+
+            <div class="stack" id="optionsWrap"></div>
+
+            <div class="card__footer row spaceBetween">
+              <div class="row gap8">
+                <button class="btn btn--secondary" id="btnPrev">Back</button>
+                <button class="btn btn--ghost" id="btnMark">Mark for review</button>
+                <button class="btn btn--ghost" id="btnClear">Clear choice</button>
+              </div>
+
+              <div class="row gap8">
+                <div class="progressWrap">
+                  <div class="progressBar">
+                    <div class="progressFill" id="progressFill"></div>
+                  </div>
+                  <div class="tiny muted" id="progressTxt">Answered 0/0</div>
+                </div>
+                <button class="btn btn--primary" id="btnNext">Save & Next</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile chips row -->
+          <div class="mobileChips card" id="mobileChipsCard">
+            <div class="card__header">
+              <div class="h3">Jump to</div>
+            </div>
+            <div class="chipsRow" id="navChipsMobile"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- STEP 4: REVIEW -->
+    <section id="screenReview" class="screen hidden">
+      <div class="card max720">
+        <div class="card__header">
+          <h2 class="h2">Review & Submit</h2>
+          <p class="muted">This is not correctness review. It’s completion review.</p>
+        </div>
+
+        <div class="stack">
+          <div class="row gap8 wrap">
+            <span class="chip" id="revIdentity">Identity: -</span>
+            <span class="chip" id="revAnswered">Answered: -</span>
+            <span class="chip" id="revMarked">Marked: -</span>
+            <span class="chip" id="revLeft">Time left: -</span>
+          </div>
+
+          <div>
+            <div class="h3">Questions</div>
+            <div id="revChips" class="chipsGrid"></div>
+          </div>
+
+          <div class="row spaceBetween">
+            <button class="btn btn--secondary" id="btnBackToTest">Go back</button>
+            <button class="btn btn--primary" id="btnFinalSubmit">Submit Final</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5: SUCCESS -->
+    <section id="screenSuccess" class="screen hidden">
+      <div class="card max640">
+        <div class="card__header">
+          <h2 class="h2">Submission received</h2>
+          <p class="muted">Your response has been recorded.</p>
+        </div>
+        <div class="stack">
+          <div class="chip">Submission ID: <span id="subId">-</span></div>
+          <a class="btn btn--primary" href="../index.html">Back to Tests</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal__backdrop"></div>
+      <div class="modal__panel">
+        <div class="h3" id="modalTitle">Confirm</div>
+        <p class="muted" id="modalBody">-</p>
+        <div class="row right gap8">
+          <button class="btn btn--secondary" id="modalCancel">Cancel</button>
+          <button class="btn btn--primary" id="modalOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/app.js"></script>
+</body>
+
+</html>

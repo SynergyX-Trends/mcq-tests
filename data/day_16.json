@@ -1,0 +1,490 @@
+{
+  "testId": "day_16",
+  "title": "Day 16 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_16_q1",
+      "number": 1,
+      "question": "What format does the `rmaNumber` field use when generated in the `create_rma` action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sequential integer starting from 1000"
+        },
+        {
+          "key": "B",
+          "text": "UUID version 4 random string"
+        },
+        {
+          "key": "C",
+          "text": "`YYYYMMDD` + 6-digit zero-padded ID"
+        },
+        {
+          "key": "D",
+          "text": "Marketplace orderId with 'RMA-' prefix"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_16_q2",
+      "number": 2,
+      "question": "In the `create_rma` action at [rma/ajax_load.php L180](rma/ajax_load.php#L180), which transaction method is called before inserting into TBL_RMA?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$db->beginTransaction()`"
+        },
+        {
+          "key": "B",
+          "text": "`$db->startTransaction()`"
+        },
+        {
+          "key": "C",
+          "text": "`$db->atomicInsert()`"
+        },
+        {
+          "key": "D",
+          "text": "No transaction is used"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q3",
+      "number": 3,
+      "question": "Where are RMA video files stored when uploaded via `create_rma`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Local filesystem at `/uploads/rma/{rmaId}/`"
+        },
+        {
+          "key": "B",
+          "text": "AWS S3 bucket with path `/rma/{rmaNumber}/{basename}`"
+        },
+        {
+          "key": "C",
+          "text": "Database BLOB field in TBL_RMA_FILES"
+        },
+        {
+          "key": "D",
+          "text": "CDN with auto-generated hash filenames"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q4",
+      "number": 4,
+      "question": "What initial values are set for `status` and `internalStatus` when a new RMA is created?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`status='pending'`, `internalStatus='created'`"
+        },
+        {
+          "key": "B",
+          "text": "`status='start'`, `internalStatus='return'`"
+        },
+        {
+          "key": "C",
+          "text": "`status='open'`, `internalStatus='awaiting_pickup'`"
+        },
+        {
+          "key": "D",
+          "text": "`status='new'`, `internalStatus='customer_request'`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q5",
+      "number": 5,
+      "question": "In the Razorpay webhook handler at [rma/notifications-receiver.php L23](rma/notifications-receiver.php#L23), what security validation is performed on incoming payment events?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Validates `razorpay_signature` using HMAC-SHA256"
+        },
+        {
+          "key": "B",
+          "text": "Checks IP whitelist against Razorpay server IPs"
+        },
+        {
+          "key": "C",
+          "text": "Verifies JWT token in Authorization header"
+        },
+        {
+          "key": "D",
+          "text": "No signature validation — accepts raw POST data"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "day_16_q6",
+      "number": 6,
+      "question": "For `paymentFor='Shipping'` in the Razorpay webhook, what function is called to generate the logistics AWB?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`generateAWB($rmaId, 'return')`"
+        },
+        {
+          "key": "B",
+          "text": "`createPickup($rmaId, 'return', $qcImageLocation)`"
+        },
+        {
+          "key": "C",
+          "text": "`requestLogistics($rmaId, 'reverse')`"
+        },
+        {
+          "key": "D",
+          "text": "`assignCourier($rmaId, $accountId)`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q7",
+      "number": 7,
+      "question": "When a `paymentFor='Service'` payment is received via webhook, what two fields are updated in TBL_RMA?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`status='paid'`, `paymentStatus='completed'`"
+        },
+        {
+          "key": "B",
+          "text": "`estimateStatus='creation_approved'`, `status='repair_pending'`"
+        },
+        {
+          "key": "C",
+          "text": "`internalStatus='service_paid'`, `status='repair_ready'`"
+        },
+        {
+          "key": "D",
+          "text": "`paymentConfirmed='1'`, `status='in_progress'`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q8",
+      "number": 8,
+      "question": "How does the Razorpay webhook convert payment amounts before storing in `amountPaid`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Multiplies by 100 (rupees to paise)"
+        },
+        {
+          "key": "B",
+          "text": "Divides by 100 (paise to rupees)"
+        },
+        {
+          "key": "C",
+          "text": "No conversion needed — stores as-is"
+        },
+        {
+          "key": "D",
+          "text": "Rounds to nearest integer rupee"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q9",
+      "number": 9,
+      "question": "What security risk exists due to the unverified Razorpay webhook?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Race conditions when processing concurrent payments"
+        },
+        {
+          "key": "B",
+          "text": "Attacker can POST fake payment events to trigger pickups/status updates without actual payment"
+        },
+        {
+          "key": "C",
+          "text": "Webhook logs contain sensitive credit card data"
+        },
+        {
+          "key": "D",
+          "text": "SQL injection via unsanitized event fields"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_16_q10",
+      "number": 10,
+      "question": "In the Support module's `add_ticket` action, what does a type 3 (RMA) ticket directly modify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Creates a new record in TBL_RMA_TICKETS linking table"
+        },
+        {
+          "key": "B",
+          "text": "Updates TBL_RMA with `nextCreationApproval='2'`, `status='completed'`, `internalStatus='reship'`"
+        },
+        {
+          "key": "C",
+          "text": "Inserts a comment into TBL_RMA_COMMENTS only"
+        },
+        {
+          "key": "D",
+          "text": "Sends notification but doesn't write to any table"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q11",
+      "number": 11,
+      "question": "Which module \"owns\" the TBL_RMA table modified by Support's add_ticket type 3?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Support module (since it writes to the table)"
+        },
+        {
+          "key": "B",
+          "text": "RMA module (table belongs to RMA module files)"
+        },
+        {
+          "key": "C",
+          "text": "Both modules co-own the table (shared ownership)"
+        },
+        {
+          "key": "D",
+          "text": "Core system table (not module-specific)"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q12",
+      "number": 12,
+      "question": "What data structure is used to store the `contributors` field in TBL_TICKETS?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Comma-separated string of user IDs"
+        },
+        {
+          "key": "B",
+          "text": "JSON array of user ID integers"
+        },
+        {
+          "key": "C",
+          "text": "Pipe-delimited list like `12|45|67`"
+        },
+        {
+          "key": "D",
+          "text": "Serialized PHP array"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q13",
+      "number": 13,
+      "question": "In Support's `add_comment` action, how are @mentions processed for notifications?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Parses @username with regex, queries TBL_USERS for user_slack_token, calls notifyUserPersonal() for Slack DMs"
+        },
+        {
+          "key": "B",
+          "text": "Triggers email to mentioned users via SMTP"
+        },
+        {
+          "key": "C",
+          "text": "Creates in-app notifications in TBL_NOTIFICATIONS"
+        },
+        {
+          "key": "D",
+          "text": "No special processing — mentions are cosmetic only"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_16_q14",
+      "number": 14,
+      "question": "What circular dependency exists between RMA and Support modules?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both modules read from TBL_TICKETS and TBL_RMA (read-only circular reference)"
+        },
+        {
+          "key": "B",
+          "text": "RMA creates tickets in TBL_TICKETS; Support type 3 tickets write to TBL_RMA (bidirectional writes)"
+        },
+        {
+          "key": "C",
+          "text": "Both modules send Slack notifications to same channels"
+        },
+        {
+          "key": "D",
+          "text": "No circular dependency — modules are independent"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_16_q15",
+      "number": 15,
+      "question": "In the `get_ui_details` action, what query is used to discover missing UIDs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Query TBL_ORDERS with `uidMissing=1` flag"
+        },
+        {
+          "key": "B",
+          "text": "Query TBL_INVENTORY_LOG with `log_type='sales'` AND `log_details LIKE '%Stock Transfer%'`"
+        },
+        {
+          "key": "C",
+          "text": "Query TBL_AZ_ORDERS_MISSING_UID cache table"
+        },
+        {
+          "key": "D",
+          "text": "Query TBL_SHIPMENTS with `uidPlaceholder` field"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q16",
+      "number": 16,
+      "question": "After discovering a missing UID via TBL_INVENTORY_LOG, which tables does RMA update?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only TBL_RMA with the discovered UID"
+        },
+        {
+          "key": "B",
+          "text": "Either TBL_AZ_ORDERS or TBL_FK_ORDERS (depending on marketplace)"
+        },
+        {
+          "key": "C",
+          "text": "Both TBL_INVENTORY and TBL_PRODUCTS"
+        },
+        {
+          "key": "D",
+          "text": "TBL_UID_MAPPING cache table only"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q17",
+      "number": 17,
+      "question": "How many external tables (owned by other modules) does RMA write to?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 external tables"
+        },
+        {
+          "key": "B",
+          "text": "5 external tables"
+        },
+        {
+          "key": "C",
+          "text": "9 external tables"
+        },
+        {
+          "key": "D",
+          "text": "12 external tables"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_16_q18",
+      "number": 18,
+      "question": "Which of the following is NOT one of the 9 external tables written by RMA?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_AZ_ORDERS (Amazon orders)"
+        },
+        {
+          "key": "B",
+          "text": "TBL_FK_ORDERS (Flipkart orders)"
+        },
+        {
+          "key": "C",
+          "text": "TBL_FULFILLMENT (shipment tracking)"
+        },
+        {
+          "key": "D",
+          "text": "TBL_PRODUCTS (product catalog)"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "day_16_q19",
+      "number": 19,
+      "question": "What status transition occurs when the RMA warehouse receives the returned product?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`status='start'` → `status='received'`"
+        },
+        {
+          "key": "B",
+          "text": "`status='in_transit'` → `status='received'`"
+        },
+        {
+          "key": "C",
+          "text": "`status='pending_pickup'` → `status='received'`"
+        },
+        {
+          "key": "D",
+          "text": "`status='delivered'` → `status='received'`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_16_q20",
+      "number": 20,
+      "question": "How does the `get_current_account()` function enable multi-logistics provider support (Shiprocket/Delhivery)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Returns static configuration for default logistics partner"
+        },
+        {
+          "key": "B",
+          "text": "Returns `lp_provider_name` from account settings, enabling dynamic class loading for different providers"
+        },
+        {
+          "key": "C",
+          "text": "Hardcodes Shiprocket API — Delhivery not actually supported"
+        },
+        {
+          "key": "D",
+          "text": "Uses strategy pattern with factory classes per provider"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

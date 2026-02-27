@@ -1,0 +1,590 @@
+{
+  "testId": "day_03",
+  "title": "DAY 03 — ONBOARDING EXECUTION DOCUMENT",
+  "questions": [
+    {
+      "id": "day_03_q1",
+      "number": 1,
+      "question": "In `functions.php`, which singleton is instantiated via `Stockist::getInstance()` and stored in which `$GLOBALS` key?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$GLOBALS['inventory']`"
+        },
+        {
+          "key": "B",
+          "text": "`$GLOBALS['stockist']`"
+        },
+        {
+          "key": "C",
+          "text": "`$GLOBALS['stock']`"
+        },
+        {
+          "key": "D",
+          "text": "`$GLOBALS['wms']`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Singleton & Global Architecture",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q2",
+      "number": 2,
+      "question": "What is the correct include order at the top of `functions.php` before singleton instantiation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`Debug.php` → `class-task.php` → `class-accountant.php` → `class-notification.php` → `class-queue-manager.php` → `class-access-level.php` → `class-menu.php`"
+        },
+        {
+          "key": "B",
+          "text": "`class-menu.php` → `class-access-level.php` → `class-task.php` → `class-accountant.php` → `Debug.php` → `class-notification.php`"
+        },
+        {
+          "key": "C",
+          "text": "`class-notification.php` → `class-task.php` → `class-accountant.php` → `Debug.php` → `class-queue-manager.php` → `class-menu.php`"
+        },
+        {
+          "key": "D",
+          "text": "`Debug.php` → `class-accountant.php` → `class-task.php` → `class-menu.php` → `class-notification.php` → `class-access-level.php`"
+        }
+      ],
+      "answer": "A",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Singleton & Global Architecture",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q3",
+      "number": 3,
+      "question": "The function `get_all_accounts()` in `functions.php` queries marketplace account tables. Which marketplaces does it load?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Flipkart, Amazon, Shopify"
+        },
+        {
+          "key": "B",
+          "text": "Flipkart, Amazon, Shopify, Ajio"
+        },
+        {
+          "key": "C",
+          "text": "Flipkart, Amazon, Shopify, Ajio, Meesho"
+        },
+        {
+          "key": "D",
+          "text": "All marketplace tables including Paytm and POS"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Singleton & Global Architecture",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q4",
+      "number": 4,
+      "question": "In `functions.php`, the `$GLOBALS['accounts']` data is populated by calling `get_all_accounts()`. For the Flipkart accounts specifically, what JOIN is performed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`TBL_FK_ACCOUNTS` LEFT JOIN `TBL_FK_ORDERS` on account_id"
+        },
+        {
+          "key": "B",
+          "text": "`TBL_FK_ACCOUNTS` LEFT JOIN `TBL_MP_TIERS` on account_id, filtered by current date between start_date and end_date"
+        },
+        {
+          "key": "C",
+          "text": "`TBL_FK_ACCOUNTS` INNER JOIN `TBL_PRODUCTS_ALIAS` on account_id"
+        },
+        {
+          "key": "D",
+          "text": "No JOIN — Flipkart accounts are loaded with a simple SELECT"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Singleton & Global Architecture",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q5",
+      "number": 5,
+      "question": "Which two singletons are NOT instantiated inside `functions.php` but are already available through `$GLOBALS` by the time `functions.php` runs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$db` and `$log`"
+        },
+        {
+          "key": "B",
+          "text": "`$stockist` and `$task`"
+        },
+        {
+          "key": "C",
+          "text": "`$notification` and `$accountant`"
+        },
+        {
+          "key": "D",
+          "text": "`$userAccess` and `$menu`"
+        }
+      ],
+      "answer": "A",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Singleton & Global Architecture",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q6",
+      "number": 6,
+      "question": "How many DB tables does the Menu system use for its complete structure (items, assets, bundles, bundle items, and item-bundle associations)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3"
+        },
+        {
+          "key": "B",
+          "text": "4"
+        },
+        {
+          "key": "C",
+          "text": "5"
+        },
+        {
+          "key": "D",
+          "text": "7"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Menu System & Asset Pipeline",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q7",
+      "number": 7,
+      "question": "In `class-menu.php`, the method `getMenuStructureArray()` begins by making how many separate DB queries to load the complete menu data?",
+      "options": [
+        {
+          "key": "A",
+          "text": "1 (single joined query)"
+        },
+        {
+          "key": "B",
+          "text": "2 (items + assets)"
+        },
+        {
+          "key": "C",
+          "text": "4 (items, direct assets, bundle associations, bundle assets)"
+        },
+        {
+          "key": "D",
+          "text": "5 (one per table)"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Menu System & Asset Pipeline",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q8",
+      "number": 8,
+      "question": "After `renderMenu()` executes in `functions.php`, how many `$GLOBALS` variables are set from the Menu instance?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 (`menu`, `page_title`, `breadcrumps`)"
+        },
+        {
+          "key": "B",
+          "text": "5 (`menu`, `page_title`, `breadcrumps`, `page_header_assets_html`, `page_footer_assets_html`)"
+        },
+        {
+          "key": "C",
+          "text": "7 (`menu`, `current_page`, `page_header_assets_html`, `page_footer_assets_html`, `page_title`, `breadcrumps`, `only_body`)"
+        },
+        {
+          "key": "D",
+          "text": "4 (`menu`, `page_header_assets_html`, `page_footer_assets_html`, `page_title`)"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Menu System & Asset Pipeline",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q9",
+      "number": 9,
+      "question": "In `class-menu.php`, what data does `functions.php` write back to `TBL_OPTIONS` after calling `renderMenu()`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The rendered HTML of the menu"
+        },
+        {
+          "key": "B",
+          "text": "The current user's page title"
+        },
+        {
+          "key": "C",
+          "text": "The access levels structure (menu key → capability mapping) under the key `'access_levels'`"
+        },
+        {
+          "key": "D",
+          "text": "The list of loaded CSS/JS files for debugging"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Menu System & Asset Pipeline",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q10",
+      "number": 10,
+      "question": "In `structureAssetsForItem()`, how many distinct `asset_type` values are handled by the switch statement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "5 (css, plugin_js, script_js, external_js, js_init)"
+        },
+        {
+          "key": "B",
+          "text": "7 (css, external_css, plugin_js, script_js, external_js, module_js, js_var)"
+        },
+        {
+          "key": "C",
+          "text": "10 (css, external_css, plugin_js, script_js, external_js, module_js, import_js, js_var, js_init, plus special handling for script_js with content)"
+        },
+        {
+          "key": "D",
+          "text": "8 (css, external_css, plugin_js, script_js, external_js, module_js, import_js, js_init)"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Menu System & Asset Pipeline",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q11",
+      "number": 11,
+      "question": "In `AccessLevel::hasCapability()`, what happens when the resolved capability value for a key is a string containing a colon (e.g., `'2025-01-01:2025-12-31'`)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It returns FALSE — only integer `1` grants access"
+        },
+        {
+          "key": "B",
+          "text": "It treats it as a time-based access window: parses start and end dates, returns TRUE only if the current time falls within the range"
+        },
+        {
+          "key": "C",
+          "text": "It splits the string and uses the first part as a role override"
+        },
+        {
+          "key": "D",
+          "text": "It logs a warning and grants access by default"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "AccessLevel & RBAC",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q12",
+      "number": 12,
+      "question": "In `functions.php`, which JSON field from `TBL_USERS` is used for user-specific capability overrides, and how does it differ between environments?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`user_role` for production, `user_role_sand` for staging"
+        },
+        {
+          "key": "B",
+          "text": "`user_capabilities` for production, `user_capabilities_stagging` for staging"
+        },
+        {
+          "key": "C",
+          "text": "`user_settings` for both environments"
+        },
+        {
+          "key": "D",
+          "text": "`user_access_token` contains embedded capabilities"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "AccessLevel & RBAC",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q13",
+      "number": 13,
+      "question": "In `class-notification.php`, how does the `Notification::send()` method determine which SMS provider class to instantiate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It reads the class name from the `.env` file"
+        },
+        {
+          "key": "B",
+          "text": "It queries `TBL_CLIENTS_SMS` by `smsClientId`, extracts `smsClientName`, includes `class-sms-{lowered_name}.php`, and instantiates `sms{UcfirstName}`"
+        },
+        {
+          "key": "C",
+          "text": "It always uses a single hardcoded SMS class"
+        },
+        {
+          "key": "D",
+          "text": "It selects the provider based on the recipient's phone prefix"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Communication Services & Connectors",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q14",
+      "number": 14,
+      "question": "In the WhatsApp template system, what does the `tblJoins` JSON field in `TBL_TEMPLATE_WHATSAPP` control?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The list of phone numbers to send messages to"
+        },
+        {
+          "key": "B",
+          "text": "The database table joins used by `get_template_data()` to resolve `{{placeholder}}` variables in the template content"
+        },
+        {
+          "key": "C",
+          "text": "The retry logic for failed WhatsApp deliveries"
+        },
+        {
+          "key": "D",
+          "text": "The mapping between template IDs and WhatsApp phone numbers"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Communication Services & Connectors",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q15",
+      "number": 15,
+      "question": "The communication classes (`SMS`, `whatsApp`, `mailer`) all share a common architectural pattern. What is it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They all extend a shared abstract `CommunicationProvider` class"
+        },
+        {
+          "key": "B",
+          "text": "They all use the Strategy pattern: constructor fetches provider config from a `TBL_CLIENTS_*` table, dynamically includes `class-{type}-{name}.php`, and instantiates `{type}{Name}` as a delegate"
+        },
+        {
+          "key": "C",
+          "text": "They all implement a `CommunicationInterface` with `send()` and `receive()` methods"
+        },
+        {
+          "key": "D",
+          "text": "They use the Observer pattern with event listeners"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Communication Services & Connectors",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q16",
+      "number": 16,
+      "question": "In `Stockist::update_inventory_status()`, what critical side-method is called to determine where inventory should be physically moved to?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`get_inventory_details()`"
+        },
+        {
+          "key": "B",
+          "text": "`get_expected_location_by_status()`"
+        },
+        {
+          "key": "C",
+          "text": "`add_inventory_log()`"
+        },
+        {
+          "key": "D",
+          "text": "`get_current_acp()`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Stockist, Tasks & Queue Systems",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q17",
+      "number": 17,
+      "question": "In `class-task.php`, what does `addTask()` check before creating a new task to prevent duplicates?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It checks if a task with the same title exists in any status"
+        },
+        {
+          "key": "B",
+          "text": "It queries `TBL_TASKS` for an existing task with the same `category`, `userRoles` (JSON LIKE), `ctnId`, and `status` IN (0, 2) — i.e., pending or declined"
+        },
+        {
+          "key": "C",
+          "text": "It checks a unique constraint on `TBL_TASKS` using category + ctnId"
+        },
+        {
+          "key": "D",
+          "text": "It uses a file lock to prevent concurrent creation"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Stockist, Tasks & Queue Systems",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q18",
+      "number": 18,
+      "question": "In `queueManager::processQueue()`, when an endpoint returns a non-200 response and the attempt count is less than 5, how is the retry delay calculated?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Exponential backoff: `2^attempt` minutes"
+        },
+        {
+          "key": "B",
+          "text": "Fixed delay: 5 minutes between retries"
+        },
+        {
+          "key": "C",
+          "text": "Incremental delay: `attempt_count × 3` minutes"
+        },
+        {
+          "key": "D",
+          "text": "Random delay between 1 and 10 minutes"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Stockist, Tasks & Queue Systems",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q19",
+      "number": 19,
+      "question": "What does the `get_option()` function in `init_functions.php` use to query `TBL_OPTIONS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "An exact match: `$db->where('option_key', $option)`"
+        },
+        {
+          "key": "B",
+          "text": "A LIKE match: `$db->where('option_key', $option, 'LIKE')`"
+        },
+        {
+          "key": "C",
+          "text": "A regular expression match on `option_key`"
+        },
+        {
+          "key": "D",
+          "text": "A full-text search on `option_value`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R6",
+        "criteria": "Configuration & Utility Functions",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_03_q20",
+      "number": 20,
+      "question": "In `init_functions.php`, the `encrypt()` function uses which encryption algorithm and what additional integrity mechanism?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AES-128-ECB with MD5 checksum"
+        },
+        {
+          "key": "B",
+          "text": "AES-256-CBC with HMAC-SHA512 appended to the ciphertext"
+        },
+        {
+          "key": "C",
+          "text": "RSA-2048 with SHA256 signature"
+        },
+        {
+          "key": "D",
+          "text": "Blowfish-CBC with CRC32 validation"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R6",
+        "criteria": "Configuration & Utility Functions",
+        "weightContribution": "5%"
+      }
+    }
+  ],
+  "config": {
+    "optionsPerQuestion": 4,
+    "singleSelect": true
+  }
+}

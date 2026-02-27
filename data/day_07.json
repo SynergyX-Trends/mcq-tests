@@ -1,0 +1,510 @@
+{
+  "testId": "day_07",
+  "title": "DAY 07 — ONBOARDING EXECUTION DOCUMENT",
+  "questions": [
+    {
+      "id": "day_07_q1",
+      "number": 1,
+      "question": "In `inventory/ajax_load.php`, what happens when the `Authorization` header is absent from the request?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The request is rejected with a 401 status code"
+        },
+        {
+          "key": "B",
+          "text": "`definer.php` is loaded and `AuthMiddleware` handles authentication"
+        },
+        {
+          "key": "C",
+          "text": "`config.php` is included, providing session-based authentication with `$db`, `$current_user`, and `$stockist` via globals"
+        },
+        {
+          "key": "D",
+          "text": "The request proceeds without any authentication"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q2",
+      "number": 2,
+      "question": "What is the data type and length of the `inv_id` primary key in the `bas_inventory` table?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`VARCHAR(14)` — variable length up to 14 characters"
+        },
+        {
+          "key": "B",
+          "text": "`CHAR(12)` — fixed 12-character string"
+        },
+        {
+          "key": "C",
+          "text": "`INT` — auto-incrementing integer"
+        },
+        {
+          "key": "D",
+          "text": "`VARCHAR(24)` — variable length matching status field"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q3",
+      "number": 3,
+      "question": "In the `create_ctn` action, what happens to the `TBL_INVENTORY_STATE` records after a carton is created?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The state records are updated with the new carton ID"
+        },
+        {
+          "key": "B",
+          "text": "The state records are archived to a history table"
+        },
+        {
+          "key": "C",
+          "text": "All `TBL_INVENTORY_STATE` records for the current user are deleted"
+        },
+        {
+          "key": "D",
+          "text": "The state records remain unchanged for future reference"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q4",
+      "number": 4,
+      "question": "When the `update_uid` action processes a Watch from `qc_pending` status with no QC issues, what is the resulting `inv_status`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`qc_verified` — Watches follow the same path as all other categories"
+        },
+        {
+          "key": "B",
+          "text": "`qc_cooling` — Watches enter a cooling period before verification"
+        },
+        {
+          "key": "C",
+          "text": "`qc_pending` — status remains unchanged until manual verification"
+        },
+        {
+          "key": "D",
+          "text": "`components_requested` — Watches always require component checks"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q5",
+      "number": 5,
+      "question": "In `Stockist::new_grn_inbound()`, how is the `inv_id` sequence formatted for international lots (lot prefix `SF`)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`{lot_number}` + 4-digit zero-padded sequence"
+        },
+        {
+          "key": "B",
+          "text": "`{lot_number}` + 6-digit zero-padded sequence"
+        },
+        {
+          "key": "C",
+          "text": "`INV` + 9-digit zero-padded auto-increment"
+        },
+        {
+          "key": "D",
+          "text": "`{grn_id}` + `{item_id}` + 4-digit sequence"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q6",
+      "number": 6,
+      "question": "What does the `before_update_inventory` trigger do when `inv_status` changes to a terminal value like `sales` or `outbound`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Decrements the `committed_stock` on `TBL_PRODUCTS_MASTER`"
+        },
+        {
+          "key": "B",
+          "text": "Inserts a log entry into `TBL_INVENTORY_LOG`"
+        },
+        {
+          "key": "C",
+          "text": "Nulls `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, `inv_batch` and resets `inv_failed_count` to 0"
+        },
+        {
+          "key": "D",
+          "text": "Deletes the inventory row from `bas_inventory`"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q7",
+      "number": 7,
+      "question": "In the `move_to_box` action, which movement direction is explicitly blocked with an error message?",
+      "options": [
+        {
+          "key": "A",
+          "text": "UID → BOX"
+        },
+        {
+          "key": "B",
+          "text": "BOX → CTN"
+        },
+        {
+          "key": "C",
+          "text": "UID → CTN (directly — \"Product cannot be moved directly to Cartoon\")"
+        },
+        {
+          "key": "D",
+          "text": "UID → Location"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q8",
+      "number": 8,
+      "question": "What are the three possible values of the `isImperfect` field on `bas_inventory` and what does each represent?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`0` = normal, `1` = damaged, `2` = discarded"
+        },
+        {
+          "key": "B",
+          "text": "`0` = normal, `1` = imperfect (approved), `2` = imperfect_request (pending approval)"
+        },
+        {
+          "key": "C",
+          "text": "`0` = unchecked, `1` = passed, `2` = failed"
+        },
+        {
+          "key": "D",
+          "text": "`0` = perfect, `1` = repairable, `2` = unrepairable"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q9",
+      "number": 9,
+      "question": "In `Stockist::get_expected_location_by_status()`, what location prefix pattern is used for the `inbound` status?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`STKROM%`"
+        },
+        {
+          "key": "B",
+          "text": "`QCAREA%`"
+        },
+        {
+          "key": "C",
+          "text": "`GODOWN%`"
+        },
+        {
+          "key": "D",
+          "text": "`PRAREA%`"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q10",
+      "number": 10,
+      "question": "When `update_grn_status` determines that all GRN item statuses are complete (none are NULL or 'receiving'), what additional reset operation does it perform?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Deletes the GRN record from `TBL_PURCHASE_GRN`"
+        },
+        {
+          "key": "B",
+          "text": "Updates `TBL_PURCHASE_ORDER` status to 'received'"
+        },
+        {
+          "key": "C",
+          "text": "Resets `TBL_INVENTORY_LOCATIONS` availability to 20000 and status to 0"
+        },
+        {
+          "key": "D",
+          "text": "Creates a new task for inventory reconciliation"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q11",
+      "number": 11,
+      "question": "In `Stockist::update_inventory_status()`, what happens specifically when the target status is `qc_verified`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The item's `isImperfect` flag is set to '1'"
+        },
+        {
+          "key": "B",
+          "text": "`committed_stock` on `TBL_PRODUCTS_MASTER` is decremented, then `update_stock_on_mps()` is called to sync marketplaces"
+        },
+        {
+          "key": "C",
+          "text": "The item is immediately assigned to a picklist"
+        },
+        {
+          "key": "D",
+          "text": "A notification is sent to the warehouse manager"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q12",
+      "number": 12,
+      "question": "The `moveInventory()` function in `inventory/functions.php` enforces sequential movement within a batch/box. What validation does it perform on the `inv_id` parameter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Checks that `inv_id` starts with a valid lot prefix"
+        },
+        {
+          "key": "B",
+          "text": "Validates that `inv_id` is exactly 12 characters long"
+        },
+        {
+          "key": "C",
+          "text": "Verifies that `inv_id` exists in `TBL_INVENTORY_ASSIGNED`"
+        },
+        {
+          "key": "D",
+          "text": "Confirms that `inv_id` matches the current user's assigned batch"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q13",
+      "number": 13,
+      "question": "How does the `alter_inventory` action handle an attempt to change a Prototype (PT prefix) SKU to a normal SKU?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The alteration is always allowed without restrictions"
+        },
+        {
+          "key": "B",
+          "text": "The alteration is blocked unless the reason is \"Change Prototype SKU To Upgraded SKU\""
+        },
+        {
+          "key": "C",
+          "text": "The alteration automatically sets the item to `qc_failed` status"
+        },
+        {
+          "key": "D",
+          "text": "The alteration is redirected to the admin module for approval"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q14",
+      "number": 14,
+      "question": "In the `vendor_return` action, what two conditions must be met before an inventory item can be returned to a vendor?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Item must be `qc_verified` status and have `isImperfect='1'`"
+        },
+        {
+          "key": "B",
+          "text": "Item must have `is_ams_inv=1` (AMS inventory) and the PO party_id must match the submitted vendor"
+        },
+        {
+          "key": "C",
+          "text": "Item must be in a sealed box and have completed QC"
+        },
+        {
+          "key": "D",
+          "text": "Item must have `inv_failed_count > 0` and be assigned to the vendor batch"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q15",
+      "number": 15,
+      "question": "What does `Stockist::add_inventory_log()` do specially when the `$log_type` parameter is `'sales_return'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It only inserts the log entry, with no side effects"
+        },
+        {
+          "key": "B",
+          "text": "It sends a Slack notification to the sales team"
+        },
+        {
+          "key": "C",
+          "text": "It sets `expectedLocation='RETURN_00001'`, `inv_batch=today`, `ctn_id='2002'`, and deactivates warranty registrations in `TBL_REGISTERED_WARRANTY`"
+        },
+        {
+          "key": "D",
+          "text": "It triggers the `before_update_inventory` trigger to null tracking fields"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q16",
+      "number": 16,
+      "question": "In the `audit_uid` action, what happens when a scanned UID has `inv_status` of `'sales'` or `'outbound'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The audit tag is applied normally and logged"
+        },
+        {
+          "key": "B",
+          "text": "The item is skipped — placed in a separate bucket by status name without updating audit tags"
+        },
+        {
+          "key": "C",
+          "text": "An error is returned and the scan is rejected entirely"
+        },
+        {
+          "key": "D",
+          "text": "The item's status is automatically changed to `qc_pending` for re-verification"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q17",
+      "number": 17,
+      "question": "The `before_update_bas_inventory` trigger fires when which column changes on `bas_inventory`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`inv_status` — sets currentLocation to NULL"
+        },
+        {
+          "key": "B",
+          "text": "`expectedLocation` — clears `currentLocation` to NULL (forcing re-confirmation of physical location)"
+        },
+        {
+          "key": "C",
+          "text": "`box_id` — clears `ctn_id` to cascade container changes"
+        },
+        {
+          "key": "D",
+          "text": "`item_id` — prevents SKU changes on existing inventory"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q18",
+      "number": 18,
+      "question": "In the DRR-based auto-assignment Phase 2 of `get_expected_location_by_status()`, how are high-DRR items (daily run rate >= 5) treated?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are assigned to the highest shelves for security"
+        },
+        {
+          "key": "B",
+          "text": "They are assigned to overflow/garden locations"
+        },
+        {
+          "key": "C",
+          "text": "They are assigned to the lowest shelves (highest height score) for easier physical access"
+        },
+        {
+          "key": "D",
+          "text": "They are distributed evenly across all shelf heights"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q19",
+      "number": 19,
+      "question": "What is the special carton ID `3002` used for in the `move_to_location` action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Items assigned to photography batches"
+        },
+        {
+          "key": "B",
+          "text": "Items with status `qc_pending` awaiting QC"
+        },
+        {
+          "key": "C",
+          "text": "Items being moved to `FAILED_` or `GDNFLD_` locations (repairable/garden-failed areas)"
+        },
+        {
+          "key": "D",
+          "text": "Items in the inbound godown awaiting tagging"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    },
+    {
+      "id": "day_07_q20",
+      "number": 20,
+      "question": "C",
+      "options": [
+        {
+          "key": "A",
+          "text": "QC tracking, location tracking, batch tracking, picklist tracking"
+        },
+        {
+          "key": "B",
+          "text": "Box creation state (boxId+invId+userId), QC carton processing (ctnId+category+count+userId), location movement tracking (locationId+count+userId), item-wise movement state (invId+category+jsonData)"
+        },
+        {
+          "key": "C",
+          "text": "Inbound state, outbound state, audit state, transfer state"
+        },
+        {
+          "key": "D",
+          "text": "User session state, product state, order state, shipment state"
+        }
+      ],
+      "answer": null,
+      "meta": {}
+    }
+  ],
+  "config": {
+    "optionsPerQuestion": 4,
+    "singleSelect": true
+  }
+}

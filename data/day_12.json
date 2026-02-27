@@ -1,0 +1,490 @@
+{
+  "testId": "day_12",
+  "title": "Day 12 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_12_q1",
+      "number": 1,
+      "question": "In the `get_orders` action of `amazon/ajax_load.php`, what value is used for the SP-API `LastUpdatedAfter` parameter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The timestamp of the last successfully synced order"
+        },
+        {
+          "key": "B",
+          "text": "The current time minus 16 minutes"
+        },
+        {
+          "key": "C",
+          "text": "Midnight of the current day"
+        },
+        {
+          "key": "D",
+          "text": "The value stored in `TBL_AZ_REPORT.last_sync_time`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q2",
+      "number": 2,
+      "question": "When a new Amazon order is inserted by `get_orders`, what happens to the `amazon_reserved` column in `TBL_PRODUCTS_MASTER`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It is incremented by the order quantity"
+        },
+        {
+          "key": "B",
+          "text": "It is decremented (reduced) for the matching product"
+        },
+        {
+          "key": "C",
+          "text": "It is set to zero"
+        },
+        {
+          "key": "D",
+          "text": "It is not affected — amazon_reserved is managed by a separate cron job"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q3",
+      "number": 3,
+      "question": "How does the `update_orders` action detect that an AFN order should be auto-marked as shipped?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By checking `TBL_AZ_ORDERS.shipmentStatus = 'delivered'`"
+        },
+        {
+          "key": "B",
+          "text": "When Amazon's SP-API returns `az_status='Shipped'` but the local `status` is still `new`"
+        },
+        {
+          "key": "C",
+          "text": "By reading the `TBL_FULFILLMENT.fulfillmentStatus` field"
+        },
+        {
+          "key": "D",
+          "text": "Through a webhook notification from Amazon"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q4",
+      "number": 4,
+      "question": "How are AFN (FBA) return orders identified in `TBL_AZ_ORDERS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "By `fulfillmentChannel = 'AFN_RETURN'`"
+        },
+        {
+          "key": "B",
+          "text": "By `isAFNReturns = 1` and an order ID prefixed with `S02-`"
+        },
+        {
+          "key": "C",
+          "text": "By `isReplacementOrder = 1`"
+        },
+        {
+          "key": "D",
+          "text": "Through a `returnType` column set to `'afn'`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q5",
+      "number": 5,
+      "question": "In the SP-API connector class, how is the OAuth2 access token managed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A new token is requested for every API call"
+        },
+        {
+          "key": "B",
+          "text": "The token is auto-refreshed with a 60-second offset before expiry, and stored in `TBL_AZ_ACCOUNTS` (`access_token` and `token_expiry` columns)"
+        },
+        {
+          "key": "C",
+          "text": "The token is stored in PHP session variables and refreshed on page load"
+        },
+        {
+          "key": "D",
+          "text": "Token management is handled by the MWS client library"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q6",
+      "number": 6,
+      "question": "Which operations still use the deprecated MWS API (`MCS\\MWSClient`) rather than SP-API?",
+      "options": [
+        {
+          "key": "A",
+          "text": "GetOrders, GetOrder, and ListOrderItems"
+        },
+        {
+          "key": "B",
+          "text": "RequestOrderLabel (label generation), GetFeedSubmissionResult (label PDF download), and GetReport (AFN data/tracking)"
+        },
+        {
+          "key": "C",
+          "text": "All payment reconciliation operations"
+        },
+        {
+          "key": "D",
+          "text": "Only the order cancellation flow"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q7",
+      "number": 7,
+      "question": "What is the correct sequence for the EasyShip label generation flow in the Amazon module?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`get_labels` → `request_labels` → `schedule_pickup`"
+        },
+        {
+          "key": "B",
+          "text": "`schedule_pickup` (SP-API ListPickupSlots + MWS RequestOrderLabel) → `request_labels` (MWS RequestOrderLabel) → `get_labels` (MWS GetFeedSubmissionResult → PDF) → `generate_labels` (mPDF merge)"
+        },
+        {
+          "key": "C",
+          "text": "`generate_labels` → `schedule_pickup` → `get_labels`"
+        },
+        {
+          "key": "D",
+          "text": "`request_labels` → `schedule_pickup` → `generate_labels` → `get_labels`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q8",
+      "number": 8,
+      "question": "In the `scan_ship` action of `ajax_load.php`, what data preparation occurs before the operator scans UIDs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the order details are fetched from `TBL_AZ_ORDERS`"
+        },
+        {
+          "key": "B",
+          "text": "RTD order items are loaded by tracking_id, combo products are resolved via `TBL_PRODUCTS_COMBO`, and \"Order Process Start\" is logged to `TBL_PROCESS_LOG`"
+        },
+        {
+          "key": "C",
+          "text": "A new fulfilment record is created in `TBL_FULFILLMENT`"
+        },
+        {
+          "key": "D",
+          "text": "The SP-API is called to verify the order is still active"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q9",
+      "number": 9,
+      "question": "In the `save_scan_ship` action, what operations occur per UID after the operator submits scanned items?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only `TBL_AZ_ORDERS.uid` is updated with the UID JSON array"
+        },
+        {
+          "key": "B",
+          "text": "`$stockist->update_inventory_status($uid, 'sales')` + `$stockist->add_inventory_log($uid, 'sales', 'Amazon Sales :: orderId')` + \"Order Process End\" logged to `TBL_PROCESS_LOG`"
+        },
+        {
+          "key": "C",
+          "text": "The UID is written directly to `TBL_INVENTORY.inv_status = 'shipped'`"
+        },
+        {
+          "key": "D",
+          "text": "`$stockist->update_stock_on_mps()` is called to update Amazon stock levels"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q10",
+      "number": 10,
+      "question": "In `flex_process_request.php`, what CORS restriction controls access to the Flex endpoint?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A token-based authentication via `AuthMiddleware`"
+        },
+        {
+          "key": "B",
+          "text": "`$_SERVER['HTTP_ORIGIN']` must be `https://sellerflex.amazon.in` or `https://beta-sellerflex.amazon.in`"
+        },
+        {
+          "key": "C",
+          "text": "The request must include an Amazon API signature header"
+        },
+        {
+          "key": "D",
+          "text": "IP allowlisting from Amazon's CDN"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q11",
+      "number": 11,
+      "question": "In the `add_details` action of `flex_process_request.php`, what distinguishes a Flex-processed order in `TBL_AZ_ORDERS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`fulfillmentChannel = 'FLEX'` and `status = 'flex_shipped'`"
+        },
+        {
+          "key": "B",
+          "text": "`fulfilmentSite = 'ZWCI'`, `courierName = 'ATS'`, and the order is processed by BOT user (userID=86, role='bot')"
+        },
+        {
+          "key": "C",
+          "text": "`shipmentStatus = 'flex_complete'` and `isFlexOrder = 1`"
+        },
+        {
+          "key": "D",
+          "text": "A separate `TBL_AZ_FLEX_ORDERS` table is used"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q12",
+      "number": 12,
+      "question": "In `functions.php`, what does `update_returns_status()` do when a return is marked as \"received\"?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Creates a Safe-T claim and completes the return"
+        },
+        {
+          "key": "B",
+          "text": "Sets `rReceivedDate` on the return record and withdraws any undelivered claims"
+        },
+        {
+          "key": "C",
+          "text": "Immediately routes the returned UIDs to `qc_pending` via `$stockist`"
+        },
+        {
+          "key": "D",
+          "text": "Triggers a refund to the customer via Amazon's API"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q13",
+      "number": 13,
+      "question": "When a return is marked as \"completed\" in `update_returns_status()`, what inventory operation occurs per UID?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$stockist->update_inventory_status($uid, 'sales')` — marking it as sold"
+        },
+        {
+          "key": "B",
+          "text": "`$stockist->update_inventory_status($uid, 'qc_pending')` + `$stockist->add_inventory_log($uid, 'sales_return', ...)` — routing the item back to the QAQC pipeline"
+        },
+        {
+          "key": "C",
+          "text": "The UID is deleted from `TBL_INVENTORY`"
+        },
+        {
+          "key": "D",
+          "text": "`$stockist->update_inventory_status($uid, 'inbound')` — treating it as new stock"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q14",
+      "number": 14,
+      "question": "What is a \"removal order\" in the Amazon module, and which table tracks it?",
+      "options": [
+        {
+          "key": "A",
+          "text": "An order cancelled by the customer, tracked in `TBL_AZ_ORDERS` with `status='cancelled'`"
+        },
+        {
+          "key": "B",
+          "text": "FBA inventory being returned from Amazon's fulfillment centres to the seller, tracked in `TBL_AZ_REMOVAL_ORDERS` with fields like `fnsku` and status progression (return_pending → in_transit → received → completed)"
+        },
+        {
+          "key": "C",
+          "text": "A product removed from Amazon's catalogue, tracked in `TBL_AZ_PRODUCTS`"
+        },
+        {
+          "key": "D",
+          "text": "A return order that was rejected, tracked in `TBL_AZ_CLAIMS`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q15",
+      "number": 15,
+      "question": "In the `mark_orders > return_completed` sub-case of `ajax_load.php`, what validation occurs before completing a return?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The system checks if a Safe-T claim exists for the return"
+        },
+        {
+          "key": "B",
+          "text": "The scanned UIDs are compared against the stored UIDs in the order to verify they match"
+        },
+        {
+          "key": "C",
+          "text": "The Amazon SP-API is called to confirm the return status"
+        },
+        {
+          "key": "D",
+          "text": "The refund amount is validated against the original order total"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q16",
+      "number": 16,
+      "question": "How does `AmazonPayments->get_marketplace_charges()` determine which fee calculation methods to call?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It uses a hardcoded list of fee functions in the class constructor"
+        },
+        {
+          "key": "B",
+          "text": "It reads `TBL_FEES_CHART` for charge definitions (forward/return/replacement/RTO) and dynamically calls `$this->$function($order)` for each fee type mapped in the chart"
+        },
+        {
+          "key": "C",
+          "text": "It reads the fee list from the Amazon SP-API"
+        },
+        {
+          "key": "D",
+          "text": "It uses a configuration file stored in the `/assets/templates/` directory"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q17",
+      "number": 17,
+      "question": "During settlement CSV import via `insert_payments()`, how are Amazon's varying column names handled?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Column names are hardcoded in the PHP file"
+        },
+        {
+          "key": "B",
+          "text": "The `get_option('amazon_payments_key_mapping')` option provides column name normalisation, and any unrecognised column keys trigger an insert into `TBL_DEV_NOTIFICATIONS` to alert developers"
+        },
+        {
+          "key": "C",
+          "text": "A separate mapping table `TBL_AZ_COLUMN_MAP` stores the translations"
+        },
+        {
+          "key": "D",
+          "text": "The CSV headers are parsed and auto-matched using fuzzy string comparison"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q18",
+      "number": 18,
+      "question": "What does the `get_all_unsettled` payment action automatically do for orders with a settlement difference of ₹0.50 or less?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Flags the order for manual review"
+        },
+        {
+          "key": "B",
+          "text": "Automatically marks the order as settled (considers the difference negligible)"
+        },
+        {
+          "key": "C",
+          "text": "Creates a dispute record in `TBL_AZ_INCIDENTS`"
+        },
+        {
+          "key": "D",
+          "text": "Sends a notification to the seller about the discrepancy"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q19",
+      "number": 19,
+      "question": "How does the Amazon module handle stock release when an order is cancelled, compared to Flipkart?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both use a database trigger to automatically release stock"
+        },
+        {
+          "key": "B",
+          "text": "Amazon relies on PHP-level `update_order_inventory_status()` called during `get_orders` sync, whereas Flipkart uses the `trg_before_fk_status_update` database trigger for automatic stock release"
+        },
+        {
+          "key": "C",
+          "text": "Amazon uses a webhook to trigger stock release; Flipkart uses a cron job"
+        },
+        {
+          "key": "D",
+          "text": "Neither module handles stock release — it is managed by the inventory module's own cron"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_12_q20",
+      "number": 20,
+      "question": "Which of the following correctly describes the data synchronisation model difference between Amazon and Shopify modules?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Both use webhook-based push models but with different authentication"
+        },
+        {
+          "key": "B",
+          "text": "Amazon uses a cron-based pull model (`get_orders` with SP-API, no webhook receiver), while Shopify uses a push model with 11 webhook event types across 3 authentication strategies (Shopify HMAC, Razorpay HMAC, unauthenticated GoKwik/Easebuzz)"
+        },
+        {
+          "key": "C",
+          "text": "Amazon uses webhooks for orders but pulls payments; Shopify does the reverse"
+        },
+        {
+          "key": "D",
+          "text": "Both use identical cron-based pull models with 15-minute intervals"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

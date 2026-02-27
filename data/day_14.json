@@ -1,0 +1,442 @@
+{
+  "testId": "day_14",
+  "title": "Day 14 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_14_q1",
+      "number": 1,
+      "question": "What design pattern does the `Stockist` class in `includes/Stockist.php` implement, and how is the instance accessed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Factory pattern — `Stockist::create()` returns new instances per marketplace"
+        },
+        {
+          "key": "B",
+          "text": "Singleton pattern — `Stockist::getInstance()` returns the single shared instance, stored in `private static $instance`"
+        },
+        {
+          "key": "C",
+          "text": "Observer pattern — marketplace modules register callbacks with the Stockist"
+        },
+        {
+          "key": "D",
+          "text": "Strategy pattern — different Stockist implementations are injected per marketplace"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q2",
+      "number": 2,
+      "question": "When `$stockist->update_inventory_details()` successfully updates `TBL_INVENTORY`, what additional side effect does it produce for the product?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It recalculates the product's selling price across all marketplace listings"
+        },
+        {
+          "key": "B",
+          "text": "It counts non-ignored-status inventory for the product, then writes 'Out of Stock' to `TBL_PRODUCTS_LOG` if count reaches zero, or 'In Stock : [count]' if count returns from zero"
+        },
+        {
+          "key": "C",
+          "text": "It sends a Slack notification to the warehouse team about the status change"
+        },
+        {
+          "key": "D",
+          "text": "It triggers a cron job to recalculate marketplace fees for that product"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q3",
+      "number": 3,
+      "question": "Which external class dependencies does the `Stockist` class import at the top of `includes/Stockist.php`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only `Database\\DB` — all marketplace interactions are handled through generic SQL"
+        },
+        {
+          "key": "B",
+          "text": "`Database\\DB`, `ErrorHandler\\Debug`, `Connectors\\shopify\\shopify`, `Connectors\\shopify\\shopify_dashboard`, and `Connectors\\flipkart\\connector_flipkart`"
+        },
+        {
+          "key": "C",
+          "text": "One connector class per marketplace: `connector_flipkart`, `shopify_dashboard`, `amazon_spapi`, `ajio_dashboard`, `connector_paytm`"
+        },
+        {
+          "key": "D",
+          "text": "`Database\\DB` and `Connectors\\marketplace\\base_connector` — a generic base class for all marketplaces"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q4",
+      "number": 4,
+      "question": "In `update_inventory_status()`, what happens when the status parameter is `'qc_verified'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the `inv_status` field is updated to `qc_verified` in `TBL_INVENTORY`"
+        },
+        {
+          "key": "B",
+          "text": "The item is moved to packing location and a shipping label is generated"
+        },
+        {
+          "key": "C",
+          "text": "`TBL_PRODUCTS_MASTER.committed_stock` is decremented by 1 (with `committed_stock > 0` guard), AND `$this->update_stock_on_mps($inv_id, 'uid')` is called — triggering stock quantity pushes to Shopify and Flipkart APIs"
+        },
+        {
+          "key": "D",
+          "text": "The item is flagged for manual inspection and an alert is sent to the QAQC team"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_14_q5",
+      "number": 5,
+      "question": "In the `get_expected_location_by_status()` method, how are `qc_verified` items assigned to Area 02 warehouse locations?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Items are assigned to the first available location regardless of product characteristics"
+        },
+        {
+          "key": "B",
+          "text": "Locations are assigned alphabetically by locationId prefix"
+        },
+        {
+          "key": "C",
+          "text": "Products with high DRR (Daily Run Rate) are sorted to locations with the highest height score (lowest shelves for easy access), while low DRR products go to lowest height score (highest shelves)"
+        },
+        {
+          "key": "D",
+          "text": "Items are always assigned to Area 01 first and only overflow to Area 02"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_14_q6",
+      "number": 6,
+      "question": "When `add_inventory_log()` is called with `log_type == 'sales_return'`, what additional side effects are triggered beyond inserting the log record into `TBL_INVENTORY_LOG`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A refund is automatically processed through the Razorpay payment gateway"
+        },
+        {
+          "key": "B",
+          "text": "`update_inventory_details()` sets `expectedLocation='RETURN_00001'`, `inv_batch=today's date`, `ctn_id='2002'`, and deactivates any active warranty in `TBL_REGISTERED_WARRANTY` by setting `is_active='0'`"
+        },
+        {
+          "key": "C",
+          "text": "The item is immediately transferred to the `qc_verified` status for resale"
+        },
+        {
+          "key": "D",
+          "text": "A notification is sent to the marketplace's return centre API"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q7",
+      "number": 7,
+      "question": "Which marketplace operations trigger the `add_inventory_log()` 'sales_return' branch and its associated warranty deactivation?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only Shopify returns, since Shopify is the primary DTC channel"
+        },
+        {
+          "key": "B",
+          "text": "Returns and cancellations from all four integrated modules (Flipkart, Shopify, Amazon, Paytm) — each calls `$stockist->add_inventory_log($uid, 'sales_return', '{MP} Return/Cancelled :: orderId')`"
+        },
+        {
+          "key": "C",
+          "text": "Only returns — cancellations use a separate 'cancellation' log type"
+        },
+        {
+          "key": "D",
+          "text": "Only Amazon returns and removals, since Amazon has the most complex return paths"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q8",
+      "number": 8,
+      "question": "What is the complete formula used by `update_stock_on_mps()` to calculate the quantity pushed to Shopify and Flipkart?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`qtyToUpdate = total_inventory_count - sold_count`"
+        },
+        {
+          "key": "B",
+          "text": "`qtyToUpdate = max(0, qc_verified_count + committed_stock - amazon_reserved - reserved_quantity - buffer_quantity)` where qc_verified_count is filtered to items where `expectedLocation = currentLocation` and `expectedLocation NOT LIKE 'DISPLY%'`"
+        },
+        {
+          "key": "C",
+          "text": "`qtyToUpdate = qc_verified_count - reserved_quantity`"
+        },
+        {
+          "key": "D",
+          "text": "`qtyToUpdate = total_inventory_count - reserved_quantity - buffer_quantity`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q9",
+      "number": 9,
+      "question": "Which marketplaces does the `update_stock_on_mps()` method in `Stockist.php` push inventory quantities to?",
+      "options": [
+        {
+          "key": "A",
+          "text": "All six marketplace modules: Flipkart, Shopify, Amazon, Ajio, Paytm, and POS"
+        },
+        {
+          "key": "B",
+          "text": "Only Shopify and Flipkart — iterating accounts where `sync_inventory` is enabled"
+        },
+        {
+          "key": "C",
+          "text": "Only the marketplace that triggered the inventory change"
+        },
+        {
+          "key": "D",
+          "text": "All marketplaces except POS, using a generic connector interface"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q10",
+      "number": 10,
+      "question": "In the Shopify branch of `update_stock_on_mps()`, how does the method resolve inventory quantities for Shopify?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It reads the Shopify `inventory_levels` API to get current stock"
+        },
+        {
+          "key": "B",
+          "text": "It joins `TBL_INVENTORY`, `TBL_PRODUCTS_MASTER`, and `TBL_SP_PRODUCTS`, groups by sku/pid/isImperfect, counts DISTINCT inv_id with inv_status='qc_verified', and pushes per Shopify variantId per account — supporting separate imperfect/new stock tracking"
+        },
+        {
+          "key": "C",
+          "text": "It queries a pre-computed `TBL_STOCK_CACHE` table updated by a background cron job"
+        },
+        {
+          "key": "D",
+          "text": "It sums all inventory regardless of status and subtracts pending orders from `TBL_SP_ORDERS`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q11",
+      "number": 11,
+      "question": "What are the three possible modes for `calculate_inventory_buffer()` as specified by the `slabBasedInventoryBuffer` config in `TBL_OPTIONS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'none' (zero buffer), 'percentage' (% of total stock), 'absolute' (fixed number)"
+        },
+        {
+          "key": "B",
+          "text": "A fixed integer value, `'calculate'` (midpoint of the slab range), or `'drr'` (reads `TBL_PRODUCTS_MASTER.drr` — the product's Daily Run Rate)"
+        },
+        {
+          "key": "C",
+          "text": "'low' (10% buffer), 'medium' (25% buffer), 'high' (50% buffer)"
+        },
+        {
+          "key": "D",
+          "text": "'static' (global setting), 'dynamic' (per-product), 'disabled' (no buffer)"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q12",
+      "number": 12,
+      "question": "How many total `$stockist` method calls exist across all six marketplace modules, and which has the most?",
+      "options": [
+        {
+          "key": "A",
+          "text": "30 total; Shopify has the most with 12 calls"
+        },
+        {
+          "key": "B",
+          "text": "45 total; Flipkart (16) and Amazon (16) are tied for the most, followed by Shopify (9) and Paytm (4)"
+        },
+        {
+          "key": "C",
+          "text": "60 total; Amazon has the most with 20 calls due to MFN/AFN/Flex channels"
+        },
+        {
+          "key": "D",
+          "text": "25 total; all four integrated modules have roughly equal numbers"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q13",
+      "number": 13,
+      "question": "How does Flipkart's inventory handling of cancelled orders differ from Shopify, Amazon, and Paytm?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Flipkart does not restore inventory on cancellation — items remain in 'sales' status"
+        },
+        {
+          "key": "B",
+          "text": "Flipkart sets cancelled items to `qc_verified` via `$stockist->update_inventory_status($uid, 'qc_verified')` at `connector_flipkart.php` line 2155, returning them directly to sellable stock — while SP/AZ/PT set cancelled items to `qc_pending`, requiring them to go through QC re-verification before becoming sellable"
+        },
+        {
+          "key": "C",
+          "text": "All four marketplaces handle cancellations identically, setting items to `qc_pending`"
+        },
+        {
+          "key": "D",
+          "text": "Flipkart triggers a full stock recount via `update_stock_on_mps` on cancellation, while others do not"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q14",
+      "number": 14,
+      "question": "Which modules outside of the marketplace directories also call `$stockist->update_stock_on_mps()`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only marketplace modules call this method — it is exclusively part of the order lifecycle"
+        },
+        {
+          "key": "B",
+          "text": "`qaqc/ajax_load.php` (lines 307, 375 — when items pass QC), `products/ajax_load.php` (line 288 — product updates), and the Stockist class itself (line 378 — on qc_verified status transition)"
+        },
+        {
+          "key": "C",
+          "text": "Only the Stockist class itself calls it internally via `update_inventory_status`"
+        },
+        {
+          "key": "D",
+          "text": "`inventory/ajax_load.php` calls it as part of the stock reconciliation process"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q15",
+      "number": 15,
+      "question": "What does the `before_update_inventory` trigger on `bas_inventory` do when an item's `inv_status` changes to `'sales'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It logs the sale to a separate audit table for compliance"
+        },
+        {
+          "key": "B",
+          "text": "It increments a sales counter on the product record"
+        },
+        {
+          "key": "C",
+          "text": "It auto-nullifies `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` — clearing all physical location and batch data for the sold item at the database level"
+        },
+        {
+          "key": "D",
+          "text": "It prevents the update if the item is currently assigned to a picklist"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_14_q16",
+      "number": 16,
+      "question": "What status values does the `before_update_inventory` trigger respond to, and for which statuses does it clear location data?",
+      "options": [
+        {
+          "key": "A",
+          "text": "All status values — location data is cleared on every status change"
+        },
+        {
+          "key": "B",
+          "text": "Only `'sales'` and `'lost'` — items that leave the warehouse"
+        },
+        {
+          "key": "C",
+          "text": "`'sales'`, `'lost'`, `'liquidated'`, `'sidlined'`, and `'outbound'` — all five statuses that represent items no longer physically present in the warehouse"
+        },
+        {
+          "key": "D",
+          "text": "Only `'sales'` — the trigger is specifically designed for marketplace order fulfilment"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_14_q17",
+      "number": 17,
+      "question": "What specific consequence does the POS module's lack of `$stockist` integration have on the inventory quantity formula in `update_stock_on_mps()`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "POS orders are excluded from the formula, so there is no effect"
+        },
+        {
+          "key": "B",
+          "text": "Items sold at POS remain with `inv_status='qc_verified'` in `TBL_INVENTORY`, so they are still counted in the `qc_verified_count` used by `update_stock_on_mps()` — inflating the stock quantity pushed to Shopify and Flipkart with items that are physically no longer available"
+        },
+        {
+          "key": "C",
+          "text": "POS sales deduct from `committed_stock` on `TBL_PRODUCTS_MASTER`, reducing availability correctly"
+        },
+        {
+          "key": "D",
+          "text": "The POS module uses a separate inventory pool that is not connected to the main marketplace stock"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_14_q18",
+      "number": 18,
+      "question": "Why does Ajio's complete absence of `$stockist` calls across all 7 files (5 PHP + 2 connector classes) create a different type of inventory gap than POS?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Ajio and POS have identical gaps — both sell items without updating FIMS inventory"
+        },
+        {
+          "key": "B",
+          "text": "Ajio is a wholesale (B2B) channel where orders are fulfilled by Ajio's own logistics from items shipped in bulk — the inventory was likely already deducted when bulk stock was transferred. POS sells individual items from warehouse stock that should have per-UID tracking through `$stockist` — making POS's gap a direct phantom stock issue for items still physically in the FIMS inventory system"
+        },
+        {
+          "key": "C",
+          "text": "Ajio uses a different inventory system entirely, not connected to `TBL_INVENTORY`"
+        },
+        {
+          "key": "D",
+          "text": "Ajio has its own `$stockist` equivalent built into the `ajio_dashboard` connector class"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

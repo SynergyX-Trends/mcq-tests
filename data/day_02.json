@@ -1,0 +1,590 @@
+{
+  "testId": "day_02",
+  "title": "DAY 02 — ONBOARDING EXECUTION DOCUMENT",
+  "questions": [
+    {
+      "id": "day_02_q1",
+      "number": 1,
+      "question": "In `sec_session_start()`, what is the default session name, and under what condition is it changed to `'fims_sid_sandbox'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Default is `PHPSESSID`; changed when `ENV == 'LOCAL'`"
+        },
+        {
+          "key": "B",
+          "text": "Default is `fims_sid`; changed when `ENV == 'STAGING'`"
+        },
+        {
+          "key": "C",
+          "text": "Default is `fims_sid`; changed when `ENV == 'PRODUCTION'`"
+        },
+        {
+          "key": "D",
+          "text": "Default is `fims_sid_sandbox`; changed when `ENV == 'PRODUCTION'`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q2",
+      "number": 2,
+      "question": "During a successful login in the `login()` method of `class-user-access.php`, how many session variables are set?",
+      "options": [
+        {
+          "key": "A",
+          "text": "4"
+        },
+        {
+          "key": "B",
+          "text": "5"
+        },
+        {
+          "key": "C",
+          "text": "7"
+        },
+        {
+          "key": "D",
+          "text": "9"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q3",
+      "number": 3,
+      "question": "What is the value stored in `$_SESSION['timeout']` upon successful login?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`time() + 86400` (1 day)"
+        },
+        {
+          "key": "B",
+          "text": "`time() + (86400 * 7)` (7 days)"
+        },
+        {
+          "key": "C",
+          "text": "`time() + 28800` (8 hours)"
+        },
+        {
+          "key": "D",
+          "text": "`time() + 3600` (1 hour)"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q4",
+      "number": 4,
+      "question": "In `login_check()`, how is `$login_check` compared against `$_SESSION['login_string']`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$login_check == $login_string` (loose comparison)"
+        },
+        {
+          "key": "B",
+          "text": "`hash_equals($login_check, $login_string)` (timing-safe comparison)"
+        },
+        {
+          "key": "C",
+          "text": "`$login_check === $login_string` (strict comparison)"
+        },
+        {
+          "key": "D",
+          "text": "`strcmp($login_check, $login_string) === 0`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q5",
+      "number": 5,
+      "question": "In `class-user-access.php`, where does `session_regenerate_id(TRUE)` execute?",
+      "options": [
+        {
+          "key": "A",
+          "text": "At the start of every `sec_session_start()` call"
+        },
+        {
+          "key": "B",
+          "text": "After all 7 session variables are set and brute force data is deleted in the `login()` method"
+        },
+        {
+          "key": "C",
+          "text": "On every call to `login_check()`"
+        },
+        {
+          "key": "D",
+          "text": "In `sec_session_destroy()` before destroying the session"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q6",
+      "number": 6,
+      "question": "In `sec_session_destroy()`, what is the correct order of operations?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`session_destroy()` → `$_SESSION = array()` → delete cookie"
+        },
+        {
+          "key": "B",
+          "text": "`$_SESSION = array()` → delete session cookie → `session_destroy()`"
+        },
+        {
+          "key": "C",
+          "text": "delete session cookie → `$_SESSION = array()` → `session_destroy()`"
+        },
+        {
+          "key": "D",
+          "text": "`$_SESSION = array()` → `session_destroy()` → delete cookie"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Session Lifecycle Mastery",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q7",
+      "number": 7,
+      "question": "How many values are concatenated to produce the bearer token hash in `updateUserHash()`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "8"
+        },
+        {
+          "key": "B",
+          "text": "10"
+        },
+        {
+          "key": "C",
+          "text": "11"
+        },
+        {
+          "key": "D",
+          "text": "13"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Token & AuthMiddleware Understanding",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q8",
+      "number": 8,
+      "question": "In `AuthMiddleware::checkRequestTiming()`, what is the inactivity threshold that causes token expiry?",
+      "options": [
+        {
+          "key": "A",
+          "text": "15 minutes"
+        },
+        {
+          "key": "B",
+          "text": "20 minutes"
+        },
+        {
+          "key": "C",
+          "text": "30 minutes"
+        },
+        {
+          "key": "D",
+          "text": "60 minutes"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Token & AuthMiddleware Understanding",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q9",
+      "number": 9,
+      "question": "When `AuthMiddleware::checkRequestTiming()` detects that `$diffInMinutes >= 20`, what does it do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Returns TRUE and logs the timeout"
+        },
+        {
+          "key": "B",
+          "text": "Updates `last_request_time` to the current time"
+        },
+        {
+          "key": "C",
+          "text": "Deletes the `TBL_USER_REQUESTS` record for that user and returns FALSE"
+        },
+        {
+          "key": "D",
+          "text": "Sets `http_response_code(401)` and exits"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Token & AuthMiddleware Understanding",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q10",
+      "number": 10,
+      "question": "In `keepalive.php`, what value is passed to `$auth->handle()` as the `$check_request_timing` parameter?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`TRUE`"
+        },
+        {
+          "key": "B",
+          "text": "`FALSE`"
+        },
+        {
+          "key": "C",
+          "text": "`NULL`"
+        },
+        {
+          "key": "D",
+          "text": "The `userId` from the query string"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Token & AuthMiddleware Understanding",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q11",
+      "number": 11,
+      "question": "What is unique about `keepalive.php`'s bootstrap compared to normal pages?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It includes `config.php` but skips `functions.php`"
+        },
+        {
+          "key": "B",
+          "text": "It does not include `config.php` — it requires the autoloader, includes `definer.php` and `load_env.php`, and creates its own `DB` instance"
+        },
+        {
+          "key": "C",
+          "text": "It uses `session_start()` instead of `sec_session_start()`"
+        },
+        {
+          "key": "D",
+          "text": "It loads all singletons but skips the menu system"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Token & AuthMiddleware Understanding",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q12",
+      "number": 12,
+      "question": "In `check_trusted_device()`, how many fingerprint fields are matched against `TBL_USER_DEVICES`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 (`user_device_client`, `user_device_os`, `user_device_os_version`)"
+        },
+        {
+          "key": "B",
+          "text": "4 (`user_device_client`, `user_device_type`, `user_device_brand`, `user_device_os`)"
+        },
+        {
+          "key": "C",
+          "text": "5 (`user_device_client`, `user_device_type`, `user_device_brand`, `user_device_os`, `user_device_os_version`)"
+        },
+        {
+          "key": "D",
+          "text": "6 (`user_device_client`, `user_device_type`, `user_device_brand`, `user_device_os`, `user_device_os_version`, IP address)"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Device Trust & 2FA Flow",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q13",
+      "number": 13,
+      "question": "On `login/two-factor-auth.php`, what expiry is set when the user clicks \"Allow Once\"?",
+      "options": [
+        {
+          "key": "A",
+          "text": "1 hour from current time"
+        },
+        {
+          "key": "B",
+          "text": "2 hours from current time (`time() + 7200`)"
+        },
+        {
+          "key": "C",
+          "text": "24 hours from current time"
+        },
+        {
+          "key": "D",
+          "text": "No expiry (NULL)"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Device Trust & 2FA Flow",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q14",
+      "number": 14,
+      "question": "After successful 2FA verification on `login/two-factor-auth.php`, what update is made to `TBL_USERS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`user_access_token` is regenerated"
+        },
+        {
+          "key": "B",
+          "text": "`user_otp` is set to NULL"
+        },
+        {
+          "key": "C",
+          "text": "`is_mobile_verified` is set to 1"
+        },
+        {
+          "key": "D",
+          "text": "`user_status` is set to 0"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Device Trust & 2FA Flow",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q15",
+      "number": 15,
+      "question": "In `login-checker.php`, what three conditions must ALL be TRUE for a user to access a protected page?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`is_loggedIn`, `is_trustedDevice`, `is_disabled`"
+        },
+        {
+          "key": "B",
+          "text": "`is_loggedIn === TRUE`, `is_trustedDevice === TRUE`, `!is_disabled`"
+        },
+        {
+          "key": "C",
+          "text": "`is_loggedIn`, `!is_disabled`, valid `access_token`"
+        },
+        {
+          "key": "D",
+          "text": "`is_loggedIn`, valid `login_string`, `is_trustedDevice`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Login-Checker Gate & Auth Paths",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q16",
+      "number": 16,
+      "question": "In `login_check()`, if no session variables are present (`user_id`, `username`, `login_string` are all unset), what is the fallback chain?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`is_api()` → `is_bot()` → return FALSE"
+        },
+        {
+          "key": "B",
+          "text": "`is_bot()` → `is_api()` → set `is_loggedIn = FALSE`"
+        },
+        {
+          "key": "C",
+          "text": "`sec_session_reset()` → retry validation → return FALSE"
+        },
+        {
+          "key": "D",
+          "text": "`check_trusted_device()` → `is_bot()` → `is_api()`"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Login-Checker Gate & Auth Paths",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q17",
+      "number": 17,
+      "question": "In `login-checker.php`, when an unauthenticated AJAX request (XMLHttpRequest) is detected, what response is sent?",
+      "options": [
+        {
+          "key": "A",
+          "text": "HTTP 401 header with redirect to login page"
+        },
+        {
+          "key": "B",
+          "text": "JSON with `type: 'error'` and `redirectUrl` pointing to `$_SERVER['HTTP_REFERER']`, then `exit`"
+        },
+        {
+          "key": "C",
+          "text": "A blank 200 response"
+        },
+        {
+          "key": "D",
+          "text": "JSON with `type: 'redirect'` and the login URL"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Login-Checker Gate & Auth Paths",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q18",
+      "number": 18,
+      "question": "In `checkbrute()`, what condition triggers a login lockout?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 or more failed attempts within 1 hour"
+        },
+        {
+          "key": "B",
+          "text": "More than 5 failed attempts within a 2-hour window (`$logins > 5`)"
+        },
+        {
+          "key": "C",
+          "text": "10 or more failed attempts within 30 minutes"
+        },
+        {
+          "key": "D",
+          "text": "5 or more failed attempts within 1 hour"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Brute Force & Recovery Flows",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q19",
+      "number": 19,
+      "question": "In `recover/reset_password.php`, which `TBL_USERS` column is used to validate the password reset token, and what happens to it after a successful reset?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`user_otp` — set to NULL"
+        },
+        {
+          "key": "B",
+          "text": "`user_pass` — unchanged, only the new password is written"
+        },
+        {
+          "key": "C",
+          "text": "`user_activation_key` — cleared to empty string after password update"
+        },
+        {
+          "key": "D",
+          "text": "`user_access_token` — regenerated after reset"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Brute Force & Recovery Flows",
+        "weightContribution": "5%"
+      }
+    },
+    {
+      "id": "day_02_q20",
+      "number": 20,
+      "question": "In `recover/verify.php`, when the case is `account_activation`, what two operations are performed after email verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Password change is immediately required, then redirect to login"
+        },
+        {
+          "key": "B",
+          "text": "`is_email_verified` is set to 1 and `user_status` is set to 0, then a mobile OTP verification form is shown"
+        },
+        {
+          "key": "C",
+          "text": "An admin approval email is sent, then the user waits for activation"
+        },
+        {
+          "key": "D",
+          "text": "`user_activation_key` is cleared, then direct redirect to login"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Brute Force & Recovery Flows",
+        "weightContribution": "5%"
+      }
+    }
+  ],
+  "config": {
+    "optionsPerQuestion": 4,
+    "singleSelect": true
+  }
+}

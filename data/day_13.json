@@ -1,0 +1,490 @@
+{
+  "testId": "day_13",
+  "title": "Day 13 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_13_q1",
+      "number": 1,
+      "question": "Which AJAX action in pos/ajax_load.php is responsible for fetching product models grouped by model name for the collection selection screen?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`get_products`"
+        },
+        {
+          "key": "B",
+          "text": "`get_collections`"
+        },
+        {
+          "key": "C",
+          "text": "`get_customer_select_products`"
+        },
+        {
+          "key": "D",
+          "text": "`search_customer`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q2",
+      "number": 2,
+      "question": "The `create_order` action in pos/ajax_load.php performs multiple database writes. Which tables are INSERTed during this action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only TBL_POS_DATA"
+        },
+        {
+          "key": "B",
+          "text": "Only TBL_POS_PAYMENT_LINKS"
+        },
+        {
+          "key": "C",
+          "text": "Both TBL_POS_DATA and TBL_POS_PAYMENT_LINKS"
+        },
+        {
+          "key": "D",
+          "text": "TBL_POS_DATA, TBL_POS_PAYMENT_LINKS, and TBL_SP_ORDERS"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q3",
+      "number": 3,
+      "question": "Which action in pos/ajax_load.php calls the Shopify Admin API to search for existing customers by phone number, name, or email?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`add_new_customer`"
+        },
+        {
+          "key": "B",
+          "text": "`get_customer_select_products`"
+        },
+        {
+          "key": "C",
+          "text": "`search_customer`"
+        },
+        {
+          "key": "D",
+          "text": "`view_orders`"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q4",
+      "number": 4,
+      "question": "What is the purpose of the `check_uids` action in pos/ajax_load.php?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To verify if a given SKU and UID combination exists in inventory"
+        },
+        {
+          "key": "B",
+          "text": "To check if a customer's user ID is valid"
+        },
+        {
+          "key": "C",
+          "text": "To validate Shopify order UIDs before creating POS order"
+        },
+        {
+          "key": "D",
+          "text": "To generate unique IDs for new POS orders"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_13_q5",
+      "number": 5,
+      "question": "In the `create_order` action (lines 141-264), what format is used to generate the POS order number?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'POS-' + random 6-digit number"
+        },
+        {
+          "key": "B",
+          "text": "'POS-' + timestamp"
+        },
+        {
+          "key": "C",
+          "text": "'POS-' + zero-padded ID from TBL_POS_DATA INSERT"
+        },
+        {
+          "key": "D",
+          "text": "'POS-' + Razorpay payment link ID"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q6",
+      "number": 6,
+      "question": "After INSERTing into TBL_POS_DATA, what is stored in the `pos_id` column?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The auto-increment ID from TBL_POS_DATA"
+        },
+        {
+          "key": "B",
+          "text": "The Razorpay payment link ID"
+        },
+        {
+          "key": "C",
+          "text": "A SHA1 hash of the order data + order format"
+        },
+        {
+          "key": "D",
+          "text": "The Shopify order ID"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q7",
+      "number": 7,
+      "question": "In the Shopify order payload constructed during `create_order`, what is the value of the `financial_status` field set to?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'pending'"
+        },
+        {
+          "key": "B",
+          "text": "'paid'"
+        },
+        {
+          "key": "C",
+          "text": "The value of the `$payment` variable"
+        },
+        {
+          "key": "D",
+          "text": "'authorized'"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q8",
+      "number": 8,
+      "question": "The `create_order` action sends a WhatsApp notification using Notification::send(). What template is used for this notification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'pos_order_created'"
+        },
+        {
+          "key": "B",
+          "text": "'pos_order_payment_request'"
+        },
+        {
+          "key": "C",
+          "text": "'payment_link_generated'"
+        },
+        {
+          "key": "D",
+          "text": "'order_confirmation'"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q9",
+      "number": 9,
+      "question": "What happens if the Razorpay API call fails after TBL_POS_DATA has been INSERTed in the `create_order` action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The entire operation is rolled back automatically"
+        },
+        {
+          "key": "B",
+          "text": "An orphan order exists in TBL_POS_DATA without a payment link entry"
+        },
+        {
+          "key": "C",
+          "text": "The TBL_POS_DATA record is automatically deleted"
+        },
+        {
+          "key": "D",
+          "text": "The code retries the Razorpay API call 3 times before failing"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q10",
+      "number": 10,
+      "question": "What is the primary security vulnerability in the `create_order` action related to order pricing?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Razorpay API keys are hardcoded in the source code"
+        },
+        {
+          "key": "B",
+          "text": "The Total amount is received from client-side JavaScript without server-side validation"
+        },
+        {
+          "key": "C",
+          "text": "Customer addresses are not encrypted before storage"
+        },
+        {
+          "key": "D",
+          "text": "Payment links expire too quickly"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q11",
+      "number": 11,
+      "question": "In the `create_order` action, where does the discount amount (`$discountAmt`) come from?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Calculated server-side from TBL_PRODUCTS_MASTER price comparison"
+        },
+        {
+          "key": "B",
+          "text": "Retrieved from a discount codes table"
+        },
+        {
+          "key": "C",
+          "text": "Summed from `$item['discount']` values in the client-provided cartDetails JSON"
+        },
+        {
+          "key": "D",
+          "text": "Hard-coded as 10% of the order total"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q12",
+      "number": 12,
+      "question": "Why is the lack of transaction wrapping (BEGIN/COMMIT) in the `create_order` action problematic?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It causes database performance issues"
+        },
+        {
+          "key": "B",
+          "text": "It prevents concurrent order creation"
+        },
+        {
+          "key": "C",
+          "text": "If Razorpay API fails after TBL_POS_DATA INSERT, an orphan order without payment link exists"
+        },
+        {
+          "key": "D",
+          "text": "MySQL doesn't support transactions on InnoDB engine"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q13",
+      "number": 13,
+      "question": "Which of the following is NOT validated server-side before creating a POS order?",
+      "options": [
+        {
+          "key": "A",
+          "text": "That the customer exists in Shopify"
+        },
+        {
+          "key": "B",
+          "text": "That the product variants exist in TBL_SP_PRODUCTS"
+        },
+        {
+          "key": "C",
+          "text": "That the Total price matches (quantity × retail_price) from TBL_PRODUCTS_MASTER"
+        },
+        {
+          "key": "D",
+          "text": "That the Razorpay API credentials exist in TBL_SP_PAYMENTS_GATEWAY"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q14",
+      "number": 14,
+      "question": "Which class is used in pos/ajax_load.php to interact with the Shopify Admin API for customer operations?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`shopify`"
+        },
+        {
+          "key": "B",
+          "text": "`shopify_dashboard`"
+        },
+        {
+          "key": "C",
+          "text": "`shopify_listner`"
+        },
+        {
+          "key": "D",
+          "text": "`shopify_connector`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q15",
+      "number": 15,
+      "question": "When creating a new customer via the `add_new_customer` action, what data structure is sent to Shopify's create_customer_id() method?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A JSON string with customer name and email only"
+        },
+        {
+          "key": "B",
+          "text": "An array with 'customer' key containing name, email, phone, verified_email, and 'addresses' array"
+        },
+        {
+          "key": "C",
+          "text": "A CSV string with comma-separated customer fields"
+        },
+        {
+          "key": "D",
+          "text": "An XML document with customer data"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q16",
+      "number": 16,
+      "question": "In the POS module, how are Shopify account credentials accessed for API calls?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Hard-coded in pos/ajax_load.php"
+        },
+        {
+          "key": "B",
+          "text": "Read from .env file directly"
+        },
+        {
+          "key": "C",
+          "text": "From the global $accounts['shopify'] array, using $accounts[0] for the first account"
+        },
+        {
+          "key": "D",
+          "text": "Fetched from TBL_SP_ACCOUNTS on every request"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q17",
+      "number": 17,
+      "question": "In the Razorpay payment link creation, the `amount` field is set by multiplying the Total by 100. Why?",
+      "options": [
+        {
+          "key": "A",
+          "text": "To add a 100% markup for profit"
+        },
+        {
+          "key": "B",
+          "text": "Because Razorpay amount is in paise (1 rupee = 100 paise)"
+        },
+        {
+          "key": "C",
+          "text": "To convert dollars to rupees"
+        },
+        {
+          "key": "D",
+          "text": "It's a mistake in the code"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q18",
+      "number": 18,
+      "question": "After creating a payment link via Razorpay API, which field from the API response is stored in TBL_POS_PAYMENT_LINKS as `paymentLink`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`id`"
+        },
+        {
+          "key": "B",
+          "text": "`short_url`"
+        },
+        {
+          "key": "C",
+          "text": "`payment_url`"
+        },
+        {
+          "key": "D",
+          "text": "`callback_url`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_13_q19",
+      "number": 19,
+      "question": "According to ownership.md, which category does the POS module fall under?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Core Critical (must coordinate all changes)"
+        },
+        {
+          "key": "B",
+          "text": "Heavy Mutation (requires careful testing)"
+        },
+        {
+          "key": "C",
+          "text": "Full Autonomy (may refactor freely)"
+        },
+        {
+          "key": "D",
+          "text": "Shared Service (affects all modules)"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_13_q20",
+      "number": 20,
+      "question": "Why is the POS module considered \"safe for refactor\" in module_index.md?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because it has comprehensive test coverage"
+        },
+        {
+          "key": "B",
+          "text": "Because it has zero dependents — no other module reads POS tables or calls POS code"
+        },
+        {
+          "key": "C",
+          "text": "Because it uses modern PHP 8.0 features"
+        },
+        {
+          "key": "D",
+          "text": "Because it has detailed documentation"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "testId": "day_18",
+  "title": "Day 18 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_18_q1",
+      "number": 1,
+      "question": "What SQL comparison operator does the `get_option($key)` function use when querying TBL_OPTIONS at [init_functions.php L7](init_functions.php#L7)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Exact equality: `$db->where('option_key', $option, '=')`"
+        },
+        {
+          "key": "B",
+          "text": "LIKE with wildcard support: `$db->where('option_key', $option, 'LIKE')`"
+        },
+        {
+          "key": "C",
+          "text": "IN clause: `$db->where('option_key', $option, 'IN')`"
+        },
+        {
+          "key": "D",
+          "text": "REGEXP pattern match: `$db->where('option_key', $option, 'REGEXP')`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q2",
+      "number": 2,
+      "question": "In the `set_option($key, $value)` function at [init_functions.php L13-25](init_functions.php#L13), what determines whether an UPDATE or INSERT is performed?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Checks if option_value is NULL"
+        },
+        {
+          "key": "B",
+          "text": "Uses `$db->has(TBL_OPTIONS)` after setting where clause on option_key"
+        },
+        {
+          "key": "C",
+          "text": "Queries option_id and checks if > 0"
+        },
+        {
+          "key": "D",
+          "text": "Attempts UPDATE first, checks affected rows, then INSERT if zero"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q3",
+      "number": 3,
+      "question": "Which of the following TBL_OPTIONS keys is loaded into $GLOBALS during system bootstrap at [functions.php L23](functions.php#L23)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "qcCoolingTime"
+        },
+        {
+          "key": "B",
+          "text": "amazon_payments_key_mapping"
+        },
+        {
+          "key": "C",
+          "text": "holidayList"
+        },
+        {
+          "key": "D",
+          "text": "ticketTypes"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_18_q4",
+      "number": 4,
+      "question": "The `get_template($type, $template)` function at [init_functions.php L28-30](init_functions.php#L28) constructs the TBL_OPTIONS key using what pattern?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`'template_' . $type . '_' . $template`"
+        },
+        {
+          "key": "B",
+          "text": "`$type . '_template_' . $template`"
+        },
+        {
+          "key": "C",
+          "text": "`'templates.' . $type . '.' . $template`"
+        },
+        {
+          "key": "D",
+          "text": "`$template . '_' . $type`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q5",
+      "number": 5,
+      "question": "What is the hardcoded encryption key used for marketplace account password encryption at [tools/ajax_load.php L44](tools/ajax_load.php#L44)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "'AES-128-CBC-DEFAULT-KEY-2024'"
+        },
+        {
+          "key": "B",
+          "text": "'CrckvasdjlwinzmcCCskLm24'"
+        },
+        {
+          "key": "C",
+          "text": "'FIMS_ENCRYPT_KEY_V1'"
+        },
+        {
+          "key": "D",
+          "text": "Content of $_ENV['ENCRYPTION_KEY']"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q6",
+      "number": 6,
+      "question": "Which encryption cipher and mode are used for marketplace account password encryption in the Tools module?",
+      "options": [
+        {
+          "key": "A",
+          "text": "AES-256-GCM"
+        },
+        {
+          "key": "B",
+          "text": "AES-128-CBC"
+        },
+        {
+          "key": "C",
+          "text": "DES-EDE3-CBC"
+        },
+        {
+          "key": "D",
+          "text": "RSA-2048"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q7",
+      "number": 7,
+      "question": "Which table stores the encrypted passwords for Flipkart marketplace accounts?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_MARKETPLACE_CREDENTIALS"
+        },
+        {
+          "key": "B",
+          "text": "TBL_FK_ACCOUNTS"
+        },
+        {
+          "key": "C",
+          "text": "TBL_FLIPKART_AUTH"
+        },
+        {
+          "key": "D",
+          "text": "TBL_ACCOUNT_PASSWORDS"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_18_q8",
+      "number": 8,
+      "question": "In the `delete_api_user` action at [users/ajax_load.php L566-576](users/ajax_load.php#L566), which table does the deletion target?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_API_USERS"
+        },
+        {
+          "key": "B",
+          "text": "TBL_USERS"
+        },
+        {
+          "key": "C",
+          "text": "TBL_USER_API_KEYS"
+        },
+        {
+          "key": "D",
+          "text": "TBL_API_CREDENTIALS"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q9",
+      "number": 9,
+      "question": "What is the correct table that the `delete_api_user` action SHOULD target instead of the one it currently does?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_USERS"
+        },
+        {
+          "key": "B",
+          "text": "TBL_API_USERS"
+        },
+        {
+          "key": "C",
+          "text": "TBL_API_TOKENS"
+        },
+        {
+          "key": "D",
+          "text": "TBL_USER_SESSIONS"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q10",
+      "number": 10,
+      "question": "Which action at what line correctly queries TBL_API_USERS, demonstrating the proper table usage?",
+      "options": [
+        {
+          "key": "A",
+          "text": "delete_user at L118"
+        },
+        {
+          "key": "B",
+          "text": "get_api_users at L501-545"
+        },
+        {
+          "key": "C",
+          "text": "add_user at L64-116"
+        },
+        {
+          "key": "D",
+          "text": "check_username_availability at L158"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q11",
+      "number": 11,
+      "question": "At which line in [tools/ajax_load.php](tools/ajax_load.php) does the action routing switch statement begin WITHOUT any RBAC capability check?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Line 8"
+        },
+        {
+          "key": "B",
+          "text": "Line 13"
+        },
+        {
+          "key": "C",
+          "text": "Line 18"
+        },
+        {
+          "key": "D",
+          "text": "Line 33"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_18_q12",
+      "number": 12,
+      "question": "How many AJAX actions in the Tools module lack role-based access control checks according to framework guidance?",
+      "options": [
+        {
+          "key": "A",
+          "text": "25 actions"
+        },
+        {
+          "key": "B",
+          "text": "50 actions"
+        },
+        {
+          "key": "C",
+          "text": "83 actions"
+        },
+        {
+          "key": "D",
+          "text": "122 actions"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_18_q13",
+      "number": 13,
+      "question": "Which module DOES implement RBAC enforcement at the beginning of its ajax_load.php file?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Tools"
+        },
+        {
+          "key": "B",
+          "text": "Users"
+        },
+        {
+          "key": "C",
+          "text": "Admin"
+        },
+        {
+          "key": "D",
+          "text": "None of them"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_18_q14",
+      "number": 14,
+      "question": "The Admin module's RBAC check at [admin/ajax_load.php L8-18](admin/ajax_load.php#L8) requires which capability OR which two roles?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Capability 'manage_admin' OR roles admin/manager"
+        },
+        {
+          "key": "B",
+          "text": "Capability 'use_admin_ajax' OR roles super_admin/developer"
+        },
+        {
+          "key": "C",
+          "text": "Capability 'admin_access' OR roles administrator/root"
+        },
+        {
+          "key": "D",
+          "text": "No capability required, only role check for admin"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q15",
+      "number": 15,
+      "question": "Where are role-wide capabilities stored in the Users module's RBAC model?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_USERS.user_capabilities JSON field"
+        },
+        {
+          "key": "B",
+          "text": "TBL_ROLES.role_capabilities JSON field"
+        },
+        {
+          "key": "C",
+          "text": "TBL_USER_ROLE_MAP.capabilities column"
+        },
+        {
+          "key": "D",
+          "text": "TBL_PERMISSIONS.role_id foreign key"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q16",
+      "number": 16,
+      "question": "When ENV='STAGING', which user capability field is used instead of the production field?",
+      "options": [
+        {
+          "key": "A",
+          "text": "user_capabilities_staging"
+        },
+        {
+          "key": "B",
+          "text": "user_capabilities_stagging"
+        },
+        {
+          "key": "C",
+          "text": "user_capabilities_dev"
+        },
+        {
+          "key": "D",
+          "text": "user_capabilities_test"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_18_q17",
+      "number": 17,
+      "question": "In the TBL_BUNDLE_ASSETS table, which field determines whether an asset loads in the `<head>` section or before `</body>`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "asset_location"
+        },
+        {
+          "key": "B",
+          "text": "load_area"
+        },
+        {
+          "key": "C",
+          "text": "injection_point"
+        },
+        {
+          "key": "D",
+          "text": "asset_position"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q18",
+      "number": 18,
+      "question": "The Admin module's asset suggestion system at [admin/ajax_load.php L143-232](admin/ajax_load.php#L143) supports autocomplete for files in which base directory?",
+      "options": [
+        {
+          "key": "A",
+          "text": "/templates/"
+        },
+        {
+          "key": "B",
+          "text": "/resources/"
+        },
+        {
+          "key": "C",
+          "text": "/assets/"
+        },
+        {
+          "key": "D",
+          "text": "/public/"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_18_q19",
+      "number": 19,
+      "question": "Which column in TBL_FK_ACCOUNTS links marketplace accounts to distributor parties?",
+      "options": [
+        {
+          "key": "A",
+          "text": "distributor_id"
+        },
+        {
+          "key": "B",
+          "text": "party_id"
+        },
+        {
+          "key": "C",
+          "text": "owner_id"
+        },
+        {
+          "key": "D",
+          "text": "client_id"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_18_q20",
+      "number": 20,
+      "question": "When querying Flipkart accounts at [tools/ajax_load.php L21-22](tools/ajax_load.php#L21), what SQL function displays \"Self\" when an account has no associated party?",
+      "options": [
+        {
+          "key": "A",
+          "text": "COALESCE(p.party_name, 'Self')"
+        },
+        {
+          "key": "B",
+          "text": "IFNULL(p.party_name, 'Self')"
+        },
+        {
+          "key": "C",
+          "text": "ISNULL(p.party_name, 'Self')"
+        },
+        {
+          "key": "D",
+          "text": "NVL(p.party_name, 'Self')"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

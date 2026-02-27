@@ -1,0 +1,538 @@
+{
+  "testId": "day_19",
+  "title": "Day 19 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_19_q1",
+      "number": 1,
+      "question": "How many API endpoint directories exist under the `api/` folder (including shopify subdirectories)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "19 endpoints"
+        },
+        {
+          "key": "B",
+          "text": "23 endpoints"
+        },
+        {
+          "key": "C",
+          "text": "27 endpoints (same as file count)"
+        },
+        {
+          "key": "D",
+          "text": "31 endpoints"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q2",
+      "number": 2,
+      "question": "What table logs all API endpoint execution with startTime and endTime fields?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_API_LOGS"
+        },
+        {
+          "key": "B",
+          "text": "TBL_API_RUNTIME"
+        },
+        {
+          "key": "C",
+          "text": "TBL_ENDPOINT_AUDIT"
+        },
+        {
+          "key": "D",
+          "text": "TBL_API_TRACKING"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q3",
+      "number": 3,
+      "question": "Which API endpoint queries TBL_AZ_ORDERS, TBL_FK_ORDERS, and TBL_SP_ORDERS for cross-marketplace order lookup?",
+      "options": [
+        {
+          "key": "A",
+          "text": "api/order_update"
+        },
+        {
+          "key": "B",
+          "text": "api/order_search"
+        },
+        {
+          "key": "C",
+          "text": "api/marketplace_query"
+        },
+        {
+          "key": "D",
+          "text": "api/order_details"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q4",
+      "number": 4,
+      "question": "At what line in [api/shopify/product_update/index.php](api/shopify/product_update/index.php) is the TBL_API_RUNTIME record created with 'shopify/product_update' as the api value?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Line 1"
+        },
+        {
+          "key": "B",
+          "text": "Line 7"
+        },
+        {
+          "key": "C",
+          "text": "Line 11"
+        },
+        {
+          "key": "D",
+          "text": "Line 18"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q5",
+      "number": 5,
+      "question": "Which API endpoint is the ONLY one to reference TBL_API_USERS, and for what purpose?",
+      "options": [
+        {
+          "key": "A",
+          "text": "order_search — validates inbound request API keys"
+        },
+        {
+          "key": "B",
+          "text": "shopify/product_update — checks webhook signatures"
+        },
+        {
+          "key": "C",
+          "text": "products — fetches headers for outbound queue requests (not inbound validation)"
+        },
+        {
+          "key": "D",
+          "text": "pincode_lookup — authenticates logistics API calls"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q6",
+      "number": 6,
+      "question": "What HTTP header should Shopify webhooks send for HMAC signature verification that [api/shopify/product_update/index.php](api/shopify/product_update/index.php) does NOT validate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "X-Shopify-Signature"
+        },
+        {
+          "key": "B",
+          "text": "X-Shopify-Hmac-Sha256"
+        },
+        {
+          "key": "C",
+          "text": "X-Webhook-Signature"
+        },
+        {
+          "key": "D",
+          "text": "Authorization"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q7",
+      "number": 7,
+      "question": "At [api/order_search/index.php L9-16](api/order_search/index.php#L9), what authentication check is performed before querying order data?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Validates X-Api-Key header against TBL_API_USERS"
+        },
+        {
+          "key": "B",
+          "text": "Checks session authentication via $_SESSION['user_id']"
+        },
+        {
+          "key": "C",
+          "text": "Verifies IP address against whitelist"
+        },
+        {
+          "key": "D",
+          "text": "No authentication check — directly processes $_REQUEST"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_19_q8",
+      "number": 8,
+      "question": "Which attack scenario is enabled by the missing Shopify webhook signature verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "SQL injection via unsanitized productId"
+        },
+        {
+          "key": "B",
+          "text": "Forged webhooks updating product prices to ₹1 by POSTing fake JSON"
+        },
+        {
+          "key": "C",
+          "text": "XSS attacks via reflected tags"
+        },
+        {
+          "key": "D",
+          "text": "Brute-force password attacks on Shopify accounts"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q9",
+      "number": 9,
+      "question": "At [api/header-option.php L3-4](api/header-option.php#L3), what value does the Access-Control-Allow-Origin header receive?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Fixed value: 'https://sylvi.in'"
+        },
+        {
+          "key": "B",
+          "text": "Fixed value: '*' (wildcard for all origins)"
+        },
+        {
+          "key": "C",
+          "text": "Reflects HTTP_ORIGIN if set, else '*' — allows any domain"
+        },
+        {
+          "key": "D",
+          "text": "Only localhost origins for development"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q10",
+      "number": 10,
+      "question": "Which CORS header at [api/header-option.php L5](api/header-option.php#L5) enables browsers to include cookies in cross-origin API requests?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Access-Control-Allow-Methods"
+        },
+        {
+          "key": "B",
+          "text": "Access-Control-Allow-Credentials"
+        },
+        {
+          "key": "C",
+          "text": "Access-Control-Allow-Headers"
+        },
+        {
+          "key": "D",
+          "text": "Access-Control-Max-Age"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q11",
+      "number": 11,
+      "question": "What security vulnerability does the combination of reflected Access-Control-Allow-Origin + Access-Control-Allow-Credentials: true create?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Enables CSRF attacks where attacker.com can trigger authenticated API calls via victim's browser session"
+        },
+        {
+          "key": "B",
+          "text": "Prevents legitimate CORS requests from working"
+        },
+        {
+          "key": "C",
+          "text": "Causes cookies to be rejected by browsers"
+        },
+        {
+          "key": "D",
+          "text": "Blocks all OPTIONS preflight requests"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q12",
+      "number": 12,
+      "question": "At [assets/scripts/chatbot.js L39](assets/scripts/chatbot.js#L39), what cookie does the JavaScript retrieve before sending the chatbot message?",
+      "options": [
+        {
+          "key": "A",
+          "text": "session_id"
+        },
+        {
+          "key": "B",
+          "text": "access_token"
+        },
+        {
+          "key": "C",
+          "text": "auth_key"
+        },
+        {
+          "key": "D",
+          "text": "user_token"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q13",
+      "number": 13,
+      "question": "At [chatbot/ajax_load.php L10](chatbot/ajax_load.php#L10), what is the hardcoded third-party webhook URL that receives the message?",
+      "options": [
+        {
+          "key": "A",
+          "text": "https://openai.com/api/chat"
+        },
+        {
+          "key": "B",
+          "text": "https://chatbot.skmienterprise.com/webhook"
+        },
+        {
+          "key": "C",
+          "text": "https://caliandigital.com/webhook/sylvi-bot"
+        },
+        {
+          "key": "D",
+          "text": "https://api.anthropic.com/v1/messages"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q14",
+      "number": 14,
+      "question": "At [chatbot/ajax_load.php L31-33](chatbot/ajax_load.php#L31), what HTTP header does the code send to the external webhook containing the internal access_token?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Authorization: Bearer <token>"
+        },
+        {
+          "key": "B",
+          "text": "X-Auth-Token: <token>"
+        },
+        {
+          "key": "C",
+          "text": "message-session-id: <token>"
+        },
+        {
+          "key": "D",
+          "text": "Cookie: access_token=<token>"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q15",
+      "number": 15,
+      "question": "What security risk does forwarding the Authorization header to caliandigital.com create?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Third party can replay token to impersonate FIMS users for account takeover"
+        },
+        {
+          "key": "B",
+          "text": "Chatbot stops working if token expires"
+        },
+        {
+          "key": "C",
+          "text": "Users cannot send messages longer than 200 characters"
+        },
+        {
+          "key": "D",
+          "text": "Webhook responses are cached incorrectly"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_19_q16",
+      "number": 16,
+      "question": "In TBL_TASKS structure, what values can the `category` field contain?",
+      "options": [
+        {
+          "key": "A",
+          "text": "pending, in_progress, completed, cancelled"
+        },
+        {
+          "key": "B",
+          "text": "tagging, move, qc, other"
+        },
+        {
+          "key": "C",
+          "text": "high, medium, low"
+        },
+        {
+          "key": "D",
+          "text": "inventory, qaqc, warehouse, shipping"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q17",
+      "number": 17,
+      "question": "At [tasks/ajax_load.php L482-492](tasks/ajax_load.php#L482), what action creates new tasks in TBL_TASKS?",
+      "options": [
+        {
+          "key": "A",
+          "text": "createTask"
+        },
+        {
+          "key": "B",
+          "text": "addTask"
+        },
+        {
+          "key": "C",
+          "text": "addSystemTask"
+        },
+        {
+          "key": "D",
+          "text": "insertTask"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_19_q18",
+      "number": 18,
+      "question": "What TBL_TASKS.status value indicates an active (not completed) task at [tasks/ajax_load.php L22](tasks/ajax_load.php#L22)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "status = 'active'"
+        },
+        {
+          "key": "B",
+          "text": "status = 1 (integer one, string '1')"
+        },
+        {
+          "key": "C",
+          "text": "status = 'pending'"
+        },
+        {
+          "key": "D",
+          "text": "status IS NULL"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_19_q19",
+      "number": 19,
+      "question": "Which task category is created by the Inventory module after GRN inwarding for physical carton labeling?",
+      "options": [
+        {
+          "key": "A",
+          "text": "move"
+        },
+        {
+          "key": "B",
+          "text": "tagging"
+        },
+        {
+          "key": "C",
+          "text": "qc"
+        },
+        {
+          "key": "D",
+          "text": "labeling"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q20",
+      "number": 20,
+      "question": "What does the TBL_API_RUNTIME.endTime field indicate when it is NULL?",
+      "options": [
+        {
+          "key": "A",
+          "text": "API endpoint failed or crashed before updating endTime"
+        },
+        {
+          "key": "B",
+          "text": "Endpoint is still executing"
+        },
+        {
+          "key": "C",
+          "text": "Endpoint was cached"
+        },
+        {
+          "key": "D",
+          "text": "No requests processed yet"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q21",
+      "number": 21,
+      "question": "At what point in endpoint execution is the TBL_API_RUNTIME record inserted — before or after authentication checks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "After authentication succeeds — only authorized calls logged"
+        },
+        {
+          "key": "B",
+          "text": "Before any authentication check — all requests logged including attacks"
+        },
+        {
+          "key": "C",
+          "text": "Only for successful responses — errors not logged"
+        },
+        {
+          "key": "D",
+          "text": "Depends on endpoint configuration"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_19_q22",
+      "number": 22,
+      "question": "What security benefit does TBL_API_RUNTIME provide?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Blocks unauthorized API access via access control lists"
+        },
+        {
+          "key": "B",
+          "text": "Rate limits requests by tracking call frequency"
+        },
+        {
+          "key": "C",
+          "text": "Provides audit trail for performance monitoring but NO access control"
+        },
+        {
+          "key": "D",
+          "text": "Validates API keys before allowing endpoint execution"
+        }
+      ],
+      "answer": "C"
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "testId": "day_11",
+  "title": "Day 11 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_11_q1",
+      "number": 1,
+      "question": "In `shopify/ajax_load.php`, what determines whether the session-based or token-based initialization path is used?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The `$_REQUEST['auth_mode']` parameter"
+        },
+        {
+          "key": "B",
+          "text": "The presence of an `Authorization` header in `getallheaders()`"
+        },
+        {
+          "key": "C",
+          "text": "The `$_SESSION['auth_type']` variable"
+        },
+        {
+          "key": "D",
+          "text": "The `accountId` parameter value"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q2",
+      "number": 2,
+      "question": "What does `get_current_account($accountId, $active_lp)` in `shopify/functions.php` return?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the `TBL_SP_ACCOUNTS` record for the given account ID"
+        },
+        {
+          "key": "B",
+          "text": "A merged object of `TBL_SP_LOGISTIC` + `TBL_USER_LOCATIONS` + `TBL_SP_ACCOUNTS` data"
+        },
+        {
+          "key": "C",
+          "text": "An array of all active Shopify accounts"
+        },
+        {
+          "key": "D",
+          "text": "The Shopify API connection object"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q3",
+      "number": 3,
+      "question": "In the `orders.php` UI, what differentiates a \"Pending\" order from a \"New\" order?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Pending orders have a higher priority flag"
+        },
+        {
+          "key": "B",
+          "text": "Pending orders either have `dispatchAfterDate` in the future OR `hold='1'`; New orders are `status='new'` with no hold"
+        },
+        {
+          "key": "C",
+          "text": "Pending orders await payment confirmation; New orders have paid"
+        },
+        {
+          "key": "D",
+          "text": "Pending orders are from manual import; New orders are from webhooks"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q4",
+      "number": 4,
+      "question": "How is the logistic partner class dynamically loaded in `ajax_load.php`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Via `require_once(ROOT_PATH . '/includes/logistic/' . $active_lp . '.php')`"
+        },
+        {
+          "key": "B",
+          "text": "Via `include_once(ROOT_PATH . '/includes/class-' . $active_lp . '-client.php')` where `$active_lp` is derived from `strtolower($account->lp_provider_name)`"
+        },
+        {
+          "key": "C",
+          "text": "Through a factory pattern in `LogisticFactory::create($active_lp)`"
+        },
+        {
+          "key": "D",
+          "text": "Via the `shopify_dashboard` connector's `loadLogistic()` method"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q5",
+      "number": 5,
+      "question": "In the `save_scan_ship` action, what happens per-UID after the operator submits scanned items?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only `TBL_SP_ORDERS.uid` is updated with the UID array"
+        },
+        {
+          "key": "B",
+          "text": "`$stockist->update_inventory_status($uid, 'sales')` + `$stockist->add_inventory_log($uid, 'sales', 'Shopify Sales :: orderItemId')` + `TBL_PROCESS_LOG` insert"
+        },
+        {
+          "key": "C",
+          "text": "The UID is directly written to `TBL_INVENTORY.inv_status='shipped'`"
+        },
+        {
+          "key": "D",
+          "text": "`$stockist->update_stock_on_mps()` is called to decrement marketplace stock"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q6",
+      "number": 6,
+      "question": "When `$stockist->update_inventory_status($uid, 'sales')` is called during scan & ship, what does the `before_update_inventory` trigger do?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sends a notification to the warehouse manager"
+        },
+        {
+          "key": "B",
+          "text": "Updates the product's committed_stock counter"
+        },
+        {
+          "key": "C",
+          "text": "Clears `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` to NULL because `sales` is a terminal status"
+        },
+        {
+          "key": "D",
+          "text": "Creates a log entry in `TBL_INVENTORY_LOG`"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_11_q7",
+      "number": 7,
+      "question": "What inventory status must a UID have before it can be scanned during the scan & ship process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`qc_pending` — item must be in QC queue"
+        },
+        {
+          "key": "B",
+          "text": "`inbound` — item must be received but not processed"
+        },
+        {
+          "key": "C",
+          "text": "`qc_verified` — only fully QC-passed items can be shipped"
+        },
+        {
+          "key": "D",
+          "text": "`sales` — item must already be allocated to the order"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_11_q8",
+      "number": 8,
+      "question": "What happens to `TBL_PRODUCTS_STOCK_RESERVATION` when the scan & ship action completes successfully?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The reservation status is updated to 'shipped'"
+        },
+        {
+          "key": "B",
+          "text": "The reservation record is deleted (for marketplace='shopify' and the matching orderId)"
+        },
+        {
+          "key": "C",
+          "text": "The reservation quantity is transferred to `TBL_PRODUCTS_MASTER.committed_stock`"
+        },
+        {
+          "key": "D",
+          "text": "Nothing — stock reservations are managed separately"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q9",
+      "number": 9,
+      "question": "In `notifications-receiver.php`, what prevents duplicate processing of the same logistic status update for the same AWB?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A database unique constraint on `TBL_FULFILLMENT(trackingId, shipmentStatus)`"
+        },
+        {
+          "key": "B",
+          "text": "A file-based lock at `ROOT_PATH/tmp/logistic_update/{awb}-{status}.lock` using `createLock()`/`releaseLock()` in a `finally` block"
+        },
+        {
+          "key": "C",
+          "text": "An in-memory cache check via Redis"
+        },
+        {
+          "key": "D",
+          "text": "The `TBL_API_RUNTIME` table deduplication check"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q10",
+      "number": 10,
+      "question": "Which of the following webhook events in `notifications-receiver.php` has NO HMAC signature verification?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`order_update` — Shopify order webhook"
+        },
+        {
+          "key": "B",
+          "text": "`refund_updates` — Razorpay payout webhook"
+        },
+        {
+          "key": "C",
+          "text": "`gokwik_settlement` — GoKwik/Easebuzz settlement data"
+        },
+        {
+          "key": "D",
+          "text": "`logistic_update` — logistics provider status update"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_11_q11",
+      "number": 11,
+      "question": "What does `respond_202_and_detach()` do in the `order_update` webhook handler?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Queues the request for later batch processing"
+        },
+        {
+          "key": "B",
+          "text": "Sends HTTP 202 \"Accepted\", flushes output, closes the client connection, then continues PHP execution in the background"
+        },
+        {
+          "key": "C",
+          "text": "Redirects the webhook to an async worker process"
+        },
+        {
+          "key": "D",
+          "text": "Stores the payload in `TBL_API_RUNTIME` and returns immediately"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q12",
+      "number": 12,
+      "question": "In `update_returns_status()`, when a return is completed with `r_returnType='replace'`, what Shopify API call is made?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`shopify_dashboard->cancel_order()` on the original order"
+        },
+        {
+          "key": "B",
+          "text": "`shopify_dashboard->create_replacement_order_sp()` — creates a new order with 100% discount and \"Replacement\" tag"
+        },
+        {
+          "key": "C",
+          "text": "`shopify_dashboard->update_order_sp()` — updates the original order's tags"
+        },
+        {
+          "key": "D",
+          "text": "`shopify_dashboard->create_gift_card_sp()` — always issues a gift card"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q13",
+      "number": 13,
+      "question": "When a COD order return is completed, how is the customer refunded?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Shopify issues the refund directly to the original payment method"
+        },
+        {
+          "key": "B",
+          "text": "A Razorpay PayoutLink is created via `$razorpay->PayoutLink->create()`, and the link is sent to the customer (refund record inserted into `TBL_SP_REFUNDS`)"
+        },
+        {
+          "key": "C",
+          "text": "A gift card is always issued via `create_gift_card_sp()`"
+        },
+        {
+          "key": "D",
+          "text": "The refund is processed through GoKwik settlement"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q14",
+      "number": 14,
+      "question": "After a return is completed, what does `$stockist->update_inventory_status($uid, 'qc_pending')` accomplish?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Marks the UID as permanently returned and unavailable"
+        },
+        {
+          "key": "B",
+          "text": "Routes the returned UID back into the QAQC pipeline — the item will appear in QC scanning (`get_uid_details` from Day 9) for quality re-verification"
+        },
+        {
+          "key": "C",
+          "text": "Transfers the UID to a special returns warehouse location"
+        },
+        {
+          "key": "D",
+          "text": "Deletes the inventory record and creates a new one"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q15",
+      "number": 15,
+      "question": "What differentiates `r_source='customer_return'` from `r_source='courier_return'` in `TBL_SP_RETURNS`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`customer_return` is from Shopify's return API; `courier_return` is from a logistics partner's RTO (Return to Origin) when delivery fails"
+        },
+        {
+          "key": "B",
+          "text": "`customer_return` is for defective products; `courier_return` is for wrong products"
+        },
+        {
+          "key": "C",
+          "text": "`customer_return` requires approval; `courier_return` is automatic"
+        },
+        {
+          "key": "D",
+          "text": "`customer_return` gets refunded; `courier_return` gets replacement"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_11_q16",
+      "number": 16,
+      "question": "In the NDR tab query filter (`view_order_query`), what is the significance of the 9 AM daily cutoff?",
+      "options": [
+        {
+          "key": "A",
+          "text": "NDR attempts are only processed before 9 AM"
+        },
+        {
+          "key": "B",
+          "text": "Shipments picked up before 9 AM yesterday (or today if after 9 AM) are filtered to show only \"stale\" NDR entries where delivery should have been attempted"
+        },
+        {
+          "key": "C",
+          "text": "Customer support hours start at 9 AM so NDR calls begin then"
+        },
+        {
+          "key": "D",
+          "text": "The logistic provider sends NDR webhooks at 9 AM daily"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q17",
+      "number": 17,
+      "question": "In the Razorpay refund webhook flow, what is the lifecycle of `TBL_SP_PAYOUT_STATE`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Created when order is placed, deleted when order is shipped"
+        },
+        {
+          "key": "B",
+          "text": "Created when `payout_link.processing` event fires (with `contactId` and `paymentLinkId`), used to link payout to refund record, then deleted after `payout.processed` event when UTR is written to `TBL_SP_REFUNDS`"
+        },
+        {
+          "key": "C",
+          "text": "Created on return received, deleted on return completed"
+        },
+        {
+          "key": "D",
+          "text": "Permanent record that tracks all payment states"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q18",
+      "number": 18,
+      "question": "How many Razorpay integration touchpoints exist in the Shopify module, and where do they occur?",
+      "options": [
+        {
+          "key": "A",
+          "text": "2 — cancel_order refund and return refund only"
+        },
+        {
+          "key": "B",
+          "text": "4 — (1) cancel_order void/refund check, (2) return_completed COD PayoutLink creation, (3) refund_updates webhook for payout status tracking, (4) razorpay_payments webhook for payment capture/POS orders"
+        },
+        {
+          "key": "C",
+          "text": "1 — only the refund_updates webhook"
+        },
+        {
+          "key": "D",
+          "text": "3 — payment capture, refund creation, settlement import"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q19",
+      "number": 19,
+      "question": "In the `ShopifyPayments` class, what does `getDifferenceDetails()` calculate?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only the total refund amount for an order"
+        },
+        {
+          "key": "B",
+          "text": "The difference between expected payout (sale - PG fees - shipping - refunds - RTO - COD charges + claims) and actual settlement (logistic charges + remittance amounts)"
+        },
+        {
+          "key": "C",
+          "text": "The total shipping cost vs actual delivery cost"
+        },
+        {
+          "key": "D",
+          "text": "The Shopify commission on each order"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_11_q20",
+      "number": 20,
+      "question": "What is the class hierarchy of the Shopify connector system?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`shopify_dashboard` → `shopify` → `shopify_listner` (linear chain)"
+        },
+        {
+          "key": "B",
+          "text": "`shopify` is the base class; `shopify_dashboard` and `shopify_listner` both extend `shopify`; `ShopifyPayments` is a standalone class"
+        },
+        {
+          "key": "C",
+          "text": "All 4 classes are independent with no inheritance"
+        },
+        {
+          "key": "D",
+          "text": "`ShopifyPayments` extends `shopify_dashboard` which extends `shopify`"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

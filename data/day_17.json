@@ -1,0 +1,442 @@
+{
+  "testId": "day_17",
+  "title": "Day 17 Test",
+  "config": {
+    "optionsCount": 4,
+    "singleSelect": true
+  },
+  "questions": [
+    {
+      "id": "day_17_q1",
+      "number": 1,
+      "question": "In the `add_seller` action at [distributor/ajax_load.php L15-113](distributor/ajax_load.php#L15), what value is assigned to the `party_reseller` field when creating a new seller?",
+      "options": [
+        {
+          "key": "A",
+          "text": "0 (false)"
+        },
+        {
+          "key": "B",
+          "text": "1 (true)"
+        },
+        {
+          "key": "C",
+          "text": "The seller's GST number"
+        },
+        {
+          "key": "D",
+          "text": "The value of $_POST['party_reseller']"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q2",
+      "number": 2,
+      "question": "What format is used to encode the `party_approval_status` field during seller registration at L26?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Serialized PHP array"
+        },
+        {
+          "key": "B",
+          "text": "JSON object with 'gst' and 'tnc' keys set to 'pending'"
+        },
+        {
+          "key": "C",
+          "text": "Comma-separated string: \"gst:pending,tnc:pending\""
+        },
+        {
+          "key": "D",
+          "text": "Base64-encoded binary data"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q3",
+      "number": 3,
+      "question": "In the `add_seller` action, which brandRegulator method is called to generate Terms & Conditions PDFs for each approved brand?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`generate_certificate()`"
+        },
+        {
+          "key": "B",
+          "text": "`generateTNC()`"
+        },
+        {
+          "key": "C",
+          "text": "`createTermsDocument()`"
+        },
+        {
+          "key": "D",
+          "text": "`buildSellerAgreement()`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q4",
+      "number": 4,
+      "question": "At which line in [distributor/ajax_load.php](distributor/ajax_load.php#L392) does the system execute the rawQuery CREATE TABLE statement?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Line 368"
+        },
+        {
+          "key": "B",
+          "text": "Line 392"
+        },
+        {
+          "key": "C",
+          "text": "Line 410"
+        },
+        {
+          "key": "D",
+          "text": "Line 539"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q5",
+      "number": 5,
+      "question": "What is the naming pattern for dynamically created sale order tables in the Distributor module?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`TBL_ORDERS_SELLER_{party_id}`"
+        },
+        {
+          "key": "B",
+          "text": "`TBL_SALE_ORDER_{party_id}`"
+        },
+        {
+          "key": "C",
+          "text": "`TBL_{party_id}_ORDERS`"
+        },
+        {
+          "key": "D",
+          "text": "`SELLER_ORDERS_{party_gst}`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q6",
+      "number": 6,
+      "question": "What SQL command structure is used to create the dynamic table using the LIKE clause?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`CREATE TABLE TBL_SALE_ORDER_{party_id} AS SELECT * FROM TBL_SALE_ORDER`"
+        },
+        {
+          "key": "B",
+          "text": "`CREATE TABLE IF NOT EXISTS TBL_SALE_ORDER_{party_id} LIKE TBL_SALE_ORDER`"
+        },
+        {
+          "key": "C",
+          "text": "`CLONE TABLE TBL_SALE_ORDER INTO TBL_SALE_ORDER_{party_id}`"
+        },
+        {
+          "key": "D",
+          "text": "`COPY TABLE STRUCTURE TBL_SALE_ORDER TO TBL_SALE_ORDER_{party_id}`"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_17_q7",
+      "number": 7,
+      "question": "What two conditions must be TRUE for the dynamic table creation to execute at line 392?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`$party_doc == 'gst'` AND `$doc_status == 'uploaded'`"
+        },
+        {
+          "key": "B",
+          "text": "`$party_doc == 'dist_tnc'` AND `$doc_staus == 'approved'`"
+        },
+        {
+          "key": "C",
+          "text": "`$party_reseller == 1` AND `$party_status == 'active'`"
+        },
+        {
+          "key": "D",
+          "text": "`$gst_checked` AND `$tnc_checked`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q8",
+      "number": 8,
+      "question": "In the `party_status` JSON field, what are the two top-level keys that track workflow states?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`registration` and `verification`"
+        },
+        {
+          "key": "B",
+          "text": "`seller` and `distributor`"
+        },
+        {
+          "key": "C",
+          "text": "`application` and `approval`"
+        },
+        {
+          "key": "D",
+          "text": "`primary` and `secondary`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q9",
+      "number": 9,
+      "question": "According to the code at L382-387 in `update_doc_status`, when is the seller status set to `'reupload_docs'`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "When any document is rejected"
+        },
+        {
+          "key": "B",
+          "text": "When both gst_checked and tnc_checked are TRUE but either gst or tnc approval_status is not 'approved'"
+        },
+        {
+          "key": "C",
+          "text": "When the distributor T&C is rejected"
+        },
+        {
+          "key": "D",
+          "text": "When the seller uploads documents in wrong format"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q10",
+      "number": 10,
+      "question": "How many characters long is the certificate_id generated in the `generate_certificate` action at line 561?",
+      "options": [
+        {
+          "key": "A",
+          "text": "32 characters (full MD5 hash)"
+        },
+        {
+          "key": "B",
+          "text": "16 characters"
+        },
+        {
+          "key": "C",
+          "text": "8 characters"
+        },
+        {
+          "key": "D",
+          "text": "6 characters"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "day_17_q11",
+      "number": 11,
+      "question": "What is the formula used to generate the certificate_id at L561?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`strtoupper(substr(md5(microtime()), rand(0, 26), 6))`"
+        },
+        {
+          "key": "B",
+          "text": "`uniqid('CERT-', true)`"
+        },
+        {
+          "key": "C",
+          "text": "`bin2hex(random_bytes(6))`"
+        },
+        {
+          "key": "D",
+          "text": "`substr(sha1($party_id . time()), 0, 6)`"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "day_17_q12",
+      "number": 12,
+      "question": "In the `generate_certificate` method of class-brand-regulator.php, which PDF library is used to create authorization certificates?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TCPDF"
+        },
+        {
+          "key": "B",
+          "text": "mPDF"
+        },
+        {
+          "key": "C",
+          "text": "FPDF"
+        },
+        {
+          "key": "D",
+          "text": "Dompdf"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q13",
+      "number": 13,
+      "question": "What file path pattern is used for brand letterhead templates in the certificate generation process?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`/assets/certificates/{brand_name}_template.pdf`"
+        },
+        {
+          "key": "B",
+          "text": "`/assets/templates/{brand_initial}_letterhead.pdf`"
+        },
+        {
+          "key": "C",
+          "text": "`/uploads/templates/{brandid}/header.pdf`"
+        },
+        {
+          "key": "D",
+          "text": "`/assets/pdf/letterhead-{brand}.pdf`"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q14",
+      "number": 14,
+      "question": "In the public certificate verification system ([brand-authorisation/ajax_load.php L14](brand-authorisation/ajax_load.php#L14)), which portion of the submitted certificate code is used for database lookup?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The entire submitted string"
+        },
+        {
+          "key": "B",
+          "text": "The first 6 characters"
+        },
+        {
+          "key": "C",
+          "text": "The last 6 digits using substr($_POST['auth_code'], -6)"
+        },
+        {
+          "key": "D",
+          "text": "The middle 8 characters after removing hyphens"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_17_q15",
+      "number": 15,
+      "question": "What is the condition used to determine if a certificate status should be 'Active' vs 'Expired' in the verify_certificate action?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`if ($certificate->status == 'active')`"
+        },
+        {
+          "key": "B",
+          "text": "`if (strtotime($certificate->to_date) >= time())`"
+        },
+        {
+          "key": "C",
+          "text": "`if ($certificate->is_valid == 1)`"
+        },
+        {
+          "key": "D",
+          "text": "`if (date('Y-m-d') <= $certificate->expiry_date)`"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "day_17_q16",
+      "number": 16,
+      "question": "What is the primary key structure of the TBL_SELLERS_LISTINGS table based on the CRUD actions at L724-783?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Auto-increment `listing_id`"
+        },
+        {
+          "key": "B",
+          "text": "Composite key: `seller_id` + `pid` + `marketplace` + `account`"
+        },
+        {
+          "key": "C",
+          "text": "`seller_listing_id` field (referenced in L728 SELECT)"
+        },
+        {
+          "key": "D",
+          "text": "UUID generated on insert"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "day_17_q17",
+      "number": 17,
+      "question": "In the `get_sellers_listings` action at L726-728, which tables are joined to display seller listings?",
+      "options": [
+        {
+          "key": "A",
+          "text": "TBL_SELLERS_LISTINGS, TBL_PRODUCTS, TBL_BRANDS"
+        },
+        {
+          "key": "B",
+          "text": "TBL_SELLERS_LISTINGS, TBL_PARTIES, TBL_PRODUCTS_MASTER"
+        },
+        {
+          "key": "C",
+          "text": "TBL_SELLERS_LISTINGS, TBL_USERS, TBL_PRODUCTS"
+        },
+        {
+          "key": "D",
+          "text": "TBL_SELLERS_LISTINGS, TBL_DISTRIBUTORS, TBL_INVENTORY"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "day_17_q18",
+      "number": 18,
+      "question": "Which TBL_PARTIES field creates the distributor hierarchy by referencing the parent distributor's party_id?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`party_distributor` flag"
+        },
+        {
+          "key": "B",
+          "text": "`client_id`"
+        },
+        {
+          "key": "C",
+          "text": "`parent_id`"
+        },
+        {
+          "key": "D",
+          "text": "`distributor_ref`"
+        }
+      ],
+      "answer": "B"
+    }
+  ]
+}

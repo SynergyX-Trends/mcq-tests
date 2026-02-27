@@ -1,0 +1,590 @@
+{
+  "testId": "day_05",
+  "title": "DAY 05 — ONBOARDING EXECUTION DOCUMENT",
+  "questions": [
+    {
+      "id": "day_05_q1",
+      "number": 1,
+      "question": "In `add_product`, what uniqueness check is performed before inserting a new product into `TBL_PRODUCTS_MASTER`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "SKU must be globally unique across all clients and all tables"
+        },
+        {
+          "key": "B",
+          "text": "SKU + brand combination must be unique within the same client"
+        },
+        {
+          "key": "C",
+          "text": "SKU must be unique within the same `client_id`"
+        },
+        {
+          "key": "D",
+          "text": "No uniqueness check is performed — duplicates are allowed"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Products CRUD & Data Validation",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q2",
+      "number": 2,
+      "question": "In the `products` listing action, what type of JOIN is used for `TBL_PRODUCTS_CATEGORY`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "LEFT JOIN"
+        },
+        {
+          "key": "B",
+          "text": "INNER JOIN"
+        },
+        {
+          "key": "C",
+          "text": "RIGHT JOIN"
+        },
+        {
+          "key": "D",
+          "text": "FULL OUTER JOIN"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Products CRUD & Data Validation",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q3",
+      "number": 3,
+      "question": "What is the image resize target dimension for master product images in the upload pipeline?",
+      "options": [
+        {
+          "key": "A",
+          "text": "100×100 pixels with aspect ratio preservation"
+        },
+        {
+          "key": "B",
+          "text": "500×500 pixels with fixed dimensions"
+        },
+        {
+          "key": "C",
+          "text": "1000×1000 pixels with aspect ratio preservation"
+        },
+        {
+          "key": "D",
+          "text": "Original dimensions — no resizing is performed"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Products CRUD & Data Validation",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q4",
+      "number": 4,
+      "question": "In the `edit_product` deactivation guard, which inventory statuses are checked before allowing `is_active=0`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Only `qc_verified` and `qc_pending`"
+        },
+        {
+          "key": "B",
+          "text": "`inbound`, `qc_cooling`, `qc_verified`, `qc_pending`, `qc_failed`, `components_requested`"
+        },
+        {
+          "key": "C",
+          "text": "All inventory statuses including `dispatched` and `returned`"
+        },
+        {
+          "key": "D",
+          "text": "No check is performed — products can always be deactivated"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Products CRUD & Data Validation",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q5",
+      "number": 5,
+      "question": "In `delete_product`, what referential integrity checks are performed before deleting a product from `TBL_PRODUCTS_MASTER`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It checks for active aliases in `TBL_PRODUCTS_ALIAS` and active combos in `TBL_PRODUCTS_COMBO`"
+        },
+        {
+          "key": "B",
+          "text": "It checks for active inventory in `TBL_INVENTORY` using the same guard as `edit_product`"
+        },
+        {
+          "key": "C",
+          "text": "It performs a soft delete by setting `is_active=0` instead of a hard DELETE"
+        },
+        {
+          "key": "D",
+          "text": "No checks — it executes a direct `$db->delete()` with only a `@TODO` comment about missing checks"
+        }
+      ],
+      "answer": "D",
+      "meta": {
+        "rubricCode": "R1",
+        "criteria": "Products CRUD & Data Validation",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q6",
+      "number": 6,
+      "question": "In `edit_product`, what condition must be TRUE for price changes (selling_price, retail_price, family_price, moq, lead_time) to be logged to `TBL_PRODUCTS_LOG`?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The user must have admin or manager role"
+        },
+        {
+          "key": "B",
+          "text": "The price must have increased — decreases are not logged"
+        },
+        {
+          "key": "C",
+          "text": "The product's `is_stock_offline` flag must be TRUE"
+        },
+        {
+          "key": "D",
+          "text": "The product's `in_stock` flag must be TRUE"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Price Logging & Audit Trail",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q7",
+      "number": 7,
+      "question": "How does the `TBL_PRODUCTS_LOG` record distinguish between a price increase and a price decrease?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It stores both old and new values in separate columns"
+        },
+        {
+          "key": "B",
+          "text": "The `log_details` field contains either `'Up'` or `'Down'`"
+        },
+        {
+          "key": "C",
+          "text": "The `log_type` field is prefixed with `increase_` or `decrease_`"
+        },
+        {
+          "key": "D",
+          "text": "It uses a numeric `change_direction` column with values 1 or -1"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Price Logging & Audit Trail",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q8",
+      "number": 8,
+      "question": "Which of the following field changes in `edit_product` is logged to `TBL_PRODUCTS_LOG` WITHOUT the `is_stock_offline` gating condition?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`selling_price` changes"
+        },
+        {
+          "key": "B",
+          "text": "`moq` changes"
+        },
+        {
+          "key": "C",
+          "text": "`in_stock_rtl` status changes"
+        },
+        {
+          "key": "D",
+          "text": "`family_price` changes"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R2",
+        "criteria": "Price Logging & Audit Trail",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q9",
+      "number": 9,
+      "question": "What data type does `TBL_PRODUCTS_COMBO.pid` use, and how are inner product IDs stored?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`INT` — stores a single product ID representing the primary inner product"
+        },
+        {
+          "key": "B",
+          "text": "`VARCHAR(512)` — stores comma-separated product IDs like `\"123,456\"`"
+        },
+        {
+          "key": "C",
+          "text": "`longtext` — stores a JSON-encoded array of product ID strings like `[\"123\",\"456\"]`"
+        },
+        {
+          "key": "D",
+          "text": "A junction table `TBL_PRODUCTS_COMBO_ITEMS` is used instead of storing IDs in the combo table"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Alias & Combo Data Model",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q10",
+      "number": 10,
+      "question": "In the `products_alias` listing action, how many tables are JOINed together?",
+      "options": [
+        {
+          "key": "A",
+          "text": "3 tables (alias, master, category)"
+        },
+        {
+          "key": "B",
+          "text": "5 tables (alias, master, combo, category, one account table)"
+        },
+        {
+          "key": "C",
+          "text": "7 tables (alias, category, FK accounts, AZ accounts, master, combo — plus the base alias table)"
+        },
+        {
+          "key": "D",
+          "text": "9 tables (all product tables plus both account tables and Shopify products)"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Alias & Combo Data Model",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q11",
+      "number": 11,
+      "question": "In `add_product_alias`, how is the parent product type (master vs combo) determined from the form submission?",
+      "options": [
+        {
+          "key": "A",
+          "text": "A separate `parent_type` POST field contains either `'master'` or `'combo'`"
+        },
+        {
+          "key": "B",
+          "text": "The `parent_sku` POST field uses a `pid-{id}` or `cid-{id}` prefix parsed via `explode('-', ...)`"
+        },
+        {
+          "key": "C",
+          "text": "The system queries both `TBL_PRODUCTS_MASTER` and `TBL_PRODUCTS_COMBO` by SKU to find a match"
+        },
+        {
+          "key": "D",
+          "text": "Master and combo aliases use separate AJAX actions (`add_master_alias` and `add_combo_alias`)"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Alias & Combo Data Model",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q12",
+      "number": 12,
+      "question": "In the `products_alias` listing query, what does `COALESCE(pc.sku, pm.sku)` resolve to for an alias linked to a master product (pid > 0, cid = 0)?",
+      "options": [
+        {
+          "key": "A",
+          "text": "The combo SKU, because `pc.sku` takes precedence in `COALESCE`"
+        },
+        {
+          "key": "B",
+          "text": "The master product SKU, because the LEFT JOIN on combo returns NULL when `cid=0` and `COALESCE` falls through to `pm.sku`"
+        },
+        {
+          "key": "C",
+          "text": "NULL, because neither table matches"
+        },
+        {
+          "key": "D",
+          "text": "An error, because `COALESCE` cannot handle JOINed tables with conditional WHERE clauses"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R3",
+        "criteria": "Alias & Combo Data Model",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q13",
+      "number": 13,
+      "question": "In `update_stock`, what is the maximum stock count sent to Flipkart via the API?",
+      "options": [
+        {
+          "key": "A",
+          "text": "50 units"
+        },
+        {
+          "key": "B",
+          "text": "100 units — stock is capped with `if ($stock > 100) $stock = 100`"
+        },
+        {
+          "key": "C",
+          "text": "999 units — Flipkart API limit"
+        },
+        {
+          "key": "D",
+          "text": "No cap — the actual `qc_verified` count is sent directly"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Stock Sync & Flipkart Integration",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q14",
+      "number": 14,
+      "question": "How does `update_stock` find combo products that contain a specific product ID when checking stock status?",
+      "options": [
+        {
+          "key": "A",
+          "text": "It queries a junction table `TBL_PRODUCTS_COMBO_ITEMS` with an exact match"
+        },
+        {
+          "key": "B",
+          "text": "It uses `WHERE pid LIKE '%{pid}%'` on `TBL_PRODUCTS_COMBO`, which may produce false positive matches"
+        },
+        {
+          "key": "C",
+          "text": "It uses `JSON_CONTAINS(pid, '\"pid\"')` for precise JSON array searching"
+        },
+        {
+          "key": "D",
+          "text": "It does not check combos — only direct product-to-alias mappings are updated"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Stock Sync & Flipkart Integration",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q15",
+      "number": 15,
+      "question": "In `edit_product`, what triggers the `$stockist->update_stock_on_mps('pid', $pid)` call to propagate stock changes to marketplaces?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Any field change on the product record"
+        },
+        {
+          "key": "B",
+          "text": "Changes to `selling_price` or `retail_price`"
+        },
+        {
+          "key": "C",
+          "text": "Changes to `committed_stock` or `amazon_reserved` (when new value > 0)"
+        },
+        {
+          "key": "D",
+          "text": "Changes to `in_stock` or `is_stock_offline` flags"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R4",
+        "criteria": "Stock Sync & Flipkart Integration",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q16",
+      "number": 16,
+      "question": "A user deletes category \"Headphones\" (catid=5) via the `delete_category` action. There are 12 products with `category=5` in `TBL_PRODUCTS_MASTER`. What happens to those 12 products?",
+      "options": [
+        {
+          "key": "A",
+          "text": "They are automatically deleted via MySQL CASCADE"
+        },
+        {
+          "key": "B",
+          "text": "They remain in the database but display \"Unknown Category\" in the listing"
+        },
+        {
+          "key": "C",
+          "text": "They silently disappear from the product listing because the listing query uses INNER JOIN on `TBL_PRODUCTS_CATEGORY`"
+        },
+        {
+          "key": "D",
+          "text": "The delete fails due to a foreign key constraint violation"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Taxonomy & Bulk Operations",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q17",
+      "number": 17,
+      "question": "In `update_product_bulk`, how are brand, model, and category names from the uploaded Excel file resolved to their database IDs?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Individual DB queries per row per field — one `getOne()` call per brand/model/category per row"
+        },
+        {
+          "key": "B",
+          "text": "Pre-fetched mapping arrays (`brandMap`, `modelMap`, `categoryMap`) built before the row loop using `array_column()` for name→ID lookup"
+        },
+        {
+          "key": "C",
+          "text": "The system expects brand/model/category IDs (not names) in the Excel file"
+        },
+        {
+          "key": "D",
+          "text": "A single raw SQL query with `CASE WHEN` statements handles all name resolution"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Taxonomy & Bulk Operations",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q18",
+      "number": 18,
+      "question": "In the `add_product_brand` action, what is the error message displayed when a duplicate brand name is detected?",
+      "options": [
+        {
+          "key": "A",
+          "text": "`\"Duplicate Brand Name\"`"
+        },
+        {
+          "key": "B",
+          "text": "`\"Duplicate Category Name\"` — a copy-paste error from the category code"
+        },
+        {
+          "key": "C",
+          "text": "`\"Brand already exists\"`"
+        },
+        {
+          "key": "D",
+          "text": "`\"Error adding new product\"` — the generic DB error message"
+        }
+      ],
+      "answer": "B",
+      "meta": {
+        "rubricCode": "R5",
+        "criteria": "Taxonomy & Bulk Operations",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q19",
+      "number": 19,
+      "question": "How many downstream modules depend on the Products module by reading from its tables?",
+      "options": [
+        {
+          "key": "A",
+          "text": "5 modules (Flipkart, Amazon, Shopify, Inventory, Purchase)"
+        },
+        {
+          "key": "B",
+          "text": "9 modules (all marketplace modules plus Inventory, Purchase, QAQC, Sales)"
+        },
+        {
+          "key": "C",
+          "text": "14 modules (Amazon, Flipkart, Shopify, Inventory, Purchase, QAQC, RMA, Sales, POS, Paytm, Distributor, AMS, Brand Authorization, Tools)"
+        },
+        {
+          "key": "D",
+          "text": "All 27 modules in the system"
+        }
+      ],
+      "answer": "C",
+      "meta": {
+        "rubricCode": "R6",
+        "criteria": "Schema & Cross-Module Dependencies",
+        "weightContribution": "5.00%"
+      }
+    },
+    {
+      "id": "day_05_q20",
+      "number": 20,
+      "question": "What percentage of the 33 AJAX actions in the Products module have RBAC (role-based access control) checks?",
+      "options": [
+        {
+          "key": "A",
+          "text": "0% — no action checks user roles before execution"
+        },
+        {
+          "key": "B",
+          "text": "15% — only delete actions are protected"
+        },
+        {
+          "key": "C",
+          "text": "50% — write actions are protected, read actions are open"
+        },
+        {
+          "key": "D",
+          "text": "100% — all actions verify `access_level` before execution"
+        }
+      ],
+      "answer": "A",
+      "meta": {
+        "rubricCode": "R6",
+        "criteria": "Schema & Cross-Module Dependencies",
+        "weightContribution": "5.00%"
+      }
+    }
+  ],
+  "config": {
+    "optionsPerQuestion": 4,
+    "singleSelect": true
+  }
+}
