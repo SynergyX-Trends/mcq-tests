@@ -4,179 +4,221 @@
 	if (!testId) return; // index page uses its own script
 
 	// -------- CONFIG ----------
-	// Later you will replace with your endpoint
+	// Later you will set this to your Apps Script URL:
 	const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmLFuqpgwodMU8jcpFVuyGQHShVrgnsQP6Nuimwzg-KSgjAW7EltEdtqJE4aTbCF-pRw/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
 	const EMP_ID_REGEX = /^[A-Z0-9_-]{4,20}$/;
 
 	// -------- DOM ----------
-	const screenGate = document.getElementById("screenGate");
-	const screenIntro = document.getElementById("screenIntro");
-	const screenTest = document.getElementById("screenTest");
-	const screenDone = document.getElementById("screenDone");
+	const el = (id) => document.getElementById(id);
 
-	const employeeIdInput = document.getElementById("employeeId");
-	const fullNameInput = document.getElementById("fullName");
-	const empHelp = document.getElementById("empHelp");
-	const nameHelp = document.getElementById("nameHelp");
-	const btnContinue = document.getElementById("btnContinue");
+	const screenGate = el("screenGate");
+	const screenIntro = el("screenIntro");
+	const screenTest = el("screenTest");
+	const screenReview = el("screenReview");
+	const screenSuccess = el("screenSuccess");
 
-	const introTitle = document.getElementById("introTitle");
-	const introMeta = document.getElementById("introMeta");
-	const introTime = document.getElementById("introTime");
-	const btnStart = document.getElementById("btnStart");
+	const hdrTitle = el("hdrTitle");
+	const hdrSub = el("hdrSub");
+	const timerPill = el("timerPill");
 
-	const timerPill = document.getElementById("timerPill");
-	const qMeta = document.getElementById("qMeta");
-	const qText = document.getElementById("qText");
-	const optionsWrap = document.getElementById("optionsWrap");
+	const employeeIdInput = el("employeeId");
+	const fullNameInput = el("fullName");
+	const empHelp = el("empHelp");
+	const nameHelp = el("nameHelp");
+	const btnContinue = el("btnContinue");
 
-	const btnPrev = document.getElementById("btnPrev");
-	const btnNext = document.getElementById("btnNext");
-	const btnMark = document.getElementById("btnMark");
-	const markedChip = document.getElementById("markedChip");
+	const introTitle = el("introTitle");
+	const introQCount = el("introQCount");
+	const introTime = el("introTime");
+	const btnStart = el("btnStart");
 
-	const navChips = document.getElementById("navChips");
-	const navChipsMobile = document.getElementById("navChipsMobile");
+	const navStats = el("navStats");
+	const navChips = el("navChips");
+	const navChipsMobile = el("navChipsMobile");
 
-	// modal
-	const modal = document.getElementById("modal");
-	const modalTitle = document.getElementById("modalTitle");
-	const modalBody = document.getElementById("modalBody");
-	const modalCancel = document.getElementById("modalCancel");
-	const modalOk = document.getElementById("modalOk");
+	const qMeta = el("qMeta");
+	const qText = el("qText");
+	const optionsWrap = el("optionsWrap");
+	const markedChip = el("markedChip");
+
+	const btnPrev = el("btnPrev");
+	const btnNext = el("btnNext");
+	const btnMark = el("btnMark");
+	const btnClear = el("btnClear");
+	const btnReview = el("btnReview");
+
+	const progressFill = el("progressFill");
+	const progressTxt = el("progressTxt");
+
+	const revIdentity = el("revIdentity");
+	const revAnswered = el("revAnswered");
+	const revMarked = el("revMarked");
+	const revLeft = el("revLeft");
+	const revChips = el("revChips");
+	const btnBackToTest = el("btnBackToTest");
+	const btnFinalSubmit = el("btnFinalSubmit");
+
+	const subId = el("subId");
+
+	// Modal
+	const modal = el("modal");
+	const modalTitle = el("modalTitle");
+	const modalBody = el("modalBody");
+	const modalCancel = el("modalCancel");
+	const modalOk = el("modalOk");
 
 	// -------- STATE ----------
-	let testsIndex = [];
 	let test = null;
+	let idx = 0;
+	let timerInterval = null;
 
-	const identity = { employeeId: "", fullName: "" };
+	let identity = { employeeId: "", fullName: "" };
 
+	// attempt state stored locally
 	let attempt = {
+		testId,
 		attemptId: "",
-		employeeId: "",
-		fullName: "",
-		startedAt: "",
-		submittedAt: "",
-		durationSeconds: "",
-		timeTakenSeconds: "",
-		answers: {},
-		marked: []
+		startedAt: null,
+		submittedAt: null,
+		durationSeconds: 0,
+		answers: {},      // { Q1:"A" }
+		marked: [],       // ["Q2"]
+		currentIndex: 0
 	};
 
-	let idx = 0;
-	let timerInt = null;
-	let timeLeft = 0;
-
 	// -------- HELPERS ----------
-	const show = (el) => el && el.classList.remove("hidden");
-	const hide = (el) => el && el.classList.add("hidden");
+	const show = (node) => node.classList.remove("hidden");
+	const hide = (node) => node.classList.add("hidden");
 
-	function nowIso() { return new Date().toISOString(); }
+	function storageKey() {
+		const keyPart = (identity.employeeId || identity.fullName || "anon").toUpperCase().replace(/\s+/g, "_");
+		return `mcq:${testId}:${keyPart}`;
+	}
+
+	function nowIso() {
+		return new Date().toISOString();
+	}
+
+	function setHelp(node, msg, isError = false) {
+		node.textContent = msg || "";
+		node.classList.toggle("error", !!isError);
+	}
+
+	function formatMMSS(sec) {
+		sec = Math.max(0, Math.floor(sec));
+		const m = String(Math.floor(sec / 60)).padStart(2, "0");
+		const s = String(sec % 60).padStart(2, "0");
+		return `${m}:${s}`;
+	}
+
+	function answeredCount() {
+		return Object.keys(attempt.answers).length;
+	}
+
+	function isMarked(qid) {
+		return attempt.marked.includes(qid);
+	}
+
+	function toggleMarked(qid) {
+		if (isMarked(qid)) attempt.marked = attempt.marked.filter(x => x !== qid);
+		else attempt.marked.push(qid);
+	}
+
+	function currentQ() {
+		return test.questions[idx];
+	}
 
 	function ensureAttemptId() {
 		if (!attempt.attemptId) {
-			attempt.attemptId = `att_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+			const ident = (identity.employeeId || identity.fullName).toUpperCase().replace(/\s+/g, "_");
+			attempt.attemptId = `${testId}_${ident}_${Date.now()}`;
 		}
 	}
 
-	function attemptKey() {
-		const who = (attempt.employeeId || identity.employeeId || "anon").toLowerCase();
-		return `mcq_attempt:${testId}:${who}`;
-	}
-
 	function saveAttempt() {
-		try { localStorage.setItem(attemptKey(), JSON.stringify(attempt)); } catch { }
+		attempt.currentIndex = idx;
+		localStorage.setItem(storageKey(), JSON.stringify(attempt));
 	}
 
 	function loadAttemptIfAny() {
+		const raw = localStorage.getItem(storageKey());
+		if (!raw) return false;
 		try {
-			const raw = localStorage.getItem(attemptKey());
-			if (!raw) return;
 			const parsed = JSON.parse(raw);
-			if (parsed && typeof parsed === "object") attempt = { ...attempt, ...parsed };
+			// only restore if same test and not submitted
+			if (parsed.testId === testId && !parsed.submittedAt) {
+				attempt = { ...attempt, ...parsed };
+				idx = Math.min(parsed.currentIndex || 0, test.questions.length - 1);
+				return true;
+			}
 		} catch { }
+		return false;
 	}
 
-	function setHelp(el, msg, isErr = false) {
-		if (!el) return;
-		el.textContent = msg || "";
-		el.classList.toggle("err", !!isErr);
+	function setTimerPill(secondsLeft) {
+		timerPill.textContent = `Time: ${formatMMSS(secondsLeft)}`;
+		timerPill.classList.remove("warn", "crit");
+		const pct = secondsLeft / attempt.durationSeconds;
+		if (pct <= 0.05) timerPill.classList.add("crit");
+		else if (pct <= 0.20) timerPill.classList.add("warn");
 	}
 
-	function openModal(title, body, onOk, onCancel) {
-		modalTitle.textContent = title || "";
-		modalBody.textContent = body || "";
-		show(modal);
-
-		const close = () => hide(modal);
-
-		modalOk.onclick = () => {
-			close();
-			onOk && onOk();
-		};
-		modalCancel.onclick = () => {
-			close();
-			onCancel && onCancel();
-		};
+	function secondsLeft() {
+		if (!attempt.startedAt) return attempt.durationSeconds;
+		const startMs = new Date(attempt.startedAt).getTime();
+		const elapsed = (Date.now() - startMs) / 1000;
+		return attempt.durationSeconds - elapsed;
 	}
 
-	function disableAll(disabled) {
-		[btnPrev, btnNext, btnMark].forEach(b => b && (b.disabled = disabled));
+	function startTimer() {
+		stopTimer();
+		timerInterval = setInterval(() => {
+			const left = secondsLeft();
+			setTimerPill(left);
+
+			if (left <= 0) {
+				stopTimer();
+				// auto-submit
+				openModal(
+					"Time’s up",
+					"Time is over. Your attempt will be submitted now.",
+					async () => {
+						await submitAttempt(true);
+					},
+					() => { }
+				);
+			}
+		}, 250);
 	}
 
-	function escapeHtml(s) {
-		return String(s).replace(/[&<>"']/g, m => ({
-			"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-		}[m]));
+	function stopTimer() {
+		if (timerInterval) clearInterval(timerInterval);
+		timerInterval = null;
 	}
 
-	// ✅ NEW: used to submit without preflight (CORS-safe)
-	function toUrlEncoded(obj) {
-		const p = new URLSearchParams();
-		Object.entries(obj || {}).forEach(([k, v]) => {
-			if (v && typeof v === "object") p.append(k, JSON.stringify(v));
-			else p.append(k, v == null ? "" : String(v));
-		});
-		return p.toString();
-	}
-
-	// Keyboard shortcuts A/B/C/D
-	window.addEventListener("keydown", (e) => {
-		if (screenTest.classList.contains("hidden")) return;
-		const key = e.key.toUpperCase();
-		if (!["A", "B", "C", "D"].includes(key)) return;
-		const q = currentQ();
-		attempt.answers[q.id] = key;
-		saveAttempt();
-		renderQuestion();
-	});
-
-	function currentQ() { return test.questions[idx]; }
-
-	function isMarked(qid) {
-		return (attempt.marked || []).includes(qid);
-	}
-
-	function setTimerPill(seconds) {
-		const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
-		const ss = String(seconds % 60).padStart(2, "0");
-		timerPill.textContent = `${mm}:${ss}`;
-		timerPill.classList.toggle("critical", seconds <= 30);
+	function updateProgressUI() {
+		const total = test.questions.length;
+		const ans = answeredCount();
+		navStats.textContent = `Answered ${ans} / ${total}`;
+		progressTxt.textContent = `Answered ${ans}/${total}`;
+		const pct = total ? (ans / total) * 100 : 0;
+		progressFill.style.width = `${pct}%`;
 	}
 
 	function renderChips(container) {
-		if (!container) return;
 		container.innerHTML = "";
 		test.questions.forEach((q, i) => {
 			const b = document.createElement("button");
-			b.type = "button";
-			b.className = "chip";
+			b.className = "chipBtn";
 			b.textContent = String(i + 1);
-			const answered = !!attempt.answers[q.id];
-			b.classList.toggle("answered", answered);
-			b.classList.toggle("marked", isMarked(q.id));
-			b.classList.toggle("active", i === idx);
-			b.addEventListener("click", () => { idx = i; renderQuestion(); });
+			if (attempt.answers[q.id]) b.classList.add("answered");
+			if (i === idx) b.classList.add("current");
+			if (isMarked(q.id)) b.classList.add("marked");
+			b.addEventListener("click", () => {
+				idx = i;
+				saveAttempt();
+				renderQuestion();
+			});
 			container.appendChild(b);
 		});
 	}
@@ -184,12 +226,14 @@
 	function renderQuestion() {
 		const q = currentQ();
 		qMeta.textContent = `${q.id} / ${test.questions.length}`;
-		qText.textContent = q.question || q.text || "";
+		qText.textContent = getQuestionText(q);
 
 		const selected = attempt.answers[q.id] || null;
 
 		markedChip.style.display = isMarked(q.id) ? "inline-flex" : "none";
 		btnPrev.disabled = idx === 0;
+
+		// last button changes label
 		btnNext.textContent = (idx === test.questions.length - 1) ? "Review & Submit" : "Save & Next";
 
 		optionsWrap.innerHTML = "";
@@ -202,13 +246,7 @@
 			opt.setAttribute("role", "button");
 			opt.setAttribute("aria-label", `Option ${k}`);
 
-			let optText = "";
-			if (Array.isArray(q.options)) {
-				const found = q.options.find(o => String(o.key).toUpperCase() === k);
-				optText = found ? (found.text || "") : "";
-			} else if (q.options && typeof q.options === "object") {
-				optText = q.options[k] || "";
-			}
+			const optText = getOptionText(q, k);
 
 			opt.innerHTML = `
         <div class="optLeft">
@@ -221,9 +259,10 @@
 			const choose = () => {
 				attempt.answers[q.id] = k;
 				saveAttempt();
-				renderQuestion();
+				renderQuestion();      // re-render selection state
+				updateProgressUI();
 				renderChips(navChips);
-				renderChips(navChipsMobile);
+				renderChipsRow(navChipsMobile);
 			};
 
 			opt.addEventListener("click", choose);
@@ -236,41 +275,82 @@
 
 			optionsWrap.appendChild(opt);
 		});
+
+		updateProgressUI();
+		renderChips(navChips);
+		renderChipsRow(navChipsMobile);
 	}
 
-	function startTimer() {
-		clearInterval(timerInt);
-
-		timeLeft = Number(test.durationSeconds || 0);
-		if (!Number.isFinite(timeLeft) || timeLeft <= 0) {
-			timeLeft = (test.questions.length >= 20) ? 1200 : 900;
-		}
-		setTimerPill(timeLeft);
-
-		timerInt = setInterval(() => {
-			timeLeft -= 1;
-			if (timeLeft < 0) timeLeft = 0;
-			setTimerPill(timeLeft);
-
-			if (timeLeft <= 0) {
-				clearInterval(timerInt);
-				submitAttempt(true);
-			}
-		}, 1000);
+	function renderChipsRow(container) {
+		container.innerHTML = "";
+		test.questions.forEach((q, i) => {
+			const b = document.createElement("button");
+			b.className = "chipBtn";
+			b.textContent = String(i + 1);
+			if (attempt.answers[q.id]) b.classList.add("answered");
+			if (i === idx) b.classList.add("current");
+			if (isMarked(q.id)) b.classList.add("marked");
+			b.addEventListener("click", () => {
+				idx = i;
+				saveAttempt();
+				renderQuestion();
+			});
+			container.appendChild(b);
+		});
 	}
 
-	function showSuccess(attemptId) {
-		clearInterval(timerInt);
+	function openReview() {
 		hide(screenTest);
-		hide(screenIntro);
-		hide(screenGate);
-		show(screenDone);
+		show(screenReview);
 
-		const doneId = document.getElementById("doneAttemptId");
-		if (doneId) doneId.textContent = attemptId || "";
+		const total = test.questions.length;
+		const ans = answeredCount();
+		const marked = attempt.marked.length;
+		const left = secondsLeft();
+
+		revIdentity.textContent = `Identity: ${identity.employeeId || identity.fullName}`;
+		revAnswered.textContent = `Answered: ${ans}/${total}`;
+		revMarked.textContent = `Marked: ${marked}`;
+		revLeft.textContent = `Time left: ${formatMMSS(left)}`;
+
+		// review chips
+		revChips.innerHTML = "";
+		test.questions.forEach((q, i) => {
+			const b = document.createElement("button");
+			b.className = "chipBtn";
+			b.textContent = String(i + 1);
+			if (attempt.answers[q.id]) b.classList.add("answered");
+			if (isMarked(q.id)) b.classList.add("marked");
+			b.addEventListener("click", () => {
+				idx = i;
+				hide(screenReview);
+				show(screenTest);
+				renderQuestion();
+			});
+			revChips.appendChild(b);
+		});
+
+		saveAttempt();
 	}
 
-	// ✅ UPDATED: submit without CORS preflight, no duplicate fetch, preserve behavior
+	function openModal(title, body, okFn, cancelFn) {
+		modalTitle.textContent = title;
+		modalBody.textContent = body;
+		show(modal);
+
+		const cleanup = () => {
+			hide(modal);
+			modalOk.onclick = null;
+			modalCancel.onclick = null;
+		};
+
+		modalCancel.onclick = () => { cleanup(); cancelFn && cancelFn(); };
+		modalOk.onclick = async () => {
+			cleanup();
+			if (okFn) await okFn();
+		};
+	}
+
 	async function submitAttempt(isAuto = false) {
 		ensureAttemptId();
 		attempt.submittedAt = nowIso();
@@ -285,54 +365,118 @@
 
 		saveAttempt(); // persist final
 
+		// Prepare payload (no correct answers needed here)
 		const payload = {
 			employeeId: attempt.employeeId || identity.employeeId || "",
 			fullName: attempt.fullName || identity.fullName || "",
 			testId,
-			attemptId: attempt.attemptId,
 			startedAt: attempt.startedAt || "",
 			submittedAt: attempt.submittedAt || new Date().toISOString(),
 			timeTakenSeconds: attempt.timeTakenSeconds || "",
 			answers: attempt.answers || {},
 			marked: attempt.marked || [],
 			userAgent: navigator.userAgent,
-			source: "github_pages",
-			isAuto: !!isAuto
+			source: "github_pages"
 		};
 
+		// If endpoint not configured yet, just show success and log payload
 		if (!SUBMIT_ENDPOINT) {
 			console.log("SUBMIT PAYLOAD (no endpoint set):", payload);
-			showSuccess(attempt.attemptId);
+			showSuccess(payload.attemptId);
 			return;
 		}
 
+		// POST to Apps Script
 		try {
 			disableAll(true);
-
 			const res = await fetch(SUBMIT_ENDPOINT, {
 				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-				body: toUrlEncoded(payload)
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(payload)
 			});
 
-			const txt = await res.text();
-			let data = null;
-			try { data = JSON.parse(txt); } catch { }
+			try {
+				disableAll(true);
 
-			if (!res.ok || (data && data.ok === false)) {
-				const msg = (data && data.error) ? data.error : `HTTP ${res.status}: ${txt}`;
-				throw new Error(msg);
+				const res = await fetch(SUBMIT_ENDPOINT, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(payload)
+				});
+
+				const txt = await res.text();
+				let data = null;
+				try { data = JSON.parse(txt); } catch { }
+
+				if (!res.ok || (data && data.ok === false)) {
+					const msg = (data && data.error) ? data.error : `HTTP ${res.status}`;
+					throw new Error(msg);
+				}
+
+				console.log("Submit response:", data || txt);
+
+				// optional: you can show score later if you add UI fields
+				// e.g. data.percentage, data.correctCount, etc.
+
+				showSuccess(attempt.attemptId);
+
+			} catch (e) {
+				console.error(e);
+				disableAll(false);
+				openModal("Submission failed", String(e.message || e), null, null);
 			}
-
-			console.log("Submit response:", data || txt);
-			showSuccess(attempt.attemptId);
-
 		} catch (e) {
 			console.error(e);
 			disableAll(false);
-			openModal("Submission failed", String(e.message || e), null, null);
+			openModal("Submission failed", "Network error. Try again.", null, null);
 		}
 	}
+
+	function showSuccess(id) {
+		stopTimer();
+		hide(screenGate); hide(screenIntro); hide(screenTest); hide(screenReview);
+		show(screenSuccess);
+		subId.textContent = id || "-";
+	}
+
+	function disableAll(disabled) {
+		document.querySelectorAll("button, input").forEach(x => x.disabled = disabled);
+	}
+
+	function escapeHtml(s) {
+		return String(s).replace(/[&<>"']/g, m => ({
+			"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+		}[m]));
+	}
+
+	// ---- JSON compatibility helpers (supports both schemas) ----
+	function getQuestionText(q) {
+		return (q && (q.text ?? q.question)) || "";
+	}
+
+	function getOptionText(q, key) {
+		if (!q || !q.options) return "";
+
+		// Schema A: options is an object map {A:"",B:"",C:"",D:""}
+		if (!Array.isArray(q.options)) {
+			return q.options[key] || "";
+		}
+
+		// Schema B: options is an array [{key:"A", text:"..."}, ...]
+		const found = q.options.find(o => String(o.key).toUpperCase() === key);
+		return found ? (found.text || "") : "";
+	}
+
+	// Keyboard shortcuts A/B/C/D
+	window.addEventListener("keydown", (e) => {
+		if (screenTest.classList.contains("hidden")) return;
+		const key = e.key.toUpperCase();
+		if (!["A", "B", "C", "D"].includes(key)) return;
+		const q = currentQ();
+		attempt.answers[q.id] = key;
+		saveAttempt();
+		renderQuestion();
+	});
 
 	// -------- EVENTS ----------
 	btnContinue.addEventListener("click", () => {
@@ -342,10 +486,6 @@
 
 		identity.employeeId = emp;
 		identity.fullName = name;
-
-		// ✅ NEW: persist identity into attempt (required for payload)
-		attempt.employeeId = emp;
-		attempt.fullName = name;
 		saveAttempt();
 
 		let ok = true;
@@ -383,74 +523,104 @@
 
 		startTimer();
 		renderQuestion();
-		renderChips(navChips);
-		renderChips(navChipsMobile);
 	});
 
 	btnPrev.addEventListener("click", () => {
 		if (idx > 0) idx -= 1;
 		saveAttempt();
 		renderQuestion();
-		renderChips(navChips);
-		renderChips(navChipsMobile);
 	});
 
 	btnNext.addEventListener("click", () => {
 		if (idx === test.questions.length - 1) {
-			openModal(
-				"Submit test?",
-				"Once submitted you can't change answers.",
-				() => submitAttempt(false),
-				null
-			);
+			openReview();
 			return;
 		}
-		idx += 1;
+		idx = Math.min(test.questions.length - 1, idx + 1);
 		saveAttempt();
 		renderQuestion();
-		renderChips(navChips);
-		renderChips(navChipsMobile);
 	});
 
 	btnMark.addEventListener("click", () => {
-		const qid = currentQ().id;
-		attempt.marked = attempt.marked || [];
-		if (isMarked(qid)) attempt.marked = attempt.marked.filter(x => x !== qid);
-		else attempt.marked.push(qid);
-
+		const q = currentQ();
+		toggleMarked(q.id);
 		saveAttempt();
 		renderQuestion();
-		renderChips(navChips);
-		renderChips(navChipsMobile);
+	});
+
+	btnClear.addEventListener("click", () => {
+		const q = currentQ();
+		delete attempt.answers[q.id];
+		saveAttempt();
+		renderQuestion();
+		updateProgressUI();
+	});
+
+	btnReview.addEventListener("click", openReview);
+
+	btnBackToTest.addEventListener("click", () => {
+		hide(screenReview);
+		show(screenTest);
+		renderQuestion();
+	});
+
+	btnFinalSubmit.addEventListener("click", async () => {
+		const total = test.questions.length;
+		const ans = answeredCount();
+		const unans = total - ans;
+
+		if (unans > 0) {
+			openModal(
+				"Confirm submission",
+				`You have ${unans} unanswered questions. Submit anyway?`,
+				async () => submitAttempt(false),
+				() => { }
+			);
+		} else {
+			await submitAttempt(false);
+		}
 	});
 
 	// -------- INIT ----------
 	(async function init() {
-		// Load tests index (optional)
-		try {
-			const r = await fetch("../data/tests.json", { cache: "no-store" });
-			testsIndex = await r.json();
-		} catch { }
-
 		// Load test JSON
 		const res = await fetch(`../data/${testId}.json`, { cache: "no-store" });
 		test = await res.json();
 
-		// fallback duration if missing
-		if (typeof test.durationSeconds !== "number") {
-			const meta = Array.isArray(testsIndex) ? testsIndex.find(t => t.testId === testId) : null;
-			if (meta && typeof meta.durationSeconds === "number") test.durationSeconds = meta.durationSeconds;
-			else test.durationSeconds = (test.questions?.length >= 20) ? 1200 : 900;
+		// ---- Meta fallback from tests.json (duration/title) ----
+		if (!test.title || typeof test.durationSeconds !== "number") {
+			try {
+				const metaRes = await fetch(`../data/tests.json`, { cache: "no-store" });
+				const all = await metaRes.json();
+				const meta = Array.isArray(all) ? all.find(t => t.testId === testId) : null;
+
+				if (meta) {
+					if (!test.title) test.title = meta.title;
+					if (typeof test.durationSeconds !== "number") test.durationSeconds = meta.durationSeconds;
+				}
+			} catch (e) {
+				// keep going; UI will still work, time may not
+			}
 		}
 
-		// Intro UI
-		if (introTitle) introTitle.textContent = test.title || testId;
-		if (introMeta) introMeta.textContent = `${(test.questions || []).length} Questions`;
-		if (introTime) introTime.textContent = `Time: ${Math.round(test.durationSeconds / 60)} min`;
+		// Hard fallback if still missing (prevents NaN)
+		if (typeof test.durationSeconds !== "number") {
+			test.durationSeconds = (test.questions?.length >= 20) ? 1200 : 900;
+		}
 
+		hdrTitle.textContent = "Sylvi MCQ";
+		hdrSub.textContent = `${test.title} • ${test.questions.length} questions`;
+
+		introTitle.textContent = test.title;
+		introQCount.textContent = `Questions: ${test.questions.length}`;
+		introTime.textContent = `Time: ${Math.round(test.durationSeconds / 60)} min`;
+
+		// Default timer pill (not started)
+		attempt.durationSeconds = test.durationSeconds;
+		setTimerPill(test.durationSeconds);
+
+		// Show gate first
 		show(screenGate);
-		hide(screenIntro);
-		hide(screenTest);
-		hide(screenDone);
+		hide(screenIntro); hide(screenTest); hide(screenReview); hide(screenSuccess);
 	})();
 })();
