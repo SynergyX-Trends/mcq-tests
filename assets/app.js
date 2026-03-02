@@ -383,8 +383,8 @@
 			startedAt: attempt.startedAt || "",
 			submittedAt: attempt.submittedAt || new Date().toISOString(),
 			timeTakenSeconds: attempt.timeTakenSeconds || "",
-			answers: attempt.answers || {},
-			marked: attempt.marked || [],
+			answers: JSON.stringify(attempt.answers || {}),
+			marked: JSON.stringify(attempt.marked || []),
 			userAgent: navigator.userAgent,
 			source: "github_pages"
 		};
