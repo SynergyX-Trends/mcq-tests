@@ -5,7 +5,7 @@
 
 	// -------- CONFIG ----------
 	// Later you will set this to your Apps Script URL:
-	const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmLFuqpgwodMU8jcpFVuyGQHShVrgnsQP6Nuimwzg-KSgjAW7EltEdtqJE4aTbCF-pRw/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+	const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycby42QvjSEtXs1qOs3_zuBezkILMzgdLfQFm6In20t3UAMApfsFwKco5ylWjJB05lJbgSw/exec"; // e.g. "https://script.google.com/macros/s/XXXX/exec"
 	const EMP_ID_REGEX = /^[A-Z0-9_-]{4,20}$/;
 
 	// -------- DOM ----------
@@ -351,6 +351,16 @@
 		};
 	}
 
+	// ✅ NEW: url-encode helper to avoid preflight/CORS
+	function toUrlEncoded(obj) {
+		const p = new URLSearchParams();
+		Object.entries(obj || {}).forEach(([k, v]) => {
+			if (v && typeof v === "object") p.append(k, JSON.stringify(v));
+			else p.append(k, v == null ? "" : String(v));
+		});
+		return p.toString();
+	}
+
 	async function submitAttempt(isAuto = false) {
 		ensureAttemptId();
 		attempt.submittedAt = nowIso();
@@ -389,46 +399,31 @@
 		// POST to Apps Script
 		try {
 			disableAll(true);
+
+			// ✅ CORS FIX: use x-www-form-urlencoded (no preflight)
 			const res = await fetch(SUBMIT_ENDPOINT, {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(payload)
+				headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+				body: toUrlEncoded(payload)
 			});
 
-			try {
-				disableAll(true);
+			const txt = await res.text();
+			let data = null;
+			try { data = JSON.parse(txt); } catch { }
 
-				const res = await fetch(SUBMIT_ENDPOINT, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(payload)
-				});
-
-				const txt = await res.text();
-				let data = null;
-				try { data = JSON.parse(txt); } catch { }
-
-				if (!res.ok || (data && data.ok === false)) {
-					const msg = (data && data.error) ? data.error : `HTTP ${res.status}`;
-					throw new Error(msg);
-				}
-
-				console.log("Submit response:", data || txt);
-
-				// optional: you can show score later if you add UI fields
-				// e.g. data.percentage, data.correctCount, etc.
-
-				showSuccess(attempt.attemptId);
-
-			} catch (e) {
-				console.error(e);
-				disableAll(false);
-				openModal("Submission failed", String(e.message || e), null, null);
+			if (!res.ok || (data && data.ok === false)) {
+				const msg = (data && data.error) ? data.error : `HTTP ${res.status}`;
+				throw new Error(msg);
 			}
+
+			console.log("Submit response:", data || txt);
+			showSuccess(attempt.attemptId);
+
 		} catch (e) {
 			console.error(e);
 			disableAll(false);
-			openModal("Submission failed", "Network error. Try again.", null, null);
+			// NOTE: If you see "You don't have permission", that's Apps Script deployment access, not CORS.
+			openModal("Submission failed", String(e.message || e), null, null);
 		}
 	}
 
