@@ -1,490 +1,590 @@
 {
-  "testId": "day_10",
-  "title": "DAY 10 - FLIPKART MODULE: ORDER LIFECYCLE, RETURNS & CLAIMS, PAYMENT SETTLEMENT, PROMOTIONS",
-  "questions": [
-    {
-      "id": "day_10_q1",
-      "number": 1,
-      "question": "In `flipkart/ajax_load.php`, the `mark_to_pack` action (line 2086) groups shipment IDs by account using `array_reduce`. After constructing the `flipkart_dashboard` instance per account, what method is called on each shipment to update its status?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$fk->mark_orders_to_pack($shipmentId)`"
-        },
-        {
-          "key": "B",
-          "text": "`$fk->update_order_to_pack($shipment->shipmentId, $shipment, $order)`"
-        },
-        {
-          "key": "C",
-          "text": "`$fk->pack_orders($shipmentId)`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` line 2086, the `mark_to_pack` action calls `$fk->update_order_to_pack($shipment->shipmentId, $shipment, $order)` for each shipment after fetching order and shipment details via `$fk->get_order_details()` and `$fk->get_order_shipment_details()`. This is the `flipkart_dashboard` method at `connector_flipkart.php` line 2473 that processes packing with label generation and shipping detail extraction.",
-      "meta": {
-        "rubricCode": "R1"
-      }
-    },
-    {
-      "id": "day_10_q2",
-      "number": 2,
-      "question": "When the `order_import` action (line 3562) in ajax_load.php imports orders, it chunks `$order_item_ids` into groups of what size before calling `$fk->get_order_details()`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "10"
-        },
-        {
-          "key": "B",
-          "text": "20"
-        },
-        {
-          "key": "C",
-          "text": "50"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` line 3578, order item IDs are chunked with `array_chunk($order_item_ids, 20)` before iterating and calling `$fk->get_order_details(implode(',', $order), TRUE)` for each chunk.",
-      "meta": {
-        "rubricCode": "R1"
-      }
-    },
-    {
-      "id": "day_10_q3",
-      "number": 3,
-      "question": "In `includes/connectors/flipkart/flipkart_listner.php`, the `process_notification()` method routes events based on which field of the incoming JSON data?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$data->eventType` and `$data->source`"
-        },
-        {
-          "key": "B",
-          "text": "`$data->version` (dispatches to `process_notification_v3` if version is 'v3', otherwise `process_notification_v2`)"
-        },
-        {
-          "key": "C",
-          "text": "`$data->attributes->status`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart_listner.php` line 68, `process_notification()` checks `$data->version`: if `$data->version == 'v3'` it dispatches to `process_notification_v3($data)`, otherwise to `process_notification_v2($data)`. The event type switching happens inside each version-specific handler.",
-      "meta": {
-        "rubricCode": "R2"
-      }
-    },
-    {
-      "id": "day_10_q4",
-      "number": 4,
-      "question": "The `fk_verify()` method in `flipkart_listner.php` validates incoming Flipkart webhook requests. What hashing algorithm does it use to compute the signature from timestamp + notification URL + HTTP method + app_secret?",
-      "options": [
-        {
-          "key": "A",
-          "text": "MD5"
-        },
-        {
-          "key": "B",
-          "text": "SHA256"
-        },
-        {
-          "key": "C",
-          "text": "SHA1"
-        }
-      ],
-      "answer": "C",
-      "explanation": "In `flipkart_listner.php` line 50, the signature is computed as `sha1($timestamp . $notification_url . 'POST' . $this->fk_account->app_secret)`, using SHA1 hashing. This is then base64-encoded with the app_id for the FKLOGIN authorization header comparison.",
-      "meta": {
-        "rubricCode": "R2"
-      }
-    },
-    {
-      "id": "day_10_q5",
-      "number": 5,
-      "question": "In the `sync` action (line 2305) of ajax_load.php, when an account has `$account->api_status` set to true, which method is called to fetch orders?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$fk->get_all_orders($order_type)` — the Dashboard scraping method"
-        },
-        {
-          "key": "B",
-          "text": "`$fk->get_orders($order_type)` — the API method"
-        },
-        {
-          "key": "C",
-          "text": "`$fk->get_to_pack_orders_v3()`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` line 2320, when `$account->api_status` is true, `$fk->get_orders($order_type)` is called (the API-based method). When api_status is false, `$fk->get_all_orders($order_type)` is called (the Dashboard scraping method).",
-      "meta": {
-        "rubricCode": "R1"
-      }
-    },
-    {
-      "id": "day_10_q6",
-      "number": 6,
-      "question": "In the return order views (ajax_load.php, lines 328–500), the claim SLA breach detection calculates days elapsed since `r_deliveredDate`. At what day threshold does the system show a yellow warning, and at what threshold does it show a red breach indicator?",
-      "options": [
-        {
-          "key": "A",
-          "text": "7-day warning, 10-day breach"
-        },
-        {
-          "key": "B",
-          "text": "10-day warning, 14-day breach"
-        },
-        {
-          "key": "C",
-          "text": "12-day warning, 14-day breach"
-        }
-      ],
-      "answer": "C",
-      "explanation": "In `flipkart/ajax_load.php` (lines 328–500), the return views calculate days elapsed since `r_deliveredDate`. A yellow warning appears at 12 days, and a red breach indicator appears at 14 days. The 60-day limit represents the maximum claim filing window.",
-      "meta": {
-        "rubricCode": "R3"
-      }
-    },
-    {
-      "id": "day_10_q7",
-      "number": 7,
-      "question": "The `mark_return_complete` action (line 2561) performs a critical validation before marking a return as completed. What does it verify?",
-      "options": [
-        {
-          "key": "A",
-          "text": "That the return tracking ID exists in TBL_FK_RETURNS"
-        },
-        {
-          "key": "B",
-          "text": "That the scanned UID matches one of the UIDs originally assigned to the order (UID-to-order verification)"
-        },
-        {
-          "key": "C",
-          "text": "That the return was delivered within the SLA window"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` line 2561, `mark_return_complete` queries TBL_FK_ORDERS via a JOIN with TBL_FK_RETURNS using the tracking ID, retrieves the order's UID JSON, and checks `if (in_array($uid, $uids))` — verifying the scanned UID matches one assigned to the original order. If mismatched, it returns \"Serial Number Mismatch!\" error.",
-      "meta": {
-        "rubricCode": "R3"
-      }
-    },
-    {
-      "id": "day_10_q8",
-      "number": 8,
-      "question": "In `flipkart/functions.php`, the `do_fk_calcuation()` function calculates marketplace fees. What GST rate is applied to the total marketplace fee to compute `$service_gst`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "5%"
-        },
-        {
-          "key": "B",
-          "text": "12%"
-        },
-        {
-          "key": "C",
-          "text": "18%"
-        }
-      ],
-      "answer": "C",
-      "explanation": "In `flipkart/functions.php`, the `do_fk_calcuation()` function applies 18% GST on marketplace fees: `$service_gst = round(($marketplace_fee*18)/100, 2)`. This matches the Indian GST rate for service fees. The 18% rate is also referenced in `flipkart_payments.php` as `$this->service_gst`.",
-      "meta": {
-        "rubricCode": "R4"
-      }
-    },
-    {
-      "id": "day_10_q9",
-      "number": 9,
-      "question": "In `flipkart/functions.php`, the `get_selling_price()` function determines GST rate for products. For which specific brands does it use a 5% GST rate instead of the default 18%?",
-      "options": [
-        {
-          "key": "A",
-          "text": "All watch brands"
-        },
-        {
-          "key": "B",
-          "text": "Skmei and Curren only"
-        },
-        {
-          "key": "C",
-          "text": "Products in brand category 1"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/functions.php` lines 250–260, the `get_selling_price()` function checks product brand: if `$brand == 'Skmei'` (brandid 17) or `$brand == 'Curren'` (brandid 18), it sets `$gst = 5`. For all other brands (category 2 or 3), it uses `$gst = 18`.",
-      "meta": {
-        "rubricCode": "R4"
-      }
-    },
-    {
-      "id": "day_10_q10",
-      "number": 10,
-      "question": "The `calculate_actual_payout()` method in `flipkart_payments.php` computes the expected payout. Which of the following is included as a POSITIVE addition to the payout calculation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$marketplaceFee` (always positive)"
-        },
-        {
-          "key": "B",
-          "text": "`$order->commissionIncentive`"
-        },
-        {
-          "key": "C",
-          "text": "`$order->reverseShippingFee`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart_payments.php` line 1148, the payout formula adds `$order->commissionIncentive` as a positive value: `$payout = ($sale_amount) + ($marketplaceFee + $taxes + ...) + (($order->flipkartDiscount * $order->quantity) + ($order->discountRefundAmount) + $order->commissionIncentive)`. Marketplace fees and taxes are negative values (deductions), while commissionIncentive is a positive earning.",
-      "meta": {
-        "rubricCode": "R4"
-      }
-    },
-    {
-      "id": "day_10_q11",
-      "number": 11,
-      "question": "In the `scan_ship` action (line 8681), when a tracking ID matches an order that has a non-null `r_shipmentStatus` in TBL_FK_RETURNS, what does the system do?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Proceeds normally and flags the order for review"
-        },
-        {
-          "key": "B",
-          "text": "Attempts to cancel the order via `$fk->update_order_to_cancel($tracking_id)` and displays \"DO NOT PROCESS\""
-        },
-        {
-          "key": "C",
-          "text": "Redirects to the returns processing page"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` lines 8720–8730, when `$orders[0]->r_shipmentStatus` is not null (meaning a return exists), the system calls `$fk->update_order_to_cancel($tracking_id)` and returns `array('type' => 'info', 'msg' => 'Order Cancelled<br />DO NOT PROCESS')`.",
-      "meta": {
-        "rubricCode": "R5"
-      }
-    },
-    {
-      "id": "day_10_q12",
-      "number": 12,
-      "question": "The `save_scan_ship` action (line 8990) updates the order status to SHIPPED and processes scanned UIDs. For each UID, it calls two methods on `$stockist`. What are they?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`update_inventory_status($uid, 'shipped')` and `add_inventory_log($uid, 'shipped', ...)`"
-        },
-        {
-          "key": "B",
-          "text": "`update_inventory_status($uid, 'sales')` and `add_inventory_log($uid, 'sales', 'Flipkart Sales :: '.$orderItemId)`"
-        },
-        {
-          "key": "C",
-          "text": "`mark_as_sold($uid)` and `create_sales_log($uid)`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` lines 8995–9010, for each UID: `$stockist->update_inventory_status($uid, 'sales')` changes inventory status, and `$stockist->add_inventory_log($uid, 'sales', 'Flipkart Sales :: ' . $orderItemId)` creates the audit trail.",
-      "meta": {
-        "rubricCode": "R5"
-      }
-    },
-    {
-      "id": "day_10_q13",
-      "number": 13,
-      "question": "In the `get_uid_details` action (line 8957) used during scan and ship, what two conditions must the inventory item satisfy to return a successful response?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`inv_status = 'inbound'` and `isImperfect = '0'`"
-        },
-        {
-          "key": "B",
-          "text": "`inv_status = 'qc_verified'` and `isImperfect = '0'`"
-        },
-        {
-          "key": "C",
-          "text": "`inv_status = 'sales'` and `isImperfect = '0'`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` lines 8957–8975, `get_uid_details` queries TBL_INVENTORY with `$db->where('inv_status', 'qc_verified')` and `$db->where('isImperfect', '0')`. Both conditions must be met for a successful response. If isImperfect is '1', it returns \"Product is Refurbished!\".",
-      "meta": {
-        "rubricCode": "R5"
-      }
-    },
-    {
-      "id": "day_10_q14",
-      "number": 14,
-      "question": "In the `get_all_promotions` action (line 6716), how does the system classify a promotion as type 'MP_INC'?",
-      "options": [
-        {
-          "key": "A",
-          "text": "By checking the `offerClassification` field from the API response"
-        },
-        {
-          "key": "B",
-          "text": "By checking if `sellerOfferTitle` contains 'inc', 'mpinc', or 'mp_inc' (case-insensitive), or if the offerId is in the `fk_additional_mp_inc_offers` config option"
-        },
-        {
-          "key": "C",
-          "text": "By checking if the `discountType` equals 'MP_INC'"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` lines 6733–6740, the type is determined by pattern matching on `$promo->sellerOfferTitle` — checking for 'inc', 'mpinc', or 'mp_inc' (case-insensitive via `strtolower`). Additionally, `$additional_mp_inc_offers` from `get_option('fk_additional_mp_inc_offers')` provides a supplementary list of offer IDs to classify as MP_INC.",
-      "meta": {
-        "rubricCode": "R6"
-      }
-    },
-    {
-      "id": "day_10_q15",
-      "number": 15,
-      "question": "The Flipkart connector classes follow an inheritance hierarchy. Which class extends `connector_flipkart` and adds Flipkart seller dashboard scraping capabilities including `login_fk()` and `send_request()`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`flipkart_listner`"
-        },
-        {
-          "key": "B",
-          "text": "`flipkart_payments`"
-        },
-        {
-          "key": "C",
-          "text": "`flipkart_dashboard`"
-        }
-      ],
-      "answer": "C",
-      "explanation": "`flipkart_dashboard` (line 16 of `flipkart_dashboard.php`) declares `class flipkart_dashboard extends connector_flipkart` and adds dashboard scraping methods including `login_fk()`, `send_request()`, `check_login_fk()`, and dashboard-specific order/return fetching.",
-      "meta": {
-        "rubricCode": "R7"
-      }
-    },
-    {
-      "id": "day_10_q16",
-      "number": 16,
-      "question": "In `connector_flipkart.php`, the `insert_orders()` method (line 1628) populates `TBL_FK_ORDERS`. When the order type is NOT FBF, how is the `order_type` field determined?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Always set to 'NON_FBF'"
-        },
-        {
-          "key": "B",
-          "text": "Set to 'FBF_LITE' if `$order->serviceProfile == 'Smart_Fulfilment'`, otherwise 'NON_FBF'"
-        },
-        {
-          "key": "C",
-          "text": "Derived from the `$order->fulfilmentType` field"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `connector_flipkart.php` line 1650, for non-FBF orders: `$order_type = ($order->serviceProfile == 'Smart_Fulfilment') ? 'FBF_LITE' : 'NON_FBF'`. Smart_Fulfilment maps to FBF_LITE (Flipkart's lightweight fulfillment model), everything else maps to NON_FBF.",
-      "meta": {
-        "rubricCode": "R1"
-      }
-    },
-    {
-      "id": "day_10_q17",
-      "number": 17,
-      "question": "In the `get_all_unsettled` action (line 4148), orders are filtered for unsettled status. Which conditions determine that an order appears in the unsettled payments view?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`settlementStatus = 0` AND has at least one record in TBL_FK_PAYMENTS (INNER JOIN) AND `settlementNotes = ''`"
-        },
-        {
-          "key": "B",
-          "text": "`settlementStatus = 0` AND no record in TBL_FK_PAYMENTS"
-        },
-        {
-          "key": "C",
-          "text": "`status = 'SHIPPED'` AND `paymentDate IS NULL`"
-        }
-      ],
-      "answer": "A",
-      "explanation": "In `flipkart/ajax_load.php` line 4148, the query uses `INNER JOIN` on TBL_FK_PAYMENTS (ensuring payment records exist), and filters with `$db->where('o.settlementStatus', 0)` AND `$db->where('o.settlementNotes', '')`. This means orders with payments that haven't been marked as settled.",
-      "meta": {
-        "rubricCode": "R4"
-      }
-    },
-    {
-      "id": "day_10_q18",
-      "number": 18,
-      "question": "The `mark_order_settled` action (line 5021) sets `settlementStatus = 1` for an order. After updating the order, what additional operation does it perform regarding TBL_FK_INCIDENTS?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Creates a new incident for the settled payment"
-        },
-        {
-          "key": "B",
-          "text": "Searches for active incidents with issueType 'Payments' referencing the orderItemId, updates the referenceId JSON to mark the order as true, and closes the incident if all orders are settled"
-        },
-        {
-          "key": "C",
-          "text": "Deletes all related payment incidents"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` lines 5030–5055, after setting `settlementStatus = 1`, the code searches TBL_FK_INCIDENTS for active incidents with `issueType = 'Payments'` and `referenceId LIKE '%orderItemId%'`. It replaces `\"orderItemId\": false` with `\"orderItemId\": true` in the referenceId JSON. If no 'false' entries remain, it closes the entire incident.",
-      "meta": {
-        "rubricCode": "R4"
-      }
-    },
-    {
-      "id": "day_10_q19",
-      "number": 19,
-      "question": "The `flipkart_payments` class is instantiated within `connector_flipkart`. In `ajax_load.php`, when retrieving transaction details for the `search_order` action (line 3183), which payment method is called to get the fee breakdown?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$fk->payments->calculate_actual_payout($orderItemId)` only"
-        },
-        {
-          "key": "B",
-          "text": "`$fk->get_difference_details($order->OID)` via a `flipkart_payments` instance"
-        },
-        {
-          "key": "C",
-          "text": "`$fk->payments->get_settlement_details($orderItemId)`"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart/ajax_load.php` line 3498, within `search_order`, a `flipkart_payments` instance is created via `$fk = new flipkart_payments($account)`, then `$fk->get_difference_details($order->OID)` is called. This returns an array with `expected_payout`, `settlements`, and `difference` breakdowns.",
-      "meta": {
-        "rubricCode": "R7"
-      }
-    },
-    {
-      "id": "day_10_q20",
-      "number": 20,
-      "question": "In `flipkart_listner.php`, when a `shipment_packed` event (V3) is received and the order does NOT already exist in TBL_FK_ORDERS, what sequence of operations occurs?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The event is logged and ignored"
-        },
-        {
-          "key": "B",
-          "text": "`get_order_details($shipmentId)` is called to fetch order data, followed by `insert_orders()` to create it, then `update_order_to_pack($shipmentId)` to process the pack event"
-        },
-        {
-          "key": "C",
-          "text": "`update_order_to_pack($shipmentId)` is called directly, which creates the order if missing"
-        }
-      ],
-      "answer": "B",
-      "explanation": "In `flipkart_listner.php` lines 201–210, the `shipment_packed` case checks `$db->has(TBL_FK_ORDERS)` by shipmentId. If the order doesn't exist, it calls `$this->get_order_details($shipmentId)` then `$this->insert_orders()`. Regardless of whether the order was just created or already existed, it then calls `$this->update_order_to_pack($shipmentId)`.",
-      "meta": {
-        "rubricCode": "R2"
-      }
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_10",
+	"title": "DAY 10 \u2014 ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_10_q1",
+			"number": 1,
+			"question": "In `flipkart/ajax_load.php`, the `mark_to_pack` action groups shipment IDs by account using `array_reduce`. After constructing the `flipkart_dashboard` instance per account, what method is called on each shipment to update its status?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$fk->mark_orders_to_pack($shipmentId)`"
+				},
+				{
+					"key": "B",
+					"text": "`$fk->update_order_to_pack($shipment->shipmentId, $shipment, $order)`"
+				},
+				{
+					"key": "C",
+					"text": "`$fk->pack_orders($shipmentId)`"
+				},
+				{
+					"key": "D",
+					"text": "`$fk->update_fk_order_status($shipmentId, array('status' => 'PACKING'))`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Order Lifecycle Mastery",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q2",
+			"number": 2,
+			"question": "When the `order_import` action in ajax_load.php imports orders, it chunks `$order_item_ids` into groups of what size before calling `$fk->get_order_details()`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "10"
+				},
+				{
+					"key": "B",
+					"text": "20"
+				},
+				{
+					"key": "C",
+					"text": "50"
+				},
+				{
+					"key": "D",
+					"text": "100"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Order Lifecycle Mastery",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q3",
+			"number": 3,
+			"question": "In `includes/connectors/flipkart/flipkart_listner.php`, the `process_notification()` method routes events based on which field of the incoming JSON data?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$data->eventType` and `$data->source`"
+				},
+				{
+					"key": "B",
+					"text": "`$data->version` (dispatches to `process_notification_v3` if version is 'v3', otherwise `process_notification_v2`)"
+				},
+				{
+					"key": "C",
+					"text": "`$data->attributes->status`"
+				},
+				{
+					"key": "D",
+					"text": "`$data->shipmentId` presence check"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Integration Pattern Knowledge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q4",
+			"number": 4,
+			"question": "The `fk_verify()` method in `flipkart_listner.php` validates incoming Flipkart webhook requests. What hashing algorithm does it use to compute the signature?",
+			"options": [
+				{
+					"key": "A",
+					"text": "MD5"
+				},
+				{
+					"key": "B",
+					"text": "SHA256"
+				},
+				{
+					"key": "C",
+					"text": "SHA1"
+				},
+				{
+					"key": "D",
+					"text": "HMAC-SHA256"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Integration Pattern Knowledge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q5",
+			"number": 5,
+			"question": "In the `sync` action of ajax_load.php, when an account has `$account->api_status` set to true, which method is called to fetch orders?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$fk->get_all_orders($order_type)` \u2014 the Dashboard scraping method"
+				},
+				{
+					"key": "B",
+					"text": "`$fk->get_orders($order_type)` \u2014 the API method"
+				},
+				{
+					"key": "C",
+					"text": "`$fk->get_to_pack_orders_v3()`"
+				},
+				{
+					"key": "D",
+					"text": "`$fk->sync_orders($order_type)`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Order Lifecycle Mastery",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q6",
+			"number": 6,
+			"question": "In the return order views, the claim SLA breach detection calculates days elapsed since `r_deliveredDate`. At what day threshold does the system show a yellow warning, and at what threshold does it show a red breach indicator?",
+			"options": [
+				{
+					"key": "A",
+					"text": "7-day warning, 10-day breach"
+				},
+				{
+					"key": "B",
+					"text": "10-day warning, 14-day breach"
+				},
+				{
+					"key": "C",
+					"text": "12-day warning, 14-day breach"
+				},
+				{
+					"key": "D",
+					"text": "14-day warning, 30-day breach"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Returns & Claims Pipeline",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_10_q7",
+			"number": 7,
+			"question": "The `mark_return_complete` action performs a critical validation before marking a return as completed. What does it verify?",
+			"options": [
+				{
+					"key": "A",
+					"text": "That the return tracking ID exists in TBL_FK_RETURNS"
+				},
+				{
+					"key": "B",
+					"text": "That the scanned UID matches one of the UIDs originally assigned to the order (UID-to-order verification)"
+				},
+				{
+					"key": "C",
+					"text": "That the return was delivered within the SLA window"
+				},
+				{
+					"key": "D",
+					"text": "That the order's payment has been settled"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Returns & Claims Pipeline",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_10_q8",
+			"number": 8,
+			"question": "In `flipkart/functions.php`, the `do_fk_calcuation()` function calculates marketplace fees. What GST rate is applied to the total marketplace fee to compute `$service_gst`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "5%"
+				},
+				{
+					"key": "B",
+					"text": "12%"
+				},
+				{
+					"key": "C",
+					"text": "18%"
+				},
+				{
+					"key": "D",
+					"text": "28%"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fee Calculation & Settlement",
+				"weightContribution": "4.00%"
+			}
+		},
+		{
+			"id": "day_10_q9",
+			"number": 9,
+			"question": "In `flipkart/functions.php`, the `get_selling_price()` function determines GST rate for products. For which specific brands does it use a 5% GST rate instead of the default 18%?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All watch brands"
+				},
+				{
+					"key": "B",
+					"text": "Skmei and Curren only"
+				},
+				{
+					"key": "C",
+					"text": "Products in brand category 1"
+				},
+				{
+					"key": "D",
+					"text": "Products with HSN code starting with 91"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fee Calculation & Settlement",
+				"weightContribution": "4.00%"
+			}
+		},
+		{
+			"id": "day_10_q10",
+			"number": 10,
+			"question": "The `calculate_actual_payout()` method in `flipkart_payments.php` computes the expected payout. Which of the following is included as a POSITIVE addition to the payout calculation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$marketplaceFee` (always positive)"
+				},
+				{
+					"key": "B",
+					"text": "`$order->commissionIncentive`"
+				},
+				{
+					"key": "C",
+					"text": "`$order->reverseShippingFee`"
+				},
+				{
+					"key": "D",
+					"text": "`$taxes` on marketplace fees"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fee Calculation & Settlement",
+				"weightContribution": "4.00%"
+			}
+		},
+		{
+			"id": "day_10_q11",
+			"number": 11,
+			"question": "In the `scan_ship` action, when a tracking ID matches an order that has a non-null `r_shipmentStatus` in TBL_FK_RETURNS, what does the system do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceeds normally and flags the order for review"
+				},
+				{
+					"key": "B",
+					"text": "Attempts to cancel the order via `$fk->update_order_to_cancel($tracking_id)` and displays \"DO NOT PROCESS\""
+				},
+				{
+					"key": "C",
+					"text": "Redirects to the returns processing page"
+				},
+				{
+					"key": "D",
+					"text": "Marks the order as shipped and ignores the return"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Scan & Ship + Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q12",
+			"number": 12,
+			"question": "The `save_scan_ship` action updates the order status to SHIPPED and processes scanned UIDs. For each UID, it calls two methods on `$stockist`. What are they?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`update_inventory_status($uid, 'shipped')` and `add_inventory_log($uid, 'shipped', ...)`"
+				},
+				{
+					"key": "B",
+					"text": "`update_inventory_status($uid, 'sales')` and `add_inventory_log($uid, 'sales', 'Flipkart Sales :: '.$orderItemId)`"
+				},
+				{
+					"key": "C",
+					"text": "`mark_as_sold($uid)` and `create_sales_log($uid)`"
+				},
+				{
+					"key": "D",
+					"text": "`deduct_stock($uid)` and `log_transaction($uid, 'flipkart')`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Scan & Ship + Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q13",
+			"number": 13,
+			"question": "In the `get_uid_details` action used during scan and ship, what two conditions must the inventory item satisfy to return a successful response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`inv_status = 'inbound'` and `isImperfect = '0'`"
+				},
+				{
+					"key": "B",
+					"text": "`inv_status = 'qc_verified'` and `isImperfect = '0'`"
+				},
+				{
+					"key": "C",
+					"text": "`inv_status = 'sales'` and `isImperfect = '0'`"
+				},
+				{
+					"key": "D",
+					"text": "`inv_status = 'available'` and `isSold = '0'`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Scan & Ship + Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q14",
+			"number": 14,
+			"question": "In the `get_all_promotions` action, how does the system classify a promotion as type 'MP_INC'?",
+			"options": [
+				{
+					"key": "A",
+					"text": "By checking the `offerClassification` field from the API response"
+				},
+				{
+					"key": "B",
+					"text": "By checking if `sellerOfferTitle` contains 'inc', 'mpinc', or 'mp_inc' (case-insensitive), or if the offerId is in the `fk_additional_mp_inc_offers` config option"
+				},
+				{
+					"key": "C",
+					"text": "By checking if the `discountType` equals 'MP_INC'"
+				},
+				{
+					"key": "D",
+					"text": "By querying TBL_FK_PROMOTIONS for the promoType field"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Promotions & Campaign Management",
+				"weightContribution": "8.00%"
+			}
+		},
+		{
+			"id": "day_10_q15",
+			"number": 15,
+			"question": "The Flipkart connector classes follow an inheritance hierarchy. Which class extends `connector_flipkart` and adds Flipkart seller dashboard scraping capabilities?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`flipkart_listner`"
+				},
+				{
+					"key": "B",
+					"text": "`flipkart_payments`"
+				},
+				{
+					"key": "C",
+					"text": "`flipkart_dashboard`"
+				},
+				{
+					"key": "D",
+					"text": "`flipkart_api`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Module Architecture & Cross-Dependencies",
+				"weightContribution": "3.50%"
+			}
+		},
+		{
+			"id": "day_10_q16",
+			"number": 16,
+			"question": "In `connector_flipkart.php`, the `insert_orders()` method populates `TBL_FK_ORDERS`. When the order type is NOT FBF, how is the `order_type` field determined?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Always set to 'NON_FBF'"
+				},
+				{
+					"key": "B",
+					"text": "Set to 'FBF_LITE' if `$order->serviceProfile == 'Smart_Fulfilment'`, otherwise 'NON_FBF'"
+				},
+				{
+					"key": "C",
+					"text": "Derived from the `$order->fulfilmentType` field"
+				},
+				{
+					"key": "D",
+					"text": "Set based on the account's default fulfilment configuration"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Order Lifecycle Mastery",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_10_q17",
+			"number": 17,
+			"question": "In the `get_all_unsettled` action, which conditions determine that an order appears in the unsettled payments view?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`settlementStatus = 0` AND has at least one record in TBL_FK_PAYMENTS (INNER JOIN) AND `settlementNotes = ''`"
+				},
+				{
+					"key": "B",
+					"text": "`settlementStatus = 0` AND no record in TBL_FK_PAYMENTS"
+				},
+				{
+					"key": "C",
+					"text": "`status = 'SHIPPED'` AND `paymentDate IS NULL`"
+				},
+				{
+					"key": "D",
+					"text": "`settlementStatus = 0` AND `status IN ('SHIPPED', 'DELIVERED')`"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fee Calculation & Settlement",
+				"weightContribution": "4.00%"
+			}
+		},
+		{
+			"id": "day_10_q18",
+			"number": 18,
+			"question": "The `mark_order_settled` action sets `settlementStatus = 1` for an order. After updating the order, what additional operation does it perform regarding TBL_FK_INCIDENTS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Creates a new incident for the settled payment"
+				},
+				{
+					"key": "B",
+					"text": "Searches for active incidents with issueType 'Payments' referencing the orderItemId, updates the referenceId JSON to mark the order as true, and closes the incident if all orders are settled"
+				},
+				{
+					"key": "C",
+					"text": "Deletes all related payment incidents"
+				},
+				{
+					"key": "D",
+					"text": "No additional operations \u2014 it only updates TBL_FK_ORDERS"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fee Calculation & Settlement",
+				"weightContribution": "4.00%"
+			}
+		},
+		{
+			"id": "day_10_q19",
+			"number": 19,
+			"question": "The `flipkart_payments` class is instantiated within `connector_flipkart`. When retrieving transaction details for the `search_order` action, which payment method is called to get the fee breakdown?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$fk->payments->calculate_actual_payout($orderItemId)` only"
+				},
+				{
+					"key": "B",
+					"text": "`$fk->get_difference_details($order->OID)` via a `flipkart_payments` instance"
+				},
+				{
+					"key": "C",
+					"text": "`$fk->payments->get_settlement_details($orderItemId)`"
+				},
+				{
+					"key": "D",
+					"text": "`$fk->payments->fetch_payout($orderItemId)`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Module Architecture & Cross-Dependencies",
+				"weightContribution": "3.50%"
+			}
+		},
+		{
+			"id": "day_10_q20",
+			"number": 20,
+			"question": "In `flipkart_listner.php`, when a `shipment_packed` event (V3) is received and the order does NOT already exist in TBL_FK_ORDERS, what sequence of operations occurs?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The event is logged and ignored"
+				},
+				{
+					"key": "B",
+					"text": "`get_order_details($shipmentId)` is called to fetch order data, followed by `insert_orders()` to create it, then `update_order_to_pack($shipmentId)` to process the pack event"
+				},
+				{
+					"key": "C",
+					"text": "`update_order_to_pack($shipmentId)` is called directly, which creates the order if missing"
+				},
+				{
+					"key": "D",
+					"text": "An error notification is sent and the event is re-queued"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Integration Pattern Knowledge",
+				"weightContribution": "5.00%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

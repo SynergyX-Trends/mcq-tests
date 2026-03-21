@@ -1,510 +1,590 @@
 {
-  "testId": "day_08",
-  "title": "DAY 08 — ONBOARDING EXECUTION DOCUMENT",
-  "questions": [
-    {
-      "id": "day_08_q1",
-      "number": 1,
-      "question": "In `Picklist::create_picklist()`, what ORDER BY clause ensures First-In-First-Out stock selection?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`ORDER BY insertDate ASC` — oldest insertion date first"
-        },
-        {
-          "key": "B",
-          "text": "`ORDER BY lot_id ASC` — oldest lot number first"
-        },
-        {
-          "key": "C",
-          "text": "`ORDER BY inv_id ASC` — lowest inventory ID first"
-        },
-        {
-          "key": "D",
-          "text": "`ORDER BY item_price ASC` — cheapest items first"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q2",
-      "number": 2,
-      "question": "What is the numeric status code for `in_progress` in the Picklist class's `$picklistStatuses` array?",
-      "options": [
-        {
-          "key": "A",
-          "text": "1"
-        },
-        {
-          "key": "B",
-          "text": "2"
-        },
-        {
-          "key": "C",
-          "text": "3"
-        },
-        {
-          "key": "D",
-          "text": "4"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q3",
-      "number": 3,
-      "question": "When `Picklist::update_inventory_status()` completes a pick (status = `completed`), what special carton ID is assigned to the inventory item?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`2001` — soft QC reject carton"
-        },
-        {
-          "key": "B",
-          "text": "`2002` — returns carton"
-        },
-        {
-          "key": "C",
-          "text": "`2021` — photography carton"
-        },
-        {
-          "key": "D",
-          "text": "`3025` — packing carton"
-        }
-      ],
-      "answer": "D",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q4",
-      "number": 4,
-      "question": "Which trigger automatically initializes `pending_quantity` equal to `total_quantity` when a new picklist product record is inserted?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`trg_before_update_picklist_product`"
-        },
-        {
-          "key": "B",
-          "text": "`trg_set_pending_quantity_before_insert`"
-        },
-        {
-          "key": "C",
-          "text": "`trg_after_product_status_update`"
-        },
-        {
-          "key": "D",
-          "text": "`trg_set_picked_date_before_update`"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q5",
-      "number": 5,
-      "question": "How many public methods does the `Stockist` singleton class expose?",
-      "options": [
-        {
-          "key": "A",
-          "text": "7"
-        },
-        {
-          "key": "B",
-          "text": "10"
-        },
-        {
-          "key": "C",
-          "text": "13"
-        },
-        {
-          "key": "D",
-          "text": "16"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q6",
-      "number": 6,
-      "question": "In `Stockist::add_inventory_log()`, what special side effects occur when `$log_type` is `'sales_return'`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only a log entry is inserted with no side effects"
-        },
-        {
-          "key": "B",
-          "text": "The item's `inv_status` is changed to `qc_pending`"
-        },
-        {
-          "key": "C",
-          "text": "`expectedLocation` is set to `'RETURN_00001'`, `inv_batch` to today's date, `ctn_id` to `'2002'`, and warranty registrations are deactivated"
-        },
-        {
-          "key": "D",
-          "text": "A Slack notification is sent to the warehouse team"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q7",
-      "number": 7,
-      "question": "How many external modules write to inventory tables exclusively through the `$stockist` singleton?",
-      "options": [
-        {
-          "key": "A",
-          "text": "4"
-        },
-        {
-          "key": "B",
-          "text": "7"
-        },
-        {
-          "key": "C",
-          "text": "9"
-        },
-        {
-          "key": "D",
-          "text": "12"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q8",
-      "number": 8,
-      "question": "What is the formula used by `Stockist::update_stock_on_mps()` to calculate available quantity for marketplace sync?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`availableQty = inStock - reserved`"
-        },
-        {
-          "key": "B",
-          "text": "`availableQty = inStock + committed - amazonReserved - reserved - buffer`"
-        },
-        {
-          "key": "C",
-          "text": "`availableQty = totalStock - salesOrders - pendingReturns`"
-        },
-        {
-          "key": "D",
-          "text": "`availableQty = qc_verified - qc_pending - qc_failed`"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q9",
-      "number": 9,
-      "question": "In `Stockist::calculate_inventory_buffer()`, what are the three calculation modes available?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`low`, `medium`, `high`"
-        },
-        {
-          "key": "B",
-          "text": "`percentage`, `fixed`, `dynamic`"
-        },
-        {
-          "key": "C",
-          "text": "`calculate` (slab tiers), `drr` (daily run rate), `fixed` (static value)"
-        },
-        {
-          "key": "D",
-          "text": "`auto`, `manual`, `disabled`"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q10",
-      "number": 10,
-      "question": "Items at which location prefix are explicitly excluded from the `update_stock_on_mps()` availability count?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`COOLNG%` — cooling area items"
-        },
-        {
-          "key": "B",
-          "text": "`FAILED%` — failed QC items"
-        },
-        {
-          "key": "C",
-          "text": "`DISPLY%` — display area items"
-        },
-        {
-          "key": "D",
-          "text": "`RETURN%` — returned items"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q11",
-      "number": 11,
-      "question": "In the `transfer_stock` action, what two label types are generated via mPDF for Amazon FC transfers?",
-      "options": [
-        {
-          "key": "A",
-          "text": "QR label (30x30mm) and barcode label (40x20mm)"
-        },
-        {
-          "key": "B",
-          "text": "MRP label (60x40mm) and FNSKU label (50x20mm)"
-        },
-        {
-          "key": "C",
-          "text": "Product label (80x60mm) and shipping label (100x150mm)"
-        },
-        {
-          "key": "D",
-          "text": "CTN label (70x50mm) and seal label (40x30mm)"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q12",
-      "number": 12,
-      "question": "In the `vendor_return` action, what two conditions must both be satisfied before an item can be returned?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Item must be `qc_failed` AND have `inv_failed_count > 0`"
-        },
-        {
-          "key": "B",
-          "text": "Item must have `is_ams_inv=1` (AMS inventory) AND `po_party_id` must match the submitted vendor"
-        },
-        {
-          "key": "C",
-          "text": "Item must be in a sealed box AND assigned to a batch"
-        },
-        {
-          "key": "D",
-          "text": "Item must be `qc_verified` AND have `isImperfect='1'`"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q13",
-      "number": 13,
-      "question": "In the `audit_uid` action, what are the three scan types supported for audit resolution?",
-      "options": [
-        {
-          "key": "A",
-          "text": "BOX, CTN, and UID"
-        },
-        {
-          "key": "B",
-          "text": "SEAL (resolve via TBL_INVENTORY_SEALS → box_ids → inv_ids), CTN (carton → inv_ids), and plain UID"
-        },
-        {
-          "key": "C",
-          "text": "QR code, barcode, and manual entry"
-        },
-        {
-          "key": "D",
-          "text": "SKU, location ID, and batch ID"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q14",
-      "number": 14,
-      "question": "When `audit_uid` scans a UID with `inv_status` of `'sales'` or `'outbound'`, what happens?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The audit tag is applied normally"
-        },
-        {
-          "key": "B",
-          "text": "An error is returned rejecting the scan"
-        },
-        {
-          "key": "C",
-          "text": "The item is placed in a separate bucket by status name without updating audit tags"
-        },
-        {
-          "key": "D",
-          "text": "The item's status is changed to `qc_pending` for re-verification"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q15",
-      "number": 15,
-      "question": "What are the five DATEDIFF aging buckets used in the `aging_report` action?",
-      "options": [
-        {
-          "key": "A",
-          "text": "0-7, 8-14, 15-30, 31-60, 60+ days"
-        },
-        {
-          "key": "B",
-          "text": "0-15, 16-30, 31-60, 61-90, 90+ days"
-        },
-        {
-          "key": "C",
-          "text": "0-30, 31-60, 61-90, 91-120, 120+ days"
-        },
-        {
-          "key": "D",
-          "text": "0-10, 11-20, 21-40, 41-60, 60+ days"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q16",
-      "number": 16,
-      "question": "In the `get_bucket()` function in `inventory/functions.php`, what cumulative percentage threshold defines an \"A\" bucket in ABC analysis?",
-      "options": [
-        {
-          "key": "A",
-          "text": ">= 80% of total sales"
-        },
-        {
-          "key": "B",
-          "text": ">= 60% of total sales"
-        },
-        {
-          "key": "C",
-          "text": ">= 50% of total sales"
-        },
-        {
-          "key": "D",
-          "text": ">= 70% of total sales"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q17",
-      "number": 17,
-      "question": "In the `add_batch` action, what happens when a Photography role user assigns inventory items?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Items are moved to `RETURN_00001` location"
-        },
-        {
-          "key": "B",
-          "text": "Items get `expectedLocation='PHOTOG_00001'`"
-        },
-        {
-          "key": "C",
-          "text": "Items are set to `qc_cooling` status"
-        },
-        {
-          "key": "D",
-          "text": "Items are assigned to carton `3025`"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q18",
-      "number": 18,
-      "question": "When the `close_batch` action sets batch status to `'1'`, which trigger fires to cascade the closure?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`before_update_inventory`"
-        },
-        {
-          "key": "B",
-          "text": "`trg_cleanup_location_after_update`"
-        },
-        {
-          "key": "C",
-          "text": "`trg_close_batch_propagate_status`"
-        },
-        {
-          "key": "D",
-          "text": "`trg_set_status_before_update`"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q19",
-      "number": 19,
-      "question": "What three validations does the `seal_box` action perform before linking a seal to a box?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Seal exists, box exists, user has permission"
-        },
-        {
-          "key": "B",
-          "text": "Seal not voided, seal not used for different box, box not already sealed by different seal"
-        },
-        {
-          "key": "C",
-          "text": "Seal is active, box is empty, location has capacity"
-        },
-        {
-          "key": "D",
-          "text": "Seal ID is valid format, box is at correct location, seal matches box size"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_08_q20",
-      "number": 20,
-      "question": "In the `return_inventory` action, what three fields are set when a Photography role user returns inventory items?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`inv_status='qc_verified'`, `ctn_id=2002`, `expectedLocation='RETURN_00001'`"
-        },
-        {
-          "key": "B",
-          "text": "`inv_status='qc_pending'`, `ctn_id=2021`, `expectedLocation='PHOTOG_00001'`"
-        },
-        {
-          "key": "C",
-          "text": "`inv_status='qc_cooling'`, `ctn_id=3002`, `expectedLocation='COOLNG_00001'`"
-        },
-        {
-          "key": "D",
-          "text": "`inv_status='inbound'`, `ctn_id=NULL`, `expectedLocation='GODOWN_00001'`"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_08",
+	"title": "DAY 08 \u2014 ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_08_q1",
+			"number": 1,
+			"question": "In `Picklist::create_picklist()`, what ORDER BY clause ensures First-In-First-Out stock selection?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`ORDER BY insertDate ASC` \u2014 oldest insertion date first"
+				},
+				{
+					"key": "B",
+					"text": "`ORDER BY lot_id ASC` \u2014 oldest lot number first"
+				},
+				{
+					"key": "C",
+					"text": "`ORDER BY inv_id ASC` \u2014 lowest inventory ID first"
+				},
+				{
+					"key": "D",
+					"text": "`ORDER BY item_price ASC` \u2014 cheapest items first"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Picklist Fulfillment Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q2",
+			"number": 2,
+			"question": "What is the numeric status code for `in_progress` in the Picklist class's `$picklistStatuses` array?",
+			"options": [
+				{
+					"key": "A",
+					"text": "1"
+				},
+				{
+					"key": "B",
+					"text": "2"
+				},
+				{
+					"key": "C",
+					"text": "3"
+				},
+				{
+					"key": "D",
+					"text": "4"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Picklist Fulfillment Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q3",
+			"number": 3,
+			"question": "When `Picklist::update_inventory_status()` completes a pick (status = `completed`), what special carton ID is assigned to the inventory item?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`2001` \u2014 soft QC reject carton"
+				},
+				{
+					"key": "B",
+					"text": "`2002` \u2014 returns carton"
+				},
+				{
+					"key": "C",
+					"text": "`2021` \u2014 photography carton"
+				},
+				{
+					"key": "D",
+					"text": "`3025` \u2014 packing carton"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Picklist Fulfillment Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q4",
+			"number": 4,
+			"question": "Which trigger automatically initializes `pending_quantity` equal to `total_quantity` when a new picklist product record is inserted?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`trg_before_update_picklist_product`"
+				},
+				{
+					"key": "B",
+					"text": "`trg_set_pending_quantity_before_insert`"
+				},
+				{
+					"key": "C",
+					"text": "`trg_after_product_status_update`"
+				},
+				{
+					"key": "D",
+					"text": "`trg_set_picked_date_before_update`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Picklist Fulfillment Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q5",
+			"number": 5,
+			"question": "How many public methods does the `Stockist` singleton class expose?",
+			"options": [
+				{
+					"key": "A",
+					"text": "7"
+				},
+				{
+					"key": "B",
+					"text": "10"
+				},
+				{
+					"key": "C",
+					"text": "13"
+				},
+				{
+					"key": "D",
+					"text": "16"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Stockist Mediator Pattern",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_08_q6",
+			"number": 6,
+			"question": "In `Stockist::add_inventory_log()`, what special side effects occur when `$log_type` is `'sales_return'`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only a log entry is inserted with no side effects"
+				},
+				{
+					"key": "B",
+					"text": "The item's `inv_status` is changed to `qc_pending`"
+				},
+				{
+					"key": "C",
+					"text": "`expectedLocation` is set to `'RETURN_00001'`, `inv_batch` to today's date, `ctn_id` to `'2002'`, and warranty registrations are deactivated"
+				},
+				{
+					"key": "D",
+					"text": "A Slack notification is sent to the warehouse team"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Stockist Mediator Pattern",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_08_q7",
+			"number": 7,
+			"question": "How many external modules write to inventory tables exclusively through the `$stockist` singleton?",
+			"options": [
+				{
+					"key": "A",
+					"text": "4"
+				},
+				{
+					"key": "B",
+					"text": "7"
+				},
+				{
+					"key": "C",
+					"text": "9"
+				},
+				{
+					"key": "D",
+					"text": "12"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Stockist Mediator Pattern",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_08_q8",
+			"number": 8,
+			"question": "What is the formula used by `Stockist::update_stock_on_mps()` to calculate available quantity for marketplace sync?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`availableQty = inStock - reserved`"
+				},
+				{
+					"key": "B",
+					"text": "`availableQty = inStock + committed - amazonReserved - reserved - buffer`"
+				},
+				{
+					"key": "C",
+					"text": "`availableQty = totalStock - salesOrders - pendingReturns`"
+				},
+				{
+					"key": "D",
+					"text": "`availableQty = qc_verified - qc_pending - qc_failed`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Marketplace Stock Sync",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q9",
+			"number": 9,
+			"question": "In `Stockist::calculate_inventory_buffer()`, what are the three calculation modes available?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`low`, `medium`, `high`"
+				},
+				{
+					"key": "B",
+					"text": "`percentage`, `fixed`, `dynamic`"
+				},
+				{
+					"key": "C",
+					"text": "`calculate` (slab tiers), `drr` (daily run rate), `fixed` (static value)"
+				},
+				{
+					"key": "D",
+					"text": "`auto`, `manual`, `disabled`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Marketplace Stock Sync",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q10",
+			"number": 10,
+			"question": "Items at which location prefix are explicitly excluded from the `update_stock_on_mps()` availability count?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`COOLNG%` \u2014 cooling area items"
+				},
+				{
+					"key": "B",
+					"text": "`FAILED%` \u2014 failed QC items"
+				},
+				{
+					"key": "C",
+					"text": "`DISPLY%` \u2014 display area items"
+				},
+				{
+					"key": "D",
+					"text": "`RETURN%` \u2014 returned items"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Marketplace Stock Sync",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q11",
+			"number": 11,
+			"question": "In the `transfer_stock` action, what two label types are generated via mPDF for Amazon FC transfers?",
+			"options": [
+				{
+					"key": "A",
+					"text": "QR label (30x30mm) and barcode label (40x20mm)"
+				},
+				{
+					"key": "B",
+					"text": "MRP label (60x40mm) and FNSKU label (50x20mm)"
+				},
+				{
+					"key": "C",
+					"text": "Product label (80x60mm) and shipping label (100x150mm)"
+				},
+				{
+					"key": "D",
+					"text": "CTN label (70x50mm) and seal label (40x30mm)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Transfer & Vendor Return",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q12",
+			"number": 12,
+			"question": "In the `vendor_return` action, what two conditions must both be satisfied before an item can be returned?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Item must be `qc_failed` AND have `inv_failed_count > 0`"
+				},
+				{
+					"key": "B",
+					"text": "Item must have `is_ams_inv=1` (AMS inventory) AND `po_party_id` must match the submitted vendor"
+				},
+				{
+					"key": "C",
+					"text": "Item must be in a sealed box AND assigned to a batch"
+				},
+				{
+					"key": "D",
+					"text": "Item must be `qc_verified` AND have `isImperfect='1'`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Transfer & Vendor Return",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q13",
+			"number": 13,
+			"question": "In the `audit_uid` action, what are the three scan types supported for audit resolution?",
+			"options": [
+				{
+					"key": "A",
+					"text": "BOX, CTN, and UID"
+				},
+				{
+					"key": "B",
+					"text": "SEAL (resolve via TBL_INVENTORY_SEALS \u2192 box_ids \u2192 inv_ids), CTN (carton \u2192 inv_ids), and plain UID"
+				},
+				{
+					"key": "C",
+					"text": "QR code, barcode, and manual entry"
+				},
+				{
+					"key": "D",
+					"text": "SKU, location ID, and batch ID"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Audit & Reconciliation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q14",
+			"number": 14,
+			"question": "When `audit_uid` scans a UID with `inv_status` of `'sales'` or `'outbound'`, what happens?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The audit tag is applied normally"
+				},
+				{
+					"key": "B",
+					"text": "An error is returned rejecting the scan"
+				},
+				{
+					"key": "C",
+					"text": "The item is placed in a separate bucket by status name without updating audit tags"
+				},
+				{
+					"key": "D",
+					"text": "The item's status is changed to `qc_pending` for re-verification"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Audit & Reconciliation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q15",
+			"number": 15,
+			"question": "What are the five DATEDIFF aging buckets used in the `aging_report` action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "0-7, 8-14, 15-30, 31-60, 60+ days"
+				},
+				{
+					"key": "B",
+					"text": "0-15, 16-30, 31-60, 61-90, 90+ days"
+				},
+				{
+					"key": "C",
+					"text": "0-30, 31-60, 61-90, 91-120, 120+ days"
+				},
+				{
+					"key": "D",
+					"text": "0-10, 11-20, 21-40, 41-60, 60+ days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Aging & ABC Analytics",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q16",
+			"number": 16,
+			"question": "In the `get_bucket()` function in `inventory/functions.php`, what cumulative percentage threshold defines an \"A\" bucket in ABC analysis?",
+			"options": [
+				{
+					"key": "A",
+					"text": ">= 80% of total sales"
+				},
+				{
+					"key": "B",
+					"text": ">= 60% of total sales"
+				},
+				{
+					"key": "C",
+					"text": ">= 50% of total sales"
+				},
+				{
+					"key": "D",
+					"text": ">= 70% of total sales"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Aging & ABC Analytics",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q17",
+			"number": 17,
+			"question": "In the `add_batch` action, what happens when a Photography role user assigns inventory items?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Items are moved to `RETURN_00001` location"
+				},
+				{
+					"key": "B",
+					"text": "Items get `expectedLocation='PHOTOG_00001'`"
+				},
+				{
+					"key": "C",
+					"text": "Items are set to `qc_cooling` status"
+				},
+				{
+					"key": "D",
+					"text": "Items are assigned to carton `3025`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Batch & Seal Operations",
+				"weightContribution": "3.75%"
+			}
+		},
+		{
+			"id": "day_08_q18",
+			"number": 18,
+			"question": "When the `close_batch` action sets batch status to `'1'`, which trigger fires to cascade the closure?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`before_update_inventory`"
+				},
+				{
+					"key": "B",
+					"text": "`trg_cleanup_location_after_update`"
+				},
+				{
+					"key": "C",
+					"text": "`trg_close_batch_propagate_status`"
+				},
+				{
+					"key": "D",
+					"text": "`trg_set_status_before_update`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Batch & Seal Operations",
+				"weightContribution": "3.75%"
+			}
+		},
+		{
+			"id": "day_08_q19",
+			"number": 19,
+			"question": "What three validations does the `seal_box` action perform before linking a seal to a box?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Seal exists, box exists, user has permission"
+				},
+				{
+					"key": "B",
+					"text": "Seal not voided, seal not used for different box, box not already sealed by different seal"
+				},
+				{
+					"key": "C",
+					"text": "Seal is active, box is empty, location has capacity"
+				},
+				{
+					"key": "D",
+					"text": "Seal ID is valid format, box is at correct location, seal matches box size"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Batch & Seal Operations",
+				"weightContribution": "3.75%"
+			}
+		},
+		{
+			"id": "day_08_q20",
+			"number": 20,
+			"question": "In the `return_inventory` action, what three fields are set when a Photography role user returns inventory items?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`inv_status='qc_verified'`, `ctn_id=2002`, `expectedLocation='RETURN_00001'`"
+				},
+				{
+					"key": "B",
+					"text": "`inv_status='qc_pending'`, `ctn_id=2021`, `expectedLocation='PHOTOG_00001'`"
+				},
+				{
+					"key": "C",
+					"text": "`inv_status='qc_cooling'`, `ctn_id=3002`, `expectedLocation='COOLNG_00001'`"
+				},
+				{
+					"key": "D",
+					"text": "`inv_status='inbound'`, `ctn_id=NULL`, `expectedLocation='GODOWN_00001'`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "Batch & Seal Operations",
+				"weightContribution": "3.75%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

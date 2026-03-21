@@ -1,460 +1,532 @@
 {
-  "testId": "day_09",
-  "title": "DAY 09 — ONBOARDING EXECUTION DOCUMENT",
-  "questions": [
-    {
-      "id": "day_09_q1",
-      "number": 1,
-      "question": "In the `update_uid` action, when a `qc_pending` item with NO issues is scanned and the product category is Watches, what status is assigned?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`qc_verified` — directly verified"
-        },
-        {
-          "key": "B",
-          "text": "`qc_cooling` — enters cooling period"
-        },
-        {
-          "key": "C",
-          "text": "`qc_failed` — auto-failed for Watches"
-        },
-        {
-          "key": "D",
-          "text": "`components_requested` — needs component check"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q2",
-      "number": 2,
-      "question": "What system option controls the cooling period duration, and how is it used in `get_uid_details`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`qcBlockTime` — blocks scanning for N minutes after each scan"
-        },
-        {
-          "key": "B",
-          "text": "`qcCoolingTime` — hours added to cooling start time; if `strtotime($coolingStart + hours) > now`, item is still in cooling"
-        },
-        {
-          "key": "C",
-          "text": "`processBlockTime` — minutes until process is blocked system-wide"
-        },
-        {
-          "key": "D",
-          "text": "`coolingDuration` — days until cooling expires per category"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q3",
-      "number": 3,
-      "question": "In `update_uid`, when a `qc_pending` item with NO issues is scanned and the category is NOT Watches, which `$stockist` method is called immediately?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only `$stockist->update_inventory_status()` — marketplace sync happens later"
-        },
-        {
-          "key": "B",
-          "text": "`$stockist->add_inventory_log()` — only log entry is created"
-        },
-        {
-          "key": "C",
-          "text": "`$stockist->update_stock_on_mps('pid', $inv_id)` — marketplace sync is called directly"
-        },
-        {
-          "key": "D",
-          "text": "`$stockist->setExpectedLocation()` — only location is updated"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q4",
-      "number": 4,
-      "question": "What does the `qc_reject` action's 5th parameter (`TRUE`) in `$stockist->update_inventory_status($uid, 'qc_pending', FALSE, FALSE, TRUE)` enable?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Forces a location reassignment"
-        },
-        {
-          "key": "B",
-          "text": "Enables batch auto-close"
-        },
-        {
-          "key": "C",
-          "text": "Triggers de-reservation (decrements `committed_stock`)"
-        },
-        {
-          "key": "D",
-          "text": "Sends an automated Slack notification"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q5",
-      "number": 5,
-      "question": "What does the `processBlockTime` option control in the QAQC module?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Maximum time allotted per item scan"
-        },
-        {
-          "key": "B",
-          "text": "Time after which QC failures are blocked for the day, enforcing work-timeline cutoff"
-        },
-        {
-          "key": "C",
-          "text": "Cooling period multiplier for priority items"
-        },
-        {
-          "key": "D",
-          "text": "Maximum concurrent users allowed in QC station"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q6",
-      "number": 6,
-      "question": "In `update_uid_repairs`, how does the system determine that an item should transition from `qc_failed` to `qc_pending`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "When the technician clicks a \"Complete Repair\" button regardless of issue status"
-        },
-        {
-          "key": "B",
-          "text": "When ALL issues in the JSON map have been toggled to `TRUE` (all fixed) and no components are requested"
-        },
-        {
-          "key": "C",
-          "text": "When the batch timer expires"
-        },
-        {
-          "key": "D",
-          "text": "When `$stockist->update_inventory_status()` returns a success flag"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q7",
-      "number": 7,
-      "question": "What special restriction applies to repair batches with `reason == 'RMA Repair'` in `update_uid_repairs`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "They cannot be auto-closed — only manual close is allowed"
-        },
-        {
-          "key": "B",
-          "text": "They bypass the $stockist mediation pattern"
-        },
-        {
-          "key": "C",
-          "text": "The technician can ONLY set the status to `components_requested` — not qc_pending or qc_failed"
-        },
-        {
-          "key": "D",
-          "text": "They require supervisor approval before status changes"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q8",
-      "number": 8,
-      "question": "When a repair technician marks some but NOT all issues as fixed in the JSON map, and no components are requested, what status does the item receive?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`qc_pending` — sent back for full re-QC"
-        },
-        {
-          "key": "B",
-          "text": "`qc_failed` — remains failed since issues persist"
-        },
-        {
-          "key": "C",
-          "text": "`components_requested` — defaults to requesting components"
-        },
-        {
-          "key": "D",
-          "text": "`qc_cooling` — enters cooling for re-evaluation"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q9",
-      "number": 9,
-      "question": "In the repair flow, what happens when the `TBL_INVENTORY_STATE` counter (scoped to the batch ID) reaches 0 after a repair action?",
-      "options": [
-        {
-          "key": "A",
-          "text": "A new batch is automatically created"
-        },
-        {
-          "key": "B",
-          "text": "The state row is deleted and the batch is auto-closed (status='1', closedBy, closedDate set)"
-        },
-        {
-          "key": "C",
-          "text": "The counter resets to its initial value"
-        },
-        {
-          "key": "D",
-          "text": "Only the state row is deleted — batch remains open"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q10",
-      "number": 10,
-      "question": "What are the three possible values of the `isImperfect` field on `TBL_INVENTORY`, and what does each represent?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`0` = never inspected, `1` = inspected OK, `2` = inspected failed"
-        },
-        {
-          "key": "B",
-          "text": "`0` = normal product, `1` = approved imperfect, `2` = pending imperfect approval"
-        },
-        {
-          "key": "C",
-          "text": "`0` = not imperfect, `1` = minor imperfect, `2` = major imperfect"
-        },
-        {
-          "key": "D",
-          "text": "`0` = new, `1` = refurbished, `2` = graded"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q11",
-      "number": 11,
-      "question": "When `approve_liquidation` sets `inv_status='liquidated'`, what does the `before_update_inventory` trigger do?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Sends a notification to the warehouse manager"
-        },
-        {
-          "key": "B",
-          "text": "Archives the item's log history to a separate table"
-        },
-        {
-          "key": "C",
-          "text": "Clears `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` to NULL"
-        },
-        {
-          "key": "D",
-          "text": "Moves the item to a special liquidation carton (ctn_id=3099)"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q12",
-      "number": 12,
-      "question": "In `get_uid_repairs`, what prevents a liquidation-requested item from being processed through the repair flow?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The `$stockist->update_inventory_status()` call rejects it"
-        },
-        {
-          "key": "B",
-          "text": "The `liquidationRequested` field is checked — if `'1'`, a `'Liquidation requested for this product!'` info message is returned, blocking repair"
-        },
-        {
-          "key": "C",
-          "text": "The batch validation fails for liquidation items"
-        },
-        {
-          "key": "D",
-          "text": "A database constraint prevents status changes on liquidation-requested items"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q13",
-      "number": 13,
-      "question": "In `update_uid`, when the `TBL_INVENTORY_STATE` counter reaches 0 for a `qc_pending` Watches carton, what tasks are generated?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only an inventory move task"
-        },
-        {
-          "key": "B",
-          "text": "An inventory move task AND a QC cooling task — `$task->addTask('inventory', 'move', $ctnId)` + `$task->addTask('qc', 'qc_cooling', $ctnId)`"
-        },
-        {
-          "key": "C",
-          "text": "A QC verification task only"
-        },
-        {
-          "key": "D",
-          "text": "No tasks — the UI handles the next step"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q14",
-      "number": 14,
-      "question": "How is `TBL_INVENTORY_STATE.count` initialized when no active state exists for the user and category during `update_uid`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Set to the total carton capacity from `TBL_INVENTORY_CTN`"
-        },
-        {
-          "key": "B",
-          "text": "Set to 1 (assumes only the current item)"
-        },
-        {
-          "key": "C",
-          "text": "Counts remaining items in the carton with the same `inv_status` and `inv_batch`, then subtracts 1 for the current item"
-        },
-        {
-          "key": "D",
-          "text": "Imported from the GRN item quantity"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q15",
-      "number": 15,
-      "question": "In the complete P2 pipeline, at which exact stage does inventory first become available on Shopify and Flipkart?",
-      "options": [
-        {
-          "key": "A",
-          "text": "When GRN inbound is processed"
-        },
-        {
-          "key": "B",
-          "text": "When `inv_status` changes to `qc_cooling`"
-        },
-        {
-          "key": "C",
-          "text": "When `inv_status` changes to `qc_verified` — at which point `$stockist->update_stock_on_mps()` fires"
-        },
-        {
-          "key": "D",
-          "text": "When the item is physically moved to a `STK%` location"
-        }
-      ],
-      "answer": "C",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q16",
-      "number": 16,
-      "question": "In the P2 pipeline, what happens to an item that enters the failure→repair loop: `qc_failed` → repair batch → all issues fixed → `qc_pending` → re-scan?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The item skips cooling and goes directly to `qc_verified` regardless of category"
-        },
-        {
-          "key": "B",
-          "text": "The item follows normal `update_uid` logic again — Watches get cooling, non-Watches get verified"
-        },
-        {
-          "key": "C",
-          "text": "The item is automatically set to `qc_verified` after repair completion"
-        },
-        {
-          "key": "D",
-          "text": "The item goes to a supervisor queue for manual approval"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q17",
-      "number": 17,
-      "question": "What does the `before_update_bas_inventory` trigger do when QAQC changes an item's `expectedLocation` via `$stockist->update_inventory_status()`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Copies the old location to `TBL_INVENTORY_LOG`"
-        },
-        {
-          "key": "B",
-          "text": "Sets `currentLocation = NULL` if the new `expectedLocation != currentLocation`, forcing physical re-scan"
-        },
-        {
-          "key": "C",
-          "text": "Updates all items in the same carton to match the new location"
-        },
-        {
-          "key": "D",
-          "text": "Sends a move task notification to the warehouse system"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    },
-    {
-      "id": "day_09_q18",
-      "number": 18,
-      "question": "When ALL items in a lot pass QC verification, what does the `sendSlackNotification()` function do?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Updates `TBL_PRODUCTS_MASTER` with verification timestamp"
-        },
-        {
-          "key": "B",
-          "text": "Sets `TBL_PURCHASE_GRN.grn_notification_sent='1'` to prevent duplicate notifications, then sends Slack messages to users 1, 2, 10 with a link to the GRN report"
-        },
-        {
-          "key": "C",
-          "text": "Triggers `update_stock_on_mps()` for all items in the lot simultaneously"
-        },
-        {
-          "key": "D",
-          "text": "Creates a task for the warehouse manager to review the lot"
-        }
-      ],
-      "answer": "B",
-      "meta": {}
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_09",
+	"title": "DAY 09 \u2014 ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_09_q1",
+			"number": 1,
+			"question": "In the `update_uid` action, when a `qc_pending` item with NO issues is scanned and the product category is Watches, what status is assigned?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`qc_verified` \u2014 directly verified"
+				},
+				{
+					"key": "B",
+					"text": "`qc_cooling` \u2014 enters cooling period"
+				},
+				{
+					"key": "C",
+					"text": "`qc_failed` \u2014 auto-failed for Watches"
+				},
+				{
+					"key": "D",
+					"text": "`components_requested` \u2014 needs component check"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "QC Decision Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q2",
+			"number": 2,
+			"question": "What system option controls the cooling period duration, and how is it used in `get_uid_details`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`qcBlockTime` \u2014 blocks scanning for N minutes after each scan"
+				},
+				{
+					"key": "B",
+					"text": "`qcCoolingTime` \u2014 hours added to cooling start time; if `strtotime($coolingStart + hours) > now`, item is still in cooling"
+				},
+				{
+					"key": "C",
+					"text": "`processBlockTime` \u2014 minutes until process is blocked system-wide"
+				},
+				{
+					"key": "D",
+					"text": "`coolingDuration` \u2014 days until cooling expires per category"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "QC Decision Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q3",
+			"number": 3,
+			"question": "In `update_uid`, when a `qc_pending` item with NO issues is scanned and the category is NOT Watches, which `$stockist` method is called immediately?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only `$stockist->update_inventory_status()` \u2014 marketplace sync happens later"
+				},
+				{
+					"key": "B",
+					"text": "`$stockist->add_inventory_log()` \u2014 only log entry is created"
+				},
+				{
+					"key": "C",
+					"text": "`$stockist->update_stock_on_mps('pid', $inv_id)` \u2014 marketplace sync is called directly"
+				},
+				{
+					"key": "D",
+					"text": "`$stockist->setExpectedLocation()` \u2014 only location is updated"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "QC Decision Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q4",
+			"number": 4,
+			"question": "What does the `qc_reject` action's 5th parameter (`TRUE`) in `$stockist->update_inventory_status($uid, 'qc_pending', FALSE, FALSE, TRUE)` enable?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Forces a location reassignment"
+				},
+				{
+					"key": "B",
+					"text": "Enables batch auto-close"
+				},
+				{
+					"key": "C",
+					"text": "Triggers de-reservation (decrements `committed_stock`)"
+				},
+				{
+					"key": "D",
+					"text": "Sends an automated Slack notification"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "QC Decision Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q5",
+			"number": 5,
+			"question": "What does the `processBlockTime` option control in the QAQC module?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Maximum time allotted per item scan"
+				},
+				{
+					"key": "B",
+					"text": "Time after which QC failures are blocked for the day, enforcing work-timeline cutoff"
+				},
+				{
+					"key": "C",
+					"text": "Cooling period multiplier for priority items"
+				},
+				{
+					"key": "D",
+					"text": "Maximum concurrent users allowed in QC station"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "QC Decision Engine",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q6",
+			"number": 6,
+			"question": "In `update_uid_repairs`, how does the system determine that an item should transition from `qc_failed` to `qc_pending`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "When the technician clicks a \"Complete Repair\" button regardless of issue status"
+				},
+				{
+					"key": "B",
+					"text": "When ALL issues in the JSON map have been toggled to `TRUE` (all fixed) and no components are requested"
+				},
+				{
+					"key": "C",
+					"text": "When the batch timer expires"
+				},
+				{
+					"key": "D",
+					"text": "When `$stockist->update_inventory_status()` returns a success flag"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Repair Pipeline",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q7",
+			"number": 7,
+			"question": "What special restriction applies to repair batches with `reason == 'RMA Repair'` in `update_uid_repairs`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "They cannot be auto-closed \u2014 only manual close is allowed"
+				},
+				{
+					"key": "B",
+					"text": "They bypass the $stockist mediation pattern"
+				},
+				{
+					"key": "C",
+					"text": "The technician can ONLY set the status to `components_requested` \u2014 not qc_pending or qc_failed"
+				},
+				{
+					"key": "D",
+					"text": "They require supervisor approval before status changes"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Repair Pipeline",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q8",
+			"number": 8,
+			"question": "When a repair technician marks some but NOT all issues as fixed in the JSON map, and no components are requested, what status does the item receive?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`qc_pending` \u2014 sent back for full re-QC"
+				},
+				{
+					"key": "B",
+					"text": "`qc_failed` \u2014 remains failed since issues persist"
+				},
+				{
+					"key": "C",
+					"text": "`components_requested` \u2014 defaults to requesting components"
+				},
+				{
+					"key": "D",
+					"text": "`qc_cooling` \u2014 enters cooling for re-evaluation"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Repair Pipeline",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q9",
+			"number": 9,
+			"question": "In the repair flow, what happens when the `TBL_INVENTORY_STATE` counter (scoped to the batch ID) reaches 0 after a repair action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A new batch is automatically created"
+				},
+				{
+					"key": "B",
+					"text": "The state row is deleted and the batch is auto-closed (status='1', closedBy, closedDate set)"
+				},
+				{
+					"key": "C",
+					"text": "The counter resets to its initial value"
+				},
+				{
+					"key": "D",
+					"text": "Only the state row is deleted \u2014 batch remains open"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Repair Pipeline",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q10",
+			"number": 10,
+			"question": "What are the three possible values of the `isImperfect` field on `TBL_INVENTORY`, and what does each represent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`0` = never inspected, `1` = inspected OK, `2` = inspected failed"
+				},
+				{
+					"key": "B",
+					"text": "`0` = normal product, `1` = approved imperfect, `2` = pending imperfect approval"
+				},
+				{
+					"key": "C",
+					"text": "`0` = not imperfect, `1` = minor imperfect, `2` = major imperfect"
+				},
+				{
+					"key": "D",
+					"text": "`0` = new, `1` = refurbished, `2` = graded"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Imperfect & Liquidation Flows",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q11",
+			"number": 11,
+			"question": "When `approve_liquidation` sets `inv_status='liquidated'`, what does the `before_update_inventory` trigger do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Sends a notification to the warehouse manager"
+				},
+				{
+					"key": "B",
+					"text": "Archives the item's log history to a separate table"
+				},
+				{
+					"key": "C",
+					"text": "Clears `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` to NULL"
+				},
+				{
+					"key": "D",
+					"text": "Moves the item to a special liquidation carton (ctn_id=3099)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Imperfect & Liquidation Flows",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q12",
+			"number": 12,
+			"question": "In `get_uid_repairs`, what prevents a liquidation-requested item from being processed through the repair flow?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The `$stockist->update_inventory_status()` call rejects it"
+				},
+				{
+					"key": "B",
+					"text": "The `liquidationRequested` field is checked \u2014 if `'1'`, a `'Liquidation requested for this product!'` info message is returned, blocking repair"
+				},
+				{
+					"key": "C",
+					"text": "The batch validation fails for liquidation items"
+				},
+				{
+					"key": "D",
+					"text": "A database constraint prevents status changes on liquidation-requested items"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Imperfect & Liquidation Flows",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q13",
+			"number": 13,
+			"question": "In `update_uid`, when the `TBL_INVENTORY_STATE` counter reaches 0 for a `qc_pending` Watches carton, what tasks are generated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only an inventory move task"
+				},
+				{
+					"key": "B",
+					"text": "An inventory move task AND a QC cooling task \u2014 `$task->addTask('inventory', 'move', $ctnId)` + `$task->addTask('qc', 'qc_cooling', $ctnId)`"
+				},
+				{
+					"key": "C",
+					"text": "A QC verification task only"
+				},
+				{
+					"key": "D",
+					"text": "No tasks \u2014 the UI handles the next step"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Carton State Management",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_09_q14",
+			"number": 14,
+			"question": "How is `TBL_INVENTORY_STATE.count` initialized when no active state exists for the user and category during `update_uid`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Set to the total carton capacity from `TBL_INVENTORY_CTN`"
+				},
+				{
+					"key": "B",
+					"text": "Set to 1 (assumes only the current item)"
+				},
+				{
+					"key": "C",
+					"text": "Counts remaining items in the carton with the same `inv_status` and `inv_batch`, then subtracts 1 for the current item"
+				},
+				{
+					"key": "D",
+					"text": "Imported from the GRN item quantity"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Carton State Management",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_09_q15",
+			"number": 15,
+			"question": "In the complete P2 pipeline, at which exact stage does inventory first become available on Shopify and Flipkart?",
+			"options": [
+				{
+					"key": "A",
+					"text": "When GRN inbound is processed"
+				},
+				{
+					"key": "B",
+					"text": "When `inv_status` changes to `qc_cooling`"
+				},
+				{
+					"key": "C",
+					"text": "When `inv_status` changes to `qc_verified` \u2014 at which point `$stockist->update_stock_on_mps()` fires"
+				},
+				{
+					"key": "D",
+					"text": "When the item is physically moved to a `STK%` location"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Pipeline Synthesis",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_09_q16",
+			"number": 16,
+			"question": "In the P2 pipeline, what happens to an item that enters the failure\u2192repair loop: `qc_failed` \u2192 repair batch \u2192 all issues fixed \u2192 `qc_pending` \u2192 re-scan?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The item skips cooling and goes directly to `qc_verified` regardless of category"
+				},
+				{
+					"key": "B",
+					"text": "The item follows normal `update_uid` logic again \u2014 Watches get cooling, non-Watches get verified"
+				},
+				{
+					"key": "C",
+					"text": "The item is automatically set to `qc_verified` after repair completion"
+				},
+				{
+					"key": "D",
+					"text": "The item goes to a supervisor queue for manual approval"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Pipeline Synthesis",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_09_q17",
+			"number": 17,
+			"question": "What does the `before_update_bas_inventory` trigger do when QAQC changes an item's `expectedLocation` via `$stockist->update_inventory_status()`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Copies the old location to `TBL_INVENTORY_LOG`"
+				},
+				{
+					"key": "B",
+					"text": "Sets `currentLocation = NULL` if the new `expectedLocation != currentLocation`, forcing physical re-scan"
+				},
+				{
+					"key": "C",
+					"text": "Updates all items in the same carton to match the new location"
+				},
+				{
+					"key": "D",
+					"text": "Sends a move task notification to the warehouse system"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Triggers & Reporting",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q18",
+			"number": 18,
+			"question": "When ALL items in a lot pass QC verification, what does the `sendSlackNotification()` function do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Updates `TBL_PRODUCTS_MASTER` with verification timestamp"
+				},
+				{
+					"key": "B",
+					"text": "Sets `TBL_PURCHASE_GRN.grn_notification_sent='1'` to prevent duplicate notifications, then sends Slack messages to users 1, 2, 10 with a link to the GRN report"
+				},
+				{
+					"key": "C",
+					"text": "Triggers `update_stock_on_mps()` for all items in the lot simultaneously"
+				},
+				{
+					"key": "D",
+					"text": "Creates a task for the warehouse manager to review the lot"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Triggers & Reporting",
+				"weightContribution": "5.00%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

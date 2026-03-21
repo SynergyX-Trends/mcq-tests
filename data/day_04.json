@@ -1,590 +1,590 @@
 {
-  "testId": "day_04",
-  "title": "DAY 04 — ONBOARDING EXECUTION DOCUMENT",
-  "questions": [
-    {
-      "id": "day_04_q1",
-      "number": 1,
-      "question": "How does `.env.db_tables.php` convert the `$definer` array entries into globally available PHP constants?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It calls `define()` directly for each entry on the same line it is declared"
-        },
-        {
-          "key": "B",
-          "text": "It exports the array to `$_ENV` and lets `load_env.php` handle the conversion"
-        },
-        {
-          "key": "C",
-          "text": "It iterates the `$definer` array with `foreach`, checks `!defined($key)`, then calls `define($key, $value)` for each entry"
-        },
-        {
-          "key": "D",
-          "text": "It uses PHP's `extract()` function to promote array keys to variable names"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Table Naming & Constant System",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q2",
-      "number": 2,
-      "question": "The `.env.db_tables.php` `$definer` array contains 153 entries. How many of those are actual database table mappings vs non-table entries?",
-      "options": [
-        {
-          "key": "A",
-          "text": "153 table mappings, 0 non-table entries"
-        },
-        {
-          "key": "B",
-          "text": "151 `TBL_*` table constants and 2 URL constants (`FK_PRODUCT_URL`, `AZ_PRODUCT_URL`)"
-        },
-        {
-          "key": "C",
-          "text": "148 `TBL_*` table constants and 5 miscellaneous constants"
-        },
-        {
-          "key": "D",
-          "text": "120 `TBL_*` table constants and 33 configuration constants"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Table Naming & Constant System",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q3",
-      "number": 3,
-      "question": "What is the universal prefix used for all physical MySQL table names in the FIMS database?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`fims_`"
-        },
-        {
-          "key": "B",
-          "text": "`tbl_`"
-        },
-        {
-          "key": "C",
-          "text": "`bas_`"
-        },
-        {
-          "key": "D",
-          "text": "No consistent prefix — each domain uses its own"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Table Naming & Constant System",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q4",
-      "number": 4,
-      "question": "In `api/website/index.php` line 180, the code uses the constant `TBL_SP_ORDER` (without the trailing 's'). What happens at runtime?",
-      "options": [
-        {
-          "key": "A",
-          "text": "PHP throws a fatal error because the constant is not defined"
-        },
-        {
-          "key": "B",
-          "text": "PHP auto-corrects it to `TBL_SP_ORDERS` via a fuzzy match"
-        },
-        {
-          "key": "C",
-          "text": "PHP emits a notice and treats the undefined constant as the literal string `\"TBL_SP_ORDER\"`, so the UPDATE targets a non-existent table and silently fails"
-        },
-        {
-          "key": "D",
-          "text": "The query executes successfully because `TBL_SP_ORDER` is a valid alias for `TBL_SP_ORDERS`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Table Naming & Constant System",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q5",
-      "number": 5,
-      "question": "Which table domain group in `.env.db_tables.php` has the most TBL_* constant entries?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Amazon (13 constants)"
-        },
-        {
-          "key": "B",
-          "text": "Inventory (16 constants)"
-        },
-        {
-          "key": "C",
-          "text": "Shopify (20 constants)"
-        },
-        {
-          "key": "D",
-          "text": "Products (9 constants)"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Schema Domain Classification",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q6",
-      "number": 6,
-      "question": "The database contains tables like `bas_sale_order_1`, `bas_sale_order_3`, and `bas_sale_order_71` that have no TBL_* constants. How are these tables created?",
-      "options": [
-        {
-          "key": "A",
-          "text": "They are created manually via phpMyAdmin by the operations team"
-        },
-        {
-          "key": "B",
-          "text": "They are seeded by `db_updater.php` during initial database setup"
-        },
-        {
-          "key": "C",
-          "text": "The Distributor module creates them dynamically via `rawQuery('CREATE TABLE IF NOT EXISTS ' . TBL_SALE_ORDER . '_' . $party_id ...)` in `distributor/ajax_load.php`"
-        },
-        {
-          "key": "D",
-          "text": "The Sales module creates them automatically when a new party is added"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Schema Domain Classification",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q7",
-      "number": 7,
-      "question": "Which of the following describes a schema-definer mismatch found in the FIMS codebase?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`TBL_FK_ORDERS` maps to `bas_fk_orders` but the table is actually named `bas_flipkart_orders`"
-        },
-        {
-          "key": "B",
-          "text": "`TBL_AJ_PAYMENTS` is defined in `.env.db_tables.php` mapping to `bas_aj_payments`, but no corresponding CREATE TABLE statement exists in the schema dump"
-        },
-        {
-          "key": "C",
-          "text": "`TBL_INVENTORY` maps to two different physical tables depending on the environment"
-        },
-        {
-          "key": "D",
-          "text": "All 151 `TBL_*` constants have matching tables in the schema with no mismatches"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Schema Domain Classification",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q8",
-      "number": 8,
-      "question": "How many co-owned tables exist in the FIMS table ownership model, and which are they?",
-      "options": [
-        {
-          "key": "A",
-          "text": "0 — every table has exactly one owner with no exceptions"
-        },
-        {
-          "key": "B",
-          "text": "2 — `TBL_USERS` (co-owned by Login + Users) and `TBL_INVENTORY_QC_ISSUES` (co-owned by Inventory + QAQC)"
-        },
-        {
-          "key": "C",
-          "text": "5 — one for each marketplace module sharing account tables"
-        },
-        {
-          "key": "D",
-          "text": "14 — all Inventory tables are co-owned between Inventory and QAQC"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Ownership Model & Write Rules",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q9",
-      "number": 9,
-      "question": "Which module is the heaviest cross-module writer in FIMS, and how many external tables does it write to?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Shopify — writes to 18 external tables"
-        },
-        {
-          "key": "B",
-          "text": "Flipkart — writes to 12 external tables"
-        },
-        {
-          "key": "C",
-          "text": "RMA — writes to 9 external tables (including `TBL_FK_ORDERS`, `TBL_AZ_ORDERS`, `TBL_SP_RETURNS`, `TBL_FULFILLMENT`, `TBL_FULFILLMENT_MAP`, `TBL_INVENTORY_ASSIGNED`, `TBL_INVENTORY_BATCH`, `TBL_PROCESS_LOG`, `TBL_TICKETS`)"
-        },
-        {
-          "key": "D",
-          "text": "Inventory — writes to 14 external tables"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Ownership Model & Write Rules",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q10",
-      "number": 10,
-      "question": "The AMS module's `delete_payment` action contains a documented ownership violation. What is the violation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It reads from `TBL_AMS_PAYMENTS` without proper RBAC authorization"
-        },
-        {
-          "key": "B",
-          "text": "It DELETEs from `TBL_SALE_PAYMENTS`, which is owned by the Sales module, not AMS"
-        },
-        {
-          "key": "C",
-          "text": "It modifies the schema of `TBL_AMS_INVOICES` by adding columns at runtime"
-        },
-        {
-          "key": "D",
-          "text": "It writes to `TBL_OPTIONS` without going through the Tools module interface"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Ownership Model & Write Rules",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q11",
-      "number": 11,
-      "question": "Under the single-owner governance model, what are shared writers permitted to do, and what are they prohibited from doing?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Shared writers can ALTER schema and INSERT/UPDATE/DELETE rows freely"
-        },
-        {
-          "key": "B",
-          "text": "Shared writers can INSERT/UPDATE/DELETE rows within documented field-level constraints but cannot ALTER schema, DROP tables, or CREATE indexes"
-        },
-        {
-          "key": "C",
-          "text": "Shared writers can only SELECT from tables owned by other modules"
-        },
-        {
-          "key": "D",
-          "text": "Shared writers require explicit approval from the owning module for every individual query"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Ownership Model & Write Rules",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q12",
-      "number": 12,
-      "question": "What class does `Database\\DB` (in `includes/DB.php`) extend?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`PDO`"
-        },
-        {
-          "key": "B",
-          "text": "`MysqliDb`"
-        },
-        {
-          "key": "C",
-          "text": "`Doctrine\\DBAL\\Connection`"
-        },
-        {
-          "key": "D",
-          "text": "`Illuminate\\Database\\Connection`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "MysqliDb Query API",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q13",
-      "number": 13,
-      "question": "In MysqliDb, what does calling `$db->ObjectBuilder()->get(TBL_FK_ACCOUNTS)` return compared to `$db->get(TBL_FK_ACCOUNTS)`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Both return associative arrays — `ObjectBuilder()` has no effect"
-        },
-        {
-          "key": "B",
-          "text": "`ObjectBuilder()` returns results as stdClass objects instead of associative arrays"
-        },
-        {
-          "key": "C",
-          "text": "`ObjectBuilder()` applies object-relational mapping with typed properties"
-        },
-        {
-          "key": "D",
-          "text": "`ObjectBuilder()` wraps results in a custom `ResultSet` collection class"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "MysqliDb Query API",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q14",
-      "number": 14,
-      "question": "What happens when a DB.php method is called with `$debug=TRUE` as the last parameter, e.g., `$db->get(TBL_USERS, NULL, '*', TRUE)`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The query executes normally but logs the SQL to the Logger singleton"
-        },
-        {
-          "key": "B",
-          "text": "The query executes in a dry-run mode that returns an empty result set"
-        },
-        {
-          "key": "C",
-          "text": "The method builds the SQL query, then calls `Debug::ccd()` which prints the query string and calls `die()`, halting execution"
-        },
-        {
-          "key": "D",
-          "text": "It enables MySQL's EXPLAIN plan output alongside the query results"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "MysqliDb Query API",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q15",
-      "number": 15,
-      "question": "Which 3 modules are classified as Tier 4 — Critical Mutation in the write classification system?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Flipkart (55 writes), Amazon (60 writes), Products (34 writes)"
-        },
-        {
-          "key": "B",
-          "text": "Tools (52 writes), QAQC (25 writes), Purchase (28 writes)"
-        },
-        {
-          "key": "C",
-          "text": "Inventory (76 writes), RMA (94 writes), Shopify (171 writes)"
-        },
-        {
-          "key": "D",
-          "text": "Inventory (76 writes), Flipkart (55 writes), Amazon (60 writes)"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "Write Classification & Volume",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q16",
-      "number": 16,
-      "question": "Of the ~1,218 total write paths in the FIMS codebase, which operation type is the most dominant?",
-      "options": [
-        {
-          "key": "A",
-          "text": "INSERT at ~350 calls (~29% of all writes)"
-        },
-        {
-          "key": "B",
-          "text": "UPDATE at ~748 calls (~61% of all writes)"
-        },
-        {
-          "key": "C",
-          "text": "DELETE at ~55 calls (~5% of all writes)"
-        },
-        {
-          "key": "D",
-          "text": "rawQuery at ~15 calls — but they are the most impactful"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "Write Classification & Volume",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q17",
-      "number": 17,
-      "question": "Which single table has the highest write contention in the system, measured by number of distinct PHP files that write to it?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`bas_inventory` — 8 writer files"
-        },
-        {
-          "key": "B",
-          "text": "`bas_api_runtime` — written by every API endpoint"
-        },
-        {
-          "key": "C",
-          "text": "`bas_sp_orders` — 10 distinct writer files"
-        },
-        {
-          "key": "D",
-          "text": "`bas_fk_orders` — 62 UPDATE operations"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "Write Classification & Volume",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q18",
-      "number": 18,
-      "question": "What is the maximum trigger cascade depth in the FIMS database, and which path achieves it?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Depth 1 — Flipkart order status change → stock reservation delete"
-        },
-        {
-          "key": "B",
-          "text": "Depth 2 — Inventory location change → location assignment cleanup → picklist recalc"
-        },
-        {
-          "key": "C",
-          "text": "Depth 3 — `bas_inventory_batch` close → propagates to N× `bas_inventory_assigned` → `bas_inventory` status cascade → picklist product status → picklist status"
-        },
-        {
-          "key": "D",
-          "text": "Depth 5 — Order creation → inventory allocation → batch assignment → location update → audit log"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R6",
-        "criteria": "Trigger System & Cascades",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q19",
-      "number": 19,
-      "question": "When the `before_update_inventory` trigger fires on `bas_inventory` and the `inv_status` changes to a terminal status (e.g., 'sales', 'lost', 'liquidated', 'sidlined', 'outbound', 'discarded'), what data does the trigger clear?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only `inv_status` is changed; all other columns remain intact"
-        },
-        {
-          "key": "B",
-          "text": "The trigger sets `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` to NULL, and resets `inv_failed_count` to 0"
-        },
-        {
-          "key": "C",
-          "text": "The trigger DELETEs the entire inventory row from `bas_inventory`"
-        },
-        {
-          "key": "D",
-          "text": "The trigger moves the row to an archive table `bas_inventory_archive`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R6",
-        "criteria": "Trigger System & Cascades",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_04_q20",
-      "number": 20,
-      "question": "Both Flipkart and Shopify have MySQL triggers that auto-delete stock reservations when order status changes away from 'NEW'/'PACKING'/'RTD'. What is the situation for Amazon orders?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Amazon has an identical trigger (`trg_before_az_status_update`) that works the same way"
-        },
-        {
-          "key": "B",
-          "text": "Amazon shares the Flipkart trigger — a single trigger handles both `bas_fk_orders` and `bas_az_orders`"
-        },
-        {
-          "key": "C",
-          "text": "Amazon has no equivalent trigger — stock reservation release on Amazon order cancellation is handled manually in PHP code, a documented parity gap"
-        },
-        {
-          "key": "D",
-          "text": "Amazon does not use stock reservations at all, so no trigger is needed"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R6",
-        "criteria": "Trigger System & Cascades",
-        "weightContribution": "5%"
-      }
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_04",
+	"title": "DAY 04 — ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_04_q1",
+			"number": 1,
+			"question": "How does `.env.db_tables.php` convert the `$definer` array entries into globally available PHP constants?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It calls `define()` directly for each entry on the same line it is declared"
+				},
+				{
+					"key": "B",
+					"text": "It exports the array to `$_ENV` and lets `load_env.php` handle the conversion"
+				},
+				{
+					"key": "C",
+					"text": "It iterates the `$definer` array with `foreach`, checks `!defined($key)`, then calls `define($key, $value)` for each entry"
+				},
+				{
+					"key": "D",
+					"text": "It uses PHP's `extract()` function to promote array keys to variable names"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Table Naming & Constant System",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q2",
+			"number": 2,
+			"question": "The `.env.db_tables.php` `$definer` array contains 153 entries. How many of those are actual database table mappings vs non-table entries?",
+			"options": [
+				{
+					"key": "A",
+					"text": "153 table mappings, 0 non-table entries"
+				},
+				{
+					"key": "B",
+					"text": "151 `TBL_*` table constants and 2 URL constants (`FK_PRODUCT_URL`, `AZ_PRODUCT_URL`)"
+				},
+				{
+					"key": "C",
+					"text": "148 `TBL_*` table constants and 5 miscellaneous constants"
+				},
+				{
+					"key": "D",
+					"text": "120 `TBL_*` table constants and 33 configuration constants"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Table Naming & Constant System",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q3",
+			"number": 3,
+			"question": "What is the universal prefix used for all physical MySQL table names in the FIMS database?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`fims_`"
+				},
+				{
+					"key": "B",
+					"text": "`tbl_`"
+				},
+				{
+					"key": "C",
+					"text": "`bas_`"
+				},
+				{
+					"key": "D",
+					"text": "No consistent prefix — each domain uses its own"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Table Naming & Constant System",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q4",
+			"number": 4,
+			"question": "In `api/website/index.php` line 180, the code uses the constant `TBL_SP_ORDER` (without the trailing 's'). What happens at runtime?",
+			"options": [
+				{
+					"key": "A",
+					"text": "PHP throws a fatal error because the constant is not defined"
+				},
+				{
+					"key": "B",
+					"text": "PHP auto-corrects it to `TBL_SP_ORDERS` via a fuzzy match"
+				},
+				{
+					"key": "C",
+					"text": "PHP emits a notice and treats the undefined constant as the literal string `\"TBL_SP_ORDER\"`, so the UPDATE targets a non-existent table and silently fails"
+				},
+				{
+					"key": "D",
+					"text": "The query executes successfully because `TBL_SP_ORDER` is a valid alias for `TBL_SP_ORDERS`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Table Naming & Constant System",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q5",
+			"number": 5,
+			"question": "Which table domain group in `.env.db_tables.php` has the most TBL_* constant entries?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Amazon (13 constants)"
+				},
+				{
+					"key": "B",
+					"text": "Inventory (16 constants)"
+				},
+				{
+					"key": "C",
+					"text": "Shopify (20 constants)"
+				},
+				{
+					"key": "D",
+					"text": "Products (9 constants)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Schema Domain Classification",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q6",
+			"number": 6,
+			"question": "The database contains tables like `bas_sale_order_1`, `bas_sale_order_3`, and `bas_sale_order_71` that have no TBL_* constants. How are these tables created?",
+			"options": [
+				{
+					"key": "A",
+					"text": "They are created manually via phpMyAdmin by the operations team"
+				},
+				{
+					"key": "B",
+					"text": "They are seeded by `db_updater.php` during initial database setup"
+				},
+				{
+					"key": "C",
+					"text": "The Distributor module creates them dynamically via `rawQuery('CREATE TABLE IF NOT EXISTS ' . TBL_SALE_ORDER . '_' . $party_id ...)` in `distributor/ajax_load.php`"
+				},
+				{
+					"key": "D",
+					"text": "The Sales module creates them automatically when a new party is added"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Schema Domain Classification",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q7",
+			"number": 7,
+			"question": "Which of the following describes a schema-definer mismatch found in the FIMS codebase?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`TBL_FK_ORDERS` maps to `bas_fk_orders` but the table is actually named `bas_flipkart_orders`"
+				},
+				{
+					"key": "B",
+					"text": "`TBL_AJ_PAYMENTS` is defined in `.env.db_tables.php` mapping to `bas_aj_payments`, but no corresponding CREATE TABLE statement exists in the schema dump"
+				},
+				{
+					"key": "C",
+					"text": "`TBL_INVENTORY` maps to two different physical tables depending on the environment"
+				},
+				{
+					"key": "D",
+					"text": "All 151 `TBL_*` constants have matching tables in the schema with no mismatches"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Schema Domain Classification",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q8",
+			"number": 8,
+			"question": "How many co-owned tables exist in the FIMS table ownership model, and which are they?",
+			"options": [
+				{
+					"key": "A",
+					"text": "0 — every table has exactly one owner with no exceptions"
+				},
+				{
+					"key": "B",
+					"text": "2 — `TBL_USERS` (co-owned by Login + Users) and `TBL_INVENTORY_QC_ISSUES` (co-owned by Inventory + QAQC)"
+				},
+				{
+					"key": "C",
+					"text": "5 — one for each marketplace module sharing account tables"
+				},
+				{
+					"key": "D",
+					"text": "14 — all Inventory tables are co-owned between Inventory and QAQC"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Ownership Model & Write Rules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q9",
+			"number": 9,
+			"question": "Which module is the heaviest cross-module writer in FIMS, and how many external tables does it write to?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shopify — writes to 18 external tables"
+				},
+				{
+					"key": "B",
+					"text": "Flipkart — writes to 12 external tables"
+				},
+				{
+					"key": "C",
+					"text": "RMA — writes to 9 external tables (including `TBL_FK_ORDERS`, `TBL_AZ_ORDERS`, `TBL_SP_RETURNS`, `TBL_FULFILLMENT`, `TBL_FULFILLMENT_MAP`, `TBL_INVENTORY_ASSIGNED`, `TBL_INVENTORY_BATCH`, `TBL_PROCESS_LOG`, `TBL_TICKETS`)"
+				},
+				{
+					"key": "D",
+					"text": "Inventory — writes to 14 external tables"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Ownership Model & Write Rules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q10",
+			"number": 10,
+			"question": "The AMS module's `delete_payment` action contains a documented ownership violation. What is the violation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It reads from `TBL_AMS_PAYMENTS` without proper RBAC authorization"
+				},
+				{
+					"key": "B",
+					"text": "It DELETEs from `TBL_SALE_PAYMENTS`, which is owned by the Sales module, not AMS"
+				},
+				{
+					"key": "C",
+					"text": "It modifies the schema of `TBL_AMS_INVOICES` by adding columns at runtime"
+				},
+				{
+					"key": "D",
+					"text": "It writes to `TBL_OPTIONS` without going through the Tools module interface"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Ownership Model & Write Rules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q11",
+			"number": 11,
+			"question": "Under the single-owner governance model, what are shared writers permitted to do, and what are they prohibited from doing?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shared writers can ALTER schema and INSERT/UPDATE/DELETE rows freely"
+				},
+				{
+					"key": "B",
+					"text": "Shared writers can INSERT/UPDATE/DELETE rows within documented field-level constraints but cannot ALTER schema, DROP tables, or CREATE indexes"
+				},
+				{
+					"key": "C",
+					"text": "Shared writers can only SELECT from tables owned by other modules"
+				},
+				{
+					"key": "D",
+					"text": "Shared writers require explicit approval from the owning module for every individual query"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Ownership Model & Write Rules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q12",
+			"number": 12,
+			"question": "What class does `Database\\DB` (in `includes/DB.php`) extend?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`PDO`"
+				},
+				{
+					"key": "B",
+					"text": "`MysqliDb`"
+				},
+				{
+					"key": "C",
+					"text": "`Doctrine\\DBAL\\Connection`"
+				},
+				{
+					"key": "D",
+					"text": "`Illuminate\\Database\\Connection`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MysqliDb Query API",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q13",
+			"number": 13,
+			"question": "In MysqliDb, what does calling `$db->ObjectBuilder()->get(TBL_FK_ACCOUNTS)` return compared to `$db->get(TBL_FK_ACCOUNTS)`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Both return associative arrays — `ObjectBuilder()` has no effect"
+				},
+				{
+					"key": "B",
+					"text": "`ObjectBuilder()` returns results as stdClass objects instead of associative arrays"
+				},
+				{
+					"key": "C",
+					"text": "`ObjectBuilder()` applies object-relational mapping with typed properties"
+				},
+				{
+					"key": "D",
+					"text": "`ObjectBuilder()` wraps results in a custom `ResultSet` collection class"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MysqliDb Query API",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q14",
+			"number": 14,
+			"question": "What happens when a DB.php method is called with `$debug=TRUE` as the last parameter, e.g., `$db->get(TBL_USERS, NULL, '*', TRUE)`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The query executes normally but logs the SQL to the Logger singleton"
+				},
+				{
+					"key": "B",
+					"text": "The query executes in a dry-run mode that returns an empty result set"
+				},
+				{
+					"key": "C",
+					"text": "The method builds the SQL query, then calls `Debug::ccd()` which prints the query string and calls `die()`, halting execution"
+				},
+				{
+					"key": "D",
+					"text": "It enables MySQL's EXPLAIN plan output alongside the query results"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MysqliDb Query API",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q15",
+			"number": 15,
+			"question": "Which 3 modules are classified as Tier 4 — Critical Mutation in the write classification system?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Flipkart (55 writes), Amazon (60 writes), Products (34 writes)"
+				},
+				{
+					"key": "B",
+					"text": "Tools (52 writes), QAQC (25 writes), Purchase (28 writes)"
+				},
+				{
+					"key": "C",
+					"text": "Inventory (76 writes), RMA (94 writes), Shopify (171 writes)"
+				},
+				{
+					"key": "D",
+					"text": "Inventory (76 writes), Flipkart (55 writes), Amazon (60 writes)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Write Classification & Volume",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q16",
+			"number": 16,
+			"question": "Of the ~1,218 total write paths in the FIMS codebase, which operation type is the most dominant?",
+			"options": [
+				{
+					"key": "A",
+					"text": "INSERT at ~350 calls (~29% of all writes)"
+				},
+				{
+					"key": "B",
+					"text": "UPDATE at ~748 calls (~61% of all writes)"
+				},
+				{
+					"key": "C",
+					"text": "DELETE at ~55 calls (~5% of all writes)"
+				},
+				{
+					"key": "D",
+					"text": "rawQuery at ~15 calls — but they are the most impactful"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Write Classification & Volume",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q17",
+			"number": 17,
+			"question": "Which single table has the highest write contention in the system, measured by number of distinct PHP files that write to it?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`bas_inventory` — 8 writer files"
+				},
+				{
+					"key": "B",
+					"text": "`bas_api_runtime` — written by every API endpoint"
+				},
+				{
+					"key": "C",
+					"text": "`bas_sp_orders` — 10 distinct writer files"
+				},
+				{
+					"key": "D",
+					"text": "`bas_fk_orders` — 62 UPDATE operations"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Write Classification & Volume",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q18",
+			"number": 18,
+			"question": "What is the maximum trigger cascade depth in the FIMS database, and which path achieves it?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Depth 1 — Flipkart order status change → stock reservation delete"
+				},
+				{
+					"key": "B",
+					"text": "Depth 2 — Inventory location change → location assignment cleanup → picklist recalc"
+				},
+				{
+					"key": "C",
+					"text": "Depth 3 — `bas_inventory_batch` close → propagates to N× `bas_inventory_assigned` → `bas_inventory` status cascade → picklist product status → picklist status"
+				},
+				{
+					"key": "D",
+					"text": "Depth 5 — Order creation → inventory allocation → batch assignment → location update → audit log"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Trigger System & Cascades",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q19",
+			"number": 19,
+			"question": "When the `before_update_inventory` trigger fires on `bas_inventory` and the `inv_status` changes to a terminal status (e.g., 'sales', 'lost', 'liquidated', 'sidlined', 'outbound', 'discarded'), what data does the trigger clear?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only `inv_status` is changed; all other columns remain intact"
+				},
+				{
+					"key": "B",
+					"text": "The trigger sets `box_id`, `ctn_id`, `expectedLocation`, `currentLocation`, and `inv_batch` to NULL, and resets `inv_failed_count` to 0"
+				},
+				{
+					"key": "C",
+					"text": "The trigger DELETEs the entire inventory row from `bas_inventory`"
+				},
+				{
+					"key": "D",
+					"text": "The trigger moves the row to an archive table `bas_inventory_archive`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Trigger System & Cascades",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q20",
+			"number": 20,
+			"question": "Both Flipkart and Shopify have MySQL triggers that auto-delete stock reservations when order status changes away from 'NEW'/'PACKING'/'RTD'. What is the situation for Amazon orders?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Amazon has an identical trigger (`trg_before_az_status_update`) that works the same way"
+				},
+				{
+					"key": "B",
+					"text": "Amazon shares the Flipkart trigger — a single trigger handles both `bas_fk_orders` and `bas_az_orders`"
+				},
+				{
+					"key": "C",
+					"text": "Amazon has no equivalent trigger — stock reservation release on Amazon order cancellation is handled manually in PHP code, a documented parity gap"
+				},
+				{
+					"key": "D",
+					"text": "Amazon does not use stock reservations at all, so no trigger is needed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Trigger System & Cascades",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

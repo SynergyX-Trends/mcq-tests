@@ -1,442 +1,532 @@
 {
-  "testId": "day_15",
-  "title": "Day 15 Test",
-  "config": {
-    "optionsCount": 4,
-    "singleSelect": true
-  },
-  "questions": [
-    {
-      "id": "day_15_q1",
-      "number": 1,
-      "question": "In `sales/ajax_load.php`, the `save_so` action supports two submission modes from the UI. What happens when the order is submitted with 'created' status versus 'draft' status?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Both modes create the order but 'created' sends an email notification while 'draft' does not"
-        },
-        {
-          "key": "B",
-          "text": "'Created' status calls `$stockist->update_inventory_status($uid, 'sales')` + `$stockist->add_inventory_log($uid, 'sales', 'Offline Sales :: SO_XXXXXX')` to deduct inventory per UID, while 'draft' status creates a Picklist via `new Picklist(); $picklist->create_picklist('offline', $result)` without inventory deduction"
-        },
-        {
-          "key": "C",
-          "text": "'Draft' saves to a temporary table and 'created' saves to TBL_SALE_ORDER"
-        },
-        {
-          "key": "D",
-          "text": "'Created' requires manager approval while 'draft' saves immediately"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q2",
-      "number": 2,
-      "question": "What database transaction mechanism does the `save_so` action use, and what is its limitation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It uses MySQL SAVEPOINT for nested transactions with rollback to each savepoint on failure"
-        },
-        {
-          "key": "B",
-          "text": "It uses `$db->startTransaction()` and `$db->commit()` but has no explicit `$db->rollback()` on failure — if $stockist inventory updates succeed for some UIDs but a subsequent step fails, the inventory changes are not rolled back"
-        },
-        {
-          "key": "C",
-          "text": "It uses no transactions — each database write is independent and auto-committed"
-        },
-        {
-          "key": "D",
-          "text": "It uses SELECT FOR UPDATE to lock the inventory rows before updating them"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q3",
-      "number": 3,
-      "question": "How does the `save_so` action store the cost price for each line item, and what underlying method does it use?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It reads the `cost_price` column directly from `TBL_PRODUCTS_MASTER`"
-        },
-        {
-          "key": "B",
-          "text": "It stores `item_cp` via `get_cost_price('pid', $item['item_id'])` which internally calls `$stockist->get_current_acp()` — the average cost price from the inventory system"
-        },
-        {
-          "key": "C",
-          "text": "It calculates cost price as a fixed percentage (70%) of the selling price"
-        },
-        {
-          "key": "D",
-          "text": "It retrieves cost price from the most recent purchase order in `TBL_PURCHASE_ORDERS`"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q4",
-      "number": 4,
-      "question": "In the `save_sor` (sales return) action, what validation does the code perform on each UID before processing the return?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It checks that the UID belongs to an order that was placed within the last 30 days"
-        },
-        {
-          "key": "B",
-          "text": "It verifies that the UID exists in `TBL_INVENTORY` with `inv_status = 'sales'` — only items currently in 'sales' status can be returned"
-        },
-        {
-          "key": "C",
-          "text": "It validates the UID against the product's warranty expiration date in `TBL_REGISTERED_WARRANTY`"
-        },
-        {
-          "key": "D",
-          "text": "It checks that the UID has a valid barcode format matching the product's SKU pattern"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q5",
-      "number": 5,
-      "question": "When `save_sor` processes a valid return UID, what `$stockist` methods are called and what side effects does the `sales_return` log type trigger?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only `$stockist->update_inventory_status($uid, 'qc_verified')` — the item goes directly back to sellable stock"
-        },
-        {
-          "key": "B",
-          "text": "`$stockist->update_inventory_status($uid, 'qc_pending')` + `$stockist->add_inventory_log($uid, 'sales_return', 'Sales Return :: SO_XXXXXX')` — the 'sales_return' log type triggers `expectedLocation='RETURN_00001'`, `inv_batch=today`, `ctn_id='2002'`, and warranty deactivation in `TBL_REGISTERED_WARRANTY`"
-        },
-        {
-          "key": "C",
-          "text": "`$stockist->update_inventory_status($uid, 'inbound')` + `$stockist->add_inventory_log($uid, 'return', ...)` — the item re-enters the inbound pipeline"
-        },
-        {
-          "key": "D",
-          "text": "Only `$stockist->add_inventory_log($uid, 'sales_return', ...)` — the status is not changed, only logged"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q6",
-      "number": 6,
-      "question": "How does the `save_payment` action in `sales/ajax_load.php` handle cash sale payments differently from party-based payments?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Cash sale payments use a different payment gateway (Razorpay) while party payments use bank transfers"
-        },
-        {
-          "key": "B",
-          "text": "Party payments (party_id > 0) insert into `TBL_SALE_PAYMENTS`, while cash sale payments (party_id = 0) update `TBL_SALE_ORDER.so_notes` JSON field with `payment_status: 'paid'` or `'partial_paid'` based on whether the payment covers the full SO total"
-        },
-        {
-          "key": "C",
-          "text": "Cash sale payments are stored in `TBL_CASH_PAYMENTS` (a separate table), while party payments go to `TBL_SALE_PAYMENTS`"
-        },
-        {
-          "key": "D",
-          "text": "Both paths are identical — they both insert into `TBL_SALE_PAYMENTS` regardless of party_id"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q7",
-      "number": 7,
-      "question": "How does the `get_cash_ledger` action differ from the standard `get_customer_ledger` action in terms of financial calculation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Both delegate to `$accountant->get_party_leadger()` with different party types"
-        },
-        {
-          "key": "B",
-          "text": "`get_customer_ledger` delegates to `$accountant->get_party_leadger('customer', ...)`, while `get_cash_ledger` implements its own custom ledger — directly querying `TBL_SALE_PAYMENTS` and `TBL_SALE_RETURN_ITEMS`, merging both result sets, sorting by date, and calculating running balance from `so_total_amount` — bypassing the `$accountant` system entirely"
-        },
-        {
-          "key": "C",
-          "text": "`get_cash_ledger` only shows payments while `get_customer_ledger` also shows order totals"
-        },
-        {
-          "key": "D",
-          "text": "`get_cash_ledger` uses real-time Razorpay API calls while `get_customer_ledger` reads from local tables"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q8",
-      "number": 8,
-      "question": "What role flag architecture does `TBL_PARTIES` use, and how do the three Parties UI pages expose different role combinations?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Each party type has its own separate table (TBL_CUSTOMERS, TBL_SUPPLIERS, TBL_VENDORS) linked by party_id"
-        },
-        {
-          "key": "B",
-          "text": "TBL_PARTIES uses boolean flag columns (`party_customer`, `party_supplier`, `party_carrier`, `party_distributor`, `party_ams`) — `customers.php` exposes Distributor + Customer checkboxes, `suppliers.php` exposes Supplier + Carrier checkboxes, `vendors.php` exposes Supplier + AMS Vendor checkboxes — allowing simultaneous multi-role assignment in a single party row"
-        },
-        {
-          "key": "C",
-          "text": "A single `party_type` ENUM column with values 'customer', 'supplier', 'carrier', 'distributor', 'ams'"
-        },
-        {
-          "key": "D",
-          "text": "A junction table `TBL_PARTY_ROLES` maps party_id to role_id for flexible role assignment"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q9",
-      "number": 9,
-      "question": "What happens in the `update_parties` action when `party_distributor` is toggled to `1` for a party?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only the `party_distributor` flag is updated in `TBL_PARTIES` — no other side effects"
-        },
-        {
-          "key": "B",
-          "text": "A cascade is triggered: `$brandRegulator->generateDistTNC($party_id)` generates a Terms & Conditions PDF, `$notification->send()` dispatches an onboarding email, and JSON fields `party_approval_status` and `party_status` are updated with `'signed_docs_pending'` status"
-        },
-        {
-          "key": "C",
-          "text": "The party is automatically added to all marketplace seller accounts (Flipkart, Amazon, Shopify)"
-        },
-        {
-          "key": "D",
-          "text": "A new database table `TBL_SALE_ORDER_{party_id}` is created for the distributor's dedicated orders"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q10",
-      "number": 10,
-      "question": "In the AMS invoice creation chain, what tables does `$accountant->get_ams_orders()` read from to aggregate vendor order data for commission calculation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only `TBL_AMS_INVOICES` and `TBL_AMS_PAYMENTS` — previous AMS invoices are used to derive current orders"
-        },
-        {
-          "key": "B",
-          "text": "`TBL_FK_ORDERS`, `TBL_AZ_ORDERS`, `TBL_FK_RETURNS`, `TBL_AZ_RETURNS` (order and return data) joined with `TBL_FK_ACCOUNTS`, `TBL_AZ_ACCOUNTS` (account→party mapping) — reading from 6 external marketplace-owned tables"
-        },
-        {
-          "key": "C",
-          "text": "`TBL_SALE_ORDER` and `TBL_SALE_RETURN_ITEMS` — using offline sales data for commission calculation"
-        },
-        {
-          "key": "D",
-          "text": "A pre-aggregated `TBL_AMS_TRANSACTIONS` table updated by a nightly cron job"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q11",
-      "number": 11,
-      "question": "How does `$accountant->get_ams_slab_rate()` determine the applicable commission rate for a specific vendor transaction?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It reads a flat rate directly from `TBL_PARTIES.party_ams_rates` — a single numeric value per vendor"
-        },
-        {
-          "key": "B",
-          "text": "It reads `TBL_PARTIES.party_ams_rate_slab` (JSON array of `{slab_id, startDate, endDate}` objects) to find the active slab by date, then reads `TBL_AMS_RATE_SLABS.slab_card` JSON for rate configuration — supporting percentage commission_fees and flat or variable fixed_fees with GST including→excluding conversion at 18/118 ratio"
-        },
-        {
-          "key": "C",
-          "text": "It calculates the rate dynamically based on the vendor's total monthly order volume divided by revenue"
-        },
-        {
-          "key": "D",
-          "text": "It uses a hardcoded rate table defined in `config.php` that applies to all vendors equally"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q12",
-      "number": 12,
-      "question": "How does the AMS `create_ams_invoice()` method handle invoice numbering for credit notes versus regular invoices?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Credit notes use the same numbering sequence as invoices — there is no distinction"
-        },
-        {
-          "key": "B",
-          "text": "Regular invoices use `{FIRM}-{FY}-AMS-{XXXX}` format while credit notes (generated when total is negative) use `{FIRM}-{FY}-AMS-CN{XXXX}` format — both sequentially numbered per firm_id from `TBL_OPTIONS`"
-        },
-        {
-          "key": "C",
-          "text": "Credit notes are stored as negative-amount entries in the same invoice record"
-        },
-        {
-          "key": "D",
-          "text": "Credit notes are generated as separate PDF files but do not appear in `TBL_AMS_INVOICES`"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q13",
-      "number": 13,
-      "question": "In `ams/ajax_load.php`, what specific table ownership violation does the `delete_payment` action commit?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It deletes from `TBL_AMS_INVOICES` instead of `TBL_AMS_PAYMENTS` — removing invoice records instead of payment records"
-        },
-        {
-          "key": "B",
-          "text": "It executes `$db->where('ams_payment_id', $payment_id); $db->delete(TBL_SALE_PAYMENTS)` — targeting the Sales-owned `bas_sale_payments` table (PK: `sales_payment_id`) instead of the AMS-owned `TBL_AMS_PAYMENTS` (PK: `ams_payment_id`), while `save_payment` in the same file correctly targets `TBL_AMS_PAYMENTS`"
-        },
-        {
-          "key": "C",
-          "text": "It deletes from `TBL_PARTIES` — removing the vendor party record instead of the payment"
-        },
-        {
-          "key": "D",
-          "text": "It uses `$db->delete(TBL_AMS_PAYMENTS)` but with the wrong WHERE clause column `sales_payment_id`"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q14",
-      "number": 14,
-      "question": "What are the two distinct problems with the AMS `delete_payment` action's database operation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Performance: it scans the full table, and it locks the table during deletion"
-        },
-        {
-          "key": "B",
-          "text": "(1) **Wrong table**: `TBL_SALE_PAYMENTS` (Sales-owned, physical: `bas_sale_payments`) is targeted instead of `TBL_AMS_PAYMENTS` (AMS-owned, physical: `bas_ams_payments`). (2) **Wrong column**: the WHERE clause uses `ams_payment_id` which is the PK of `TBL_AMS_PAYMENTS`, not a column in `TBL_SALE_PAYMENTS` (whose PK is `sales_payment_id`)"
-        },
-        {
-          "key": "C",
-          "text": "(1) Missing transaction wrapper, (2) No soft-delete mechanism"
-        },
-        {
-          "key": "D",
-          "text": "(1) The delete is not logged to an audit table, (2) No notification is sent to the vendor"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q15",
-      "number": 15,
-      "question": "What are the three party type branches in `$accountant->get_current_dues()`, and what formula does each use?",
-      "options": [
-        {
-          "key": "A",
-          "text": "All three use the same formula: total orders minus total payments"
-        },
-        {
-          "key": "B",
-          "text": "'customer': `SUM(TBL_SALE_ORDER.so_total_amount) + old_system_dues(osd) − SUM(TBL_SALE_RETURN_ITEMS.return_amount) − SUM(TBL_SALE_PAYMENTS.payment_amount)`. 'supplier': hardcoded return 0 (not implemented). 'vendor': `SUM(TBL_AMS_INVOICES.ams_invoice_total) − SUM(TBL_AMS_PAYMENTS.payment_amount)`"
-        },
-        {
-          "key": "C",
-          "text": "'customer': reads from a pre-calculated `balance` column in TBL_PARTIES. 'supplier': sums TBL_PURCHASE_ORDERS. 'vendor': sums TBL_AMS_RATE_SLABS"
-        },
-        {
-          "key": "D",
-          "text": "All three query a unified `TBL_FINANCIAL_LEDGER` table with different `ledger_type` filters"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q16",
-      "number": 16,
-      "question": "How does `$accountant->get_party_leadger()` generate a unified ledger for a customer, and how does it calculate the running balance?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It reads from a pre-sorted `TBL_LEDGER_ENTRIES` table and uses the stored running balance column"
-        },
-        {
-          "key": "B",
-          "text": "It fetches transactions from `get_all_transactions()` for 3 types ('sales', 'sales_return', 'sales_payment'), merges all into a single array, sorts by date, then calculates running balance **backward** from the current dues — starting from `get_current_dues('customer')` and working backward through the sorted transactions to produce a Balance C/F for date-range-truncated outputs"
-        },
-        {
-          "key": "C",
-          "text": "It simply queries TBL_SALE_PAYMENTS ordered by date and displays the payment_amount as the running balance"
-        },
-        {
-          "key": "D",
-          "text": "It calls the $stockist class to get inventory-based financial snapshots for each transaction date"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q17",
-      "number": 17,
-      "question": "How many modules call `$accountant` methods, and what is the approximate distribution of calls?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only the AMS module calls $accountant — 11 calls for invoice and payment management"
-        },
-        {
-          "key": "B",
-          "text": "Three modules: Sales (7 calls: `get_party_leadger('customer')`, `get_current_dues('customer')`, `get_all_transactions`), AMS (11 calls: `create_ams_invoice`, `create_ams_invoice_csv`, `generate_tax_invoice_pdf`, `send_mail_notification`, `get_party_leadger('vendor')`, `get_current_dues('vendor')`, `get_all_transactions`), and Parties (3 calls: `get_current_dues('customer'/'supplier'/'ams')`) — totalling 21 calls"
-        },
-        {
-          "key": "C",
-          "text": "All six marketplace modules plus Sales and AMS — approximately 50 calls"
-        },
-        {
-          "key": "D",
-          "text": "Only Sales and Parties — AMS has its own financial calculation class"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_15_q18",
-      "number": 18,
-      "question": "What makes `TBL_PARTIES` the most interconnected table in the FIMS system, and what risk does its multi-role architecture create?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It stores financial transaction data that all modules read for reconciliation"
-        },
-        {
-          "key": "B",
-          "text": "It is referenced by 50+ locations across 9+ modules (Sales, AMS, Purchase, Distributor, Flipkart, Amazon, Inventory, Tools, monthly_report). Its boolean role flag model means a single row can simultaneously be customer + supplier + distributor + AMS vendor. AMS-specific JSON fields (`party_ams_rate_slab`) and distributor-specific JSON fields (`party_approval_status`, `party_status`) coexist in each row — meaning corruption or inconsistency in one party row propagates to all dependent modules simultaneously"
-        },
-        {
-          "key": "C",
-          "text": "It is the only table that uses foreign key constraints, making it central to referential integrity"
-        },
-        {
-          "key": "D",
-          "text": "It stores user credentials that all modules use for authentication"
-        }
-      ],
-      "answer": "B"
-    }
-  ]
+	"testId": "day_15",
+	"title": "DAY 15 \u2014 ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_15_q1",
+			"number": 1,
+			"question": "In `sales/ajax_load.php`, the `save_so` action supports two submission modes. What happens when the order is submitted with 'created' status versus 'draft' status?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Both modes create the order but 'created' sends an email notification while 'draft' does not"
+				},
+				{
+					"key": "B",
+					"text": "'Created' status calls `$stockist->update_inventory_status($uid, 'sales')` + `$stockist->add_inventory_log($uid, 'sales', 'Offline Sales :: SO_XXXXXX')` to deduct inventory per UID, while 'draft' status creates a Picklist via `new Picklist(); $picklist->create_picklist('offline', $result)` without inventory deduction"
+				},
+				{
+					"key": "C",
+					"text": "'Draft' saves to a temporary table and 'created' saves to TBL_SALE_ORDER"
+				},
+				{
+					"key": "D",
+					"text": "'Created' requires manager approval while 'draft' saves immediately"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Sales save_so Order Lifecycle & $stockist Integration",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q2",
+			"number": 2,
+			"question": "What database transaction mechanism does the `save_so` action use, and what is its limitation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It uses MySQL SAVEPOINT for nested transactions with rollback to each savepoint on failure"
+				},
+				{
+					"key": "B",
+					"text": "It uses `$db->startTransaction()` and `$db->commit()` but has no explicit `$db->rollback()` on failure \u2014 if $stockist inventory updates succeed for some UIDs but a subsequent step fails, the inventory changes are not rolled back"
+				},
+				{
+					"key": "C",
+					"text": "It uses no transactions \u2014 each database write is independent and auto-committed"
+				},
+				{
+					"key": "D",
+					"text": "It uses SELECT FOR UPDATE to lock the inventory rows before updating them"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Sales save_so Order Lifecycle & $stockist Integration",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q3",
+			"number": 3,
+			"question": "How does the `save_so` action store the cost price for each line item, and what underlying method does it use?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It reads the `cost_price` column directly from `TBL_PRODUCTS_MASTER`"
+				},
+				{
+					"key": "B",
+					"text": "It stores `item_cp` via `get_cost_price('pid', $item['item_id'])` which internally calls `$stockist->get_current_acp()` \u2014 the average cost price from the inventory system"
+				},
+				{
+					"key": "C",
+					"text": "It calculates cost price as a fixed percentage (70%) of the selling price"
+				},
+				{
+					"key": "D",
+					"text": "It retrieves cost price from the most recent purchase order in `TBL_PURCHASE_ORDERS`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Sales save_so Order Lifecycle & $stockist Integration",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q4",
+			"number": 4,
+			"question": "In the `save_sor` (sales return) action, what validation does the code perform on each UID before processing the return?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It checks that the UID belongs to an order that was placed within the last 30 days"
+				},
+				{
+					"key": "B",
+					"text": "It verifies that the UID exists in `TBL_INVENTORY` with `inv_status = 'sales'` \u2014 only items currently in 'sales' status can be returned"
+				},
+				{
+					"key": "C",
+					"text": "It validates the UID against the product's warranty expiration date in `TBL_REGISTERED_WARRANTY`"
+				},
+				{
+					"key": "D",
+					"text": "It checks that the UID has a valid barcode format matching the product's SKU pattern"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Sales Return Flow & UID Validation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q5",
+			"number": 5,
+			"question": "When `save_sor` processes a valid return UID, what `$stockist` methods are called and what side effects does the `sales_return` log type trigger?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only `$stockist->update_inventory_status($uid, 'qc_verified')` \u2014 the item goes directly back to sellable stock"
+				},
+				{
+					"key": "B",
+					"text": "`$stockist->update_inventory_status($uid, 'qc_pending')` + `$stockist->add_inventory_log($uid, 'sales_return', 'Sales Return :: SO_XXXXXX')` \u2014 the 'sales_return' log type triggers `expectedLocation='RETURN_00001'`, `inv_batch=today`, `ctn_id='2002'`, and warranty deactivation in `TBL_REGISTERED_WARRANTY`"
+				},
+				{
+					"key": "C",
+					"text": "`$stockist->update_inventory_status($uid, 'inbound')` + `$stockist->add_inventory_log($uid, 'return', ...)` \u2014 the item re-enters the inbound pipeline"
+				},
+				{
+					"key": "D",
+					"text": "Only `$stockist->add_inventory_log($uid, 'sales_return', ...)` \u2014 the status is not changed, only logged"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Sales Return Flow & UID Validation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q6",
+			"number": 6,
+			"question": "How does the `save_payment` action in `sales/ajax_load.php` handle cash sale payments differently from party-based payments?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cash sale payments use a different payment gateway (Razorpay) while party payments use bank transfers"
+				},
+				{
+					"key": "B",
+					"text": "Party payments (party_id > 0) insert into `TBL_SALE_PAYMENTS`, while cash sale payments (party_id = 0) update `TBL_SALE_ORDER.so_notes` JSON field with `payment_status: 'paid'` or `'partial_paid'` based on whether the payment covers the full SO total"
+				},
+				{
+					"key": "C",
+					"text": "Cash sale payments are stored in `TBL_CASH_PAYMENTS` (a separate table), while party payments go to `TBL_SALE_PAYMENTS`"
+				},
+				{
+					"key": "D",
+					"text": "Both paths are identical \u2014 they both insert into `TBL_SALE_PAYMENTS` regardless of party_id"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Sales Payment Handling & Cash Sale Ledger",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q7",
+			"number": 7,
+			"question": "How does the `get_cash_ledger` action differ from the standard `get_customer_ledger` action in terms of financial calculation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Both delegate to `$accountant->get_party_leadger()` with different party types"
+				},
+				{
+					"key": "B",
+					"text": "`get_customer_ledger` delegates to `$accountant->get_party_leadger('customer', ...)`, while `get_cash_ledger` implements its own custom ledger \u2014 directly querying `TBL_SALE_PAYMENTS` and `TBL_SALE_RETURN_ITEMS`, merging both result sets, sorting by date, and calculating running balance from `so_total_amount` \u2014 bypassing the `$accountant` system entirely"
+				},
+				{
+					"key": "C",
+					"text": "`get_cash_ledger` only shows payments while `get_customer_ledger` also shows order totals"
+				},
+				{
+					"key": "D",
+					"text": "`get_cash_ledger` uses real-time Razorpay API calls while `get_customer_ledger` reads from local tables"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Sales Payment Handling & Cash Sale Ledger",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q8",
+			"number": 8,
+			"question": "What role flag architecture does `TBL_PARTIES` use, and how do the three Parties UI pages expose different role combinations?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Each party type has its own separate table (TBL_CUSTOMERS, TBL_SUPPLIERS, TBL_VENDORS) linked by party_id"
+				},
+				{
+					"key": "B",
+					"text": "TBL_PARTIES uses boolean flag columns (`party_customer`, `party_supplier`, `party_carrier`, `party_distributor`, `party_ams`) \u2014 `customers.php` exposes Distributor + Customer checkboxes, `suppliers.php` exposes Supplier + Carrier checkboxes, `vendors.php` exposes Supplier + AMS Vendor checkboxes \u2014 allowing simultaneous multi-role assignment in a single party row"
+				},
+				{
+					"key": "C",
+					"text": "A single `party_type` ENUM column with values 'customer', 'supplier', 'carrier', 'distributor', 'ams'"
+				},
+				{
+					"key": "D",
+					"text": "A junction table `TBL_PARTY_ROLES` maps party_id to role_id for flexible role assignment"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Parties Multi-Role Model & Distributor Cascade",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_15_q9",
+			"number": 9,
+			"question": "What happens in the `update_parties` action when `party_distributor` is toggled to `1` for a party?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only the `party_distributor` flag is updated in `TBL_PARTIES` \u2014 no other side effects"
+				},
+				{
+					"key": "B",
+					"text": "A cascade is triggered: `$brandRegulator->generateDistTNC($party_id)` generates a Terms & Conditions PDF, `$notification->send()` dispatches an onboarding email, and JSON fields `party_approval_status` and `party_status` are updated with `'signed_docs_pending'` status"
+				},
+				{
+					"key": "C",
+					"text": "The party is automatically added to all marketplace seller accounts (Flipkart, Amazon, Shopify)"
+				},
+				{
+					"key": "D",
+					"text": "A new database table `TBL_SALE_ORDER_{party_id}` is created for the distributor's dedicated orders"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Parties Multi-Role Model & Distributor Cascade",
+				"weightContribution": "7.50%"
+			}
+		},
+		{
+			"id": "day_15_q10",
+			"number": 10,
+			"question": "In the AMS invoice creation chain, what tables does `$accountant->get_ams_orders()` read from to aggregate vendor order data for commission calculation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only `TBL_AMS_INVOICES` and `TBL_AMS_PAYMENTS` \u2014 previous AMS invoices are used to derive current orders"
+				},
+				{
+					"key": "B",
+					"text": "`TBL_FK_ORDERS`, `TBL_AZ_ORDERS`, `TBL_FK_RETURNS`, `TBL_AZ_RETURNS` (order and return data) joined with `TBL_FK_ACCOUNTS`, `TBL_AZ_ACCOUNTS` (account\u2192party mapping) \u2014 reading from 6 external marketplace-owned tables"
+				},
+				{
+					"key": "C",
+					"text": "`TBL_SALE_ORDER` and `TBL_SALE_RETURN_ITEMS` \u2014 using offline sales data for commission calculation"
+				},
+				{
+					"key": "D",
+					"text": "A pre-aggregated `TBL_AMS_TRANSACTIONS` table updated by a nightly cron job"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "AMS Invoicing Pipeline & Cross-Module Order Reads",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q11",
+			"number": 11,
+			"question": "How does `$accountant->get_ams_slab_rate()` determine the applicable commission rate for a specific vendor transaction?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It reads a flat rate directly from `TBL_PARTIES.party_ams_rates` \u2014 a single numeric value per vendor"
+				},
+				{
+					"key": "B",
+					"text": "It reads `TBL_PARTIES.party_ams_rate_slab` (JSON array of `{slab_id, startDate, endDate}` objects) to find the active slab by date, then reads `TBL_AMS_RATE_SLABS.slab_card` JSON for rate configuration \u2014 supporting percentage commission_fees and flat or variable fixed_fees with GST including\u2192excluding conversion at 18/118 ratio"
+				},
+				{
+					"key": "C",
+					"text": "It calculates the rate dynamically based on the vendor's total monthly order volume divided by revenue"
+				},
+				{
+					"key": "D",
+					"text": "It uses a hardcoded rate table defined in `config.php` that applies to all vendors equally"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "AMS Invoicing Pipeline & Cross-Module Order Reads",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q12",
+			"number": 12,
+			"question": "How does the AMS `create_ams_invoice()` method handle invoice numbering for credit notes versus regular invoices?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Credit notes use the same numbering sequence as invoices \u2014 there is no distinction"
+				},
+				{
+					"key": "B",
+					"text": "Regular invoices use `{FIRM}-{FY}-AMS-{XXXX}` format while credit notes (generated when total is negative) use `{FIRM}-{FY}-AMS-CN{XXXX}` format \u2014 both sequentially numbered per firm_id from `TBL_OPTIONS`"
+				},
+				{
+					"key": "C",
+					"text": "Credit notes are stored as negative-amount entries in the same invoice record"
+				},
+				{
+					"key": "D",
+					"text": "Credit notes are generated as separate PDF files but do not appear in `TBL_AMS_INVOICES`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "AMS Invoicing Pipeline & Cross-Module Order Reads",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q13",
+			"number": 13,
+			"question": "In `ams/ajax_load.php`, what specific table ownership violation does the `delete_payment` action commit?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It deletes from `TBL_AMS_INVOICES` instead of `TBL_AMS_PAYMENTS` \u2014 removing invoice records instead of payment records"
+				},
+				{
+					"key": "B",
+					"text": "It executes `$db->where('ams_payment_id', $payment_id); $db->delete(TBL_SALE_PAYMENTS)` \u2014 targeting the Sales-owned `bas_sale_payments` table (PK: `sales_payment_id`) instead of the AMS-owned `TBL_AMS_PAYMENTS` (PK: `ams_payment_id`), while `save_payment` in the same file correctly targets `TBL_AMS_PAYMENTS`"
+				},
+				{
+					"key": "C",
+					"text": "It deletes from `TBL_PARTIES` \u2014 removing the vendor party record instead of the payment"
+				},
+				{
+					"key": "D",
+					"text": "It uses `$db->delete(TBL_AMS_PAYMENTS)` but with the wrong WHERE clause column `sales_payment_id`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "AMS delete_payment Cross-Module Ownership Violation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q14",
+			"number": 14,
+			"question": "What are the two distinct problems with the AMS `delete_payment` action's database operation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Performance: it scans the full table, and it locks the table during deletion"
+				},
+				{
+					"key": "B",
+					"text": "(1) Wrong table: `TBL_SALE_PAYMENTS` (Sales-owned) is targeted instead of `TBL_AMS_PAYMENTS` (AMS-owned). (2) Wrong column: the WHERE clause uses `ams_payment_id` which is the PK of `TBL_AMS_PAYMENTS`, not a column in `TBL_SALE_PAYMENTS` (whose PK is `sales_payment_id`)"
+				},
+				{
+					"key": "C",
+					"text": "(1) Missing transaction wrapper, (2) No soft-delete mechanism"
+				},
+				{
+					"key": "D",
+					"text": "(1) The delete is not logged to an audit table, (2) No notification is sent to the vendor"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "AMS delete_payment Cross-Module Ownership Violation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q15",
+			"number": 15,
+			"question": "What are the three party type branches in `$accountant->get_current_dues()`, and what formula does each use?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All three use the same formula: total orders minus total payments"
+				},
+				{
+					"key": "B",
+					"text": "'customer': `SUM(TBL_SALE_ORDER.so_total_amount) + old_system_dues(osd) \u2212 SUM(TBL_SALE_RETURN_ITEMS.return_amount) \u2212 SUM(TBL_SALE_PAYMENTS.payment_amount)`. 'supplier': hardcoded return 0 (not implemented). 'vendor': `SUM(TBL_AMS_INVOICES.ams_invoice_total) \u2212 SUM(TBL_AMS_PAYMENTS.payment_amount)`"
+				},
+				{
+					"key": "C",
+					"text": "'customer': reads from a pre-calculated `balance` column in TBL_PARTIES. 'supplier': sums TBL_PURCHASE_ORDERS. 'vendor': sums TBL_AMS_RATE_SLABS"
+				},
+				{
+					"key": "D",
+					"text": "All three query a unified `TBL_FINANCIAL_LEDGER` table with different `ledger_type` filters"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "$accountant Singleton & Financial Calculation Paths",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q16",
+			"number": 16,
+			"question": "How does `$accountant->get_party_leadger()` generate a unified ledger for a customer, and how does it calculate the running balance?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It reads from a pre-sorted `TBL_LEDGER_ENTRIES` table and uses the stored running balance column"
+				},
+				{
+					"key": "B",
+					"text": "It fetches transactions from `get_all_transactions()` for 3 types ('sales', 'sales_return', 'sales_payment'), merges all into a single array, sorts by date, then calculates running balance backward from the current dues \u2014 starting from `get_current_dues('customer')` and working backward through the sorted transactions to produce a Balance C/F for date-range-truncated outputs"
+				},
+				{
+					"key": "C",
+					"text": "It simply queries TBL_SALE_PAYMENTS ordered by date and displays the payment_amount as the running balance"
+				},
+				{
+					"key": "D",
+					"text": "It calls the $stockist class to get inventory-based financial snapshots for each transaction date"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "$accountant Singleton & Financial Calculation Paths",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q17",
+			"number": 17,
+			"question": "How many modules call `$accountant` methods, and what is the approximate distribution of calls?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only the AMS module calls $accountant \u2014 11 calls for invoice and payment management"
+				},
+				{
+					"key": "B",
+					"text": "Three modules: Sales (7 calls: `get_party_leadger('customer')`, `get_current_dues('customer')`, `get_all_transactions`), AMS (11 calls: `create_ams_invoice`, `create_ams_invoice_csv`, `generate_tax_invoice_pdf`, `send_mail_notification`, `get_party_leadger('vendor')`, `get_current_dues('vendor')`, `get_all_transactions`), and Parties (3 calls: `get_current_dues('customer'/'supplier'/'ams')`) \u2014 totalling 21 calls"
+				},
+				{
+					"key": "C",
+					"text": "All six marketplace modules plus Sales and AMS \u2014 approximately 50 calls"
+				},
+				{
+					"key": "D",
+					"text": "Only Sales and Parties \u2014 AMS has its own financial calculation class"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "$accountant Singleton & Financial Calculation Paths",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_15_q18",
+			"number": 18,
+			"question": "What makes `TBL_PARTIES` the most interconnected table in the FIMS system, and what risk does its multi-role architecture create?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It stores financial transaction data that all modules read for reconciliation"
+				},
+				{
+					"key": "B",
+					"text": "It is referenced by 50+ locations across 9+ modules (Sales, AMS, Purchase, Distributor, Flipkart, Amazon, Inventory, Tools, monthly_report). Its boolean role flag model means a single row can simultaneously be customer + supplier + distributor + AMS vendor. AMS-specific JSON fields (`party_ams_rate_slab`) and distributor-specific JSON fields (`party_approval_status`, `party_status`) coexist in each row \u2014 meaning corruption or inconsistency in one party row propagates to all dependent modules simultaneously"
+				},
+				{
+					"key": "C",
+					"text": "It is the only table that uses foreign key constraints, making it central to referential integrity"
+				},
+				{
+					"key": "D",
+					"text": "It stores user credentials that all modules use for authentication"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R8",
+				"criteria": "TBL_PARTIES Centrality & Cross-Module Impact",
+				"weightContribution": "10.00%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

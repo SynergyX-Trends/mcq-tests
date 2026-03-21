@@ -1,445 +1,445 @@
 {
-  "testId": "day_01",
-  "title": "DAY 01 — ONBOARDING EXECUTION DOCUMENT",
-  "questions": [
-    {
-      "id": "day_01_q1",
-      "number": 1,
-      "question": "In `config.php`, what is the very first operational action executed before any file inclusion?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`require_once(__DIR__ . '/includes/vendor/autoload.php')`"
-        },
-        {
-          "key": "B",
-          "text": "`date_default_timezone_set('Asia/Kolkata')`"
-        },
-        {
-          "key": "C",
-          "text": "`include_once($rootPath . '/definer.php')`"
-        },
-        {
-          "key": "D",
-          "text": "`$GLOBALS['db'] = new DB()`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Bootstrap Chain Mastery",
-        "weightContribution": "6.25%"
-      }
-    },
-    {
-      "id": "day_01_q2",
-      "number": 2,
-      "question": "In the `config.php` bootstrap, which file is included IMMEDIATELY AFTER `load_env.php` and BEFORE the `$GLOBALS['db']` instantiation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`login-checker.php`"
-        },
-        {
-          "key": "B",
-          "text": "No file — `$GLOBALS['db']` is created immediately after `load_env.php`"
-        },
-        {
-          "key": "C",
-          "text": "`.env.db_tables.php`"
-        },
-        {
-          "key": "D",
-          "text": "`class-error-handler.php`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Bootstrap Chain Mastery",
-        "weightContribution": "6.25%"
-      }
-    },
-    {
-      "id": "day_01_q3",
-      "number": 3,
-      "question": "What PHP INI setting does `config.php` set `max_execution_time` to?",
-      "options": [
-        {
-          "key": "A",
-          "text": "300"
-        },
-        {
-          "key": "B",
-          "text": "0"
-        },
-        {
-          "key": "C",
-          "text": "-1"
-        },
-        {
-          "key": "D",
-          "text": "3600"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Bootstrap Chain Mastery",
-        "weightContribution": "6.25%"
-      }
-    },
-    {
-      "id": "day_01_q4",
-      "number": 4,
-      "question": "In the full request lifecycle, what is the last PHP operation executed in `footer.php`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`echo $GLOBALS['page_footer_assets_html']`"
-        },
-        {
-          "key": "B",
-          "text": "`App.init()` via inline JavaScript"
-        },
-        {
-          "key": "C",
-          "text": "`session_write_close()`"
-        },
-        {
-          "key": "D",
-          "text": "`$db->disconnect()`"
-        }
-      ],
-      "answer": "D",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "Bootstrap Chain Mastery",
-        "weightContribution": "6.25%"
-      }
-    },
-    {
-      "id": "day_01_q5",
-      "number": 5,
-      "question": "In `definer.php`, the `TODAYS_LOG_PATH` constant resolves to what pattern?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`{ROOT_PATH}/log/{Y}/{M}/{D}` where M is numeric (01–12)"
-        },
-        {
-          "key": "B",
-          "text": "`{ROOT_PATH}/log/{Y}/{M}/{D}` where M is short month name (Jan, Feb, etc.)"
-        },
-        {
-          "key": "C",
-          "text": "`{ROOT_PATH}/log/{Y-m-d}/`"
-        },
-        {
-          "key": "D",
-          "text": "`{ROOT_PATH}/log/today/`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Environment & Constant System",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q6",
-      "number": 6,
-      "question": "In `load_env.php`, how are `.env` file lines that start with `#` handled?",
-      "options": [
-        {
-          "key": "A",
-          "text": "They cause a parse error"
-        },
-        {
-          "key": "B",
-          "text": "They are treated as empty string values"
-        },
-        {
-          "key": "C",
-          "text": "They are skipped via `continue` in the parsing loop"
-        },
-        {
-          "key": "D",
-          "text": "They are stored in `$_ENV` with the `#` prefix"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Environment & Constant System",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q7",
-      "number": 7,
-      "question": "In `.env.db_tables.php`, what is the physical MySQL table name for the constant `TBL_INVENTORY`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`bas_inventory_master`"
-        },
-        {
-          "key": "B",
-          "text": "`bas_stock`"
-        },
-        {
-          "key": "C",
-          "text": "`bas_inventory`"
-        },
-        {
-          "key": "D",
-          "text": "`fims_inventory`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Environment & Constant System",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q8",
-      "number": 8,
-      "question": "How is the global database connection object instantiated in `config.php`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$db = Database\\DB::getInstance()`"
-        },
-        {
-          "key": "B",
-          "text": "`$db = new MysqliDb(DB_HOST, DB_USER, DB_PASS, DB_NAME)`"
-        },
-        {
-          "key": "C",
-          "text": "`$GLOBALS['db'] = new DB()`"
-        },
-        {
-          "key": "D",
-          "text": "`$GLOBALS['db'] = DB::connect(DB_HOST, DB_USER, DB_PASS, DB_NAME)`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Database Connection Layer",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q9",
-      "number": 9,
-      "question": "The `Database\\DB` class extends which underlying library?",
-      "options": [
-        {
-          "key": "A",
-          "text": "PDO"
-        },
-        {
-          "key": "B",
-          "text": "MysqliDb"
-        },
-        {
-          "key": "C",
-          "text": "Doctrine DBAL"
-        },
-        {
-          "key": "D",
-          "text": "Eloquent Model"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Database Connection Layer",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q10",
-      "number": 10,
-      "question": "Which `MysqliDb` method is used in `functions.php` → `get_all_accounts()` to return results as objects instead of associative arrays?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`->asObject()->get()`"
-        },
-        {
-          "key": "B",
-          "text": "`->ObjectBuilder()->get()`"
-        },
-        {
-          "key": "C",
-          "text": "`->fetchObject()`"
-        },
-        {
-          "key": "D",
-          "text": "`->get(TABLE, NULL, FETCH_OBJ)`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "Database Connection Layer",
-        "weightContribution": "6.67%"
-      }
-    },
-    {
-      "id": "day_01_q11",
-      "number": 11,
-      "question": "In `login-checker.php`, what happens when an unauthenticated AJAX request (XMLHttpRequest) is detected?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The request is silently ignored and returns HTTP 200"
-        },
-        {
-          "key": "B",
-          "text": "A JSON response with `type: 'error'` and `redirectUrl` is echoed, then `exit` is called"
-        },
-        {
-          "key": "C",
-          "text": "The user is redirected to `/login/` via `header('Location: ...')`"
-        },
-        {
-          "key": "D",
-          "text": "An HTTP 403 Forbidden response is sent"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "Login-Checker & Auth Gate",
-        "weightContribution": "7.5%"
-      }
-    },
-    {
-      "id": "day_01_q12",
-      "number": 12,
-      "question": "Which of the following is NOT in the `$bypass_pages` array in `login-checker.php`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`api/`"
-        },
-        {
-          "key": "B",
-          "text": "`notifications-receiver`"
-        },
-        {
-          "key": "C",
-          "text": "`index.php`"
-        },
-        {
-          "key": "D",
-          "text": "`brand-authorisation`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "Login-Checker & Auth Gate",
-        "weightContribution": "7.5%"
-      }
-    },
-    {
-      "id": "day_01_q13",
-      "number": 13,
-      "question": "How is the Logger singleton instantiated in `config.php`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$GLOBALS['log'] = new Logger()`"
-        },
-        {
-          "key": "B",
-          "text": "`$GLOBALS['log'] = Logger::getInstance()`"
-        },
-        {
-          "key": "C",
-          "text": "`$GLOBALS['log'] = Logger::create(TODAYS_LOG_PATH)`"
-        },
-        {
-          "key": "D",
-          "text": "`$log = require_once('includes/Logger.php')`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "Logger & Error Handling",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_01_q14",
-      "number": 14,
-      "question": "In `class-error-handler.php`, what mechanism is used to catch fatal PHP errors (HTTP 500/503)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`set_error_handler()` with a custom callback"
-        },
-        {
-          "key": "B",
-          "text": "`try-catch` blocks wrapping all include files"
-        },
-        {
-          "key": "C",
-          "text": "`register_shutdown_function()` in the constructor"
-        },
-        {
-          "key": "D",
-          "text": "Apache's `ErrorDocument` directive"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "Logger & Error Handling",
-        "weightContribution": "5%"
-      }
-    },
-    {
-      "id": "day_01_q15",
-      "number": 15,
-      "question": "In `init_functions.php`, the `encrypt()` function uses which combination of algorithms?",
-      "options": [
-        {
-          "key": "A",
-          "text": "RSA-2048 encryption with MD5 checksum"
-        },
-        {
-          "key": "B",
-          "text": "AES-256-CBC encryption with HMAC-SHA512 verification"
-        },
-        {
-          "key": "C",
-          "text": "Blowfish encryption with CRC32 checksum"
-        },
-        {
-          "key": "D",
-          "text": "AES-128-GCM encryption with HMAC-SHA256 verification"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R6",
-        "criteria": "Global Data & Utilities",
-        "weightContribution": "10%"
-      }
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_01",
+	"title": "DAY 01 — ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_01_q1",
+			"number": 1,
+			"question": "In `config.php`, what is the very first operational action executed before any file inclusion?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`require_once(__DIR__ . '/includes/vendor/autoload.php')`"
+				},
+				{
+					"key": "B",
+					"text": "`date_default_timezone_set('Asia/Kolkata')`"
+				},
+				{
+					"key": "C",
+					"text": "`include_once($rootPath . '/definer.php')`"
+				},
+				{
+					"key": "D",
+					"text": "`$GLOBALS['db'] = new DB()`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Bootstrap Chain Mastery",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_01_q2",
+			"number": 2,
+			"question": "In the `config.php` bootstrap, which file is included IMMEDIATELY AFTER `load_env.php` and BEFORE the `$GLOBALS['db']` instantiation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`login-checker.php`"
+				},
+				{
+					"key": "B",
+					"text": "No file — `$GLOBALS['db']` is created immediately after `load_env.php`"
+				},
+				{
+					"key": "C",
+					"text": "`.env.db_tables.php`"
+				},
+				{
+					"key": "D",
+					"text": "`class-error-handler.php`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Bootstrap Chain Mastery",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_01_q3",
+			"number": 3,
+			"question": "What PHP INI setting does `config.php` set `max_execution_time` to?",
+			"options": [
+				{
+					"key": "A",
+					"text": "300"
+				},
+				{
+					"key": "B",
+					"text": "0"
+				},
+				{
+					"key": "C",
+					"text": "-1"
+				},
+				{
+					"key": "D",
+					"text": "3600"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Bootstrap Chain Mastery",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_01_q4",
+			"number": 4,
+			"question": "In the full request lifecycle, what is the last PHP operation executed in `footer.php`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`echo $GLOBALS['page_footer_assets_html']`"
+				},
+				{
+					"key": "B",
+					"text": "`App.init()` via inline JavaScript"
+				},
+				{
+					"key": "C",
+					"text": "`session_write_close()`"
+				},
+				{
+					"key": "D",
+					"text": "`$db->disconnect()`"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Bootstrap Chain Mastery",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_01_q5",
+			"number": 5,
+			"question": "In `definer.php`, the `TODAYS_LOG_PATH` constant resolves to what pattern?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`{ROOT_PATH}/log/{Y}/{M}/{D}` where M is numeric (01–12)"
+				},
+				{
+					"key": "B",
+					"text": "`{ROOT_PATH}/log/{Y}/{M}/{D}` where M is short month name (Jan, Feb, etc.)"
+				},
+				{
+					"key": "C",
+					"text": "`{ROOT_PATH}/log/{Y-m-d}/`"
+				},
+				{
+					"key": "D",
+					"text": "`{ROOT_PATH}/log/today/`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Environment & Constant System",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q6",
+			"number": 6,
+			"question": "In `load_env.php`, how are `.env` file lines that start with `#` handled?",
+			"options": [
+				{
+					"key": "A",
+					"text": "They cause a parse error"
+				},
+				{
+					"key": "B",
+					"text": "They are treated as empty string values"
+				},
+				{
+					"key": "C",
+					"text": "They are skipped via `continue` in the parsing loop"
+				},
+				{
+					"key": "D",
+					"text": "They are stored in `$_ENV` with the `#` prefix"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Environment & Constant System",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q7",
+			"number": 7,
+			"question": "In `.env.db_tables.php`, what is the physical MySQL table name for the constant `TBL_INVENTORY`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`bas_inventory_master`"
+				},
+				{
+					"key": "B",
+					"text": "`bas_stock`"
+				},
+				{
+					"key": "C",
+					"text": "`bas_inventory`"
+				},
+				{
+					"key": "D",
+					"text": "`fims_inventory`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Environment & Constant System",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q8",
+			"number": 8,
+			"question": "How is the global database connection object instantiated in `config.php`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$db = Database\\DB::getInstance()`"
+				},
+				{
+					"key": "B",
+					"text": "`$db = new MysqliDb(DB_HOST, DB_USER, DB_PASS, DB_NAME)`"
+				},
+				{
+					"key": "C",
+					"text": "`$GLOBALS['db'] = new DB()`"
+				},
+				{
+					"key": "D",
+					"text": "`$GLOBALS['db'] = DB::connect(DB_HOST, DB_USER, DB_PASS, DB_NAME)`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Database Connection Layer",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q9",
+			"number": 9,
+			"question": "The `Database\\DB` class extends which underlying library?",
+			"options": [
+				{
+					"key": "A",
+					"text": "PDO"
+				},
+				{
+					"key": "B",
+					"text": "MysqliDb"
+				},
+				{
+					"key": "C",
+					"text": "Doctrine DBAL"
+				},
+				{
+					"key": "D",
+					"text": "Eloquent Model"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Database Connection Layer",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q10",
+			"number": 10,
+			"question": "Which `MysqliDb` method is used in `functions.php` → `get_all_accounts()` to return results as objects instead of associative arrays?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`->asObject()->get()`"
+				},
+				{
+					"key": "B",
+					"text": "`->ObjectBuilder()->get()`"
+				},
+				{
+					"key": "C",
+					"text": "`->fetchObject()`"
+				},
+				{
+					"key": "D",
+					"text": "`->get(TABLE, NULL, FETCH_OBJ)`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Database Connection Layer",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_01_q11",
+			"number": 11,
+			"question": "In `login-checker.php`, what happens when an unauthenticated AJAX request (XMLHttpRequest) is detected?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The request is silently ignored and returns HTTP 200"
+				},
+				{
+					"key": "B",
+					"text": "A JSON response with `type: 'error'` and `redirectUrl` is echoed, then `exit` is called"
+				},
+				{
+					"key": "C",
+					"text": "The user is redirected to `/login/` via `header('Location: ...')`"
+				},
+				{
+					"key": "D",
+					"text": "An HTTP 403 Forbidden response is sent"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Login-Checker & Auth Gate",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_01_q12",
+			"number": 12,
+			"question": "Which of the following is NOT in the `$bypass_pages` array in `login-checker.php`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`api/`"
+				},
+				{
+					"key": "B",
+					"text": "`notifications-receiver`"
+				},
+				{
+					"key": "C",
+					"text": "`index.php`"
+				},
+				{
+					"key": "D",
+					"text": "`brand-authorisation`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Login-Checker & Auth Gate",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_01_q13",
+			"number": 13,
+			"question": "How is the Logger singleton instantiated in `config.php`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$GLOBALS['log'] = new Logger()`"
+				},
+				{
+					"key": "B",
+					"text": "`$GLOBALS['log'] = Logger::getInstance()`"
+				},
+				{
+					"key": "C",
+					"text": "`$GLOBALS['log'] = Logger::create(TODAYS_LOG_PATH)`"
+				},
+				{
+					"key": "D",
+					"text": "`$log = require_once('includes/Logger.php')`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Logger & Error Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_01_q14",
+			"number": 14,
+			"question": "In `class-error-handler.php`, what mechanism is used to catch fatal PHP errors (HTTP 500/503)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`set_error_handler()` with a custom callback"
+				},
+				{
+					"key": "B",
+					"text": "`try-catch` blocks wrapping all include files"
+				},
+				{
+					"key": "C",
+					"text": "`register_shutdown_function()` in the constructor"
+				},
+				{
+					"key": "D",
+					"text": "Apache's `ErrorDocument` directive"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Logger & Error Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_01_q15",
+			"number": 15,
+			"question": "In `init_functions.php`, the `encrypt()` function uses which combination of algorithms?",
+			"options": [
+				{
+					"key": "A",
+					"text": "RSA-2048 encryption with MD5 checksum"
+				},
+				{
+					"key": "B",
+					"text": "AES-256-CBC encryption with HMAC-SHA512 verification"
+				},
+				{
+					"key": "C",
+					"text": "Blowfish encryption with CRC32 checksum"
+				},
+				{
+					"key": "D",
+					"text": "AES-128-GCM encryption with HMAC-SHA256 verification"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Global Data & Utilities",
+				"weightContribution": "10%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

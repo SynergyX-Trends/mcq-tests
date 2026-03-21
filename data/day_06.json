@@ -1,590 +1,590 @@
 {
-  "testId": "day_06",
-  "title": "DAY 06 — ONBOARDING EXECUTION DOCUMENT",
-  "questions": [
-    {
-      "id": "day_06_q1",
-      "number": 1,
-      "question": "In `save_po`, how is the `item_id` value for each line item extracted from the form submission data?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Directly from `$_POST['item_id']` as a plain integer"
-        },
-        {
-          "key": "B",
-          "text": "Via `str_replace('pid-', '', $lineitem['sku'])` — stripping the `pid-` prefix"
-        },
-        {
-          "key": "C",
-          "text": "Via `explode('-', $lineitem['sku'])[1]` — splitting on hyphen and taking the second part"
-        },
-        {
-          "key": "D",
-          "text": "Via `intval($lineitem['sku'])` — casting the entire SKU string to integer"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "PO CRUD & Split Operations",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q2",
-      "number": 2,
-      "question": "When `save_po` creates a PO with `$_POST['type'] == 'create'` (not draft), what status is assigned to the PO items in `TBL_PURCHASE_ORDER_ITEMS`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`'created'`"
-        },
-        {
-          "key": "B",
-          "text": "`'draft'`"
-        },
-        {
-          "key": "C",
-          "text": "`'ordered'`"
-        },
-        {
-          "key": "D",
-          "text": "`'active'`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "PO CRUD & Split Operations",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q3",
-      "number": 3,
-      "question": "In `save_po`, when updating an existing PO (non-split mode with `$_POST['po_id']` set), how are PO items handled before inserting updated items?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Each existing item is updated individually via a WHERE clause matching `poi_id`"
-        },
-        {
-          "key": "B",
-          "text": "All existing items for the PO are deleted, then new items are inserted via `insertMulti`"
-        },
-        {
-          "key": "C",
-          "text": "Items are upserted via `INSERT ... ON DUPLICATE KEY UPDATE`"
-        },
-        {
-          "key": "D",
-          "text": "Only changed items are updated; new items are appended to the existing set"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "PO CRUD & Split Operations",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q4",
-      "number": 4,
-      "question": "In `save_po` split mode, what happens to an item in the original PO when the quantity difference (`oldQty - splitQty`) equals zero?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The item remains in the original PO with `item_qty = 0`"
-        },
-        {
-          "key": "B",
-          "text": "The item is deleted from `TBL_PURCHASE_ORDER_ITEMS` for the original PO"
-        },
-        {
-          "key": "C",
-          "text": "The split operation is rejected and an error is returned"
-        },
-        {
-          "key": "D",
-          "text": "The item is transferred to the new PO and marked as `'split_complete'`"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "PO CRUD & Split Operations",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q5",
-      "number": 5,
-      "question": "In `delete_po`, what condition is evaluated against the `COUNT(*)` result from `TBL_PURCHASE_ORDER_ITEMS_LOT` before allowing PO deletion?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$count == 0` — ensures no lot items are assigned to the PO"
-        },
-        {
-          "key": "B",
-          "text": "`$count < 0` — a condition that is always false since `COUNT(*)` returns values ≥ 0"
-        },
-        {
-          "key": "C",
-          "text": "`$count > 0` — blocks deletion when lot items exist for the PO"
-        },
-        {
-          "key": "D",
-          "text": "`empty($count)` — checks for a null or zero count result"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R1",
-        "criteria": "PO CRUD & Split Operations",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q6",
-      "number": 6,
-      "question": "What determines whether a new lot is inserted into `TBL_PURCHASE_LOT` versus `TBL_PURCHASE_LOT_LOCAL` in the `add_lot` action?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The `lot_number` prefix — `'SF'` routes to international, `'LP'` routes to local"
-        },
-        {
-          "key": "B",
-          "text": "The `lot_carriageType` value — `'percentage'` for international, `'fixed'` for local"
-        },
-        {
-          "key": "C",
-          "text": "The `$_POST['is_local']` flag — if set and truthy, the local table is used"
-        },
-        {
-          "key": "D",
-          "text": "The carrier's `party_type` field from `TBL_PARTIES`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Lot & Packing List Management",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q7",
-      "number": 7,
-      "question": "In `packing_list_new.php`, what are the lot code prefixes and zero-padding formats for international and local lots?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Both types use `'LOT'` prefix with a 4-digit zero-padded sequence number"
-        },
-        {
-          "key": "B",
-          "text": "International: `'SF'` with 2-digit zero-padding, Local: `'LP'` with 4-digit zero-padding"
-        },
-        {
-          "key": "C",
-          "text": "International: `'INT'` with 6-digit zero-padding, Local: `'DOM'` with 6-digit zero-padding"
-        },
-        {
-          "key": "D",
-          "text": "International: `'PL'` with 3-digit zero-padding, Local: `'LPL'` with 3-digit zero-padding"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Lot & Packing List Management",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q8",
-      "number": 8,
-      "question": "What status value is assigned to items in `TBL_PURCHASE_ORDER_ITEMS_LOT` when a packing list is saved via `add_pl_items`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`'created'`"
-        },
-        {
-          "key": "B",
-          "text": "`'packed'`"
-        },
-        {
-          "key": "C",
-          "text": "`'rts'`"
-        },
-        {
-          "key": "D",
-          "text": "`'pending_shipment'`"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Lot & Packing List Management",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q9",
-      "number": 9,
-      "question": "In `get_po_items`, how is the available quantity per product calculated for packing list selection?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`item_qty` — the full ordered quantity"
-        },
-        {
-          "key": "B",
-          "text": "`item_qty - item_shipped_qty` — ordered minus already shipped"
-        },
-        {
-          "key": "C",
-          "text": "`item_qty - item_received_qty - item_shipped_qty` — ordered minus received and shipped"
-        },
-        {
-          "key": "D",
-          "text": "`item_qty - item_received_qty` — ordered minus already received"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R2",
-        "criteria": "Lot & Packing List Management",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q10",
-      "number": 10,
-      "question": "In `save_grn`, what database operation pattern distinguishes it from all other Purchase module actions?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It uses `$db->rawQuery()` for complex multi-table SQL statements"
-        },
-        {
-          "key": "B",
-          "text": "It uses `$db->startTransaction()` with `$db->commit()` / `$db->rollback()`"
-        },
-        {
-          "key": "C",
-          "text": "It uses `$db->insertMulti()` for batch item insertion"
-        },
-        {
-          "key": "D",
-          "text": "It uses `$db->subQuery()` for nested query operations"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "GRN Lifecycle & Inventory Bridge",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q11",
-      "number": 11,
-      "question": "What external service call within `update_on_grn_creation()` creates inventory rows from GRN data?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`$db->insert(TBL_INVENTORY, $inventoryItems)` — direct database insertion"
-        },
-        {
-          "key": "B",
-          "text": "`$inventory->create_from_grn($grn_id)` — Inventory class method call"
-        },
-        {
-          "key": "C",
-          "text": "`$stockist->new_grn_inbound($grn_id, $lineItems, $lot_details)` — Stockist singleton method"
-        },
-        {
-          "key": "D",
-          "text": "`Inventory::inboundFromGRN($grn_id, $lot_id)` — static Inventory class method"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "GRN Lifecycle & Inventory Bridge",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q12",
-      "number": 12,
-      "question": "When a GRN is created with `'created'` status in `save_grn`, what task is auto-generated?",
-      "options": [
-        {
-          "key": "A",
-          "text": "A `'quality_check'` task assigned to the QC team with the lot ID"
-        },
-        {
-          "key": "B",
-          "text": "A `'tagging'` task assigned to `'administrator'` with parameter `array('grnId' => 'GRN_' . $grn_id)`"
-        },
-        {
-          "key": "C",
-          "text": "A `'warehouse_receive'` task assigned to warehouse staff with the GRN line items"
-        },
-        {
-          "key": "D",
-          "text": "An `'inventory_audit'` task assigned to the inventory team with the lot number"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "GRN Lifecycle & Inventory Bridge",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q13",
-      "number": 13,
-      "question": "In `save_grn`, when `lot_carriage_type` equals `'fixed'`, what transformation is applied to `lot_carriage_value` before passing it to inventory creation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It remains unchanged — `'fixed'` indicates a flat rate per shipment"
-        },
-        {
-          "key": "B",
-          "text": "It is divided by `total_qty` to calculate per-unit carriage cost"
-        },
-        {
-          "key": "C",
-          "text": "It is multiplied by the exchange rate (`lot_ex`) for currency conversion"
-        },
-        {
-          "key": "D",
-          "text": "It is divided by the number of unique SKUs in the GRN"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "GRN Lifecycle & Inventory Bridge",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q14",
-      "number": 14,
-      "question": "In `save_grn`, what party-related data is fetched from `TBL_PARTIES` and injected into `lot_details` before calling `update_on_grn_creation()`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "`party_name` and `party_address` for shipping documentation"
-        },
-        {
-          "key": "B",
-          "text": "`party_ams` and `party_firm_id` for inventory context"
-        },
-        {
-          "key": "C",
-          "text": "`party_gstin` and `party_state` for tax calculation"
-        },
-        {
-          "key": "D",
-          "text": "`party_type` and `party_currency` for payment processing"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R3",
-        "criteria": "GRN Lifecycle & Inventory Bridge",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q15",
-      "number": 15,
-      "question": "In `mark_lot_shipped`, how many entity levels receive cascading status updates?",
-      "options": [
-        {
-          "key": "A",
-          "text": "2 levels — LOT and PO"
-        },
-        {
-          "key": "B",
-          "text": "3 levels — LOT, Purchase Order Items Lot (POIL), and PO"
-        },
-        {
-          "key": "C",
-          "text": "4 levels — LOT, POIL, POI (Purchase Order Items), and PO"
-        },
-        {
-          "key": "D",
-          "text": "5 levels — LOT, POIL, POI, PO, and PARTY"
-        }
-      ],
-      "answer": "C",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "Status Transition Cascades",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q16",
-      "number": 16,
-      "question": "In `mark_lot_shipped`, what determines whether a PO item (`TBL_PURCHASE_ORDER_ITEMS`) gets status `'shipped'` vs `'partial_shipped'`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Whether the lot contains all items from that PO"
-        },
-        {
-          "key": "B",
-          "text": "Whether the SUM of `item_shipped_qty` (across POIL where `item_status='shipped'`) is ≥ `item_qty`"
-        },
-        {
-          "key": "C",
-          "text": "Whether the PO has only one active lot assigned"
-        },
-        {
-          "key": "D",
-          "text": "Whether all items in the lot belong to the same PO"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "Status Transition Cascades",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q17",
-      "number": 17,
-      "question": "In `update_on_grn_creation()`, what determines whether a PO gets final status `'received'` vs `'partial_shipped_received'`?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Whether total `item_received_qty` matches total `item_qty` across all PO items"
-        },
-        {
-          "key": "B",
-          "text": "Whether no items with `'shipped'` or `'partial_shipped'` status remain in the PO's items"
-        },
-        {
-          "key": "C",
-          "text": "Whether the lot status has been successfully updated to `'received'`"
-        },
-        {
-          "key": "D",
-          "text": "Whether the GRN `grn_total_qty` matches the lot's total shipped quantity"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R4",
-        "criteria": "Status Transition Cascades",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q18",
-      "number": 18,
-      "question": "In `grn_report`, how does the action identify inventory items that belong to a specific lot?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Joins `TBL_INVENTORY` with `TBL_PURCHASE_GRN` via `grn_id` foreign key"
-        },
-        {
-          "key": "B",
-          "text": "Uses `WHERE inv_id LIKE '{lotId}%'` to pattern-match inventory IDs that start with the lot ID"
-        },
-        {
-          "key": "C",
-          "text": "Queries `TBL_PURCHASE_GRN_ITEMS` for `item_id` values, then fetches from `TBL_INVENTORY` by `item_id`"
-        },
-        {
-          "key": "D",
-          "text": "Uses a `lot_id` foreign key column on `TBL_INVENTORY` that directly references the lot table"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "QC Reporting & Print System",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q19",
-      "number": 19,
-      "question": "What does the `filterLogs()` helper function remove from inventory log arrays?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Duplicate log entries with identical `inv_id` and `log_type` values"
-        },
-        {
-          "key": "B",
-          "text": "Sequential pairs where the current entry has `log_type='alteration'` and the next has `log_type='qc_failed'`"
-        },
-        {
-          "key": "C",
-          "text": "All log entries older than the lot's `lot_createdDate`"
-        },
-        {
-          "key": "D",
-          "text": "Log entries with empty or null `log_details` JSON fields"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R5",
-        "criteria": "QC Reporting & Print System",
-        "weightContribution": "5.00%"
-      }
-    },
-    {
-      "id": "day_06_q20",
-      "number": 20,
-      "question": "Which statement accurately describes the Purchase module's cross-module dependency relationship with Inventory?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Purchase reads from Inventory for stock validation, but Inventory never reads Purchase data"
-        },
-        {
-          "key": "B",
-          "text": "Purchase creates inventory via `$stockist->new_grn_inbound()`; Inventory reads Purchase GRN and LOT data — forming a circular dependency"
-        },
-        {
-          "key": "C",
-          "text": "Both modules are independent and communicate only through a shared task queue"
-        },
-        {
-          "key": "D",
-          "text": "Purchase depends on Inventory for cost price calculations before creating GRNs"
-        }
-      ],
-      "answer": "B",
-      "meta": {
-        "rubricCode": "R6",
-        "criteria": "Schema & Cross-Module Dependencies",
-        "weightContribution": "5.00%"
-      }
-    }
-  ],
-  "config": {
-    "optionsPerQuestion": 4,
-    "singleSelect": true
-  }
+	"testId": "day_06",
+	"title": "DAY 06 — ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_06_q1",
+			"number": 1,
+			"question": "In `save_po`, how is the `item_id` value for each line item extracted from the form submission data?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Directly from `$_POST['item_id']` as a plain integer"
+				},
+				{
+					"key": "B",
+					"text": "Via `str_replace('pid-', '', $lineitem['sku'])` — stripping the `pid-` prefix"
+				},
+				{
+					"key": "C",
+					"text": "Via `explode('-', $lineitem['sku'])[1]` — splitting on hyphen and taking the second part"
+				},
+				{
+					"key": "D",
+					"text": "Via `intval($lineitem['sku'])` — casting the entire SKU string to integer"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "PO CRUD & Split Operations",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q2",
+			"number": 2,
+			"question": "When `save_po` creates a PO with `$_POST['type'] == 'create'` (not draft), what status is assigned to the PO items in `TBL_PURCHASE_ORDER_ITEMS`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`'created'`"
+				},
+				{
+					"key": "B",
+					"text": "`'draft'`"
+				},
+				{
+					"key": "C",
+					"text": "`'ordered'`"
+				},
+				{
+					"key": "D",
+					"text": "`'active'`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "PO CRUD & Split Operations",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q3",
+			"number": 3,
+			"question": "In `save_po`, when updating an existing PO (non-split mode with `$_POST['po_id']` set), how are PO items handled before inserting updated items?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Each existing item is updated individually via a WHERE clause matching `poi_id`"
+				},
+				{
+					"key": "B",
+					"text": "All existing items for the PO are deleted, then new items are inserted via `insertMulti`"
+				},
+				{
+					"key": "C",
+					"text": "Items are upserted via `INSERT ... ON DUPLICATE KEY UPDATE`"
+				},
+				{
+					"key": "D",
+					"text": "Only changed items are updated; new items are appended to the existing set"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "PO CRUD & Split Operations",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q4",
+			"number": 4,
+			"question": "In `save_po` split mode, what happens to an item in the original PO when the quantity difference (`oldQty - splitQty`) equals zero?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The item remains in the original PO with `item_qty = 0`"
+				},
+				{
+					"key": "B",
+					"text": "The item is deleted from `TBL_PURCHASE_ORDER_ITEMS` for the original PO"
+				},
+				{
+					"key": "C",
+					"text": "The split operation is rejected and an error is returned"
+				},
+				{
+					"key": "D",
+					"text": "The item is transferred to the new PO and marked as `'split_complete'`"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "PO CRUD & Split Operations",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q5",
+			"number": 5,
+			"question": "In `delete_po`, what condition is evaluated against the `COUNT(*)` result from `TBL_PURCHASE_ORDER_ITEMS_LOT` before allowing PO deletion?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$count == 0` — ensures no lot items are assigned to the PO"
+				},
+				{
+					"key": "B",
+					"text": "`$count < 0` — a condition that is always false since `COUNT(*)` returns values ≥ 0"
+				},
+				{
+					"key": "C",
+					"text": "`$count > 0` — blocks deletion when lot items exist for the PO"
+				},
+				{
+					"key": "D",
+					"text": "`empty($count)` — checks for a null or zero count result"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "PO CRUD & Split Operations",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q6",
+			"number": 6,
+			"question": "What determines whether a new lot is inserted into `TBL_PURCHASE_LOT` versus `TBL_PURCHASE_LOT_LOCAL` in the `add_lot` action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The `lot_number` prefix — `'SF'` routes to international, `'LP'` routes to local"
+				},
+				{
+					"key": "B",
+					"text": "The `lot_carriageType` value — `'percentage'` for international, `'fixed'` for local"
+				},
+				{
+					"key": "C",
+					"text": "The `$_POST['is_local']` flag — if set and truthy, the local table is used"
+				},
+				{
+					"key": "D",
+					"text": "The carrier's `party_type` field from `TBL_PARTIES`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Lot & Packing List Management",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q7",
+			"number": 7,
+			"question": "In `packing_list_new.php`, what are the lot code prefixes and zero-padding formats for international and local lots?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Both types use `'LOT'` prefix with a 4-digit zero-padded sequence number"
+				},
+				{
+					"key": "B",
+					"text": "International: `'SF'` with 2-digit zero-padding, Local: `'LP'` with 4-digit zero-padding"
+				},
+				{
+					"key": "C",
+					"text": "International: `'INT'` with 6-digit zero-padding, Local: `'DOM'` with 6-digit zero-padding"
+				},
+				{
+					"key": "D",
+					"text": "International: `'PL'` with 3-digit zero-padding, Local: `'LPL'` with 3-digit zero-padding"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Lot & Packing List Management",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q8",
+			"number": 8,
+			"question": "What status value is assigned to items in `TBL_PURCHASE_ORDER_ITEMS_LOT` when a packing list is saved via `add_pl_items`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`'created'`"
+				},
+				{
+					"key": "B",
+					"text": "`'packed'`"
+				},
+				{
+					"key": "C",
+					"text": "`'rts'`"
+				},
+				{
+					"key": "D",
+					"text": "`'pending_shipment'`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Lot & Packing List Management",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q9",
+			"number": 9,
+			"question": "In `get_po_items`, how is the available quantity per product calculated for packing list selection?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`item_qty` — the full ordered quantity"
+				},
+				{
+					"key": "B",
+					"text": "`item_qty - item_shipped_qty` — ordered minus already shipped"
+				},
+				{
+					"key": "C",
+					"text": "`item_qty - item_received_qty - item_shipped_qty` — ordered minus received and shipped"
+				},
+				{
+					"key": "D",
+					"text": "`item_qty - item_received_qty` — ordered minus already received"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Lot & Packing List Management",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q10",
+			"number": 10,
+			"question": "In `save_grn`, what database operation pattern distinguishes it from all other Purchase module actions?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It uses `$db->rawQuery()` for complex multi-table SQL statements"
+				},
+				{
+					"key": "B",
+					"text": "It uses `$db->startTransaction()` with `$db->commit()` / `$db->rollback()`"
+				},
+				{
+					"key": "C",
+					"text": "It uses `$db->insertMulti()` for batch item insertion"
+				},
+				{
+					"key": "D",
+					"text": "It uses `$db->subQuery()` for nested query operations"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "GRN Lifecycle & Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q11",
+			"number": 11,
+			"question": "What external service call within `update_on_grn_creation()` creates inventory rows from GRN data?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`$db->insert(TBL_INVENTORY, $inventoryItems)` — direct database insertion"
+				},
+				{
+					"key": "B",
+					"text": "`$inventory->create_from_grn($grn_id)` — Inventory class method call"
+				},
+				{
+					"key": "C",
+					"text": "`$stockist->new_grn_inbound($grn_id, $lineItems, $lot_details)` — Stockist singleton method"
+				},
+				{
+					"key": "D",
+					"text": "`Inventory::inboundFromGRN($grn_id, $lot_id)` — static Inventory class method"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "GRN Lifecycle & Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q12",
+			"number": 12,
+			"question": "When a GRN is created with `'created'` status in `save_grn`, what task is auto-generated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A `'quality_check'` task assigned to the QC team with the lot ID"
+				},
+				{
+					"key": "B",
+					"text": "A `'tagging'` task assigned to `'administrator'` with parameter `array('grnId' => 'GRN_' . $grn_id)`"
+				},
+				{
+					"key": "C",
+					"text": "A `'warehouse_receive'` task assigned to warehouse staff with the GRN line items"
+				},
+				{
+					"key": "D",
+					"text": "An `'inventory_audit'` task assigned to the inventory team with the lot number"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "GRN Lifecycle & Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q13",
+			"number": 13,
+			"question": "In `save_grn`, when `lot_carriage_type` equals `'fixed'`, what transformation is applied to `lot_carriage_value` before passing it to inventory creation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It remains unchanged — `'fixed'` indicates a flat rate per shipment"
+				},
+				{
+					"key": "B",
+					"text": "It is divided by `total_qty` to calculate per-unit carriage cost"
+				},
+				{
+					"key": "C",
+					"text": "It is multiplied by the exchange rate (`lot_ex`) for currency conversion"
+				},
+				{
+					"key": "D",
+					"text": "It is divided by the number of unique SKUs in the GRN"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "GRN Lifecycle & Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q14",
+			"number": 14,
+			"question": "In `save_grn`, what party-related data is fetched from `TBL_PARTIES` and injected into `lot_details` before calling `update_on_grn_creation()`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`party_name` and `party_address` for shipping documentation"
+				},
+				{
+					"key": "B",
+					"text": "`party_ams` and `party_firm_id` for inventory context"
+				},
+				{
+					"key": "C",
+					"text": "`party_gstin` and `party_state` for tax calculation"
+				},
+				{
+					"key": "D",
+					"text": "`party_type` and `party_currency` for payment processing"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "GRN Lifecycle & Inventory Bridge",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q15",
+			"number": 15,
+			"question": "In `mark_lot_shipped`, how many entity levels receive cascading status updates?",
+			"options": [
+				{
+					"key": "A",
+					"text": "2 levels — LOT and PO"
+				},
+				{
+					"key": "B",
+					"text": "3 levels — LOT, Purchase Order Items Lot (POIL), and PO"
+				},
+				{
+					"key": "C",
+					"text": "4 levels — LOT, POIL, POI (Purchase Order Items), and PO"
+				},
+				{
+					"key": "D",
+					"text": "5 levels — LOT, POIL, POI, PO, and PARTY"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Status Transition Cascades",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q16",
+			"number": 16,
+			"question": "In `mark_lot_shipped`, what determines whether a PO item (`TBL_PURCHASE_ORDER_ITEMS`) gets status `'shipped'` vs `'partial_shipped'`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Whether the lot contains all items from that PO"
+				},
+				{
+					"key": "B",
+					"text": "Whether the SUM of `item_shipped_qty` (across POIL where `item_status='shipped'`) is ≥ `item_qty`"
+				},
+				{
+					"key": "C",
+					"text": "Whether the PO has only one active lot assigned"
+				},
+				{
+					"key": "D",
+					"text": "Whether all items in the lot belong to the same PO"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Status Transition Cascades",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q17",
+			"number": 17,
+			"question": "In `update_on_grn_creation()`, what determines whether a PO gets final status `'received'` vs `'partial_shipped_received'`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Whether total `item_received_qty` matches total `item_qty` across all PO items"
+				},
+				{
+					"key": "B",
+					"text": "Whether no items with `'shipped'` or `'partial_shipped'` status remain in the PO's items"
+				},
+				{
+					"key": "C",
+					"text": "Whether the lot status has been successfully updated to `'received'`"
+				},
+				{
+					"key": "D",
+					"text": "Whether the GRN `grn_total_qty` matches the lot's total shipped quantity"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Status Transition Cascades",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q18",
+			"number": 18,
+			"question": "In `grn_report`, how does the action identify inventory items that belong to a specific lot?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Joins `TBL_INVENTORY` with `TBL_PURCHASE_GRN` via `grn_id` foreign key"
+				},
+				{
+					"key": "B",
+					"text": "Uses `WHERE inv_id LIKE '{lotId}%'` to pattern-match inventory IDs that start with the lot ID"
+				},
+				{
+					"key": "C",
+					"text": "Queries `TBL_PURCHASE_GRN_ITEMS` for `item_id` values, then fetches from `TBL_INVENTORY` by `item_id`"
+				},
+				{
+					"key": "D",
+					"text": "Uses a `lot_id` foreign key column on `TBL_INVENTORY` that directly references the lot table"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "QC Reporting & Print System",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q19",
+			"number": 19,
+			"question": "What does the `filterLogs()` helper function remove from inventory log arrays?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Duplicate log entries with identical `inv_id` and `log_type` values"
+				},
+				{
+					"key": "B",
+					"text": "Sequential pairs where the current entry has `log_type='alteration'` and the next has `log_type='qc_failed'`"
+				},
+				{
+					"key": "C",
+					"text": "All log entries older than the lot's `lot_createdDate`"
+				},
+				{
+					"key": "D",
+					"text": "Log entries with empty or null `log_details` JSON fields"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "QC Reporting & Print System",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_06_q20",
+			"number": 20,
+			"question": "Which statement accurately describes the Purchase module's cross-module dependency relationship with Inventory?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Purchase reads from Inventory for stock validation, but Inventory never reads Purchase data"
+				},
+				{
+					"key": "B",
+					"text": "Purchase creates inventory via `$stockist->new_grn_inbound()`; Inventory reads Purchase GRN and LOT data — forming a circular dependency"
+				},
+				{
+					"key": "C",
+					"text": "Both modules are independent and communicate only through a shared task queue"
+				},
+				{
+					"key": "D",
+					"text": "Purchase depends on Inventory for cost price calculations before creating GRNs"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Schema & Cross-Module Dependencies",
+				"weightContribution": "5.00%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

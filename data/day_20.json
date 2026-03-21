@@ -1,730 +1,880 @@
 {
-  "testId": "day_20",
-  "title": "Day 20 Test",
-  "config": {
-    "optionsCount": 4,
-    "singleSelect": true
-  },
-  "questions": [
-    {
-      "id": "day_20_q1",
-      "number": 1,
-      "question": "Which two modules form a circular dependency through the $stockist singleton and GRN/LOT table reads?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Inventory ↔ Products"
-        },
-        {
-          "key": "B",
-          "text": "Purchase ↔ Inventory"
-        },
-        {
-          "key": "C",
-          "text": "QAQC ↔ Purchase"
-        },
-        {
-          "key": "D",
-          "text": "RMA ↔ Inventory"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q2",
-      "number": 2,
-      "question": "In the QAQC ↔ Inventory circular dependency, which TBL_INVENTORY columns can QAQC write directly (bypassing $stockist)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "inv_id, product_id, warehouse_id only"
-        },
-        {
-          "key": "B",
-          "text": "inv_status, ctn_id, box_id, liquidation, isImperfect"
-        },
-        {
-          "key": "C",
-          "text": "expectedLocation, currentLocation, inv_batch only"
-        },
-        {
-          "key": "D",
-          "text": "All columns (QAQC has full write authority)"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q3",
-      "number": 3,
-      "question": "The RMA ↔ Support circular dependency allows Support to update which RMA-owned field?",
-      "options": [
-        {
-          "key": "A",
-          "text": "TBL_RMA.rma_id (primary key)"
-        },
-        {
-          "key": "B",
-          "text": "TBL_RMA.status (only on type-3 tickets)"
-        },
-        {
-          "key": "C",
-          "text": "TBL_RMA.refund_amount (financial data)"
-        },
-        {
-          "key": "D",
-          "text": "Support cannot write to RMA-owned tables"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q4",
-      "number": 4,
-      "question": "If the Purchase module changes the schema of TBL_PURCHASE_GRN by adding a new required column, which other module(s) are directly affected due to circular dependencies?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only Inventory (reads GRN data for inbound display)"
-        },
-        {
-          "key": "B",
-          "text": "Only QAQC (writes qc_items_verified counter)"
-        },
-        {
-          "key": "C",
-          "text": "Both Inventory and QAQC (both read/write GRN tables)"
-        },
-        {
-          "key": "D",
-          "text": "No other modules (schema changes are isolated)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q5",
-      "number": 5,
-      "question": "Which tier classification applies to a module with 3 write operations that only INSERT/UPDATE its own tables and does not trigger any cascades?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Tier 1 (Pure Read)"
-        },
-        {
-          "key": "B",
-          "text": "Tier 2 (Controlled Write)"
-        },
-        {
-          "key": "C",
-          "text": "Tier 3 (Heavy Mutation)"
-        },
-        {
-          "key": "D",
-          "text": "Tier 4 (Critical Mutation)"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q6",
-      "number": 6,
-      "question": "The QAQC module is classified as Tier 3 despite having only 25 write operations (less than some Tier 2 modules). Why?",
-      "options": [
-        {
-          "key": "A",
-          "text": "QAQC owns more tables than Tier 2 modules"
-        },
-        {
-          "key": "B",
-          "text": "QAQC writes directly to TBL_INVENTORY triggering depth 0→3 cascade"
-        },
-        {
-          "key": "C",
-          "text": "QAQC has zero RBAC checks (auth gap)"
-        },
-        {
-          "key": "D",
-          "text": "QAQC was arbitrarily promoted for historical reasons"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q7",
-      "number": 7,
-      "question": "What is the primary difference between Tier 3 and Tier 4 modules?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Tier 4 modules have 76+ write operations vs Tier 3's 20-75 ops"
-        },
-        {
-          "key": "B",
-          "text": "Tier 4 modules own triggers that fire cascades; Tier 3 modules do not"
-        },
-        {
-          "key": "C",
-          "text": "Tier 4 modules have external API integrations; Tier 3 are internal-only"
-        },
-        {
-          "key": "D",
-          "text": "Tier 4 modules have higher RBAC coverage than Tier 3"
-        }
-      ],
-      "answer": "A"
-    },
-    {
-      "id": "day_20_q8",
-      "number": 8,
-      "question": "The \"Brand Authorization\" module generates PDF certificates with zero database writes. Which tier is it classified in?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Tier 1 (Pure Read)"
-        },
-        {
-          "key": "B",
-          "text": "Tier 2 (Controlled Write) with 0 write ops"
-        },
-        {
-          "key": "C",
-          "text": "Not classified (utility module)"
-        },
-        {
-          "key": "D",
-          "text": "Tier 2 due to filesystem writes"
-        }
-      ],
-      "answer": "A"
-    },
-    {
-      "id": "day_20_q9",
-      "number": 9,
-      "question": "Which of these modules is classified in Tier 4 (Critical Mutation)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Flipkart (55 write ops, 12 owned tables, 1 trigger)"
-        },
-        {
-          "key": "B",
-          "text": "Tools (52 write ops, 13 owned tables, 0 triggers)"
-        },
-        {
-          "key": "C",
-          "text": "Shopify (171 write ops, 18 owned tables, 1 trigger)"
-        },
-        {
-          "key": "D",
-          "text": "Purchase (28 write ops, 7 owned tables, 0 triggers)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q10",
-      "number": 10,
-      "question": "What percentage of total controller actions (864 total) have per-action RBAC checks?",
-      "options": [
-        {
-          "key": "A",
-          "text": "1.3% (11 checks)"
-        },
-        {
-          "key": "B",
-          "text": "28.6% (Admin module coverage)"
-        },
-        {
-          "key": "C",
-          "text": "16.0% (Users module coverage)"
-        },
-        {
-          "key": "D",
-          "text": "50% (half of Tier 4 modules)"
-        }
-      ],
-      "answer": "A"
-    },
-    {
-      "id": "day_20_q11",
-      "number": 11,
-      "question": "Which Tier 4 module has the highest auth gap severity with 0 RBAC checks across 94 write operations?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Inventory (1/102 RBAC)"
-        },
-        {
-          "key": "B",
-          "text": "Shopify (0/90 RBAC)"
-        },
-        {
-          "key": "C",
-          "text": "RMA (0/48 RBAC)"
-        },
-        {
-          "key": "D",
-          "text": "Both B and C have 0 RBAC, but RMA has 94 write ops not 48"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q12",
-      "number": 12,
-      "question": "What is the only form of authentication enforced by login-checker.php for all 27 modules?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Role-based access control (RBAC) per action"
-        },
-        {
-          "key": "B",
-          "text": "Session authentication (is user logged in)"
-        },
-        {
-          "key": "C",
-          "text": "OAuth2 bearer token verification"
-        },
-        {
-          "key": "D",
-          "text": "IP whitelist for internal requests"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q13",
-      "number": 13,
-      "question": "The Flipkart module has 139 controller actions with 0 RBAC checks. What does this mean for any logged-in user?",
-      "options": [
-        {
-          "key": "A",
-          "text": "They can execute any Flipkart action regardless of their role"
-        },
-        {
-          "key": "B",
-          "text": "They must have admin role to access Flipkart actions"
-        },
-        {
-          "key": "C",
-          "text": "They are blocked from Flipkart actions (0 RBAC = no access)"
-        },
-        {
-          "key": "D",
-          "text": "They can only read Flipkart data, not write"
-        }
-      ],
-      "answer": "A"
-    },
-    {
-      "id": "day_20_q14",
-      "number": 14,
-      "question": "Which Tier 2 module has the highest RBAC coverage at 28.6% (4 checks out of 14 actions)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Users"
-        },
-        {
-          "key": "B",
-          "text": "Admin"
-        },
-        {
-          "key": "C",
-          "text": "Support"
-        },
-        {
-          "key": "D",
-          "text": "Sales"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q15",
-      "number": 15,
-      "question": "What is the system-wide maximum trigger cascade depth across all modules?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Depth 1 (single-level triggers only)"
-        },
-        {
-          "key": "B",
-          "text": "Depth 2 (two-level cascades)"
-        },
-        {
-          "key": "C",
-          "text": "Depth 3 (three-level cascades in Inventory)"
-        },
-        {
-          "key": "D",
-          "text": "Depth 5 (five-level cascades in RMA)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q16",
-      "number": 16,
-      "question": "Which trigger causes the deepest cascade chain in the system (depth 0→3)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "trg_before_fk_status_update (Flipkart orders)"
-        },
-        {
-          "key": "B",
-          "text": "trg_after_status_update (Shopify orders)"
-        },
-        {
-          "key": "C",
-          "text": "trg_close_batch_propagate_status (Inventory batch close)"
-        },
-        {
-          "key": "D",
-          "text": "trg_after_inventory_status_update (Inventory status)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q17",
-      "number": 17,
-      "question": "The RMA module has 0 triggers on its own tables but is described as an \"indirect trigger activator\". Which triggers does RMA activate by writing to other modules' tables?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Only trg_after_status_update (Shopify)"
-        },
-        {
-          "key": "B",
-          "text": "Only trg_before_fk_status_update (Flipkart)"
-        },
-        {
-          "key": "C",
-          "text": "Only trg_after_inventory_status_update (Inventory)"
-        },
-        {
-          "key": "D",
-          "text": "All three triggers (writes to FK, SP, and Inventory tables)"
-        }
-      ],
-      "answer": "D"
-    },
-    {
-      "id": "day_20_q18",
-      "number": 18,
-      "question": "Which Tier 3 module is missing a trigger on order cancellations, requiring manual PHP fallback for stock release?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Flipkart"
-        },
-        {
-          "key": "B",
-          "text": "Amazon"
-        },
-        {
-          "key": "C",
-          "text": "Tools"
-        },
-        {
-          "key": "D",
-          "text": "QAQC"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q19",
-      "number": 19,
-      "question": "What is the terminal side effect when trg_after_status_update fires on bas_sp_orders.status UPDATE?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Updates TBL_SP_ORDER_ITEMS.fulfillment_status (depth 1)"
-        },
-        {
-          "key": "B",
-          "text": "DELETEs TBL_PRODUCTS_STOCK_RESERVATION rows (depth 0, terminal)"
-        },
-        {
-          "key": "C",
-          "text": "INSERTs into TBL_SP_PAYMENTS (depth 1)"
-        },
-        {
-          "key": "D",
-          "text": "Fires trg_after_fulfillment_update (depth 2)"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q20",
-      "number": 20,
-      "question": "The Amazon module owns 11 TBL_AZ_* tables. Which cross-module table field is Amazon explicitly allowed to write?",
-      "options": [
-        {
-          "key": "A",
-          "text": "TBL_PRODUCTS_MASTER.product_title"
-        },
-        {
-          "key": "B",
-          "text": "TBL_PRODUCTS_MASTER.amazon_reserved"
-        },
-        {
-          "key": "C",
-          "text": "TBL_INVENTORY.inv_status"
-        },
-        {
-          "key": "D",
-          "text": "Amazon cannot write to any cross-module tables"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q21",
-      "number": 21,
-      "question": "Which Tier 2 module violates ownership boundaries by DELETing from TBL_SALE_PAYMENTS (Sales-owned table)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "AMS"
-        },
-        {
-          "key": "B",
-          "text": "Admin"
-        },
-        {
-          "key": "C",
-          "text": "Parties"
-        },
-        {
-          "key": "D",
-          "text": "Support"
-        }
-      ],
-      "answer": "A"
-    },
-    {
-      "id": "day_20_q22",
-      "number": 22,
-      "question": "The table TBL_INVENTORY_QC_ISSUES is co-owned by which two modules?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Inventory + Purchase"
-        },
-        {
-          "key": "B",
-          "text": "Inventory + QAQC"
-        },
-        {
-          "key": "C",
-          "text": "QAQC + Purchase"
-        },
-        {
-          "key": "D",
-          "text": "Inventory + RMA"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q23",
-      "number": 23,
-      "question": "How many modules depend on the $stockist singleton for TBL_INVENTORY write operations?",
-      "options": [
-        {
-          "key": "A",
-          "text": "3 modules (Inventory + Purchase + QAQC)"
-        },
-        {
-          "key": "B",
-          "text": "6 modules (all marketplace modules)"
-        },
-        {
-          "key": "C",
-          "text": "9 modules (Amazon, Flipkart, Shopify, Inventory, RMA, Sales, POS, Paytm, Purchase)"
-        },
-        {
-          "key": "D",
-          "text": "27 modules (all modules use $stockist)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q24",
-      "number": 24,
-      "question": "What happens to ALL active user sessions if the $userAccess singleton's login_string formula (SHA512 hash salt) is changed?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Nothing—sessions remain valid until expiration"
-        },
-        {
-          "key": "B",
-          "text": "ALL sessions are invalidated immediately (hash mismatch)"
-        },
-        {
-          "key": "C",
-          "text": "Only new sessions are affected; existing sessions continue"
-        },
-        {
-          "key": "D",
-          "text": "Only admin sessions are invalidated for security"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q25",
-      "number": 25,
-      "question": "Which singleton service is instantiated by login-checker.php and mediates Email, SMS, WhatsApp, and Slack dispatch?",
-      "options": [
-        {
-          "key": "A",
-          "text": "$log"
-        },
-        {
-          "key": "B",
-          "text": "$sms"
-        },
-        {
-          "key": "C",
-          "text": "$notification"
-        },
-        {
-          "key": "D",
-          "text": "$userAccess"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q26",
-      "number": 26,
-      "question": "The $task singleton writes to which TBL_INVENTORY columns upon task completion (not during task creation)?",
-      "options": [
-        {
-          "key": "A",
-          "text": "inv_status only"
-        },
-        {
-          "key": "B",
-          "text": "inv_id, inv_batch only"
-        },
-        {
-          "key": "C",
-          "text": "expectedLocation, currentLocation, inv_batch"
-        },
-        {
-          "key": "D",
-          "text": "$task never writes to TBL_INVENTORY"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q27",
-      "number": 27,
-      "question": "Trace Shopify order webhook processing: which modules are touched in sequence from webhook receipt to inventory reservation?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Shopify → Products → Inventory"
-        },
-        {
-          "key": "B",
-          "text": "API → Shopify → Inventory ($stockist)"
-        },
-        {
-          "key": "C",
-          "text": "Shopify → $stockist → Inventory"
-        },
-        {
-          "key": "D",
-          "text": "API → Inventory ($stockist) → Shopify"
-        }
-      ],
-      "answer": "B"
-    },
-    {
-      "id": "day_20_q28",
-      "number": 28,
-      "question": "In the Purchase GRN → QC → Marketplace flow, which circular dependency is activated when QAQC updates GRN counters?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Purchase ↔ Inventory only"
-        },
-        {
-          "key": "B",
-          "text": "QAQC ↔ Inventory only"
-        },
-        {
-          "key": "C",
-          "text": "Both Purchase ↔ Inventory and QAQC ↔ Inventory"
-        },
-        {
-          "key": "D",
-          "text": "RMA ↔ Support (unrelated)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q29",
-      "number": 29,
-      "question": "When QAQC approves inventory (inv_status = 'qc_verified'), which trigger fires to cascade fulfillment status updates?",
-      "options": [
-        {
-          "key": "A",
-          "text": "trg_before_fk_status_update"
-        },
-        {
-          "key": "B",
-          "text": "trg_after_status_update"
-        },
-        {
-          "key": "C",
-          "text": "trg_after_inventory_status_update"
-        },
-        {
-          "key": "D",
-          "text": "No trigger fires (qc_verified is non-cascading status)"
-        }
-      ],
-      "answer": "C"
-    },
-    {
-      "id": "day_20_q30",
-      "number": 30,
-      "question": "In the RMA ticket escalation flow, which module writes to TBL_RMA.status despite RMA owning that table?",
-      "options": [
-        {
-          "key": "A",
-          "text": "Inventory"
-        },
-        {
-          "key": "B",
-          "text": "Support (only on type-3 tickets)"
-        },
-        {
-          "key": "C",
-          "text": "Shopify (if RMA source is Shopify)"
-        },
-        {
-          "key": "D",
-          "text": "API (webhook from logistics partner)"
-        }
-      ],
-      "answer": "B"
-    }
-  ]
+	"testId": "day_20",
+	"title": "DAY 20 \u2014 ONBOARDING EXECUTION DOCUMENT",
+	"questions": [
+		{
+			"id": "day_20_q1",
+			"number": 1,
+			"question": "Which two modules form a circular dependency through the $stockist singleton and GRN/LOT table reads?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inventory \u2194 Products"
+				},
+				{
+					"key": "B",
+					"text": "Purchase \u2194 Inventory"
+				},
+				{
+					"key": "C",
+					"text": "QAQC \u2194 Purchase"
+				},
+				{
+					"key": "D",
+					"text": "RMA \u2194 Inventory"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Circular Dependency Mechanics",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q2",
+			"number": 2,
+			"question": "In the QAQC \u2194 Inventory circular dependency, which TBL_INVENTORY columns can QAQC write directly (bypassing $stockist)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "inv_id, product_id, warehouse_id only"
+				},
+				{
+					"key": "B",
+					"text": "inv_status, ctn_id, box_id, liquidation, isImperfect"
+				},
+				{
+					"key": "C",
+					"text": "expectedLocation, currentLocation, inv_batch only"
+				},
+				{
+					"key": "D",
+					"text": "All columns (QAQC has full write authority)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Circular Dependency Mechanics",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q3",
+			"number": 3,
+			"question": "The RMA \u2194 Support circular dependency allows Support to update which RMA-owned field?",
+			"options": [
+				{
+					"key": "A",
+					"text": "TBL_RMA.rma_id (primary key)"
+				},
+				{
+					"key": "B",
+					"text": "TBL_RMA.status (only on type-3 tickets)"
+				},
+				{
+					"key": "C",
+					"text": "TBL_RMA.refund_amount (financial data)"
+				},
+				{
+					"key": "D",
+					"text": "Support cannot write to RMA-owned tables"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Circular Dependency Mechanics",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q4",
+			"number": 4,
+			"question": "If the Purchase module changes the schema of TBL_PURCHASE_GRN by adding a new required column, which other module(s) are directly affected due to circular dependencies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only Inventory (reads GRN data for inbound display)"
+				},
+				{
+					"key": "B",
+					"text": "Only QAQC (writes qc_items_verified counter)"
+				},
+				{
+					"key": "C",
+					"text": "Both Inventory and QAQC (both read/write GRN tables)"
+				},
+				{
+					"key": "D",
+					"text": "No other modules (schema changes are isolated)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Circular Dependency Mechanics",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q5",
+			"number": 5,
+			"question": "Which tier classification applies to a module with 3 write operations that only INSERT/UPDATE its own tables and does not trigger any cascades?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Tier 1 (Pure Read)"
+				},
+				{
+					"key": "B",
+					"text": "Tier 2 (Controlled Write)"
+				},
+				{
+					"key": "C",
+					"text": "Tier 3 (Heavy Mutation)"
+				},
+				{
+					"key": "D",
+					"text": "Tier 4 (Critical Mutation)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Write Classification (WC-1) Four-Tier System",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q6",
+			"number": 6,
+			"question": "The QAQC module is classified as Tier 3 despite having only 25 write operations (less than some Tier 2 modules). Why?",
+			"options": [
+				{
+					"key": "A",
+					"text": "QAQC owns more tables than Tier 2 modules"
+				},
+				{
+					"key": "B",
+					"text": "QAQC writes directly to TBL_INVENTORY triggering depth 0\u21923 cascade"
+				},
+				{
+					"key": "C",
+					"text": "QAQC has zero RBAC checks (auth gap)"
+				},
+				{
+					"key": "D",
+					"text": "QAQC was arbitrarily promoted for historical reasons"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Write Classification (WC-1) Four-Tier System",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q7",
+			"number": 7,
+			"question": "What is the primary difference between Tier 3 and Tier 4 modules?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Tier 4 modules have 76+ write operations vs Tier 3's 20-75 ops"
+				},
+				{
+					"key": "B",
+					"text": "Tier 4 modules own triggers that fire cascades; Tier 3 modules do not"
+				},
+				{
+					"key": "C",
+					"text": "Tier 4 modules have external API integrations; Tier 3 are internal-only"
+				},
+				{
+					"key": "D",
+					"text": "Tier 4 modules have higher RBAC coverage than Tier 3"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Write Classification (WC-1) Four-Tier System",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q8",
+			"number": 8,
+			"question": "The \"Brand Authorization\" module generates PDF certificates with zero database writes. Which tier is it classified in?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Tier 1 (Pure Read)"
+				},
+				{
+					"key": "B",
+					"text": "Tier 2 (Controlled Write) with 0 write ops"
+				},
+				{
+					"key": "C",
+					"text": "Not classified (utility module)"
+				},
+				{
+					"key": "D",
+					"text": "Tier 2 due to filesystem writes"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Write Classification (WC-1) Four-Tier System",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q9",
+			"number": 9,
+			"question": "Which of these modules is classified in Tier 4 (Critical Mutation)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Flipkart (55 write ops, 12 owned tables, 1 trigger)"
+				},
+				{
+					"key": "B",
+					"text": "Tools (52 write ops, 13 owned tables, 0 triggers)"
+				},
+				{
+					"key": "C",
+					"text": "Shopify (171 write ops, 18 owned tables, 1 trigger)"
+				},
+				{
+					"key": "D",
+					"text": "Purchase (28 write ops, 7 owned tables, 0 triggers)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Write Classification (WC-1) Four-Tier System",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q10",
+			"number": 10,
+			"question": "What percentage of total controller actions (864 total) have per-action RBAC checks?",
+			"options": [
+				{
+					"key": "A",
+					"text": "1.3% (11 checks)"
+				},
+				{
+					"key": "B",
+					"text": "28.6% (Admin module coverage)"
+				},
+				{
+					"key": "C",
+					"text": "16.0% (Users module coverage)"
+				},
+				{
+					"key": "D",
+					"text": "50% (half of Tier 4 modules)"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Auth Gap Matrix (WC-2) Analysis",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q11",
+			"number": 11,
+			"question": "Which Tier 4 module has the highest auth gap severity with 0 RBAC checks across 94 write operations?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inventory (1/102 RBAC)"
+				},
+				{
+					"key": "B",
+					"text": "Shopify (0/90 RBAC)"
+				},
+				{
+					"key": "C",
+					"text": "RMA (0/48 RBAC)"
+				},
+				{
+					"key": "D",
+					"text": "Both B and C have 0 RBAC, but RMA has 94 write ops not 48"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Auth Gap Matrix (WC-2) Analysis",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q12",
+			"number": 12,
+			"question": "What is the only form of authentication enforced by login-checker.php for all 27 modules?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Role-based access control (RBAC) per action"
+				},
+				{
+					"key": "B",
+					"text": "Session authentication (is user logged in)"
+				},
+				{
+					"key": "C",
+					"text": "OAuth2 bearer token verification"
+				},
+				{
+					"key": "D",
+					"text": "IP whitelist for internal requests"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Auth Gap Matrix (WC-2) Analysis",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q13",
+			"number": 13,
+			"question": "The Flipkart module has 139 controller actions with 0 RBAC checks. What does this mean for any logged-in user?",
+			"options": [
+				{
+					"key": "A",
+					"text": "They can execute any Flipkart action regardless of their role"
+				},
+				{
+					"key": "B",
+					"text": "They must have admin role to access Flipkart actions"
+				},
+				{
+					"key": "C",
+					"text": "They are blocked from Flipkart actions (0 RBAC = no access)"
+				},
+				{
+					"key": "D",
+					"text": "They can only read Flipkart data, not write"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Auth Gap Matrix (WC-2) Analysis",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q14",
+			"number": 14,
+			"question": "Which Tier 2 module has the highest RBAC coverage at 28.6% (4 checks out of 14 actions)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Users"
+				},
+				{
+					"key": "B",
+					"text": "Admin"
+				},
+				{
+					"key": "C",
+					"text": "Support"
+				},
+				{
+					"key": "D",
+					"text": "Sales"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Auth Gap Matrix (WC-2) Analysis",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q15",
+			"number": 15,
+			"question": "What is the system-wide maximum trigger cascade depth across all modules?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Depth 1 (single-level triggers only)"
+				},
+				{
+					"key": "B",
+					"text": "Depth 2 (two-level cascades)"
+				},
+				{
+					"key": "C",
+					"text": "Depth 3 (three-level cascades in Inventory)"
+				},
+				{
+					"key": "D",
+					"text": "Depth 5 (five-level cascades in RMA)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Trigger Cascade Chains (WC-3)",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q16",
+			"number": 16,
+			"question": "Which trigger causes the deepest cascade chain in the system (depth 0\u21923)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "trg_before_fk_status_update (Flipkart orders)"
+				},
+				{
+					"key": "B",
+					"text": "trg_after_status_update (Shopify orders)"
+				},
+				{
+					"key": "C",
+					"text": "trg_close_batch_propagate_status (Inventory batch close)"
+				},
+				{
+					"key": "D",
+					"text": "trg_after_inventory_status_update (Inventory status)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Trigger Cascade Chains (WC-3)",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q17",
+			"number": 17,
+			"question": "The RMA module has 0 triggers on its own tables but is described as an \"indirect trigger activator\". Which triggers does RMA activate by writing to other modules' tables?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only trg_after_status_update (Shopify)"
+				},
+				{
+					"key": "B",
+					"text": "Only trg_before_fk_status_update (Flipkart)"
+				},
+				{
+					"key": "C",
+					"text": "Only trg_after_inventory_status_update (Inventory)"
+				},
+				{
+					"key": "D",
+					"text": "All three triggers (writes to FK, SP, and Inventory tables)"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Trigger Cascade Chains (WC-3)",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q18",
+			"number": 18,
+			"question": "Which Tier 3 module is missing a trigger on order cancellations, requiring manual PHP fallback for stock release?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Flipkart"
+				},
+				{
+					"key": "B",
+					"text": "Amazon"
+				},
+				{
+					"key": "C",
+					"text": "Tools"
+				},
+				{
+					"key": "D",
+					"text": "QAQC"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Trigger Cascade Chains (WC-3)",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q19",
+			"number": 19,
+			"question": "What is the terminal side effect when trg_after_status_update fires on bas_sp_orders.status UPDATE?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Updates TBL_SP_ORDER_ITEMS.fulfillment_status (depth 1)"
+				},
+				{
+					"key": "B",
+					"text": "DELETEs TBL_PRODUCTS_STOCK_RESERVATION rows (depth 0, terminal)"
+				},
+				{
+					"key": "C",
+					"text": "INSERTs into TBL_SP_PAYMENTS (depth 1)"
+				},
+				{
+					"key": "D",
+					"text": "Fires trg_after_fulfillment_update (depth 2)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Trigger Cascade Chains (WC-3)",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q20",
+			"number": 20,
+			"question": "The Amazon module owns 11 TBL_AZ_* tables. Which cross-module table field is Amazon explicitly allowed to write?",
+			"options": [
+				{
+					"key": "A",
+					"text": "TBL_PRODUCTS_MASTER.product_title"
+				},
+				{
+					"key": "B",
+					"text": "TBL_PRODUCTS_MASTER.amazon_reserved"
+				},
+				{
+					"key": "C",
+					"text": "TBL_INVENTORY.inv_status"
+				},
+				{
+					"key": "D",
+					"text": "Amazon cannot write to any cross-module tables"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Controller Ownership Boundaries",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q21",
+			"number": 21,
+			"question": "Which Tier 2 module violates ownership boundaries by DELETing from TBL_SALE_PAYMENTS (Sales-owned table)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "AMS"
+				},
+				{
+					"key": "B",
+					"text": "Admin"
+				},
+				{
+					"key": "C",
+					"text": "Parties"
+				},
+				{
+					"key": "D",
+					"text": "Support"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Controller Ownership Boundaries",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q22",
+			"number": 22,
+			"question": "The table TBL_INVENTORY_QC_ISSUES is co-owned by which two modules?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inventory + Purchase"
+				},
+				{
+					"key": "B",
+					"text": "Inventory + QAQC"
+				},
+				{
+					"key": "C",
+					"text": "QAQC + Purchase"
+				},
+				{
+					"key": "D",
+					"text": "Inventory + RMA"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Controller Ownership Boundaries",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q23",
+			"number": 23,
+			"question": "How many modules depend on the $stockist singleton for TBL_INVENTORY write operations?",
+			"options": [
+				{
+					"key": "A",
+					"text": "3 modules (Inventory + Purchase + QAQC)"
+				},
+				{
+					"key": "B",
+					"text": "6 modules (all marketplace modules)"
+				},
+				{
+					"key": "C",
+					"text": "9 modules (Amazon, Flipkart, Shopify, Inventory, RMA, Sales, POS, Paytm, Purchase)"
+				},
+				{
+					"key": "D",
+					"text": "27 modules (all modules use $stockist)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Singleton Service Mediation",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q24",
+			"number": 24,
+			"question": "What happens to ALL active user sessions if the $userAccess singleton's login_string formula (SHA512 hash salt) is changed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Nothing \u2014 sessions remain valid until expiration"
+				},
+				{
+					"key": "B",
+					"text": "ALL sessions are invalidated immediately (hash mismatch)"
+				},
+				{
+					"key": "C",
+					"text": "Only new sessions are affected; existing sessions continue"
+				},
+				{
+					"key": "D",
+					"text": "Only admin sessions are invalidated for security"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Singleton Service Mediation",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q25",
+			"number": 25,
+			"question": "Which singleton service is instantiated by login-checker.php and mediates Email, SMS, WhatsApp, and Slack dispatch?",
+			"options": [
+				{
+					"key": "A",
+					"text": "$log"
+				},
+				{
+					"key": "B",
+					"text": "$sms"
+				},
+				{
+					"key": "C",
+					"text": "$notification"
+				},
+				{
+					"key": "D",
+					"text": "$userAccess"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Singleton Service Mediation",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q26",
+			"number": 26,
+			"question": "The $task singleton writes to which TBL_INVENTORY columns upon task completion (not during task creation)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "inv_status only"
+				},
+				{
+					"key": "B",
+					"text": "inv_id, inv_batch only"
+				},
+				{
+					"key": "C",
+					"text": "expectedLocation, currentLocation, inv_batch"
+				},
+				{
+					"key": "D",
+					"text": "$task never writes to TBL_INVENTORY"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R6",
+				"criteria": "Singleton Service Mediation",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q27",
+			"number": 27,
+			"question": "Trace Shopify order webhook processing: which modules are touched in sequence from webhook receipt to inventory reservation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shopify \u2192 Products \u2192 Inventory"
+				},
+				{
+					"key": "B",
+					"text": "API \u2192 Shopify \u2192 Inventory ($stockist)"
+				},
+				{
+					"key": "C",
+					"text": "Shopify \u2192 $stockist \u2192 Inventory"
+				},
+				{
+					"key": "D",
+					"text": "API \u2192 Inventory ($stockist) \u2192 Shopify"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "End-to-End Flow Tracing",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q28",
+			"number": 28,
+			"question": "In the Purchase GRN \u2192 QC \u2192 Marketplace flow, which circular dependency is activated when QAQC updates GRN counters?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Purchase \u2194 Inventory only"
+				},
+				{
+					"key": "B",
+					"text": "QAQC \u2194 Inventory only"
+				},
+				{
+					"key": "C",
+					"text": "Both Purchase \u2194 Inventory and QAQC \u2194 Inventory"
+				},
+				{
+					"key": "D",
+					"text": "RMA \u2194 Support (unrelated)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "End-to-End Flow Tracing",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q29",
+			"number": 29,
+			"question": "When QAQC approves inventory (inv_status = 'qc_verified'), which trigger fires to cascade fulfillment status updates?",
+			"options": [
+				{
+					"key": "A",
+					"text": "trg_before_fk_status_update"
+				},
+				{
+					"key": "B",
+					"text": "trg_after_status_update"
+				},
+				{
+					"key": "C",
+					"text": "trg_after_inventory_status_update"
+				},
+				{
+					"key": "D",
+					"text": "No trigger fires (qc_verified is non-cascading status)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "End-to-End Flow Tracing",
+				"weightContribution": "3.33%"
+			}
+		},
+		{
+			"id": "day_20_q30",
+			"number": 30,
+			"question": "In the RMA ticket escalation flow, which module writes to TBL_RMA.status despite RMA owning that table?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inventory"
+				},
+				{
+					"key": "B",
+					"text": "Support (only on type-3 tickets)"
+				},
+				{
+					"key": "C",
+					"text": "Shopify (if RMA source is Shopify)"
+				},
+				{
+					"key": "D",
+					"text": "API (webhook from logistics partner)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R7",
+				"criteria": "End-to-End Flow Tracing",
+				"weightContribution": "3.33%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
 }

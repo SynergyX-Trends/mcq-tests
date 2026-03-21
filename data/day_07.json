@@ -24,8 +24,12 @@
 					"text": "The request proceeds without any authentication"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Architecture Understanding",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q2",
@@ -49,8 +53,12 @@
 					"text": "`VARCHAR(24)` — variable length matching status field"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "DB Operations",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q3",
@@ -74,8 +82,12 @@
 					"text": "The state records remain unchanged for future reference"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q4",
@@ -99,8 +111,12 @@
 					"text": "`components_requested` — Watches always require component checks"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q5",
@@ -124,8 +140,12 @@
 					"text": "`{grn_id}` + `{item_id}` + 4-digit sequence"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q6",
@@ -149,8 +169,12 @@
 					"text": "Deletes the inventory row from `bas_inventory`"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "DB Operations",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q7",
@@ -174,8 +198,12 @@
 					"text": "UID → Location"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Knowledge Accuracy",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q8",
@@ -199,8 +227,12 @@
 					"text": "`0` = perfect, `1` = repairable, `2` = unrepairable"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Knowledge Accuracy",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q9",
@@ -224,8 +256,12 @@
 					"text": "`PRAREA%`"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Knowledge Accuracy",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q10",
@@ -249,8 +285,12 @@
 					"text": "Creates a new task for inventory reconciliation"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Integration Mapping",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q11",
@@ -274,8 +314,12 @@
 					"text": "A notification is sent to the warehouse manager"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Integration Mapping",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q12",
@@ -299,8 +343,12 @@
 					"text": "Confirms that `inv_id` matches the current user's assigned batch"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q13",
@@ -324,8 +372,12 @@
 					"text": "The alteration is redirected to the admin module for approval"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q14",
@@ -349,8 +401,12 @@
 					"text": "Item must have `inv_failed_count > 0` and be assigned to the vendor batch"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Knowledge Accuracy",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q15",
@@ -374,8 +430,12 @@
 					"text": "It triggers the `before_update_inventory` trigger to null tracking fields"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q16",
@@ -399,8 +459,12 @@
 					"text": "The item's status is automatically changed to `qc_pending` for re-verification"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Code Tracing Ability",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q17",
@@ -424,8 +488,12 @@
 					"text": "`item_id` — prevents SKU changes on existing inventory"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "DB Operations",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q18",
@@ -449,8 +517,12 @@
 					"text": "They are distributed evenly across all shelf heights"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Architecture Understanding",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q19",
@@ -474,8 +546,12 @@
 					"text": "Items in the inbound godown awaiting tagging"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Knowledge Accuracy",
+				"weightContribution": "5.00%"
+			}
 		},
 		{
 			"id": "day_07_q20",
@@ -499,8 +575,12 @@
 					"text": "User session state, product state, order state, shipment state"
 				}
 			],
-			"answer": null,
-			"meta": {}
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "DB Operations",
+				"weightContribution": "5.00%"
+			}
 		}
 	],
 	"config": {
