@@ -1,0 +1,16 @@
+{
+  "failures": {
+    "always run tests before committing": {
+      "count": 17,
+      "rule": "Always run tests before committing",
+      "mistake": "Committed without running tests",
+      "promoted": true
+    },
+    "always confirm path before destructive commands": {
+      "count": 17,
+      "rule": "Always confirm path before destructive commands",
+      "mistake": "Deleted wrong file with rm -rf",
+      "promoted": true
+    }
+  }
+}

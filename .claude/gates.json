@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "description": "Project-specific pre-action gates. Add, remove, or disable rules as needed.",
+  "gates": [
+    {
+      "name": "no-force-push",
+      "tool": "Bash",
+      "pattern": "push.*--force|push.*-f",
+      "level": "block",
+      "message": "Force push blocked. Use regular push or ask first.",
+      "enabled": true
+    },
+    {
+      "name": "no-rm-rf-root",
+      "tool": "Bash",
+      "pattern": "rm\\s+-rf\\s+/[^r]|rm\\s+-rf\\s+~",
+      "level": "block",
+      "message": "Destructive rm -rf on root/home blocked.",
+      "enabled": true
+    },
+    {
+      "name": "no-credentials-in-files",
+      "tool": "Write|Edit",
+      "pattern": "sk-ant-|sk-proj-|OPENAI_API_KEY|AWS_SECRET",
+      "level": "block",
+      "message": "Credential/API key detected. Use environment variables instead.",
+      "enabled": true
+    },
+    {
+      "name": "no-delete-project-memory",
+      "tool": "Bash",
+      "pattern": "rm.*\\.claude/",
+      "level": "block",
+      "message": "Protected: Do not delete anything inside .claude/ (primer, gates, lessons, memory).",
+      "enabled": true
+    },
+    {
+      "name": "auto-always-run-tests-before-commit",
+      "tool": "*",
+      "pattern": "",
+      "level": "warn",
+      "message": "Repeated mistake (3x): Always run tests before committing",
+      "enabled": true,
+      "auto": true
+    },
+    {
+      "name": "auto-always-confirm-path-before-des",
+      "tool": "*",
+      "pattern": "",
+      "level": "warn",
+      "message": "Repeated mistake (3x): Always confirm path before destructive commands",
+      "enabled": true,
+      "auto": true
+    }
+  ]
+}

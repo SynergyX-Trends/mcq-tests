@@ -1,0 +1,445 @@
+{
+	"testId": "day_17",
+	"title": "DAY 17 — CRM-M15 — PROTOTYPE FEEDBACK PROGRAM",
+	"questions": [
+		{
+			"id": "day_17_q1",
+			"number": 1,
+			"question": "What are the 4 conditions that must ALL be met for a prototype customer to qualify for a free upgrade?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Feedback within 30 days, official form, any phone number, visible in Shopify"
+				},
+				{
+					"key": "B",
+					"text": "Feedback within 45 days of delivery, official Sylvi Prototype Feedback Form, same phone number as purchase, feedback visible in FIMS"
+				},
+				{
+					"key": "C",
+					"text": "Feedback within 45 days of purchase, any feedback channel, same email as purchase, visible in FIMS"
+				},
+				{
+					"key": "D",
+					"text": "Feedback within 60 days of delivery, official form, same phone number, approved by Manager"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Feedback Eligibility & FIMS Verification",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q2",
+			"number": 2,
+			"question": "What is the FIMS path to verify whether a customer's prototype feedback form has been submitted?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS → OMS → Shopify → Order Search → Feedback tab"
+				},
+				{
+					"key": "B",
+					"text": "FIMS → Tools → Prototype Reviews"
+				},
+				{
+					"key": "C",
+					"text": "FIMS → OMS → RMA → Prototype Feedback"
+				},
+				{
+					"key": "D",
+					"text": "FIMS → Reports → Customer Feedback"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Feedback Eligibility & FIMS Verification",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q3",
+			"number": 3,
+			"question": "A customer calls claiming they submitted their prototype feedback form 40 days after delivery. The executive checks FIMS → Tools → Prototype Reviews and the form is NOT visible. Can the upgrade be processed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — the customer's claim is within the 45-day window, so process the upgrade"
+				},
+				{
+					"key": "B",
+					"text": "No — the upgrade cannot be processed regardless of what the customer claims; feedback must be visible in FIMS before any upgrade action"
+				},
+				{
+					"key": "C",
+					"text": "Yes — but escalate to Asst Manager for final confirmation before processing"
+				},
+				{
+					"key": "D",
+					"text": "No — but the executive should submit the feedback on the customer's behalf in FIMS"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Feedback Eligibility & FIMS Verification",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q4",
+			"number": 4,
+			"question": "A prototype customer submitted feedback using a different phone number than used during purchase. What should the executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process the upgrade — phone number matching is optional"
+				},
+				{
+					"key": "B",
+					"text": "Reject the upgrade immediately — different phone number disqualifies the customer"
+				},
+				{
+					"key": "C",
+					"text": "Verify eligibility with Manager before proceeding — this is a verification exception"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to resubmit using the correct phone number within the original 45-day window"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Feedback Eligibility & FIMS Verification",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q5",
+			"number": 5,
+			"question": "What is the correct FIMS path to process a prototype upgrade?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS → OMS → RMA → Create → Prototype Upgrade"
+				},
+				{
+					"key": "B",
+					"text": "FIMS → Tools → Prototype Reviews → Actions → Select Models → SKUs → Submit"
+				},
+				{
+					"key": "C",
+					"text": "FIMS → OMS → Shopify → Order → Upgrade Request → Submit"
+				},
+				{
+					"key": "D",
+					"text": "FIMS → Tools → Upgrades → Select Customer → Submit"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Upgrade Process — FIMS Path & Logistics",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q6",
+			"number": 6,
+			"question": "When selecting the SKU for a prototype upgrade in FIMS, what rule must the executive follow?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Select the SKU that the customer originally purchased — same variant"
+				},
+				{
+					"key": "B",
+					"text": "Select the most expensive SKU available as a goodwill gesture"
+				},
+				{
+					"key": "C",
+					"text": "Select the SKU based on current stock availability only — do not promise a specific SKU before verifying"
+				},
+				{
+					"key": "D",
+					"text": "Let the customer choose any SKU from any product line"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Upgrade Process — FIMS Path & Logistics",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q7",
+			"number": 7,
+			"question": "After confirming the upgrade, how many days does the customer have to ship back the prototype product?",
+			"options": [
+				{
+					"key": "A",
+					"text": "7 days"
+				},
+				{
+					"key": "B",
+					"text": "10 days"
+				},
+				{
+					"key": "C",
+					"text": "15 days"
+				},
+				{
+					"key": "D",
+					"text": "30 days"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Upgrade Process — FIMS Path & Logistics",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q8",
+			"number": 8,
+			"question": "Once the prototype product is received at the warehouse, within what timeline is the upgraded product dispatched?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Within 5–7 business days"
+				},
+				{
+					"key": "B",
+					"text": "Within 24–48 business hours"
+				},
+				{
+					"key": "C",
+					"text": "Within 15–20 business days"
+				},
+				{
+					"key": "D",
+					"text": "Within 10 business days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Upgrade Process — FIMS Path & Logistics",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_17_q9",
+			"number": 9,
+			"question": "A prototype customer contacts CRM requesting a return and full refund. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process the return — prototype watches follow the same 10-day return policy as standard products"
+				},
+				{
+					"key": "B",
+					"text": "Inform the customer that return and refund are not available for prototype watches; redirect to the Prototype Feedback Programme for a free upgrade if feedback was submitted within 45 days"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager — return/refund decisions for prototypes require manager approval"
+				},
+				{
+					"key": "D",
+					"text": "Process the refund but not the return — refunds are available for prototypes"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prototype Policy — Return/Refund/Replacement/Repair",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_17_q10",
+			"number": 10,
+			"question": "A prototype customer reports a manufacturing defect 6 days after delivery. What is the applicable policy?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Repair under warranty — standard warranty applies to all products"
+				},
+				{
+					"key": "B",
+					"text": "Replacement within 10 days — same model only, subject to stock availability"
+				},
+				{
+					"key": "C",
+					"text": "Free upgrade under the Prototype Feedback Programme — defects qualify automatically"
+				},
+				{
+					"key": "D",
+					"text": "Return and refund — defective products can always be returned"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prototype Policy — Return/Refund/Replacement/Repair",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_17_q11",
+			"number": 11,
+			"question": "A prototype customer reports a movement issue 3 months after delivery. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process as a standard warranty repair — movement is a covered component"
+				},
+				{
+					"key": "B",
+					"text": "Inform the customer that repair services for prototype watches are available only after the final version of the model is officially released; suggest the Prototype Feedback Programme"
+				},
+				{
+					"key": "C",
+					"text": "Replace the watch under the 10-day replacement policy"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager for immediate repair authorisation"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prototype Policy — Return/Refund/Replacement/Repair",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_17_q12",
+			"number": 12,
+			"question": "A customer asks if a UPI payment discount applies to a prototype watch purchase. What is the correct answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — UPI discounts apply to all Sylvi products"
+				},
+				{
+					"key": "B",
+					"text": "No — no discounts of any kind apply to prototype watches, including UPI payment discounts"
+				},
+				{
+					"key": "C",
+					"text": "UPI discounts apply only if the order value exceeds ₹2,000"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to Asst Manager to check current discount eligibility"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prototype Policy — Return/Refund/Replacement/Repair",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_17_q13",
+			"number": 13,
+			"question": "When the final version of a prototype model is launched, from what date does the warranty period start for the upgraded customer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "From the original prototype purchase date"
+				},
+				{
+					"key": "B",
+					"text": "From the date the customer submitted the feedback form"
+				},
+				{
+					"key": "C",
+					"text": "From the final edition invoice date"
+				},
+				{
+					"key": "D",
+					"text": "From the date the prototype was returned to the warehouse"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tracker, Final Edition & Escalation",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_17_q14",
+			"number": 14,
+			"question": "In the Prototype Feedback.xlsx tracker, what must be done with any row showing \"Pending verification\" in the Upgrade Eligible column?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Leave it for the weekly Asst Manager review"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to Asst Manager the same day — pending verification rows cannot wait"
+				},
+				{
+					"key": "C",
+					"text": "Change to \"No\" after 24 hours if no response from the customer"
+				},
+				{
+					"key": "D",
+					"text": "Mark as \"Yes\" if the customer's feedback submission date is within 45 days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tracker, Final Edition & Escalation",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_17_q15",
+			"number": 15,
+			"question": "A customer claims they submitted feedback but the form is not visible in FIMS. What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Ask the customer to resubmit and check FIMS again in 24 hours"
+				},
+				{
+					"key": "B",
+					"text": "Process the upgrade based on the customer's verbal confirmation"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to Asst Manager — \"feedback claimed but not visible in FIMS\" is an escalation condition"
+				},
+				{
+					"key": "D",
+					"text": "Reject the upgrade permanently — no FIMS visibility means no eligibility"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tracker, Final Edition & Escalation",
+				"weightContribution": "6.67%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

@@ -1,0 +1,474 @@
+{
+	"testId": "day_16",
+	"title": "DAY 16 — CRM-M11 — SOCIAL MEDIA OPERATIONS (INSTAGRAM / FACEBOOK / YOUTUBE / REVIEWS)",
+	"questions": [
+		{
+			"id": "day_16_q1",
+			"number": 1,
+			"question": "What are the three parallel social media tracks that must be completed daily, and which tool is used for each?",
+			"options": [
+				{
+					"key": "A",
+					"text": "BIK for IG/FB, Shopify Judge.me for reviews, YouTube Studio for YouTube comments"
+				},
+				{
+					"key": "B",
+					"text": "Instagram app for IG, Facebook Business Suite for FB, Metricool for YouTube"
+				},
+				{
+					"key": "C",
+					"text": "BIK for IG/FB comments and DMs, Judge.me (via Shopify) for product reviews, Metricool for YouTube comments"
+				},
+				{
+					"key": "D",
+					"text": "Hootsuite for all social channels, Judge.me for reviews, Slack for escalations"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Three-Track Flow & Platform-Tool Mapping",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_16_q2",
+			"number": 2,
+			"question": "What is the correct daily priority order for social media tasks?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Judge.me reviews → BIK comments → BIK DMs → Metricool YouTube"
+				},
+				{
+					"key": "B",
+					"text": "BIK DMs → BIK IG/FB comments → Judge.me review management → Metricool YouTube"
+				},
+				{
+					"key": "C",
+					"text": "Metricool YouTube → BIK DMs → Judge.me reviews → BIK comments"
+				},
+				{
+					"key": "D",
+					"text": "BIK IG/FB comments → BIK DMs → Metricool YouTube → Judge.me reviews"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Three-Track Flow & Platform-Tool Mapping",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_16_q3",
+			"number": 3,
+			"question": "An executive wants to reply to an Instagram comment directly from the Instagram app to save time. Is this correct?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — using the native app is faster and equally acceptable"
+				},
+				{
+					"key": "B",
+					"text": "No — all IG/FB comments and DMs must be handled through BIK; native apps must not be used for comment management"
+				},
+				{
+					"key": "C",
+					"text": "Yes — native apps are preferred for DMs; BIK is only for comments"
+				},
+				{
+					"key": "D",
+					"text": "No — but YouTube comments can be handled directly in YouTube Studio"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Three-Track Flow & Platform-Tool Mapping",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_16_q4",
+			"number": 4,
+			"question": "The Comment Reply Format.xlsx has three tabs. Which tab is the authoritative source for reply templates?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Comment Reply tab — the original and most complete version"
+				},
+				{
+					"key": "B",
+					"text": "Modified Comment Reply tab — this supersedes the original tab and must be used for all replies"
+				},
+				{
+					"key": "C",
+					"text": "Offline Store Req. tab — contains all templates organised by store location"
+				},
+				{
+					"key": "D",
+					"text": "Any tab can be used — they contain the same templates"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "BIK Comment/DM Handling & Template Selection",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_16_q5",
+			"number": 5,
+			"question": "A customer comments on an Instagram post: \"I received a damaged watch, the glass is cracked.\" Which template category should the executive use?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A-11 (Return & Refund) — customer needs a return"
+				},
+				{
+					"key": "B",
+					"text": "A-04 (Damage / Defective / Bad Quality) — acknowledge, apologise, direct to WhatsApp/call for resolution"
+				},
+				{
+					"key": "C",
+					"text": "A-37 (Poor Service / Negative Experience) — customer is expressing general dissatisfaction"
+				},
+				{
+					"key": "D",
+					"text": "A-39 (Complaint Escalation) — direct them to email customercare@sylvi.in"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "BIK Comment/DM Handling & Template Selection",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_16_q6",
+			"number": 6,
+			"question": "A customer DMs on Facebook asking about tracking their order. The DM includes an order ID. What should the executive do before replying?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply with template A-18 (Track Order) immediately — no verification needed"
+				},
+				{
+					"key": "B",
+					"text": "Verify the order in FIMS → OMS → Shopify, then provide the delivery status using a customised reply based on the actual order data"
+				},
+				{
+					"key": "C",
+					"text": "Ask the customer to call +91-9687660234 for tracking information"
+				},
+				{
+					"key": "D",
+					"text": "Forward the DM to the logistics team via Slack"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "BIK Comment/DM Handling & Template Selection",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_16_q7",
+			"number": 7,
+			"question": "What is the non-negotiable rule about template placeholders?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Placeholders should be replaced when possible but can be left as-is if the information is unavailable"
+				},
+				{
+					"key": "B",
+					"text": "Never send a reply with unfilled placeholders — if [Order ID] or [Name] is left blank, it is a quality failure"
+				},
+				{
+					"key": "C",
+					"text": "Placeholders are only relevant for email templates, not social media replies"
+				},
+				{
+					"key": "D",
+					"text": "Placeholders should be removed entirely if the data is not available"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "BIK Comment/DM Handling & Template Selection",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_16_q8",
+			"number": 8,
+			"question": "A customer asks on Instagram: \"Why is the price different on Amazon versus your website?\" Which template should be used?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A-13 (Offers & Discounts) — direct them to the offers page"
+				},
+				{
+					"key": "B",
+					"text": "A-01 (Price or More Details) — send pricing details via DM"
+				},
+				{
+					"key": "C",
+					"text": "A-26 (Price Difference Across Platforms) — explain that prices vary due to service levels and associated expenses"
+				},
+				{
+					"key": "D",
+					"text": "A-36 (Prototype Price Increase) — explain the pricing transition"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "BIK Comment/DM Handling & Template Selection",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_16_q9",
+			"number": 9,
+			"question": "In Judge.me review management, which reviews should be published on the Shopify storefront?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All reviews rated 3 stars and above"
+				},
+				{
+					"key": "B",
+					"text": "All reviews rated 4 stars and above"
+				},
+				{
+					"key": "C",
+					"text": "Only reviews rated 5 stars — all reviews rated 4 stars or below must be hidden"
+				},
+				{
+					"key": "D",
+					"text": "All reviews regardless of rating — transparency is required"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Judge.me Review Management & YouTube Monitoring",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q10",
+			"number": 10,
+			"question": "A new review is rated 5 stars but the text says \"Looks good but the strap broke after one week.\" What should the executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Publish it — 5-star rating qualifies for publication regardless of text"
+				},
+				{
+					"key": "B",
+					"text": "Hide it — the text is negative, so it should not be shown"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to Asst Manager before publishing — the text contradicts the star rating (borderline case)"
+				},
+				{
+					"key": "D",
+					"text": "Delete it — contradictory reviews should be removed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Judge.me Review Management & YouTube Monitoring",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q11",
+			"number": 11,
+			"question": "When hiding a 3-star review in Judge.me, should the review be deleted?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — negative reviews should be permanently removed"
+				},
+				{
+					"key": "B",
+					"text": "No — hide only; do not delete reviews; hiding protects brand image while preserving the data"
+				},
+				{
+					"key": "C",
+					"text": "Only delete if the review contains abusive language"
+				},
+				{
+					"key": "D",
+					"text": "Move it to an archive tab for future reference"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Judge.me Review Management & YouTube Monitoring",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q12",
+			"number": 12,
+			"question": "Where should YouTube comments be monitored and replied to?",
+			"options": [
+				{
+					"key": "A",
+					"text": "YouTube Studio — the native platform for comment management"
+				},
+				{
+					"key": "B",
+					"text": "Metricool Dashboard — Inbox → YouTube channel filter; replies are posted within Metricool, not YouTube Studio"
+				},
+				{
+					"key": "C",
+					"text": "BIK Dashboard — the same tool used for IG/FB comments"
+				},
+				{
+					"key": "D",
+					"text": "Hootsuite — the centralised social media management platform"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Judge.me Review Management & YouTube Monitoring",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q13",
+			"number": 13,
+			"question": "What are the three columns in the Daily Reporting Performance Ana sheet that track social media resolution, and what is the EOD target?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Resolved IG / Resolved FB / Resolved YT — target: count of resolved items"
+				},
+				{
+					"key": "B",
+					"text": "Pending Social Media IG / Pending Social Media FB / Pending Social Media YT — target: all three = 0 by EOD"
+				},
+				{
+					"key": "C",
+					"text": "Total Comments IG / Total Comments FB / Total Comments YT — target: 100% reply rate"
+				},
+				{
+					"key": "D",
+					"text": "Open IG / Open FB / Open YT — target: all three = 0 by shift start"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Reporting, Escalation & Compliance Rules",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q14",
+			"number": 14,
+			"question": "A customer DMs on Instagram asking about a physical store. What are the 4 fields that must be logged in the Offline Store Req. tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Order ID, Customer Name, Phone, Platform"
+				},
+				{
+					"key": "B",
+					"text": "Name, Email, Contact Number, Source (platform they came from)"
+				},
+				{
+					"key": "C",
+					"text": "Name, Address, City, Pincode"
+				},
+				{
+					"key": "D",
+					"text": "Customer Name, Query Type, Resolution, Date"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Reporting, Escalation & Compliance Rules",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q15",
+			"number": 15,
+			"question": "A customer threatens legal action against Sylvi in a public Instagram comment. What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply publicly with template A-39 (Complaint Escalation) and close the comment"
+				},
+				{
+					"key": "B",
+					"text": "Do not engage further; screenshot the comment and report to Asst Manager → Manager immediately"
+				},
+				{
+					"key": "C",
+					"text": "Delete the comment to prevent public visibility, then inform Asst Manager"
+				},
+				{
+					"key": "D",
+					"text": "Reply with an apology and offer a refund to de-escalate"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Reporting, Escalation & Compliance Rules",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_16_q16",
+			"number": 16,
+			"question": "A YouTube comment mentions a product safety concern (\"the watch battery started leaking\"). What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply with template A-04 (Damage/Defective) and close the comment"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to Asst Manager via `customer-care` Slack for quality review"
+				},
+				{
+					"key": "C",
+					"text": "Flag immediately to Manager via Slack `after-sale-services`"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to share a video and wait for their response before escalating"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Reporting, Escalation & Compliance Rules",
+				"weightContribution": "6.25%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

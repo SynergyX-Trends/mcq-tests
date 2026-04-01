@@ -1,0 +1,474 @@
+{
+	"testId": "day_19",
+	"title": "DAY 19 — CRM-M17 — EOD OPERATIONS & DAILY REPORTING",
+	"questions": [
+		{
+			"id": "day_19_q1",
+			"number": 1,
+			"question": "How many platform tabs must be opened during day-start setup, and in which tool must the status be set to \"Available\"?",
+			"options": [
+				{
+					"key": "A",
+					"text": "8 tabs; BIK must be set to Available"
+				},
+				{
+					"key": "B",
+					"text": "12 tabs; MyOperator must be set to Available"
+				},
+				{
+					"key": "C",
+					"text": "10 tabs; Freshdesk must be set to Available"
+				},
+				{
+					"key": "D",
+					"text": "12 tabs; Shiprocket must be set to Active"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Day-Start Checklist & Platform Setup",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_19_q2",
+			"number": 2,
+			"question": "What is the correct day-start procedure for the daily order snapshot?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Open Shopify admin → screenshot new orders → email to CRM Asst Manager"
+				},
+				{
+					"key": "B",
+					"text": "FIMS → OMS → Shopify → Orders → New Orders → take screenshot → post to #customer-care Slack channel"
+				},
+				{
+					"key": "C",
+					"text": "Shiprocket → New Orders → screenshot → post to #after-sale-services Slack"
+				},
+				{
+					"key": "D",
+					"text": "FIMS → OMS → Shopify → Returns → screenshot → post to #qaqc-crm Slack"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Day-Start Checklist & Platform Setup",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_19_q3",
+			"number": 3,
+			"question": "Which 4 Google Sheets must be opened in the second Chrome window at day-start?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM Daily Work Sheet, Callback Request Sheet, Shiprocket Web Tracker, Comment Reply Sheet (Modified tab)"
+				},
+				{
+					"key": "B",
+					"text": "CRM Daily Work Sheet, NDR Sheet, RMA Sheet, Cancellation Order Sheet"
+				},
+				{
+					"key": "C",
+					"text": "Daily Reporting Sheet, Prototype Feedback Sheet, Shiprocket Web Tracker, DTDC Sheet"
+				},
+				{
+					"key": "D",
+					"text": "CRM Daily Work Sheet, Callback Request Sheet, Mails Sheet, Performance Analytics Sheet"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Day-Start Checklist & Platform Setup",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_19_q4",
+			"number": 4,
+			"question": "The MyOperator Followup tab covers follow-ups across how many departments?",
+			"options": [
+				{
+					"key": "A",
+					"text": "3 departments: Orders, Returns, Repairs"
+				},
+				{
+					"key": "B",
+					"text": "5 departments: Orders, Returns & Replacements, Refunds, Repairs, General Inquiry & Support"
+				},
+				{
+					"key": "C",
+					"text": "4 departments: Orders, Cancellations, Returns, Repairs"
+				},
+				{
+					"key": "D",
+					"text": "6 departments: Orders, Returns, Refunds, Repairs, Callbacks, Escalations"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Followup ZERO Rule & Callback SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q5",
+			"number": 5,
+			"question": "Why must the MyOperator Followup tab be cleared to ZERO before logout?",
+			"options": [
+				{
+					"key": "A",
+					"text": "It resets the agent's KPI dashboard for the next day"
+				},
+				{
+					"key": "B",
+					"text": "Every open entry represents a customer waiting for a resolution call; open entries carry over, create missed-contact situations, and reduce the IBC Connect Rate KPI"
+				},
+				{
+					"key": "C",
+					"text": "MyOperator charges per open entry left overnight"
+				},
+				{
+					"key": "D",
+					"text": "Team Leader cannot generate the daily report if any entries remain open"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Followup ZERO Rule & Callback SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q6",
+			"number": 6,
+			"question": "A follow-up customer is called 3 times across the shift but does not answer. What status should be set in MyOperator?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not Connected"
+				},
+				{
+					"key": "B",
+					"text": "In Progress"
+				},
+				{
+					"key": "C",
+					"text": "Unreachable"
+				},
+				{
+					"key": "D",
+					"text": "Closed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Followup ZERO Rule & Callback SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q7",
+			"number": 7,
+			"question": "What is the SLA for actioning a callback request, and where are callback requests auto-populated from?",
+			"options": [
+				{
+					"key": "A",
+					"text": "4-hour SLA; auto-populated from Freshdesk"
+				},
+				{
+					"key": "B",
+					"text": "2-hour SLA from request timestamp; auto-populated from BIK WhatsApp"
+				},
+				{
+					"key": "C",
+					"text": "1-hour SLA; auto-populated from MyOperator missed calls"
+				},
+				{
+					"key": "D",
+					"text": "Same-day SLA; manually entered by the executive"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Followup ZERO Rule & Callback SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q8",
+			"number": 8,
+			"question": "How many CRM Daily Work Sheet tabs must be verified complete at EOD, and what is the submission deadline?",
+			"options": [
+				{
+					"key": "A",
+					"text": "7 tabs; submit by 5:30 PM"
+				},
+				{
+					"key": "B",
+					"text": "10 tabs; submit by 6:00 PM"
+				},
+				{
+					"key": "C",
+					"text": "12 tabs; submit by 6:30 PM"
+				},
+				{
+					"key": "D",
+					"text": "10 tabs; submit by 5:00 PM"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Reporting & Pre-Logout Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_19_q9",
+			"number": 9,
+			"question": "After completing the CRM Daily Work Sheet, what must the executive do in Clickup?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Create a new task for tomorrow's work and assign it to themselves"
+				},
+				{
+					"key": "B",
+					"text": "Navigate to Customer Support → Action Items → Board View, locate their created tasks, add daily work data, and update task status to \"Review\""
+				},
+				{
+					"key": "C",
+					"text": "Submit a summary email to CRM Asst Manager with Clickup link"
+				},
+				{
+					"key": "D",
+					"text": "Export the daily report from Clickup as PDF and share via Slack"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Reporting & Pre-Logout Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_19_q10",
+			"number": 10,
+			"question": "What is the first item on the 10-point pre-logout final verification?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All Freshdesk tickets actioned"
+				},
+				{
+					"key": "B",
+					"text": "Daily Work Report submitted to Team Leader by 6 PM"
+				},
+				{
+					"key": "C",
+					"text": "MyOperator Followup tab = ZERO"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket NDR panel: all NDRs actioned today"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Reporting & Pre-Logout Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_19_q11",
+			"number": 11,
+			"question": "Which of the following is one of the 8 column groups in the Daily Reporting Performance Analytics sheet?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer Satisfaction Score"
+				},
+				{
+					"key": "B",
+					"text": "Interaction Pendencies (Pending Tickets BIK, Pending Social Media IG/FB/YT, Pending Reviews, Pending Mails)"
+				},
+				{
+					"key": "C",
+					"text": "Agent Ranking"
+				},
+				{
+					"key": "D",
+					"text": "Weekly KRA Summary"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Reporting & Pre-Logout Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_19_q12",
+			"number": 12,
+			"question": "The pre-logout verification includes checking the Shiprocket wallet balance. What is the correct action if the balance is low or zero?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process remaining orders and inform management the next morning"
+				},
+				{
+					"key": "B",
+					"text": "Inform management immediately; do not process new orders until the wallet is recharged"
+				},
+				{
+					"key": "C",
+					"text": "Transfer funds from the Gmail account associated with Shiprocket"
+				},
+				{
+					"key": "D",
+					"text": "Escalate via #qaqc-crm Slack channel"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Reporting & Pre-Logout Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_19_q13",
+			"number": 13,
+			"question": "Which of the following is a common compliance failure listed in the checklist?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not checking the Dashboard tab at the start of shift"
+				},
+				{
+					"key": "B",
+					"text": "Processing a FIMS order without checking Order History first"
+				},
+				{
+					"key": "C",
+					"text": "Not using Metricool for Instagram comments"
+				},
+				{
+					"key": "D",
+					"text": "Not logging Shiprocket escalations in Clickup"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Compliance Failures & Escalation Paths",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q14",
+			"number": 14,
+			"question": "An executive closes a Freshdesk ticket but forgets to log it in the Mails tab of the CRM Daily Work Sheet. Is this a compliance issue?",
+			"options": [
+				{
+					"key": "A",
+					"text": "No — the Freshdesk system tracks the ticket automatically"
+				},
+				{
+					"key": "B",
+					"text": "Yes — closing a Freshdesk ticket without logging in the Mails tab is a listed compliance failure; every interaction must be logged"
+				},
+				{
+					"key": "C",
+					"text": "No — the Mails tab only applies to escalation emails, not regular Freshdesk tickets"
+				},
+				{
+					"key": "D",
+					"text": "Yes — but only for order-related tickets, not general inquiries"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Compliance Failures & Escalation Paths",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q15",
+			"number": 15,
+			"question": "For an internal CRM team escalation (e.g., after-sale issue requiring cross-team coordination), which escalation route should be used?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Gmail → Compose → Shiprocket Executives"
+				},
+				{
+					"key": "B",
+					"text": "FIMS → Support → Add Ticket → Submit"
+				},
+				{
+					"key": "C",
+					"text": "#after-sale-services Slack channel"
+				},
+				{
+					"key": "D",
+					"text": "MyOperator customer care"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Compliance Failures & Escalation Paths",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_19_q16",
+			"number": 16,
+			"question": "An executive uses the original \"Comment Reply\" tab instead of the \"Modified Comment Reply\" tab for a social media reply. Is this a compliance failure?",
+			"options": [
+				{
+					"key": "A",
+					"text": "No — both tabs contain the same templates"
+				},
+				{
+					"key": "B",
+					"text": "Yes — using the original Comment Reply tab for templates is a listed compliance failure; the Modified tab supersedes the original"
+				},
+				{
+					"key": "C",
+					"text": "No — the original tab is acceptable for YouTube comments only"
+				},
+				{
+					"key": "D",
+					"text": "Yes — but only if the reply was posted publicly, not for DMs"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Compliance Failures & Escalation Paths",
+				"weightContribution": "6.25%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

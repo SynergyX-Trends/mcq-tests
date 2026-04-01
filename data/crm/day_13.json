@@ -1,0 +1,590 @@
+{
+	"testId": "day_13",
+	"title": "DAY 13 — CRM-M9 — CANCELLATION RETENTION (DAY 2 OF 2)",
+	"questions": [
+		{
+			"id": "day_13_q1",
+			"number": 1,
+			"question": "A customer says \"I don't trust online sellers — I'm worried I'll get a fake product.\" Which retention reason applies, and what are the key trust-building points in the script?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 13 (Doubts About Quality) — emphasise quality control and 1-year warranty"
+				},
+				{
+					"key": "B",
+					"text": "Reason 10 (Lack of Trust) — highlight strong customer base, secure payment options, easy returns within 10 days, and warranty support"
+				},
+				{
+					"key": "C",
+					"text": "Reason 9 (Poor Service) — apologise and offer to make things right"
+				},
+				{
+					"key": "D",
+					"text": "Reason 12 (Negative Reviews) — ask which review they read and address their concern"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q2",
+			"number": 2,
+			"question": "A customer says \"The price was ₹1,999 when I ordered but now it shows ₹2,499 — I feel cheated.\" Which retention reason applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 18 (Discount/Coupon Issue) — the customer expected a lower price"
+				},
+				{
+					"key": "B",
+					"text": "Reason 6 (Financial Issues) — the customer cannot afford the new price"
+				},
+				{
+					"key": "C",
+					"text": "Reason 11 (Price Increased / Price Changed Before Delivery) — explain pricing factors and highlight exclusive offers and loyalty points"
+				},
+				{
+					"key": "D",
+					"text": "Reason 2 (Found a Better Deal) — the customer found a lower price elsewhere"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q3",
+			"number": 3,
+			"question": "A customer says \"I read terrible reviews about this watch after placing my order.\" In the Reason 12 retention script, what action should the executive take that is unique to this reason?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Offer a discount code to compensate for the customer's concern"
+				},
+				{
+					"key": "B",
+					"text": "Immediately escalate to CRM Asst Manager for a review management response"
+				},
+				{
+					"key": "C",
+					"text": "Ask the customer to share more details about the review they read, and explain that Sylvi resolves all customer issues"
+				},
+				{
+					"key": "D",
+					"text": "Inform the customer that all negative reviews are from non-genuine customers"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q4",
+			"number": 4,
+			"question": "A customer says \"I entered the wrong delivery address.\" The order status is \"Confirmed.\" What is the correct action per the Reason 14 retention script?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inform the customer that address changes are not possible once an order is placed"
+				},
+				{
+					"key": "B",
+					"text": "Cancel the order and ask the customer to reorder with the correct address"
+				},
+				{
+					"key": "C",
+					"text": "Update the address in FIMS immediately and follow the address verification SOP from the \"Order Confirmation Call Script — Template Library\""
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager — address changes require manager approval"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q5",
+			"number": 5,
+			"question": "A customer says \"My mobile number on the order is wrong — I won't get the OTP for delivery.\" What does the Reason 15 script advise?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel and reorder with the correct number — contact details cannot be changed"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to logistics partner; the customer can collect by showing valid identity proof"
+				},
+				{
+					"key": "C",
+					"text": "Update the mobile number in FIMS and confirm with the customer"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to contact the courier directly to update their number"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q6",
+			"number": 6,
+			"question": "A customer says \"My payment failed during checkout but the order still shows as placed.\" Which retention reason applies, and what is unique about this reason?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 18 (Discount/Coupon Issue) — guide the customer to apply the correct code"
+				},
+				{
+					"key": "B",
+					"text": "Reason 6 (Financial Issues) — offer EMI options for the payment"
+				},
+				{
+					"key": "C",
+					"text": "Reason 17 (Payment Issues) — no retention attempt is required; advise checking with bank and placing a new order if desired"
+				},
+				{
+					"key": "D",
+					"text": "Reason 17 (Payment Issues) — attempt retention by offering alternative payment methods"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q7",
+			"number": 7,
+			"question": "A customer says \"My coupon code didn't apply and I paid full price.\" What does the Reason 18 script state about retroactive discounts?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The executive can manually apply the discount and adjust the order total"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager to authorise the retroactive discount"
+				},
+				{
+					"key": "C",
+					"text": "Once an order is placed, additional discounts or offers cannot be applied; reference loyalty programs for future purchases"
+				},
+				{
+					"key": "D",
+					"text": "Cancel the order and ask the customer to reorder with the coupon code"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Retention Scripts — Reasons 10–18",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q8",
+			"number": 8,
+			"question": "A customer asks: \"Can I change the model/colour of my order instead of cancelling?\" What is the approved policy answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — modifications are possible before shipping; update the order in FIMS"
+				},
+				{
+					"key": "B",
+					"text": "No modifications can be made once an order is placed; the customer can return or replace within 10 days of delivery (except Prototype products)"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager to check if the warehouse can swap the product"
+				},
+				{
+					"key": "D",
+					"text": "Cancel and reorder — this is the standard modification procedure"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "General Policy Answers — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q9",
+			"number": 9,
+			"question": "A customer asks: \"I entered the wrong address — can you update it?\" What is the approved policy answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Address changes are never possible once an order is placed"
+				},
+				{
+					"key": "B",
+					"text": "Yes, if the order has not been shipped; once dispatched, the address cannot be changed"
+				},
+				{
+					"key": "C",
+					"text": "Only CRM Asst Manager can authorise address changes"
+				},
+				{
+					"key": "D",
+					"text": "Address changes require the customer to email support@sylvi.in with proof of address"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "General Policy Answers — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q10",
+			"number": 10,
+			"question": "A customer asks: \"My delivery is delayed — when will I get it?\" What is the approved timeline communicated in the general policy answers?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Delivery within 3–5 business days after dispatch"
+				},
+				{
+					"key": "B",
+					"text": "Delivery within 5–7 business days after dispatch"
+				},
+				{
+					"key": "C",
+					"text": "Delivery within 7–10 business days after dispatch"
+				},
+				{
+					"key": "D",
+					"text": "No specific timeline — \"we will get back to you\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "General Policy Answers — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q11",
+			"number": 11,
+			"question": "A customer asks: \"Can a discount be applied now? I found a code after placing the order.\" What is the approved answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — provide the code and the executive will apply it in FIMS"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager for retroactive discount approval"
+				},
+				{
+					"key": "C",
+					"text": "No — discounts cannot be applied retroactively; the loyalty program benefits apply to future purchases"
+				},
+				{
+					"key": "D",
+					"text": "Cancel the order and reorder with the discount code applied"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "General Policy Answers — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q12",
+			"number": 12,
+			"question": "A customer asks: \"What happens to my prepaid payment if I cancel?\" What is the approved answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Refund within 3–5 business days as store credit"
+				},
+				{
+					"key": "B",
+					"text": "Refund within 7–10 business days to the original payment method"
+				},
+				{
+					"key": "C",
+					"text": "Refund within 24 hours via UPI reversal"
+				},
+				{
+					"key": "D",
+					"text": "Refund within 15 business days via bank transfer"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "General Policy Answers — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q13",
+			"number": 13,
+			"question": "A customer claims they were never given the option to cancel before their order was shipped. What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inform the customer that cancellation is not possible for shipped orders — no escalation needed"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `customer-care` Slack before dismissing the claim"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Manager via `after-sale-services` Slack immediately"
+				},
+				{
+					"key": "D",
+					"text": "Cancel the shipped order as an exception — the customer's claim takes priority"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q14",
+			"number": 14,
+			"question": "A customer wants to cancel a prepaid order worth ₹4,500 and the order status is \"Shipped.\" What must the executive do before informing the customer that cancellation is not possible?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceed with the standard shipped-order script — order value does not affect the process"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `customer-care` Slack before informing cancellation is not possible — order is ₹3,000+ and shipped"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Manager via direct call — high-value orders require manager approval"
+				},
+				{
+					"key": "D",
+					"text": "Process the cancellation as an exception — high-value prepaid orders can be cancelled even after shipping"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q15",
+			"number": 15,
+			"question": "A customer becomes verbally abusive and threatening during a cancellation call. What is the correct escalation action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Warn the customer, attempt to de-escalate, and continue the call"
+				},
+				{
+					"key": "B",
+					"text": "End the call immediately and log the incident in the Cancellation Order sheet"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager via direct call immediately — do not continue the call alone"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager via `customer-care` Slack and wait for instructions before ending the call"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q16",
+			"number": 16,
+			"question": "A customer follows up because their prepaid refund has not been processed. How many business days must have passed before this becomes an escalation trigger, and what is the channel?",
+			"options": [
+				{
+					"key": "A",
+					"text": "5 business days → escalate via `customer-care` Slack"
+				},
+				{
+					"key": "B",
+					"text": "7 business days → escalate via `after-sale-services` Slack"
+				},
+				{
+					"key": "C",
+					"text": "10 business days → escalate to CRM Asst Manager via `after-sale-services` Slack at the customer's first follow-up"
+				},
+				{
+					"key": "D",
+					"text": "15 business days → escalate to CRM Manager via direct call"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q17",
+			"number": 17,
+			"question": "Which escalation trigger uses the `after-sale-services` Slack channel instead of `customer-care`?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer claims they were never given the option to cancel before shipping"
+				},
+				{
+					"key": "B",
+					"text": "High-value shipped order (₹3,000+) cancellation request"
+				},
+				{
+					"key": "C",
+					"text": "Abusive or threatening customer on a cancellation call"
+				},
+				{
+					"key": "D",
+					"text": "Prepaid refund not processed after 10 business days"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q18",
+			"number": 18,
+			"question": "Which of the following is listed as a common mistake in the SOP?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not offering EMI options to every customer regardless of their cancellation reason"
+				},
+				{
+					"key": "B",
+					"text": "Using generic retention language that does not address the customer's specific concern"
+				},
+				{
+					"key": "C",
+					"text": "Attempting retention on Reason 17 (Payment Issues) calls"
+				},
+				{
+					"key": "D",
+					"text": "Not escalating every cancellation to CRM Asst Manager before processing"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q19",
+			"number": 19,
+			"question": "The SOP lists 6 common mistakes. Which of the following correctly identifies THREE of them?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancelling without retention attempt; not asking the cancellation reason; not informing prepaid customers of refund status"
+				},
+				{
+					"key": "B",
+					"text": "Using the wrong Slack channel for escalation; not uploading QC images; not verifying pincode serviceability"
+				},
+				{
+					"key": "C",
+					"text": "Not sharing the RMA number; leaving the warranty field blank; not uploading the customer video"
+				},
+				{
+					"key": "D",
+					"text": "Skipping address verification for retained orders; not checking the Cancellation Order sheet format; not logging the call type"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_13_q20",
+			"number": 20,
+			"question": "An executive receives a cancellation call and immediately cancels the order in FIMS because the customer sounded firm. Which TWO common mistakes did they commit?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not asking the cancellation reason AND cancelling without a retention attempt"
+				},
+				{
+					"key": "B",
+					"text": "Not updating the Cancellation Order sheet AND not informing refund status"
+				},
+				{
+					"key": "C",
+					"text": "Using generic retention language AND accepting a shipped-order cancellation"
+				},
+				{
+					"key": "D",
+					"text": "Not asking the cancellation reason AND not escalating to CRM Asst Manager"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

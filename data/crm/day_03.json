@@ -1,0 +1,474 @@
+{
+	"testId": "day_03",
+	"title": "DAY 03 — CRM-M3 — ORDER CONFIRMATION & FIMS PROCESSING",
+	"questions": [
+		{
+			"id": "day_03_q1",
+			"number": 1,
+			"question": "Which of the following correctly describes the opening of a COD call using Script 1A?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Confirm the order details first, then introduce yourself as Team Sylvi"
+				},
+				{
+					"key": "B",
+					"text": "Introduce yourself as calling from Sylvi, state the product ordered, then confirm you are speaking with the customer"
+				},
+				{
+					"key": "C",
+					"text": "Ask the customer for their delivery address before stating the reason for the call"
+				},
+				{
+					"key": "D",
+					"text": "Send a WhatsApp template before calling to ensure the customer is available"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "COD Call Script & Address Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_03_q2",
+			"number": 2,
+			"question": "After a COD customer verbally confirms their order during Script 1B, what is the immediate next step?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Select 'Confirmation Call (Confirmed)' in FIMS and move the order to To Pack"
+				},
+				{
+					"key": "B",
+					"text": "Initiate WhatsApp Flow to get written confirmation as a backup"
+				},
+				{
+					"key": "C",
+					"text": "Run Script 1C — Address Verification before taking any FIMS action"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer if they have any product questions before closing"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "COD Call Script & Address Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_03_q3",
+			"number": 3,
+			"question": "What are the three conditions that must ALL be met for an address to be considered valid during Script 1C?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer verbally confirms address + pincode matches Shopify record + phone number is correct"
+				},
+				{
+					"key": "B",
+					"text": "Address is traceable on Google Maps + a landmark is available + pincode is correct and serviceable"
+				},
+				{
+					"key": "C",
+					"text": "Address has a house number + a street name + a recognisable city name"
+				},
+				{
+					"key": "D",
+					"text": "Address confirmed on call + WhatsApp confirmation received + FIMS remark added"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "COD Call Script & Address Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_03_q4",
+			"number": 4,
+			"question": "A COD customer says: 'I need to check with my family first — can you call back later?' Which script handles this correctly?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Script 1E — Customer Cancels on Call"
+				},
+				{
+					"key": "B",
+					"text": "Script 2A — 2nd Call Attempt (No Response)"
+				},
+				{
+					"key": "C",
+					"text": "Script 1D — Customer Not Sure / Wants to Think"
+				},
+				{
+					"key": "D",
+					"text": "Template 3C — Final Reminder (WhatsApp)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "COD Call Script & Address Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_03_q5",
+			"number": 5,
+			"question": "During Script 1C, the address provided has no landmark and the area name is unclear. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Select 'Confirmation Call (Confirmed)' and note the address concern in the remark — the customer confirmed, so process the order"
+				},
+				{
+					"key": "B",
+					"text": "Cancel the order — an unverifiable address means the order cannot proceed"
+				},
+				{
+					"key": "C",
+					"text": "Ask the customer for a proper landmark and correct pincode; select 'Call Attempted'; do not move the order to To Pack until all three conditions are met"
+				},
+				{
+					"key": "D",
+					"text": "Select 'Auto Confirmed' and flag the address issue for the courier partner to resolve on delivery"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "COD Call Script & Address Verification",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_03_q6",
+			"number": 6,
+			"question": "A CRM Executive calls a COD customer for the second time and gets no answer again. What is the correct action sequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel the order — two unanswered calls constitute unconfirmed delivery intent"
+				},
+				{
+					"key": "B",
+					"text": "Select 'Call Attempted' → add remark '2nd call attempt — no response' → Initiate WhatsApp Flow"
+				},
+				{
+					"key": "C",
+					"text": "Wait 24 hours and then make the third call without taking any FIMS action yet"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager for authorisation to cancel"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "No-Response Protocol & WhatsApp Flow",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_03_q7",
+			"number": 7,
+			"question": "A COD customer replies 'YES' to Template 3A, but the delivery address on file has no pincode. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Auto Confirmed → To Pack — the customer has confirmed intent via WhatsApp"
+				},
+				{
+					"key": "B",
+					"text": "Cancellation Request — an address with a missing pincode cannot be processed"
+				},
+				{
+					"key": "C",
+					"text": "Send Template 3B to collect the complete address before confirming"
+				},
+				{
+					"key": "D",
+					"text": "Call the customer to confirm verbally since WhatsApp confirmation alone is insufficient when the address is incomplete"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "No-Response Protocol & WhatsApp Flow",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_03_q8",
+			"number": 8,
+			"question": "What is the maximum number of call attempts permitted before marking the order 'Call Attempted' and moving to the WhatsApp Flow?",
+			"options": [
+				{
+					"key": "A",
+					"text": "2"
+				},
+				{
+					"key": "B",
+					"text": "4"
+				},
+				{
+					"key": "C",
+					"text": "5"
+				},
+				{
+					"key": "D",
+					"text": "3"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "No-Response Protocol & WhatsApp Flow",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_03_q9",
+			"number": 9,
+			"question": "After the 3rd and final call attempt with no response, what are the two mandatory actions?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel the order immediately — three unanswered calls means the customer has declined"
+				},
+				{
+					"key": "B",
+					"text": "Select 'Auto Confirmed' → send Template 3A as a courtesy notification only"
+				},
+				{
+					"key": "C",
+					"text": "Select 'Call Attempted' → add remark '3rd and final call attempt — no response, WhatsApp message sent' → do NOT make a 4th call"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager before taking any action — all 3-attempt cases require manager sign-off"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "No-Response Protocol & WhatsApp Flow",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_03_q10",
+			"number": 10,
+			"question": "A customer places a COD order for a Certified Imperfect watch. What is the mandatory step before confirming the order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "No special steps — Certified Imperfect orders are confirmed using the standard Script 1B flow"
+				},
+				{
+					"key": "B",
+					"text": "Transfer the call to the CRM Asst Manager, who handles all CI confirmations"
+				},
+				{
+					"key": "C",
+					"text": "Run Script 4A to inform the customer of the CI/Prototype policy before proceeding with confirmation"
+				},
+				{
+					"key": "D",
+					"text": "Send Template 3A via WhatsApp instead of calling — CI orders require written confirmation only"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Special Orders — Prototype & Certified Imperfect",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_03_q11",
+			"number": 11,
+			"question": "During Script 4A, the Prototype order customer says: 'No, I don't want to continue with this.' What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Attempt retention — the customer may change their mind if the Prototype benefits are explained further"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager — Prototype cancellations require manager approval"
+				},
+				{
+					"key": "C",
+					"text": "Cancel the order and add remark: 'Customer informed of Prototype/Certified Imperfect policy — cancelled'"
+				},
+				{
+					"key": "D",
+					"text": "Mark 'Call Attempted' and resend the Prototype policy information via Template 3A"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Special Orders — Prototype & Certified Imperfect",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_03_q12",
+			"number": 12,
+			"question": "A COD customer confirmed their order on call and the address passed all three verification conditions. What is the correct remark?",
+			"options": [
+				{
+					"key": "A",
+					"text": "'COD order confirmed — address OK'"
+				},
+				{
+					"key": "B",
+					"text": "'Call confirmed + address verified – order to pack'"
+				},
+				{
+					"key": "C",
+					"text": "'Confirmation call done — moving to To Pack'"
+				},
+				{
+					"key": "D",
+					"text": "'Customer confirmed on call – address verified'"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remark Format Accuracy",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_03_q13",
+			"number": 13,
+			"question": "The CRM Executive ran Script 1D — the customer was undecided and asked to be called back. What is the correct remark?",
+			"options": [
+				{
+					"key": "A",
+					"text": "'Customer not answering — follow-up required'"
+				},
+				{
+					"key": "B",
+					"text": "'Call attempted — customer unavailable'"
+				},
+				{
+					"key": "C",
+					"text": "'Customer undecided — order held, follow-up required'"
+				},
+				{
+					"key": "D",
+					"text": "'No confirmation received — order on hold'"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remark Format Accuracy",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_03_q14",
+			"number": 14,
+			"question": "A Prototype order customer was informed via Script 4A and confirmed they want to proceed. What remark must be added?",
+			"options": [
+				{
+					"key": "A",
+					"text": "'Prototype policy acknowledged — order confirmed'"
+				},
+				{
+					"key": "B",
+					"text": "'Special order — customer confirmed after policy briefing'"
+				},
+				{
+					"key": "C",
+					"text": "'CI policy explained — customer OK with imperfections'"
+				},
+				{
+					"key": "D",
+					"text": "'Customer informed of Prototype/Certified Imperfect policy — confirmed'"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remark Format Accuracy",
+				"weightContribution": "6.66%"
+			}
+		},
+		{
+			"id": "day_03_q15",
+			"number": 15,
+			"question": "For which order type is a confirmation call NOT mandatory, but address verification IS mandatory?",
+			"options": [
+				{
+					"key": "A",
+					"text": "COD orders where the customer has previously ordered from Sylvi and confirmed by WhatsApp"
+				},
+				{
+					"key": "B",
+					"text": "Prepaid orders"
+				},
+				{
+					"key": "C",
+					"text": "Prototype and Certified Imperfect orders regardless of payment method"
+				},
+				{
+					"key": "D",
+					"text": "Orders where the customer called Sylvi themselves to place the order"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Script Selection Logic & Call Conduct",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_03_q16",
+			"number": 16,
+			"question": "A CRM Executive is about to call a COD customer but notices the order already has a 'Call Attempted' remark from earlier the same day. What should the Executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Call the customer again as a fresh attempt — the earlier remark was by a different team member and does not count toward the limit"
+				},
+				{
+					"key": "B",
+					"text": "Check Order History to understand the full picture, then determine the next step while ensuring total call attempts do not exceed 3"
+				},
+				{
+					"key": "C",
+					"text": "Skip calling — since another team member already attempted, no further call action is allowed today"
+				},
+				{
+					"key": "D",
+					"text": "Mark the order 'Auto Confirmed' — a prior call attempt demonstrates delivery intent on the team's part"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Script Selection Logic & Call Conduct",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

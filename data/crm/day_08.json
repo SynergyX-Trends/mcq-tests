@@ -1,0 +1,590 @@
+{
+	"testId": "day_08",
+	"title": "DAY 08 — CRM-M7 — RETURN & REPLACEMENT — DAY 1 OF 2",
+	"questions": [
+		{
+			"id": "day_08_q1",
+			"number": 1,
+			"question": "A customer contacts CRM 8 days after delivery and requests a refund for a defective watch. What is the correct policy response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Decline — the 10-day window applies only to replacements, not returns"
+				},
+				{
+					"key": "B",
+					"text": "Proceed — the request is within the 10-day return window; initiate the return process"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager — returns within 10 days require manager approval"
+				},
+				{
+					"key": "D",
+					"text": "Direct the customer to raise a warranty claim — defects are covered under warranty, not the return policy"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		},
+		{
+			"id": "day_08_q2",
+			"number": 2,
+			"question": "A customer contacts CRM 14 days after delivery with a product defect. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process a return — the 10-day policy is flexible for genuine defects"
+				},
+				{
+					"key": "B",
+					"text": "Decline entirely — the policy window has closed and no further action is available"
+				},
+				{
+					"key": "C",
+					"text": "Direct to repair under warranty — the 10-day return/replacement window has passed; defects after 10 days are handled via the RMA Repair & Warranty SOP"
+				},
+				{
+					"key": "D",
+					"text": "Offer a replacement — replacement is available beyond 10 days for verified defects"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		},
+		{
+			"id": "day_08_q3",
+			"number": 3,
+			"question": "A customer received a Prototype watch 5 days ago and reports a manufacturing defect. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process a return with a full refund — manufacturing defects override the no-refund Prototype policy"
+				},
+				{
+					"key": "B",
+					"text": "Decline — Prototype watches cannot be returned or replaced under any circumstances"
+				},
+				{
+					"key": "C",
+					"text": "Offer a replacement only — Prototype watches are eligible for replacement for manufacturing defects within 10 days; no refund"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager — Prototype defects always require manager decision"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		},
+		{
+			"id": "day_08_q4",
+			"number": 4,
+			"question": "A customer wants to exchange their Sylvi watch for a different collection. What is the correct approved response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process an exchange — exchanges are available within 10 days of delivery for a different model"
+				},
+				{
+					"key": "B",
+					"text": "Exchanges are not offered — the customer must return the product and place a new order for the preferred model"
+				},
+				{
+					"key": "C",
+					"text": "Exchanges are available only if the products are within the same price range"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager — exchanges require manager sign-off and are handled case-by-case"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		},
+		{
+			"id": "day_08_q5",
+			"number": 5,
+			"question": "A customer's Certified Imperfect watch has a cracked glass (physical damage, not the disclosed imperfection). What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process a return — glass damage is not one of the disclosed imperfections and qualifies for a refund"
+				},
+				{
+					"key": "B",
+					"text": "Decline — Certified Imperfect watches are non-returnable and non-refundable under all circumstances"
+				},
+				{
+					"key": "C",
+					"text": "Refer to the RMA Repair & Warranty SOP — CI mechanical defects are handled as replacements, not returns"
+				},
+				{
+					"key": "D",
+					"text": "Offer a replacement at no cost — physical damage is always covered under the CI warranty"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		},
+		{
+			"id": "day_08_q6",
+			"number": 6,
+			"question": "What is the correct opening script when a customer contacts CRM requesting a return or replacement?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Please send us the order ID and we will check your eligibility for a return.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Apologies for the inconvenience caused. To assist you better, please share a short 10–20 second video highlighting the issue.\""
+				},
+				{
+					"key": "C",
+					"text": "\"We can process your return — please confirm the delivery date so we can check if you are within the 10-day window.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Your return request has been noted. Our team will contact you within 48 hours.\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Steps 1–4 — Customer Handling & T&C",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q7",
+			"number": 7,
+			"question": "After reviewing the customer's video and confirming the issue is valid, which script is used to confirm the customer's preference?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Your return has been approved. We will initiate the pickup within 24–48 hours.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Based on the video, we can offer you a replacement. Would you like to proceed?\""
+				},
+				{
+					"key": "C",
+					"text": "\"Sorry for the inconvenience caused. Would you like to proceed with a return or replacement?\""
+				},
+				{
+					"key": "D",
+					"text": "\"We have reviewed your issue. Please confirm your address for pickup.\""
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Steps 1–4 — Customer Handling & T&C",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q8",
+			"number": 8,
+			"question": "At Step 4, the CRM Executive shares the Terms & Conditions with the customer via WhatsApp. The customer replies with \"OK\" instead of \"Yes\". Is this sufficient confirmation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "No — only an explicit \"Yes\" reply is acceptable; \"OK\" must be followed up with a \"Yes\" confirmation"
+				},
+				{
+					"key": "B",
+					"text": "Yes — any affirmative reply from the customer on WhatsApp constitutes written confirmation"
+				},
+				{
+					"key": "C",
+					"text": "No — T&C confirmation must be done verbally over a call for it to be legally valid"
+				},
+				{
+					"key": "D",
+					"text": "Yes, but only if the Executive also screenshots the \"OK\" reply and uploads it to FIMS"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Steps 1–4 — Customer Handling & T&C",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q9",
+			"number": 9,
+			"question": "A customer has confirmed their preference (replacement) and the T&C has been accepted. The CRM Executive immediately opens FIMS to generate the request. What step has been skipped?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Sending the replacement notification to the customer — this must be done before FIMS"
+				},
+				{
+					"key": "B",
+					"text": "Escalating to the CRM Asst Manager for approval before generating any FIMS replacement request"
+				},
+				{
+					"key": "C",
+					"text": "Address verification (Step 5) — the pickup address must be verified for completeness, landmark, and pincode serviceability before FIMS action"
+				},
+				{
+					"key": "D",
+					"text": "Logging the request in the ReturnReplace sheet — this must be done before the FIMS request is created"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Steps 1–4 — Customer Handling & T&C",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q10",
+			"number": 10,
+			"question": "What are the three conditions that must ALL be met during address verification (Step 5) before a FIMS return/replacement request can be generated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer verbally confirms address + delivery date is within 10 days + order ID is valid"
+				},
+				{
+					"key": "B",
+					"text": "Address is complete and correct + landmark is available + pincode is serviceable"
+				},
+				{
+					"key": "C",
+					"text": "Address is traceable on Google Maps + customer has confirmed in writing + phone number is correct"
+				},
+				{
+					"key": "D",
+					"text": "Address matches the FIMS order record + pincode is in the courier partner's serviceable list + landmark is stated"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q11",
+			"number": 11,
+			"question": "In FIMS Step 6B, what is the correct path to initiate the return/replacement request?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS → OMS → RMA → Create New Request → Select Order"
+				},
+				{
+					"key": "B",
+					"text": "FIMS → OMS → Shopify → Orders → Search Icon → Enter order details → View Order → Create Refund/Replacement"
+				},
+				{
+					"key": "C",
+					"text": "FIMS → Dashboard → Active Orders → Select Order → Return/Replace Tab"
+				},
+				{
+					"key": "D",
+					"text": "FIMS → Support → Customer Requests → New Request → Return or Replacement"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q12",
+			"number": 12,
+			"question": "In FIMS Step 6C, when is a QC Image upload required?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Always — QC images are mandatory for all return and replacement requests"
+				},
+				{
+					"key": "B",
+					"text": "Only when the customer explicitly requests a QC inspection before the product is accepted"
+				},
+				{
+					"key": "C",
+					"text": "Only when \"Is QC Enable Return\" is checked Yes — required if the product is wrong or broken"
+				},
+				{
+					"key": "D",
+					"text": "Only for replacement requests — return requests do not require QC image upload"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q13",
+			"number": 13,
+			"question": "After selecting Free Pickup in Step 6D, the Executive checks \"Is Return Address Same?\" and finds it is different. What are the required fields to fill?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Landmark and Pincode only — these are the fields most likely to have changed"
+				},
+				{
+					"key": "B",
+					"text": "Name, Address Line 1, Address Line 2, Landmark, Pincode, City, State"
+				},
+				{
+					"key": "C",
+					"text": "Mobile number and WhatsApp number only — address is updated automatically from the order record"
+				},
+				{
+					"key": "D",
+					"text": "Address Line 1 and City only — the remaining fields carry over from the original delivery address"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q14",
+			"number": 14,
+			"question": "A customer's pincode is not serviceable. Which FIMS pickup type is selected, and what must the customer be told?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Free Pickup is still selected — the courier partner will determine serviceability at the time of pickup attempt"
+				},
+				{
+					"key": "B",
+					"text": "Self Ship is selected — the customer must ship the product to the warehouse at their own cost; the warehouse address is provided"
+				},
+				{
+					"key": "C",
+					"text": "Self Ship is selected — Sylvi covers the shipping cost in all non-serviceable cases as a goodwill gesture"
+				},
+				{
+					"key": "D",
+					"text": "The request cannot be generated in FIMS until the customer provides a serviceable pincode"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q15",
+			"number": 15,
+			"question": "After submitting the FIMS replacement request, what must happen before the customer notification WhatsApp message is sent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The Asst Manager must review and confirm the FIMS request"
+				},
+				{
+					"key": "B",
+					"text": "The ReturnReplace sheet must be updated first — sheet update precedes customer notification"
+				},
+				{
+					"key": "C",
+					"text": "Nothing — the FIMS submission itself triggers the notification automatically via BIK"
+				},
+				{
+					"key": "D",
+					"text": "The FIMS request must be confirmed as successfully submitted before the notification is sent; do not notify before the request is confirmed in FIMS"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Steps 5–6 — Address Verification & FIMS Request Generation",
+				"weightContribution": "5.83%"
+			}
+		},
+		{
+			"id": "day_08_q16",
+			"number": 16,
+			"question": "A customer's watch has condensation and fogging inside the dial. Which approved issue type is this?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Particle Inside"
+				},
+				{
+					"key": "B",
+					"text": "Glass Broken"
+				},
+				{
+					"key": "C",
+					"text": "Display Damage"
+				},
+				{
+					"key": "D",
+					"text": "Fog Issue"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Approved Issue Types & ReturnReplace Sheet",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q17",
+			"number": 17,
+			"question": "A customer reports the strap clasp is not locking properly. Which approved issue type applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Belt Broken"
+				},
+				{
+					"key": "B",
+					"text": "Lock"
+				},
+				{
+					"key": "C",
+					"text": "Strap Pin Loose"
+				},
+				{
+					"key": "D",
+					"text": "Lock Pin Issue"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Approved Issue Types & ReturnReplace Sheet",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q18",
+			"number": 18,
+			"question": "In the ReturnReplace sheet, what is the difference between the \"Issues\" column and the \"Issue Specific\" column?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Issues\" records the customer's complaint in their own words; \"Issue Specific\" is the agent's internal assessment"
+				},
+				{
+					"key": "B",
+					"text": "\"Issues\" is the broad category (e.g. Quality not adequate, Size Issue); \"Issue Specific\" is the exact approved issue type from the 21-type list"
+				},
+				{
+					"key": "C",
+					"text": "\"Issues\" is filled only for return requests; \"Issue Specific\" is filled only for replacement requests"
+				},
+				{
+					"key": "D",
+					"text": "Both columns contain the same data — \"Issue Specific\" is a duplicate for QA reference"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Approved Issue Types & ReturnReplace Sheet",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q19",
+			"number": 19,
+			"question": "Which of the following represents a documented common mistake in the Return & Replacement procedure?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Asking the customer to share a video before confirming the product eligibility"
+				},
+				{
+					"key": "B",
+					"text": "Verifying the pickup address before generating the FIMS request"
+				},
+				{
+					"key": "C",
+					"text": "Proceeding to FIMS without receiving the customer's written T&C confirmation"
+				},
+				{
+					"key": "D",
+					"text": "Sending the WhatsApp notification after the FIMS request has been submitted"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Steps 1–4 — Customer Handling & T&C",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_08_q20",
+			"number": 20,
+			"question": "An order was received by a customer in a non-serviceable pincode. The customer agrees to self-ship but asks Sylvi to cover the courier cost. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Approve — goodwill gestures for self-ship costs are standard practice"
+				},
+				{
+					"key": "B",
+					"text": "Decline — the policy states self-ship is at the customer's own cost; close the case"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack before closing the case"
+				},
+				{
+					"key": "D",
+					"text": "Offer a partial reimbursement of ₹100 — the standard self-ship compensation amount"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Policy Boundaries & Decision Guide",
+				"weightContribution": "4.17%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

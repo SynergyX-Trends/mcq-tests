@@ -1,0 +1,474 @@
+{
+	"testId": "day_14",
+	"title": "DAY 14 — CRM-M12 — CALLBACK & FOLLOW-UP MANAGEMENT (FULL) + CRM-M10 — EMAIL HANDLING / FRESHDESK (DAY 1 OF 2)",
+	"questions": [
+		{
+			"id": "day_14_q1",
+			"number": 1,
+			"question": "At what frequency must the Callback Request sheet be checked, and what is the SLA for actioning a callback?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Once at shift start; callback within 4 hours"
+				},
+				{
+					"key": "B",
+					"text": "At shift start and mid-shift; callback within 2 hours of the request timestamp"
+				},
+				{
+					"key": "C",
+					"text": "Every hour; callback within 1 hour"
+				},
+				{
+					"key": "D",
+					"text": "At shift start only; callback within 2 hours"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Callback Request Procedure & SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q2",
+			"number": 2,
+			"question": "Three callback requests are pending: (1) a customer asking about delivery timeline, (2) a customer reporting a wrong product received, (3) a customer requesting a return. In what order should these be prioritised?",
+			"options": [
+				{
+					"key": "A",
+					"text": "(1) delivery timeline → (2) wrong product → (3) return request"
+				},
+				{
+					"key": "B",
+					"text": "(3) return request → (2) wrong product → (1) delivery timeline"
+				},
+				{
+					"key": "C",
+					"text": "(2) wrong product → (3) return request → (1) delivery timeline"
+				},
+				{
+					"key": "D",
+					"text": "(2) wrong product → (1) delivery timeline → (3) return request"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Callback Request Procedure & SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q3",
+			"number": 3,
+			"question": "A customer does not answer the callback call. After how many failed attempts is the customer marked as \"Unreachable,\" and what must be updated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "After 2 attempts; update Comments as \"Not Connected\" and leave Call Back Done blank"
+				},
+				{
+					"key": "B",
+					"text": "After 3 attempts spaced across the shift; update Comments as \"Unreachable — 3 attempts\" and set Call Back Done = Yes"
+				},
+				{
+					"key": "C",
+					"text": "After 5 attempts; update Comments as \"Unreachable\" and escalate to CRM Asst Manager"
+				},
+				{
+					"key": "D",
+					"text": "After 3 attempts; update Comments as \"Unreachable\" but leave Call Back Done = No until the next shift"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Callback Request Procedure & SLA",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q4",
+			"number": 4,
+			"question": "What is the correct path to access the MyOperator Follow-Up module?",
+			"options": [
+				{
+					"key": "A",
+					"text": "MyOperator → Dashboard → Follow Up"
+				},
+				{
+					"key": "B",
+					"text": "MyOperator → Call → Follow Up"
+				},
+				{
+					"key": "C",
+					"text": "MyOperator → Tickets → Follow Up"
+				},
+				{
+					"key": "D",
+					"text": "MyOperator → Reports → Follow Up"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q5",
+			"number": 5,
+			"question": "At EOD, two MyOperator Followup tab entries remain open. What must the executive do before logging off?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Log off and leave them for the next shift — the overnight team will pick them up"
+				},
+				{
+					"key": "B",
+					"text": "Mark both as Closed regardless of resolution status to clear the tab"
+				},
+				{
+					"key": "C",
+					"text": "Add a specific status remark to each entry explaining why it is unresolved, then escalate to CRM Asst Manager via `customer-care` Slack before logging off"
+				},
+				{
+					"key": "D",
+					"text": "Transfer both entries to another executive's queue and log off"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q6",
+			"number": 6,
+			"question": "An executive notices a MyOperator follow-up assigned to the Logistics department in their Follow Up module. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Action it immediately — all follow-ups visible in the module should be completed"
+				},
+				{
+					"key": "B",
+					"text": "Do not action it — check only CRM department follow-ups; do not action another department's follow-ups without CRM Asst Manager instruction"
+				},
+				{
+					"key": "C",
+					"text": "Transfer it to the Logistics department queue and mark it as complete"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager to reassign it before taking any action"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q7",
+			"number": 7,
+			"question": "Which Freshdesk dashboard view should the agent start from every day?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All Tickets"
+				},
+				{
+					"key": "B",
+					"text": "New & My Open Tickets"
+				},
+				{
+					"key": "C",
+					"text": "All Unresolved Tickets"
+				},
+				{
+					"key": "D",
+					"text": "All Undelivered Messages"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Freshdesk Ticket Categorisation & Triage",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q8",
+			"number": 8,
+			"question": "A ticket arrives from someone saying \"I'd like to apply for the customer care position — please find my CV attached.\" What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply with available positions and forward the CV to HR → Close ticket"
+				},
+				{
+					"key": "B",
+					"text": "Tag as Application → No reply needed → Close ticket"
+				},
+				{
+					"key": "C",
+					"text": "Mark as Spam → Click Yes → Ticket auto-removed"
+				},
+				{
+					"key": "D",
+					"text": "Assign to Ishan Sir → Add internal note → Do NOT close"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Freshdesk Ticket Categorisation & Triage",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q9",
+			"number": 9,
+			"question": "A ticket contains a legal notice from a consumer court lawyer regarding a customer complaint. What is the correct handling?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply with the standard complaint resolution template → Close ticket"
+				},
+				{
+					"key": "B",
+					"text": "Mark as Spam since legal matters are handled offline"
+				},
+				{
+					"key": "C",
+					"text": "Assign/tag to Ishan Sir → Add internal note → Do NOT close until further update"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager via `customer-care` Slack → Close ticket after acknowledgement"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Freshdesk Ticket Categorisation & Triage",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q10",
+			"number": 10,
+			"question": "Before replying to a customer's email about a return request, what must the executive verify first?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Check the canned response library for a matching template"
+				},
+				{
+					"key": "B",
+					"text": "Confirm the customer's email address is valid"
+				},
+				{
+					"key": "C",
+					"text": "Check in FIMS → OMS → Shopify → Order Search Panel to verify order details, status, and return eligibility (within 10 days of delivery)"
+				},
+				{
+					"key": "D",
+					"text": "Check the Mails sheet to see if this customer has emailed before"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Freshdesk Ticket Categorisation & Triage",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_14_q11",
+			"number": 11,
+			"question": "A customer emails \"Where is my order?\" without providing an Order ID. What is the correct response approach?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Search FIMS by the customer's email address and reply with tracking details"
+				},
+				{
+					"key": "B",
+					"text": "Use the canned response unmodified — \"ask for Order ID\" template"
+				},
+				{
+					"key": "C",
+					"text": "Customise a reply asking for the Order ID and customer name"
+				},
+				{
+					"key": "D",
+					"text": "Mark the ticket as Pending and wait for the customer to provide details"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Canned Response Rules & Email Format",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q12",
+			"number": 12,
+			"question": "When must a canned response ALWAYS be customised before sending?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Only when the customer's query does not match any available canned response"
+				},
+				{
+					"key": "B",
+					"text": "When the customer's name, Order ID, AWB number, specific date, or any placeholder appears in the canned text and must be filled in"
+				},
+				{
+					"key": "C",
+					"text": "Only when the customer has previously contacted Sylvi about the same issue"
+				},
+				{
+					"key": "D",
+					"text": "Only when the canned response contains more than 3 paragraphs"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Canned Response Rules & Email Format",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q13",
+			"number": 13,
+			"question": "What is the non-negotiable rule about canned response placeholders?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Placeholders must be highlighted in bold before sending"
+				},
+				{
+					"key": "B",
+					"text": "Never send a reply with unfilled placeholders — if [Order ID] or [Name] is left blank, it is a quality failure"
+				},
+				{
+					"key": "C",
+					"text": "Placeholders should be removed entirely if the information is not available"
+				},
+				{
+					"key": "D",
+					"text": "Placeholders are acceptable for internal notes but not customer replies"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Canned Response Rules & Email Format",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q14",
+			"number": 14,
+			"question": "What are the 7 columns in the Mails tab of Daily Work - CRM-2026, and must spam emails be logged?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Agent, Date, Order ID, Mail Reason, Comment — 5 columns only; spam is excluded"
+				},
+				{
+					"key": "B",
+					"text": "Agent, Date, Order ID / Mail ID, Mail Reason, Order Status, Comment, Resolution Status — 7 columns; every ticket including spam must be logged"
+				},
+				{
+					"key": "C",
+					"text": "Agent, Date, Ticket ID, Category, Status, Comment, Escalation Level — 7 columns; spam is excluded"
+				},
+				{
+					"key": "D",
+					"text": "Agent, Date, Order ID, Customer Name, Issue Type, Resolution, Follow-Up Date — 7 columns; only customer emails are logged"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Sheet Compliance & Ticket Status",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_14_q15",
+			"number": 15,
+			"question": "After replying to a customer's email about their order, what mandatory FIMS action must the executive perform?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Update the order status in FIMS to reflect the email resolution"
+				},
+				{
+					"key": "B",
+					"text": "Add a General Comment on the order in FIMS: \"Email ticket #[Ticket ID] — [issue type] — [action taken] — [date]\""
+				},
+				{
+					"key": "C",
+					"text": "Create a new FIMS ticket linked to the Freshdesk ticket ID"
+				},
+				{
+					"key": "D",
+					"text": "No FIMS action is required — the Mails sheet entry is sufficient"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Sheet Compliance & Ticket Status",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_14_q16",
+			"number": 16,
+			"question": "Which of the following is a valid reason to NOT close a Freshdesk ticket?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The customer has not replied within 24 hours of the agent's response"
+				},
+				{
+					"key": "B",
+					"text": "The ticket is categorised as a product query with no order attached"
+				},
+				{
+					"key": "C",
+					"text": "A return/replacement/repair request is still being processed"
+				},
+				{
+					"key": "D",
+					"text": "The agent has already logged the ticket in the Mails sheet"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Sheet Compliance & Ticket Status",
+				"weightContribution": "5.00%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

@@ -1,0 +1,590 @@
+{
+	"testId": "day_10",
+	"title": "DAY 10 — CRM-M8 — RMA REPAIR & WARRANTY (DAY 1 OF 2)",
+	"questions": [
+		{
+			"id": "day_10_q1",
+			"number": 1,
+			"question": "Which watch components are covered under Sylvi's manufacturer warranty?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Glass, Strap, Case"
+				},
+				{
+					"key": "B",
+					"text": "Battery, Strap, Movement"
+				},
+				{
+					"key": "C",
+					"text": "Movement, Hands, Dial"
+				},
+				{
+					"key": "D",
+					"text": "Glass, Dial, Hands"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Warranty Eligibility & Condition Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q2",
+			"number": 2,
+			"question": "A customer's watch dial has a manufacturing defect and the watch is 4 months old. The customer has not registered for extended warranty. Which condition applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Condition B — Under Warranty, Not Covered Issue"
+				},
+				{
+					"key": "B",
+					"text": "Condition C — Out of Warranty"
+				},
+				{
+					"key": "C",
+					"text": "Condition D — Certified Imperfect, Mechanical Defect"
+				},
+				{
+					"key": "D",
+					"text": "Condition A — Under Warranty, Covered Issue"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Warranty Eligibility & Condition Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q3",
+			"number": 3,
+			"question": "A customer purchased a watch 9 months ago and registered for extended warranty after delivery. The movement has stopped. What is the coverage status?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Out of warranty — 9 months exceeds the 6-month manufacturer warranty period"
+				},
+				{
+					"key": "B",
+					"text": "Under warranty — extended warranty covers up to 1 year total from delivery"
+				},
+				{
+					"key": "C",
+					"text": "Condition B — movement is not a covered component"
+				},
+				{
+					"key": "D",
+					"text": "Out of warranty — extended warranty applies only to cosmetic defects"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Warranty Eligibility & Condition Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q4",
+			"number": 4,
+			"question": "A customer's watch has a scratch on the case and water damage. The watch is 2 months old. The customer demands a free repair. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceed with free repair — the watch is within the 6-month manufacturer warranty"
+				},
+				{
+					"key": "B",
+					"text": "Escalate immediately to CRM Asst Manager before responding"
+				},
+				{
+					"key": "C",
+					"text": "Inform the customer the damage type is not covered; offer chargeable repair with cost estimate"
+				},
+				{
+					"key": "D",
+					"text": "Process as Condition D — Certified Imperfect path applies to all damage"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Warranty Eligibility & Condition Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q5",
+			"number": 5,
+			"question": "A Certified Imperfect watch is submitted for RMA due to a mechanical defect in the movement. What should the executive communicate to the customer after creating the FIMS request?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Your product is under warranty and will be repaired free of charge.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Return or replacement within 10 days is applicable for Certified Imperfect products.\""
+				},
+				{
+					"key": "C",
+					"text": "\"The mechanical defect is not covered under Certified Imperfect policy — repair will be chargeable.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Your request has been created. Our team will inspect the product and process accordingly.\""
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Warranty Eligibility & Condition Handling",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q6",
+			"number": 6,
+			"question": "What is the correct FIMS navigation path to create a new RMA request?",
+			"options": [
+				{
+					"key": "A",
+					"text": "OMS → Shopify → Returns → Create"
+				},
+				{
+					"key": "B",
+					"text": "OMS → RMA → Orders → Create"
+				},
+				{
+					"key": "C",
+					"text": "OMS → Returns → RMA → New"
+				},
+				{
+					"key": "D",
+					"text": "OMS → RMA → Create"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q7",
+			"number": 7,
+			"question": "When entering order details in FIMS RMA creation (step 7A), the warranty period field is empty. What must the executive enter?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"12\" — the total warranty period including extended warranty is 1 year"
+				},
+				{
+					"key": "B",
+					"text": "Leave it blank — FIMS auto-populates from the order creation date"
+				},
+				{
+					"key": "C",
+					"text": "\"6\" — the default value per the SOP"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer for their warranty registration confirmation number"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q8",
+			"number": 8,
+			"question": "A customer purchased their watch on Flipkart and their pincode is serviceable. Which pickup type must be selected in FIMS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Free Pickup — pincode serviceability is the only determining factor"
+				},
+				{
+					"key": "B",
+					"text": "Paid Pickup — third-party platform purchases are always chargeable"
+				},
+				{
+					"key": "C",
+					"text": "Self Ship — purchases from platforms other than Sylvi website require self-shipping"
+				},
+				{
+					"key": "D",
+					"text": "Free Pickup — Flipkart customers are eligible for free pickup under warranty"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q9",
+			"number": 9,
+			"question": "In FIMS RMA creation step 7D, \"Is Qc Enable Return\" is set to Yes. What must the executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Skip the step — QC is handled by the warehouse team, not CRM"
+				},
+				{
+					"key": "B",
+					"text": "Request the customer to visit a service centre for a physical QC inspection"
+				},
+				{
+					"key": "C",
+					"text": "Upload a QC Image; a screenshot of the customer's video is an acceptable substitute"
+				},
+				{
+					"key": "D",
+					"text": "Upload the customer's original purchase invoice as QC documentation"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q10",
+			"number": 10,
+			"question": "In FIMS, the customer's return address and pickup address are the same, and Free Pickup has been selected. What is the correct sequence of actions?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Check \"Return Address Confirmed\" → Click \"Pincode Serviceable\" → Submit"
+				},
+				{
+					"key": "B",
+					"text": "Click \"Pincode Serviceable\" → confirm pincode is serviceable → Check \"Return Address Confirmed\""
+				},
+				{
+					"key": "C",
+					"text": "Enter the full address manually even when both addresses match"
+				},
+				{
+					"key": "D",
+					"text": "Click Submit directly — no address confirmation is needed if addresses match"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q11",
+			"number": 11,
+			"question": "What is the correct action in step 7F, immediately before clicking Submit in FIMS RMA creation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Select the product UID and confirm the issue type"
+				},
+				{
+					"key": "B",
+					"text": "Check \"Is Qc Enable Return\" and upload the QC image"
+				},
+				{
+					"key": "C",
+					"text": "Confirm/update the customer's contact number, WhatsApp number, and email address"
+				},
+				{
+					"key": "D",
+					"text": "Select the pickup type and enter the address details"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q12",
+			"number": 12,
+			"question": "After the FIMS RMA request is submitted, what is the correct immediate next action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Update the RMA tab in Daily Work - CRM-2026.xlsx with all order details"
+				},
+				{
+					"key": "B",
+					"text": "Send the customer the standard repair notification message on WhatsApp"
+				},
+				{
+					"key": "C",
+					"text": "Call the customer to confirm pickup scheduling and estimated arrival"
+				},
+				{
+					"key": "D",
+					"text": "Share the RMA number with the customer on WhatsApp"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FIMS RMA Creation — Full Path",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q13",
+			"number": 13,
+			"question": "Which column in the RMA tab captures the reverse pickup tracking ID assigned by the courier?",
+			"options": [
+				{
+					"key": "A",
+					"text": "RMA ID"
+				},
+				{
+					"key": "B",
+					"text": "Reship Tracking"
+				},
+				{
+					"key": "C",
+					"text": "Order Status"
+				},
+				{
+					"key": "D",
+					"text": "Pickup Tracking"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "RMA Sheet — Columns & Status Values",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q14",
+			"number": 14,
+			"question": "What are the only valid entries for the \"Re-RMA\" column in the RMA tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Repeat / First Time"
+				},
+				{
+					"key": "B",
+					"text": "True / False"
+				},
+				{
+					"key": "C",
+					"text": "Yes / No"
+				},
+				{
+					"key": "D",
+					"text": "1 / 0"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "RMA Sheet — Columns & Status Values",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q15",
+			"number": 15,
+			"question": "A repair estimate has been shared with the customer but they have not yet provided payment confirmation. Which Repair Status value must be entered in the RMA tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`Start`"
+				},
+				{
+					"key": "B",
+					"text": "`Repair_in_Progress`"
+				},
+				{
+					"key": "C",
+					"text": "`Pending_estimate_approval`"
+				},
+				{
+					"key": "D",
+					"text": "`Payment_Pending`"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "RMA Sheet — Columns & Status Values",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q16",
+			"number": 16,
+			"question": "Which column in the RMA tab records the date the warehouse physically confirms receipt of the returned product?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Delivered Date"
+				},
+				{
+					"key": "B",
+					"text": "Pickup Date"
+				},
+				{
+					"key": "C",
+					"text": "Repair Started"
+				},
+				{
+					"key": "D",
+					"text": "Received Date"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "RMA Sheet — Columns & Status Values",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q17",
+			"number": 17,
+			"question": "The product has been packed and is ready to be shipped back to the customer. Which Reship Status value is entered at this stage?",
+			"options": [
+				{
+					"key": "A",
+					"text": "`Shipped`"
+				},
+				{
+					"key": "B",
+					"text": "`In_transit`"
+				},
+				{
+					"key": "C",
+					"text": "`Ready_to_dispatch`"
+				},
+				{
+					"key": "D",
+					"text": "`Packing`"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "RMA Sheet — Columns & Status Values",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q18",
+			"number": 18,
+			"question": "A repair is chargeable (Condition B — warranty, not covered issue). What must be obtained before any FIMS action is taken?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer's verbal confirmation over the phone"
+				},
+				{
+					"key": "B",
+					"text": "CRM Asst Manager sign-off via after-sale-services Slack"
+				},
+				{
+					"key": "C",
+					"text": "Customer's written WhatsApp confirmation after receiving the cost estimate"
+				},
+				{
+					"key": "D",
+					"text": "Customer's explicit confirmation to proceed — written or verbal"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Procedure Sequence & Pre-FIMS Checks",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q19",
+			"number": 19,
+			"question": "Which two steps must be completed immediately before proceeding to FIMS RMA creation, regardless of repair type?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Share RMA number → Update RMA sheet"
+				},
+				{
+					"key": "B",
+					"text": "Video verification → Purchase source check"
+				},
+				{
+					"key": "C",
+					"text": "Customer confirmation (Step 5) → Address verification (Step 6)"
+				},
+				{
+					"key": "D",
+					"text": "Warranty check → Notify customer of outcome"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Procedure Sequence & Pre-FIMS Checks",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_10_q20",
+			"number": 20,
+			"question": "A customer's watch is 6 days old and they want a full refund. According to the Decision Guide, which path applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Warranty repair — CRM-M8 RMA process, Condition A"
+				},
+				{
+					"key": "B",
+					"text": "Chargeable repair — 6 days does not fall under the RMA warranty path"
+				},
+				{
+					"key": "C",
+					"text": "Return — per the \"Return & Replacement — Standard Operating Procedure\""
+				},
+				{
+					"key": "D",
+					"text": "Re-RMA — the product requires inspection before a refund can be issued"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Procedure Sequence & Pre-FIMS Checks",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

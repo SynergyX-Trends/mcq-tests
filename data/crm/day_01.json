@@ -1,0 +1,445 @@
+{
+	"testId": "day_01",
+	"title": "DAY 01 — CRM-M1 — SYLVI BRAND & PRODUCT ORIENTATION",
+	"questions": [
+		{
+			"id": "day_01_q1",
+			"number": 1,
+			"question": "A customer asks: Why is this watch cheaper on Amazon than on your website? Which response correctly applies Sylvi brand voice?",
+			"options": [
+				{
+					"key": "A",
+					"text": "We can't control Amazon's pricing — they run their own offers."
+				},
+				{
+					"key": "B",
+					"text": "Our website price is the MRP. Marketplaces sometimes apply platform-level discounts that we don't control. The product and warranty are identical across all channels."
+				},
+				{
+					"key": "C",
+					"text": "Amazon charges less because they have lower operating costs than us."
+				},
+				{
+					"key": "D",
+					"text": "That's a pricing error on our end — we'll look into it."
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Website & Platform Knowledge",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q2",
+			"number": 2,
+			"question": "Which Sylvi collection features an open skeleton dial with a 33-jewel automatic movement?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Pulse Skeleton"
+				},
+				{
+					"key": "B",
+					"text": "Core-X Automatic"
+				},
+				{
+					"key": "C",
+					"text": "Timegrapher"
+				},
+				{
+					"key": "D",
+					"text": "Gazedoom"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Product Knowledge — Men's Collections",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q3",
+			"number": 3,
+			"question": "A customer purchased a Certified Imperfect watch and now wants to return it because they don't like the cosmetic imperfection they received. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Approve the return — cosmetic issues are valid return reasons"
+				},
+				{
+					"key": "B",
+					"text": "Offer a replacement for the cosmetic imperfection"
+				},
+				{
+					"key": "C",
+					"text": "Explain that Certified Imperfect watches are non-refundable and non-returnable; the imperfections were disclosed at purchase; offer to help with a mechanical defect claim if applicable"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to the Asst Manager for a return approval"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Product Knowledge — Women's + Special Categories",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q4",
+			"number": 4,
+			"question": "A customer says: I can't find the Hawk collection on sylvi.in — is it discontinued? You check and see it is in stock. What is the most likely issue?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The collection has been renamed"
+				},
+				{
+					"key": "B",
+					"text": "The customer's pincode is not serviceable, causing the product to be hidden"
+				},
+				{
+					"key": "C",
+					"text": "The product is temporarily hidden pending a restock"
+				},
+				{
+					"key": "D",
+					"text": "The customer may be looking under the wrong category; direct them to the Men's Analog-Digital section or use the site search"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Website & Platform Knowledge",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q5",
+			"number": 5,
+			"question": "What is the correct COD policy for Certified Imperfect watches?",
+			"options": [
+				{
+					"key": "A",
+					"text": "COD is available but requires address verification"
+				},
+				{
+					"key": "B",
+					"text": "COD is available only for orders above ₹1,000"
+				},
+				{
+					"key": "C",
+					"text": "COD is not available — Certified Imperfect watches are prepaid only"
+				},
+				{
+					"key": "D",
+					"text": "COD is available at the customer's discretion"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Product Knowledge — Women's + Special Categories",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q6",
+			"number": 6,
+			"question": "Which of the following correctly identifies the Sylvi brand promise?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Quality watches at unbeatable prices"
+				},
+				{
+					"key": "B",
+					"text": "Made in India for India"
+				},
+				{
+					"key": "C",
+					"text": "The watch that makes you feel like you didn't compromise"
+				},
+				{
+					"key": "D",
+					"text": "Race with Time — excellence in every tick"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Brand Identity & Positioning",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q7",
+			"number": 7,
+			"question": "A customer is upset and says: Your watch stopped working after 2 months — this is obviously a defective product. Which opening response correctly applies the Complaint / Angry Customer tone?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Sir, all our watches come with a warranty so this shouldn't happen."
+				},
+				{
+					"key": "B",
+					"text": "We sincerely apologize for the inconvenience caused. Let us quickly help resolve this for you."
+				},
+				{
+					"key": "C",
+					"text": "This is not our fault — watches require regular servicing."
+				},
+				{
+					"key": "D",
+					"text": "You should have registered your warranty after purchase."
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Brand Voice Application",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q8",
+			"number": 8,
+			"question": "The Bella collection is a women's watch. Which of the following correctly describes it?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Square dial; premium stainless steel; minimalist design"
+				},
+				{
+					"key": "B",
+					"text": "19mm squircle case; Miyota quartz movement; butterfly buckle"
+				},
+				{
+					"key": "C",
+					"text": "Ice blue and black dial options; premium aesthetic; leather or steel link strap"
+				},
+				{
+					"key": "D",
+					"text": "Fashion bezel; glossy finish; entry-level women's"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Product Knowledge — Women's + Special Categories",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q9",
+			"number": 9,
+			"question": "A customer asks about estimated delivery time after dispatch. What is the correct answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "3–5 business days"
+				},
+				{
+					"key": "B",
+					"text": "7–10 business days"
+				},
+				{
+					"key": "C",
+					"text": "5–7 business days from dispatch date; EDD shown on the website is not a guaranteed date"
+				},
+				{
+					"key": "D",
+					"text": "Same day or next day in metro cities"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Website & Platform Knowledge",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q10",
+			"number": 10,
+			"question": "Which Sylvi men's collection has LED backlight and 12H/24H military time display, with both leather and nylon strap options?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Iconic"
+				},
+				{
+					"key": "B",
+					"text": "Bolt"
+				},
+				{
+					"key": "C",
+					"text": "Rig One 'O One WT Max"
+				},
+				{
+					"key": "D",
+					"text": "Hawk"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Product Knowledge — Men's Collections",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q11",
+			"number": 11,
+			"question": "Sylvi was founded in which year, and in which city is it headquartered?",
+			"options": [
+				{
+					"key": "A",
+					"text": "2018, Mumbai"
+				},
+				{
+					"key": "B",
+					"text": "2015, Surat"
+				},
+				{
+					"key": "C",
+					"text": "2012, Bengaluru"
+				},
+				{
+					"key": "D",
+					"text": "2015, Ahmedabad"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Brand Identity & Positioning",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q12",
+			"number": 12,
+			"question": "A prototype watch customer says their watch stopped working within 5 days of delivery. What is the correct policy action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process a full return and refund as per standard policy"
+				},
+				{
+					"key": "B",
+					"text": "Offer a replacement — manufacturing defects on prototype watches can be replaced within 10 days of delivery"
+				},
+				{
+					"key": "C",
+					"text": "Log an RMA repair request and schedule pickup"
+				},
+				{
+					"key": "D",
+					"text": "Inform the customer that prototype watches are not covered by any policy"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Product Knowledge — Women's + Special Categories",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q13",
+			"number": 13,
+			"question": "Which of the following phrases should NEVER be used in a customer interaction, as it violates Sylvi brand voice?",
+			"options": [
+				{
+					"key": "A",
+					"text": "We're happy to help you."
+				},
+				{
+					"key": "B",
+					"text": "Let us check this for you."
+				},
+				{
+					"key": "C",
+					"text": "You didn't follow instructions."
+				},
+				{
+					"key": "D",
+					"text": "Thank you for your patience."
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Brand Voice Application",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q14",
+			"number": 14,
+			"question": "The Imperial collection is described as slim (37mm case) with date display. Which strap material does it use?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Genuine leather — Brown, Black"
+				},
+				{
+					"key": "B",
+					"text": "Silicone — Black, Silver, Rosegold White"
+				},
+				{
+					"key": "C",
+					"text": "Nylon — Black, Khaki"
+				},
+				{
+					"key": "D",
+					"text": "Stainless steel — Silver, Black"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Product Knowledge — Men's Collections",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_01_q15",
+			"number": 15,
+			"question": "A customer calls asking about loyalty points. What is the correct explanation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Loyalty points are given only on orders above ₹2,000."
+				},
+				{
+					"key": "B",
+					"text": "Loyalty points are earned on purchases and can be redeemed for discount coupons at checkout. The balance is visible in the customer's account on sylvi.in."
+				},
+				{
+					"key": "C",
+					"text": "Loyalty points have been discontinued — we no longer offer this program."
+				},
+				{
+					"key": "D",
+					"text": "Loyalty points can be transferred to another customer's account."
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Website & Platform Knowledge",
+				"weightContribution": "6.5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

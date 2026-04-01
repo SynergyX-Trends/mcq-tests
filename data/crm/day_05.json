@@ -1,0 +1,474 @@
+{
+	"testId": "day_05",
+	"title": "DAY 05 — CRM-M5 — BIK WHATSAPP & CAMPAIGN OPERATIONS + CRM-M13 — CUSTOMER FAQ BANK",
+	"questions": [
+		{
+			"id": "day_05_q1",
+			"number": 1,
+			"question": "Before responding to any chat in BIK, what must the CRM Executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Check the customer's order value in FIMS to determine the priority of the response"
+				},
+				{
+					"key": "B",
+					"text": "Send a greeting message first, then read the conversation history"
+				},
+				{
+					"key": "C",
+					"text": "Read the full conversation history before replying — never reply without context"
+				},
+				{
+					"key": "D",
+					"text": "Apply the correct FAQ Bank category tag before opening the chat"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "BIK Chat Flow & Sheet Logging",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q2",
+			"number": 2,
+			"question": "When can a BIK chat be marked as Closed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "As soon as the Executive sends a reply — the customer can follow up if needed"
+				},
+				{
+					"key": "B",
+					"text": "Once the customer's question is fully answered OR a clear next step with specific timeline has been communicated"
+				},
+				{
+					"key": "C",
+					"text": "After 24 hours of no reply from the customer — auto-closure is standard"
+				},
+				{
+					"key": "D",
+					"text": "Only after the Asst Manager reviews and approves the resolution"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "BIK Chat Flow & Sheet Logging",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q3",
+			"number": 3,
+			"question": "Which BIK sheet column captures the category of issue discussed in the chat?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Description"
+				},
+				{
+					"key": "B",
+					"text": "Platform"
+				},
+				{
+					"key": "C",
+					"text": "Interaction Type"
+				},
+				{
+					"key": "D",
+					"text": "Chat Status"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "BIK Chat Flow & Sheet Logging",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q4",
+			"number": 4,
+			"question": "A customer on WhatsApp asks: \"My shipment shows delivered but I haven't received it — what do I do?\" Which approved answer is correct?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Please check your nearest post office — courier partners sometimes leave parcels there.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Check with your neighbours, security guard, or delivery person first. If still not found, contact us within 24 hours and we'll raise a dispute. Investigation may take 7–10 working days.\""
+				},
+				{
+					"key": "C",
+					"text": "\"We will automatically raise a dispute after 48 hours — no action needed from your side.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Please raise a complaint on the courier partner's website directly and share the reference number with us.\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FAQ Bank Application — Categories 1–6",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q5",
+			"number": 5,
+			"question": "A customer asks: \"Can I get a refund for my Prototype watch?\" What is the correct answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Yes — Prototype watches follow the standard 10-day return policy like all other orders.\""
+				},
+				{
+					"key": "B",
+					"text": "\"No. Prototype watches are non-refundable. However, if there is a manufacturing defect, you can request a replacement within 10 days of delivery.\""
+				},
+				{
+					"key": "C",
+					"text": "\"Refunds for Prototype watches are processed within 15 business days after QC.\""
+				},
+				{
+					"key": "D",
+					"text": "\"You can return it within 45 days — that is the feedback window.\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FAQ Bank Application — Categories 1–6",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q6",
+			"number": 6,
+			"question": "A customer asks how they can claim warranty for their Sylvi watch. What is the first step in the approved repair procedure?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Ship the watch directly to Sylvi's warehouse with the order invoice"
+				},
+				{
+					"key": "B",
+					"text": "Call Sylvi on +91-9687660234 and request a pickup slot"
+				},
+				{
+					"key": "C",
+					"text": "Record a 10–20 second video clearly showing the issue and send it via WhatsApp to +91-9687660234"
+				},
+				{
+					"key": "D",
+					"text": "Fill the warranty claim form on sylvi.in and wait for an email confirmation"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FAQ Bank Application — Categories 1–6",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q7",
+			"number": 7,
+			"question": "A customer says their refund was initiated 12 days ago and they still haven't received it. Their bank confirms no pending transaction. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Ask the customer to wait another 5 business days — delays are common during festive periods"
+				},
+				{
+					"key": "B",
+					"text": "Check the order status in FIMS and tell the customer the refund is on its way"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack immediately"
+				},
+				{
+					"key": "D",
+					"text": "Raise a dispute on the payment gateway portal directly and inform the customer"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FAQ Bank Application — Categories 7–11 + Escalation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q8",
+			"number": 8,
+			"question": "A customer asks: \"What is a Certified Imperfect watch and how is it different from a refurbished watch?\" What is the key distinction in the approved answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Certified Imperfect watches are previously returned and re-packaged; refurbished watches are repaired products"
+				},
+				{
+					"key": "B",
+					"text": "Certified Imperfect watches are brand-new and never worn with disclosed minor cosmetic flaws; refurbished watches are previously used, repaired, and restored"
+				},
+				{
+					"key": "C",
+					"text": "Both are the same — the terms are used interchangeably at Sylvi"
+				},
+				{
+					"key": "D",
+					"text": "Certified Imperfect watches have a reduced warranty (6 months); refurbished watches carry the full 1-year warranty"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FAQ Bank Application — Categories 7–11 + Escalation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q9",
+			"number": 9,
+			"question": "A customer reports that a wrong product was delivered, but when asked, they confirm they did not take an unboxing video. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceed with raising the dispute regardless — unboxing videos are recommended, not required"
+				},
+				{
+					"key": "B",
+					"text": "Instruct the customer to courier the wrong product back and await a replacement"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack within 1 hour of customer contact — no dispute can be raised without the unboxing video"
+				},
+				{
+					"key": "D",
+					"text": "Mark the complaint as resolved — without evidence, no further action is possible"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FAQ Bank Application — Categories 7–11 + Escalation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q10",
+			"number": 10,
+			"question": "A customer on a BIK chat asks about free shipping. Which of the following is the correct approved answer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Free shipping is available on all prepaid orders above ₹999.\""
+				},
+				{
+					"key": "B",
+					"text": "\"We offer free delivery on prepaid orders as well as COD orders above ₹1,499. A COD handling fee applies to Cash on Delivery orders.\""
+				},
+				{
+					"key": "C",
+					"text": "\"All orders above ₹2,000 qualify for free shipping regardless of payment method.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Free shipping is only available on prepaid orders — COD always incurs a delivery charge.\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "FAQ Bank Application — Categories 1–6",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q11",
+			"number": 11,
+			"question": "In the Judge.me review flow, which star ratings should be published on Sylvi's product pages?",
+			"options": [
+				{
+					"key": "A",
+					"text": "5-star and 4-star reviews — both are positive enough to maintain brand image"
+				},
+				{
+					"key": "B",
+					"text": "All reviews — customers have a right to see unfiltered feedback"
+				},
+				{
+					"key": "C",
+					"text": "5-star reviews only — 4-star and below must be hidden"
+				},
+				{
+					"key": "D",
+					"text": "3-star and above — anything below 3-star is hidden"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Review & Comment Handling",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_05_q12",
+			"number": 12,
+			"question": "A customer posts a YouTube comment claiming their watch stopped working after 1 month and asking for a full refund. Before replying publicly, what must the Executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Post a standard \"We're sorry to hear this — please DM us\" reply immediately to show responsiveness"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to the CRM Asst Manager before replying — product defect complaints in public comments must be escalated first"
+				},
+				{
+					"key": "C",
+					"text": "Direct the customer to call 9687660234 in the comment reply, and close the YouTube thread"
+				},
+				{
+					"key": "D",
+					"text": "Reply publicly with the full warranty policy details so other customers can also see the process"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Review & Comment Handling",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_05_q13",
+			"number": 13,
+			"question": "Which of the following is a documented common mistake in BIK operations?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Checking BIK chat history before replying to a customer"
+				},
+				{
+					"key": "B",
+					"text": "Publishing a 4-star review on Judge.me without explicit Asst Manager instruction"
+				},
+				{
+					"key": "C",
+					"text": "Closing a chat after confirming the customer's issue is fully resolved"
+				},
+				{
+					"key": "D",
+					"text": "Using FIMS to verify order details before responding to a delivery query"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Campaign Role Boundaries & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_05_q14",
+			"number": 14,
+			"question": "What is the Price Please Automation, and when must it be updated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A WhatsApp template that auto-replies to customers who ask for discounts — updated weekly by the Asst Manager"
+				},
+				{
+					"key": "B",
+					"text": "A BIK journey that links a social media post's featured product to an automated price-inquiry reply — must be updated for every new social media post"
+				},
+				{
+					"key": "C",
+					"text": "A FIMS automation that adjusts product prices based on competitor listings — managed by the pricing team"
+				},
+				{
+					"key": "D",
+					"text": "A campaign feature that sends price-drop alerts to customers who viewed a product — triggered manually by the Senior Executive"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Campaign Role Boundaries & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_05_q15",
+			"number": 15,
+			"question": "Which warranty coverage statement is correct for a Certified Imperfect watch?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The 1-year warranty covers both mechanical defects and cosmetic imperfections disclosed at purchase"
+				},
+				{
+					"key": "B",
+					"text": "Certified Imperfect watches carry a 6-month warranty covering only strap and buckle defects"
+				},
+				{
+					"key": "C",
+					"text": "The 1-year warranty covers mechanical defects only; disclosed cosmetic imperfections are not covered"
+				},
+				{
+					"key": "D",
+					"text": "Certified Imperfect watches do not carry any warranty — they are sold as-is"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FAQ Bank Application — Categories 7–11 + Escalation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_05_q16",
+			"number": 16,
+			"question": "A CRM Executive finds an unresolved BIK chat from the previous day when they open the dashboard. What must they do before starting the new day's queue?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Archive the previous day's chat — chats older than 24 hours are auto-transferred to the Asst Manager"
+				},
+				{
+					"key": "B",
+					"text": "Log the previous day's chat in the BIK sheet as \"Closed\" to keep the sheet clean, even if unresolved"
+				},
+				{
+					"key": "C",
+					"text": "Resolve all pending or open chats from the previous day before starting new chats — per the pre-execution checklist"
+				},
+				{
+					"key": "D",
+					"text": "Escalate all previous-day chats to the Senior Executive, as Executives only handle same-day chats"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "BIK Chat Flow & Sheet Logging",
+				"weightContribution": "6.25%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

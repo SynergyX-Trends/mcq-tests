@@ -1,0 +1,474 @@
+{
+	"testId": "day_15",
+	"title": "DAY 15 — CRM-M10 — EMAIL HANDLING / FRESHDESK (DAY 2 OF 2) + CRM-M14 — SHIPROCKET OPERATIONS & WEB TRACKER ESCALATIONS",
+	"questions": [
+		{
+			"id": "day_15_q1",
+			"number": 1,
+			"question": "What is the correct daily priority order when reviewing the Shiprocket dashboard at start of day?",
+			"options": [
+				{
+					"key": "A",
+					"text": "New Orders → Ready to Ship → NDR → Overdue Orders"
+				},
+				{
+					"key": "B",
+					"text": "NDR → Overdue Orders → New Orders → Ready to Ship"
+				},
+				{
+					"key": "C",
+					"text": "Overdue Orders → NDR → New Orders → Ready to Ship"
+				},
+				{
+					"key": "D",
+					"text": "Ready to Ship → New Orders → Overdue Orders → NDR"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Dashboard Review & Issue Category Routing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q2",
+			"number": 2,
+			"question": "A customer received an empty parcel. According to the escalation routing matrix, what is the primary escalation channel for \"Wrong / Empty Shipments\"?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Gmail to Shiprocket Executives"
+				},
+				{
+					"key": "B",
+					"text": "Shiprocket Platform Ticket (Create Ticket via Order)"
+				},
+				{
+					"key": "C",
+					"text": "FIMS Support Ticket"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket WhatsApp Group"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Dashboard Review & Issue Category Routing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q3",
+			"number": 3,
+			"question": "A courier failed to collect a shipment from the warehouse. What are the TWO escalation channels for \"Pickup Issue\" per the routing matrix?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS Support Ticket + Shiprocket Platform Ticket"
+				},
+				{
+					"key": "B",
+					"text": "Gmail to Shiprocket Executives + Shiprocket WhatsApp Group (urgent)"
+				},
+				{
+					"key": "C",
+					"text": "Shiprocket Platform Ticket + Gmail to Shiprocket Executives"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket Chat + Gmail to Shiprocket Executives"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Dashboard Review & Issue Category Routing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q4",
+			"number": 4,
+			"question": "For an NDR issue, what is the first escalation channel per the routing matrix — before any Gmail is sent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shiprocket Platform Ticket"
+				},
+				{
+					"key": "B",
+					"text": "Shiprocket WhatsApp Group"
+				},
+				{
+					"key": "C",
+					"text": "FIMS action first (check order, update, reattempt)"
+				},
+				{
+					"key": "D",
+					"text": "Gmail to Shiprocket Executives"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Dashboard Review & Issue Category Routing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q5",
+			"number": 5,
+			"question": "What is the correct 5-level escalation sequence for mail-type Shiprocket issues?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Platform Ticket → Gmail → Follow-up Gmail → WhatsApp Group → Shiprocket Chat"
+				},
+				{
+					"key": "B",
+					"text": "Gmail → Follow-up Gmail → 2nd Follow-up Gmail → Shiprocket Chat → Platform Ticket"
+				},
+				{
+					"key": "C",
+					"text": "Gmail → Platform Ticket → Follow-up Gmail → Shiprocket Chat → WhatsApp Group"
+				},
+				{
+					"key": "D",
+					"text": "WhatsApp Group → Gmail → Follow-up Gmail → Platform Ticket → Shiprocket Chat"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Multi-Level Escalation Path & Gmail Templates",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_15_q6",
+			"number": 6,
+			"question": "After sending the 1st level Gmail escalation, how long must the executive wait before sending a 2nd level follow-up?",
+			"options": [
+				{
+					"key": "A",
+					"text": "24 hours"
+				},
+				{
+					"key": "B",
+					"text": "48 hours — no response or resolution within this window triggers the next level"
+				},
+				{
+					"key": "C",
+					"text": "72 hours"
+				},
+				{
+					"key": "D",
+					"text": "Same day — if no immediate reply, escalate again"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Multi-Level Escalation Path & Gmail Templates",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_15_q7",
+			"number": 7,
+			"question": "When sending a 2nd or 3rd level follow-up email, what is the critical rule about the email thread?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Create a new email with a fresh subject line for each follow-up"
+				},
+				{
+					"key": "B",
+					"text": "Reply on the same Gmail thread — do not create a new email; thread continuity is required"
+				},
+				{
+					"key": "C",
+					"text": "Forward the original email to a different Shiprocket contact"
+				},
+				{
+					"key": "D",
+					"text": "CC the CRM Manager on a new thread for visibility"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Multi-Level Escalation Path & Gmail Templates",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_15_q8",
+			"number": 8,
+			"question": "Who must be CC'd on every Shiprocket escalation Gmail?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM Asst Manager + CRM Manager"
+				},
+				{
+					"key": "B",
+					"text": "Shiprocket Mail ID + Style Feathers Mail ID"
+				},
+				{
+					"key": "C",
+					"text": "Ishan Sir + after-sale-services Slack (via email)"
+				},
+				{
+					"key": "D",
+					"text": "The customer + Shiprocket Executives"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Multi-Level Escalation Path & Gmail Templates",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_15_q9",
+			"number": 9,
+			"question": "An executive has a pickup issue that needs urgent escalation. They want to raise a Shiprocket Platform Ticket directly without sending any Gmail first. Is this correct?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — platform tickets are the primary channel for all issue types"
+				},
+				{
+					"key": "B",
+					"text": "No — the rule states: always escalate via Gmail before platform ticket for mail-appropriate issue types; do not skip the sequence"
+				},
+				{
+					"key": "C",
+					"text": "Yes — pickup issues should go directly to platform ticket"
+				},
+				{
+					"key": "D",
+					"text": "No — pickup issues should go directly to the WhatsApp Group only"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Multi-Level Escalation Path & Gmail Templates",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_15_q10",
+			"number": 10,
+			"question": "When raising a Shiprocket Platform Ticket, what must be done after clicking Submit?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Close the ticket and wait for Shiprocket to reopen it if needed"
+				},
+				{
+					"key": "B",
+					"text": "Note the ticket number and take daily follow-up on the ticket status; update the Web Tracker Sheet immediately"
+				},
+				{
+					"key": "C",
+					"text": "Send a confirmation email to the customer with the ticket number"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager to track the ticket"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Platform Ticket, NDR Handling & Claim Filing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q11",
+			"number": 11,
+			"question": "An NDR shows the reason \"Wrong address.\" What is the correct action sequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process RTO immediately — wrong address orders cannot be redelivered"
+				},
+				{
+					"key": "B",
+					"text": "Call customer → get correct address → update in Shiprocket panel → reattempt delivery"
+				},
+				{
+					"key": "C",
+					"text": "Send a Gmail to Shiprocket Executives requesting address correction"
+				},
+				{
+					"key": "D",
+					"text": "Cancel the order in FIMS and inform the customer"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Platform Ticket, NDR Handling & Claim Filing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q12",
+			"number": 12,
+			"question": "Why must NDRs be actioned within 24 hours?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shiprocket charges a late-action fee after 24 hours"
+				},
+				{
+					"key": "B",
+					"text": "The customer's refund window expires after 24 hours"
+				},
+				{
+					"key": "C",
+					"text": "Delay beyond 24 hours triggers automatic RTO — the shipment is returned to origin"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket de-prioritises the shipment after 24 hours"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Platform Ticket, NDR Handling & Claim Filing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q13",
+			"number": 13,
+			"question": "A claim filed for a lost shipment is approved by Shiprocket. What happens next?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shiprocket directly refunds the customer via their original payment method"
+				},
+				{
+					"key": "B",
+					"text": "Shiprocket provides the claim amount to the Style Feathers Shiprocket wallet; CRM must then initiate a refund to the customer"
+				},
+				{
+					"key": "C",
+					"text": "The claim amount is deducted from future Shiprocket invoices — no customer refund needed"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket ships a replacement product directly to the customer"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Platform Ticket, NDR Handling & Claim Filing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_15_q14",
+			"number": 14,
+			"question": "What are the 4 valid status values for the Web Tracker Sheet, and what does \"Re-Opened\" mean?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Open / Closed / Escalated / Archived — \"Archived\" means permanently closed"
+				},
+				{
+					"key": "B",
+					"text": "Pending / In Progress / Resolved / Re-Opened — \"Re-Opened\" means a previously resolved issue has recurred"
+				},
+				{
+					"key": "C",
+					"text": "New / Active / Complete / Cancelled — \"Cancelled\" means the issue was withdrawn"
+				},
+				{
+					"key": "D",
+					"text": "Pending / Escalated / Resolved / Closed — \"Closed\" means confirmed by management"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Web Tracker Sheet & Daily Compliance",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_15_q15",
+			"number": 15,
+			"question": "The Shiprocket wallet balance has reached zero. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Continue processing orders — Shiprocket will invoice the difference later"
+				},
+				{
+					"key": "B",
+					"text": "Inform management immediately; do not process new orders until the wallet is recharged"
+				},
+				{
+					"key": "C",
+					"text": "Switch to a backup courier service until the wallet is topped up"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to Shiprocket support to request a credit extension"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Web Tracker Sheet & Daily Compliance",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_15_q16",
+			"number": 16,
+			"question": "Which of the following is an item on the daily Shiprocket EOD checklist?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Send a summary email to the CRM Manager with all day's escalations"
+				},
+				{
+					"key": "B",
+					"text": "NDRs actioned within the 24-hour window"
+				},
+				{
+					"key": "C",
+					"text": "All Freshdesk tickets resolved and closed"
+				},
+				{
+					"key": "D",
+					"text": "Callback Request sheet cleared to zero"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Web Tracker Sheet & Daily Compliance",
+				"weightContribution": "6.67%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

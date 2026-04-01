@@ -1,0 +1,590 @@
+{
+	"testId": "day_07",
+	"title": "DAY 07 — CRM-M6 — NDR (NON-DELIVERY REPORT) MANAGEMENT — DAY 2 OF 2",
+	"questions": [
+		{
+			"id": "day_07_q1",
+			"number": 1,
+			"question": "An NDR was received yesterday and was actioned but the re-attempt has not yet occurred. Today, a second NDR arrives for the same order. Which task takes priority at the start of today's shift?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Open Shiprocket immediately and action the new NDR first — it has an earlier SLA window"
+				},
+				{
+					"key": "B",
+					"text": "Check the NDR sheet for the previous-day open item first, then action today's new NDR"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager — two consecutive NDRs on the same order require manager approval"
+				},
+				{
+					"key": "D",
+					"text": "Mark the order RTO — two consecutive NDRs indicate the customer is not accepting the delivery"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.29%"
+			}
+		},
+		{
+			"id": "day_07_q2",
+			"number": 2,
+			"question": "An order is on its second NDR. The first NDR was actioned with a re-attempt set. The second NDR reason is \"Customer not available\" again. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Mark RTO immediately — two NDRs mean the customer does not want the order"
+				},
+				{
+					"key": "B",
+					"text": "Use Path A again — call the buyer, add the remark, upload proof, update details; fill NDR 2 columns in the sheet"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager before taking any action — second NDRs always require manager approval"
+				},
+				{
+					"key": "D",
+					"text": "Use Path B — update the delivery address as the current address has clearly failed twice"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.29%"
+			}
+		},
+		{
+			"id": "day_07_q3",
+			"number": 3,
+			"question": "During a Path A call for an NDR, the Executive fails to add a remark before initiating the call. The call is made and the customer confirms re-delivery. What has been missed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Nothing critical — remarks can be added after the call is complete in the NDR sheet"
+				},
+				{
+					"key": "B",
+					"text": "The remark must be added before initiating the call in Shiprocket — it is a discrete step in the Path A sub-sequence"
+				},
+				{
+					"key": "C",
+					"text": "The call itself is invalid — remarks must precede calls in all Shiprocket NDR actions or the outcome is not recorded"
+				},
+				{
+					"key": "D",
+					"text": "The alternate mobile number step was also skipped — both are linked in the Shiprocket interface"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.29%"
+			}
+		},
+		{
+			"id": "day_07_q4",
+			"number": 4,
+			"question": "After a Path A call, the Executive selects the correct outcome and clicks \"Update Details\" without uploading the Proof of Communication. What is the consequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "No consequence — proof upload is optional on the first NDR attempt; it is only required on NDR 2 and NDR 3"
+				},
+				{
+					"key": "B",
+					"text": "The BPR field for this attempt will be No, which is a compliance failure tracked in the All BPR column"
+				},
+				{
+					"key": "C",
+					"text": "The action will be reversed automatically in Shiprocket — Upload Proof is a mandatory prerequisite to \"Update Details\""
+				},
+				{
+					"key": "D",
+					"text": "The NDR will remain open until the Asst Manager manually marks it as actioned"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.29%"
+			}
+		},
+		{
+			"id": "day_07_q5",
+			"number": 5,
+			"question": "A CRM Executive calls a customer about an NDR with reason \"Customer not available.\" The customer says they were home all day, the courier never knocked or called, and their address is completely correct. What type of NDR situation is this?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Standard non-delivery — the courier likely missed the address; use Path A to schedule a re-attempt"
+				},
+				{
+					"key": "B",
+					"text": "Refused delivery — the customer should be asked if they want to proceed with the order"
+				},
+				{
+					"key": "C",
+					"text": "Fake attempt — the courier logged a failed delivery without physically attempting it; requires Path D"
+				},
+				{
+					"key": "D",
+					"text": "Wrong address — the customer's self-reported address is different from what is on file"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Fake Attempt Detection & Path D Documentation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q6",
+			"number": 6,
+			"question": "When filing a Path D report in Shiprocket for a fake attempt, what must be uploaded — and how is this different from what is uploaded after a Path A call?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Path D requires uploading the courier's delivery scan — Path A requires uploading the customer's address proof"
+				},
+				{
+					"key": "B",
+					"text": "Path D requires Proof of Buyer Intent (e.g. customer message confirming they were home) — Path A requires Proof of Communication (screenshot or recording of the call with the buyer)"
+				},
+				{
+					"key": "C",
+					"text": "Both Path A and Path D require the same document — a screenshot of the Shiprocket NDR panel"
+				},
+				{
+					"key": "D",
+					"text": "Path D requires no upload — the issue report submission alone is sufficient; Path A requires a call recording"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Fake Attempt Detection & Path D Documentation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q7",
+			"number": 7,
+			"question": "After submitting a Path D fake attempt report in Shiprocket, where must the escalation also be logged?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS → OMS → Shopify → Order Comments section"
+				},
+				{
+					"key": "B",
+					"text": "Daily Work — CRM-2026.xlsx → NDR tab → Notes column only"
+				},
+				{
+					"key": "C",
+					"text": "Style Feathers Web Tracker → NDR tab — capturing agent name, status, escalation via, and issue type"
+				},
+				{
+					"key": "D",
+					"text": "The `customer-care` Slack channel — no secondary logging tool is required"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Fake Attempt Detection & Path D Documentation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q8",
+			"number": 8,
+			"question": "A fake attempt was reported via Path D in Shiprocket yesterday. Today, the courier has still not reattempted the delivery. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Mark the order RTO — if the courier did not respond within 24 hours, delivery is not feasible"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack — if the courier does not reattempt after the fake attempt report, escalation is required"
+				},
+				{
+					"key": "C",
+					"text": "Submit a second Path D report in Shiprocket — multiple reports increase the priority of the issue"
+				},
+				{
+					"key": "D",
+					"text": "Contact the customer and advise them to arrange a self-pickup from the courier facility"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Fake Attempt Detection & Path D Documentation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q9",
+			"number": 9,
+			"question": "In the NDR sheet, the \"Fake Attempt 2\" column shows \"Yes\" for an order. What does this mean?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The second NDR for this order was a suspected fake delivery attempt by the courier"
+				},
+				{
+					"key": "B",
+					"text": "Two fake attempts were recorded on the same NDR event"
+				},
+				{
+					"key": "C",
+					"text": "The customer has been flagged as a suspicious buyer who may have faked being unavailable"
+				},
+				{
+					"key": "D",
+					"text": "The second NDR attempt by the CRM Executive was rejected by Shiprocket as a duplicate"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Fake Attempt Detection & Path D Documentation",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q10",
+			"number": 10,
+			"question": "Which of the following is an escalation trigger that requires the CRM Asst Manager to be involved BEFORE the Executive takes action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "An NDR with reason \"Customer not available\" on a standard COD order"
+				},
+				{
+					"key": "B",
+					"text": "An NDR unresolved after 3 attempts on a high-value order — escalate before marking RTO"
+				},
+				{
+					"key": "C",
+					"text": "A second NDR arriving on an order that had a re-attempt set after the first"
+				},
+				{
+					"key": "D",
+					"text": "An NDR where the customer verbally confirmed re-delivery on the first call"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & RTO Edge Cases",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q11",
+			"number": 11,
+			"question": "A customer calls in and insists they want their order delivered, but the courier has already marked the shipment as RTO in their system. What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Log the customer's request in the NDR sheet Notes column and ask them to wait for the order to return to the warehouse"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `after-sale-services` Slack — immediately"
+				},
+				{
+					"key": "C",
+					"text": "Re-open the NDR in Shiprocket and mark it as \"Re-attempt required\" to override the RTO"
+				},
+				{
+					"key": "D",
+					"text": "Inform the customer to contact the courier directly to intercept the shipment"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & RTO Edge Cases",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q12",
+			"number": 12,
+			"question": "Before raising a Shiprocket refund claim for a fake attempt, what must the CRM Executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Ensure the order has been marked RTO first — Shiprocket only processes claims on returned orders"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to the CRM Asst Manager before raising the claim — the Asst Manager must approve all Shiprocket refund claims"
+				},
+				{
+					"key": "C",
+					"text": "Submit the claim directly — refund claims for fake attempts are always approved automatically"
+				},
+				{
+					"key": "D",
+					"text": "Wait 7 business days after the fake attempt report — claims submitted before this window are rejected"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & RTO Edge Cases",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q13",
+			"number": 13,
+			"question": "An RTO has been confirmed received at the warehouse for a Prepaid order. Which NDR sheet columns are now filled for the first time?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Date NDR 3, NDR 3 Reason, Note NDR 3"
+				},
+				{
+					"key": "B",
+					"text": "Status (→ \"RTO\"), RTO Reason, and — if a Shiprocket refund claim is raised — Refund Escalation ID, Escalated Date, Refund Status"
+				},
+				{
+					"key": "C",
+					"text": "All BPR (→ auto-updated to Yes), Tracking Status Update Date"
+				},
+				{
+					"key": "D",
+					"text": "Approved Date, AWB, Logistic — these are only entered when RTO is confirmed"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & RTO Edge Cases",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_07_q14",
+			"number": 14,
+			"question": "A Prepaid order has been marked RTO. The warehouse has confirmed receipt of the returned product. What must the CRM Executive tell the customer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Your refund has been processed and will reflect in 3–5 business days.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Your order was returned. Please place a new order — the original amount will be adjusted.\""
+				},
+				{
+					"key": "C",
+					"text": "\"We're sorry your order could not be delivered. The shipment is being returned to us. Your refund will be processed within 7–10 business days once we receive the product at our warehouse.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Your order has been returned. A replacement will be dispatched within 48 hours.\""
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "RTO Customer Communication & Common Mistakes",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_07_q15",
+			"number": 15,
+			"question": "A COD order has been marked RTO. What customer communication or financial action is required from CRM?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Issue a refund for the COD handling fee that was charged at the time of order placement"
+				},
+				{
+					"key": "B",
+					"text": "Contact the customer to explain the RTO and offer a replacement at a 10% discount"
+				},
+				{
+					"key": "C",
+					"text": "No financial action is required — no payment was collected on a COD order; inform the customer the order is being returned"
+				},
+				{
+					"key": "D",
+					"text": "Process a bank transfer refund within 5 business days — COD customers must be compensated for the inconvenience"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "RTO Customer Communication & Common Mistakes",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_07_q16",
+			"number": 16,
+			"question": "A CRM Executive receives an NDR with reason \"Wrong address.\" Without calling the customer, they immediately click Path B (Update Delivery Details) and enter a corrected address based on what they think is right. Which common mistake was made?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Using Path B instead of Path A — all NDRs must begin with a Call Buyer action"
+				},
+				{
+					"key": "B",
+					"text": "Updating the address without verbal confirmation from the customer — address changes must be confirmed by the customer directly"
+				},
+				{
+					"key": "C",
+					"text": "Not uploading Proof of Communication before clicking Update Details"
+				},
+				{
+					"key": "D",
+					"text": "Not escalating to the Asst Manager before making address changes in Shiprocket"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "RTO Customer Communication & Common Mistakes",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_07_q17",
+			"number": 17,
+			"question": "A CRM Executive is about to mark RTO on an NDR without having called the customer. Which common mistake does this violate?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not checking the NDR sheet for previous-day items before opening Shiprocket"
+				},
+				{
+					"key": "B",
+					"text": "Not flagging the fake attempt in the NDR sheet Fake Attempt column"
+				},
+				{
+					"key": "C",
+					"text": "Initiating RTO without calling the customer first — always attempt a call before marking RTO"
+				},
+				{
+					"key": "D",
+					"text": "Not using the Company's Contact number when making the Path A call"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "RTO Customer Communication & Common Mistakes",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_07_q18",
+			"number": 18,
+			"question": "An NDR sheet row shows: BPR NDR 1 = Yes, BPR NDR 2 = No, BPR NDR 3 = Yes. What does the \"All BPR\" column show?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — the majority of BPRs are Yes, so All BPR qualifies"
+				},
+				{
+					"key": "B",
+					"text": "Yes — All BPR only checks the first and last attempts"
+				},
+				{
+					"key": "C",
+					"text": "No — All BPR is Yes only if all three individual BPR fields are Yes; a single No disqualifies it"
+				},
+				{
+					"key": "D",
+					"text": "Not Applicable — All BPR only populates when the order status is RTO"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.28%"
+			}
+		},
+		{
+			"id": "day_07_q19",
+			"number": 19,
+			"question": "Which of the following sequences correctly describes the full Path A sub-steps in the correct order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Click Call Buyer → Select Company's Contact → Initiate Call → Upload Proof → Add Remark → Update Details"
+				},
+				{
+					"key": "B",
+					"text": "Click Call Buyer → Select Company's Contact → Add Remark → Update Alternate Mobile (if applicable) → Select Communication Method → Initiate Call → Upload Proof of Communication → Click Update Details"
+				},
+				{
+					"key": "C",
+					"text": "Click Call Buyer → Add Remark → Upload Proof → Select Company's Contact → Select Communication Method → Initiate Call → Update Details"
+				},
+				{
+					"key": "D",
+					"text": "Click Call Buyer → Initiate Call → Select Company's Contact → Add Remark → Upload Proof → Update Alternate Mobile → Update Details"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.28%"
+			}
+		},
+		{
+			"id": "day_07_q20",
+			"number": 20,
+			"question": "A CRM Executive is handling a batch of NDRs and identifies one that arrived 26 hours ago — it was missed yesterday. What must they do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Archive it — NDRs older than 24 hours are auto-resolved by Shiprocket"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to Asst Manager first — the 24-hour window has passed, so manager approval is needed before actioning"
+				},
+				{
+					"key": "C",
+					"text": "Action it immediately as the highest priority in today's queue — the 24-hour window has already passed and RTO may have been triggered"
+				},
+				{
+					"key": "D",
+					"text": "Log it in the NDR sheet as \"Expired\" and move on — the courier will handle it from here"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Multi-Attempt Lifecycle & Path A Mastery",
+				"weightContribution": "4.28%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

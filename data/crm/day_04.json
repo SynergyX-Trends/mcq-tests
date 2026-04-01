@@ -1,0 +1,474 @@
+{
+	"testId": "day_04",
+	"title": "DAY 04 — CRM-M4 — IBC CALL HANDLING (MYOPERATOR)",
+	"questions": [
+		{
+			"id": "day_04_q1",
+			"number": 1,
+			"question": "A customer calls the Sylvi support number and presses option 2 on the IVR. Which department receives this call?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Orders"
+				},
+				{
+					"key": "B",
+					"text": "General & Customer Support"
+				},
+				{
+					"key": "C",
+					"text": "Refunds"
+				},
+				{
+					"key": "D",
+					"text": "Returns & Replacements"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "IVR Routing & IBC Call Flow",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_04_q2",
+			"number": 2,
+			"question": "A customer intended to ask about a product repair but accidentally pressed option 1 (Orders) on the IVR. The call reaches a CRM Executive. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Disconnect and ask the customer to call back and re-enter the correct option"
+				},
+				{
+					"key": "B",
+					"text": "Acknowledge the misdirection, handle the query if it is within the Executive's scope, or warm-transfer to the correct agent — do not disconnect without resolution"
+				},
+				{
+					"key": "C",
+					"text": "Inform the customer that their query cannot be handled on this IVR option and ask them to visit the website"
+				},
+				{
+					"key": "D",
+					"text": "Transfer the customer back to the IVR system to re-enter their selection"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "IVR Routing & IBC Call Flow",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_04_q3",
+			"number": 3,
+			"question": "Which of the following is the correct mandatory opening greeting for an IBC call?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Hello, how can I help you today?\""
+				},
+				{
+					"key": "B",
+					"text": "\"Yes, this is Sylvi customer care — please tell me your issue.\""
+				},
+				{
+					"key": "C",
+					"text": "\"Hello, thank you for calling. This is [Name] from Sylvi customer support. How may I assist you today?\""
+				},
+				{
+					"key": "D",
+					"text": "\"Hi, you've reached Sylvi support. Please share your order ID to begin.\""
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "IVR Routing & IBC Call Flow",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_04_q4",
+			"number": 4,
+			"question": "A customer calls about a delivery delay. Before looking up the order in FIMS, what must the CRM Executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Log the call reason in the IBC Calls tab before opening FIMS"
+				},
+				{
+					"key": "B",
+					"text": "Ask the customer for their registered mobile number or Order ID and confirm the order before accessing any details"
+				},
+				{
+					"key": "C",
+					"text": "Look up the order using the customer's name and city to save time"
+				},
+				{
+					"key": "D",
+					"text": "Open FIMS first, then ask the customer to verify the details shown on screen"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "IVR Routing & IBC Call Flow",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_04_q5",
+			"number": 5,
+			"question": "After listening to the customer's full concern, what must the CRM Executive do before providing any resolution?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Check the order status in FIMS and begin the resolution immediately"
+				},
+				{
+					"key": "B",
+					"text": "Confirm whether a previous call on this issue was logged in the IBC Calls tab"
+				},
+				{
+					"key": "C",
+					"text": "Confirm the customer's issue aloud using a confirmation question before acting"
+				},
+				{
+					"key": "D",
+					"text": "Determine if the issue falls under warranty before saying anything to the customer"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "IVR Routing & IBC Call Flow",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_04_q6",
+			"number": 6,
+			"question": "When must the IBC Calls tab (Daily Work — CRM-2026.xlsx) be updated after each inbound call?",
+			"options": [
+				{
+					"key": "A",
+					"text": "At the end of the day in one batch — to avoid interrupting call flow"
+				},
+				{
+					"key": "B",
+					"text": "Within 2 hours of the call, during a quieter period"
+				},
+				{
+					"key": "C",
+					"text": "Only for calls that result in a cancellation or escalation"
+				},
+				{
+					"key": "D",
+					"text": "Immediately after each call, before moving to the next one"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "IBC Sheet Update Compliance",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_04_q7",
+			"number": 7,
+			"question": "A CRM Executive handles an IBC call where a customer asked about a refund, but the issue could not be resolved in the same call and requires a follow-up. Which Resolution Status should be entered in the IBC Calls tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Resolved — the call was handled even if the issue was not closed"
+				},
+				{
+					"key": "B",
+					"text": "Not Applicable — refund issues are tracked separately and not logged in the IBC Calls tab"
+				},
+				{
+					"key": "C",
+					"text": "Follow-up"
+				},
+				{
+					"key": "D",
+					"text": "Closed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "IBC Sheet Update Compliance",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_04_q8",
+			"number": 8,
+			"question": "Where do callback requests come from, and where are they captured for CRM to action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customers email Sylvi → captured in the Freshdesk portal under open tickets"
+				},
+				{
+					"key": "B",
+					"text": "Customers call and leave a voicemail → captured in the MyOperator missed calls log"
+				},
+				{
+					"key": "C",
+					"text": "Customers send a WhatsApp message → auto-captured in the Callback Request tab of Daily Work — CRM-2026.xlsx"
+				},
+				{
+					"key": "D",
+					"text": "Customers fill a website form → requests are forwarded to the `customer-care` Slack channel"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Callback Request Protocol & Sheet Update",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_04_q9",
+			"number": 9,
+			"question": "When reviewing the Callback Request tab, what is the correct prioritisation order for pending requests?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Oldest request date first, then newest — regardless of issue type"
+				},
+				{
+					"key": "B",
+					"text": "Complaints (wrong product, non-delivery) → Issues (return/replacement, refund delays) → General queries (order status, product info)"
+				},
+				{
+					"key": "C",
+					"text": "By agent availability — the agent with the fewest open callbacks handles next"
+				},
+				{
+					"key": "D",
+					"text": "Highest order value first, then lower value orders"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Callback Request Protocol & Sheet Update",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_04_q10",
+			"number": 10,
+			"question": "A CRM Executive calls a customer from the Callback Request tab and gets no answer. What is the correct retry approach?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Mark the customer as \"Unreachable\" immediately and move to the next entry"
+				},
+				{
+					"key": "B",
+					"text": "Call once more the same day; if still no answer, escalate to the Asst Manager"
+				},
+				{
+					"key": "C",
+					"text": "Attempt 2–3 times spaced across the day (morning, midday, late afternoon); after 3 failed attempts mark Comments as \"Unreachable — 3 attempts\""
+				},
+				{
+					"key": "D",
+					"text": "Call twice only — the system auto-closes the entry after 2 failed attempts"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Callback Request Protocol & Sheet Update",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_04_q11",
+			"number": 11,
+			"question": "After completing a callback and resolving the customer's issue, which four fields must be updated in the Callback Request tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer Name, Resolution Status, Called On, Agent Remarks"
+				},
+				{
+					"key": "B",
+					"text": "Customer Phone Number, Called By, Comments, Request Date"
+				},
+				{
+					"key": "C",
+					"text": "Called By, Call Attempt Count, Resolution Status, FIMS Order Status"
+				},
+				{
+					"key": "D",
+					"text": "Call Back Done? (→ Yes), Called By, Called On, Comments"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Callback Request Protocol & Sheet Update",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_04_q12",
+			"number": 12,
+			"question": "What is the correct navigation path to access the Follow-Up module in MyOperator?",
+			"options": [
+				{
+					"key": "A",
+					"text": "MyOperator → Settings → Follow Up Tasks"
+				},
+				{
+					"key": "B",
+					"text": "MyOperator → Dashboard → Pending Calls → Follow Up"
+				},
+				{
+					"key": "C",
+					"text": "MyOperator → Agents → Assigned Follow-Ups"
+				},
+				{
+					"key": "D",
+					"text": "MyOperator → Call → Follow Up"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_04_q13",
+			"number": 13,
+			"question": "After completing a follow-up call, which two systems must be updated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS order status + IBC Calls tab"
+				},
+				{
+					"key": "B",
+					"text": "MyOperator system follow-up status + Daily Work — CRM-2026.xlsx → Call-Followup tab"
+				},
+				{
+					"key": "C",
+					"text": "MyOperator system follow-up status + Callback Request tab"
+				},
+				{
+					"key": "D",
+					"text": "Call-Followup tab + a message to the `customer-care` Slack channel"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_04_q14",
+			"number": 14,
+			"question": "What must be true about the MyOperator Follow Up tab at end of day?",
+			"options": [
+				{
+					"key": "A",
+					"text": "All entries should be in \"In Progress\" status — they will be completed the following morning"
+				},
+				{
+					"key": "B",
+					"text": "A minimum of 80% of entries must be actioned; the remaining are carried over"
+				},
+				{
+					"key": "C",
+					"text": "Zero open unactioned entries — all items must be either Closed or have specific remarks describing what is outstanding"
+				},
+				{
+					"key": "D",
+					"text": "The Follow Up tab is reviewed weekly by the Asst Manager — daily clearance is not required"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "MyOperator Follow-Up & EOD Rule",
+				"weightContribution": "6.66%"
+			}
+		},
+		{
+			"id": "day_04_q15",
+			"number": 15,
+			"question": "A customer on an IBC call becomes abusive and starts making threats. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Ask the customer to calm down; if they continue, end the call without escalating — this is handled at agent level"
+				},
+				{
+					"key": "B",
+					"text": "Continue the call professionally — it is never acceptable to disconnect from a customer"
+				},
+				{
+					"key": "C",
+					"text": "Note the incident in the IBC sheet and escalate to the Asst Manager at end of day"
+				},
+				{
+					"key": "D",
+					"text": "Transfer to the Asst Manager immediately and inform via direct call or `customer-care` Slack — do not continue the call alone"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Escalation Triggers & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_04_q16",
+			"number": 16,
+			"question": "A CRM Executive resolves a customer's delivery issue on an IBC call and updates the IBC sheet with Resolution Status: \"Resolved\". The customer asks \"So my issue is fully sorted?\" — the Executive answers \"Yes\" based on what was discussed, without actually checking the order status in FIMS. Which documented mistake was made?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The IBC sheet was updated too early — it must only be updated at end of day"
+				},
+				{
+					"key": "B",
+					"text": "The Executive did not use the correct closing script before updating the sheet"
+				},
+				{
+					"key": "C",
+					"text": "No mistake was made — the Executive gave the customer a clear answer and updated the sheet"
+				},
+				{
+					"key": "D",
+					"text": "Marking an issue as \"Resolved\" without confirming with the customer that the issue is actually closed"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Escalation Triggers & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

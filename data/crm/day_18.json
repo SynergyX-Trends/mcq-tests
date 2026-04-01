@@ -1,0 +1,445 @@
+{
+	"testId": "day_18",
+	"title": "DAY 18 — CRM-M16 — KRA / KPI SELF-MONITORING",
+	"questions": [
+		{
+			"id": "day_18_q1",
+			"number": 1,
+			"question": "What is the target for Order Confirmation Rate (KPI 1.1), and what is its formula?",
+			"options": [
+				{
+					"key": "A",
+					"text": "≥ 95%; Confirmed Orders ÷ Total Shipped Orders × 100"
+				},
+				{
+					"key": "B",
+					"text": "≥ 99%; Total 1st Attempted Orders ÷ Total Orders Received × 100"
+				},
+				{
+					"key": "C",
+					"text": "≥ 97%; Orders Delivered ÷ Orders Shipped × 100"
+				},
+				{
+					"key": "D",
+					"text": "100%; Orders Approved ÷ Orders Assigned × 100"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "KRA 1 & 2 — Order Management & NDR KPIs",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_18_q2",
+			"number": 2,
+			"question": "An executive's Non Attempted Pending column shows 3 orders at 5:30 PM. What must they do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Log the 3 orders in Remarks and log off — they will be carried forward automatically"
+				},
+				{
+					"key": "B",
+					"text": "Action the 3 orders immediately before EOD; any order in Non Attempted Pending is a gap against KPI 1.2"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager — non-attempted orders require manager authorisation"
+				},
+				{
+					"key": "D",
+					"text": "No action needed — the target is <1%, and 3 orders may still be within tolerance"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "KRA 1 & 2 — Order Management & NDR KPIs",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_18_q3",
+			"number": 3,
+			"question": "What is the target for Cancellation Retention Rate (KPI 1.3), and at what level is it reviewed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "≥ 90%; reviewed daily per executive"
+				},
+				{
+					"key": "B",
+					"text": "≥ 95% retained; reviewed monthly at team level"
+				},
+				{
+					"key": "C",
+					"text": "≥ 80%; reviewed weekly per executive"
+				},
+				{
+					"key": "D",
+					"text": "≥ 99%; reviewed daily at team level"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "KRA 1 & 2 — Order Management & NDR KPIs",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_18_q4",
+			"number": 4,
+			"question": "What is the target NDR Rate (KPI 2.1), and at what percentage does it become \"Poor\"?",
+			"options": [
+				{
+					"key": "A",
+					"text": "≤ 5%; above 10% = Poor"
+				},
+				{
+					"key": "B",
+					"text": "≤ 3%; above 5% = Poor"
+				},
+				{
+					"key": "C",
+					"text": "≤ 1%; above 3% = Poor"
+				},
+				{
+					"key": "D",
+					"text": "≤ 3%; above 3% = Poor"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "KRA 1 & 2 — Order Management & NDR KPIs",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_18_q5",
+			"number": 5,
+			"question": "What is the target NDR Success Rate (KPI 2.2), and what does it measure?",
+			"options": [
+				{
+					"key": "A",
+					"text": "≥ 90%; percentage of NDR orders that are returned to origin"
+				},
+				{
+					"key": "B",
+					"text": "≥ 75%; percentage of NDR orders that are ultimately delivered successfully"
+				},
+				{
+					"key": "C",
+					"text": "≥ 50%; percentage of NDR orders resolved within 24 hours"
+				},
+				{
+					"key": "D",
+					"text": "≥ 95%; percentage of NDR orders with at least one reattempt"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "KRA 1 & 2 — Order Management & NDR KPIs",
+				"weightContribution": "6%"
+			}
+		},
+		{
+			"id": "day_18_q6",
+			"number": 6,
+			"question": "What are the 5 daily columns that must ALL read zero by EOD for SLA Adherence (KPI 3.1)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Pending NDRs, Pending Orders, Pending Callbacks, Pending Mails, Pending Reviews"
+				},
+				{
+					"key": "B",
+					"text": "Pending Tickets (BIK), Pending Social Media (IG), Pending Social Media (FB), Pending Social Media (YT), Pending Mails"
+				},
+				{
+					"key": "C",
+					"text": "Approved, Grand Total, Retained, Cancelled, Non Attempted"
+				},
+				{
+					"key": "D",
+					"text": "Connected, Missed, Not Reached, Pending Follow-Up, Callback Pending"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "KRA 3 — Support & Communication KPIs",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_18_q7",
+			"number": 7,
+			"question": "What is the target IBC Connect Rate (KPI 3.2)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "> 90% connected; ≤ 5% pending follow-ups on missed calls"
+				},
+				{
+					"key": "B",
+					"text": "> 95% connected; ≤ 1% pending follow-ups on missed calls"
+				},
+				{
+					"key": "C",
+					"text": "100% connected; 0% missed calls allowed"
+				},
+				{
+					"key": "D",
+					"text": "> 85% connected; ≤ 3% pending follow-ups on missed calls"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "KRA 3 — Support & Communication KPIs",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_18_q8",
+			"number": 8,
+			"question": "An executive's Missed Call (Follow Up Pending) column shows 2 at EOD. What must happen?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Action them first thing next working day before starting new work"
+				},
+				{
+					"key": "B",
+					"text": "Log them in Remarks and they will expire after 48 hours"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager for reassignment"
+				},
+				{
+					"key": "D",
+					"text": "No action — missed calls are not tracked against individual performance"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "KRA 3 — Support & Communication KPIs",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_18_q9",
+			"number": 9,
+			"question": "How many daily columns must the executive check during the EOD self-review, and what is the deadline?",
+			"options": [
+				{
+					"key": "A",
+					"text": "7 columns; submit by 7 PM"
+				},
+				{
+					"key": "B",
+					"text": "11 columns; submit all sheets by 6 PM"
+				},
+				{
+					"key": "C",
+					"text": "5 columns; submit by 5:30 PM"
+				},
+				{
+					"key": "D",
+					"text": "14 columns; submit by 6:30 PM"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Self-Review & Dashboard Navigation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_18_q10",
+			"number": 10,
+			"question": "During EOD self-review, a column shows a non-zero value that the executive cannot action before logout. What must they do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Clear the value by setting it to zero manually — the sheet must be clean at logout"
+				},
+				{
+					"key": "B",
+					"text": "Leave it and action it the next day without documentation"
+				},
+				{
+					"key": "C",
+					"text": "Log the reason in the Remarks column before logging off"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Manager via Slack before logging off"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Self-Review & Dashboard Navigation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_18_q11",
+			"number": 11,
+			"question": "To review personal performance for the current week on the Dashboard, what date filter should be set?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Set both From and To to today's date"
+				},
+				{
+					"key": "B",
+					"text": "Set From to Monday and To to Sunday of the current week"
+				},
+				{
+					"key": "C",
+					"text": "Set From to the 1st and To to the last day of the current month"
+				},
+				{
+					"key": "D",
+					"text": "No filter needed — the Dashboard always shows the current week"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Self-Review & Dashboard Navigation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_18_q12",
+			"number": 12,
+			"question": "In the Task Analytics tab, which column indicates that a task type has unresolved items?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Total column — any value above zero"
+				},
+				{
+					"key": "B",
+					"text": "Resolved column — if below the Total count"
+				},
+				{
+					"key": "C",
+					"text": "Pending column — any non-zero value means an unresolved task"
+				},
+				{
+					"key": "D",
+					"text": "Status column — any entry marked \"Open\""
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "EOD Self-Review & Dashboard Navigation",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_18_q13",
+			"number": 13,
+			"question": "In the monthly performance evaluation, what does the label \"Need to work\" mean?",
+			"options": [
+				{
+					"key": "A",
+					"text": "At or above the target benchmark"
+				},
+				{
+					"key": "B",
+					"text": "Below target but within acceptable tolerance"
+				},
+				{
+					"key": "C",
+					"text": "Below acceptable range — needs active improvement"
+				},
+				{
+					"key": "D",
+					"text": "Significantly below target — escalation or remediation required"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Monthly Evaluation, SWOT & KRA 4/5",
+				"weightContribution": "8.33%"
+			}
+		},
+		{
+			"id": "day_18_q14",
+			"number": 14,
+			"question": "What is the target for KRA 4 (SOP Adherence), and which of the following is a common SOP breach trigger?",
+			"options": [
+				{
+					"key": "A",
+					"text": "95%; not logging NDR attempts in the sheet"
+				},
+				{
+					"key": "B",
+					"text": "99%; not updating FIMS after every action"
+				},
+				{
+					"key": "C",
+					"text": "100%; arriving late to shift"
+				},
+				{
+					"key": "D",
+					"text": "90%; not using the Dashboard tab daily"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Monthly Evaluation, SWOT & KRA 4/5",
+				"weightContribution": "8.33%"
+			}
+		},
+		{
+			"id": "day_18_q15",
+			"number": 15,
+			"question": "In the SWOT self-analysis, what does the status label \"WIP\" mean, and how often should SWOT items be reviewed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Work in Progress\" — reviewed quarterly with CRM Manager"
+				},
+				{
+					"key": "B",
+					"text": "\"Work in Progress\" — you are working on it but not yet consistent; reviewed monthly during one-on-one with Team Leader"
+				},
+				{
+					"key": "C",
+					"text": "\"Waiting for Input\" — pending Manager feedback; reviewed bi-weekly"
+				},
+				{
+					"key": "D",
+					"text": "\"Well Implemented Practice\" — confirmed strength; reviewed annually"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Monthly Evaluation, SWOT & KRA 4/5",
+				"weightContribution": "8.33%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

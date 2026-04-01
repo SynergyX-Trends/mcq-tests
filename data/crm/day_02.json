@@ -1,0 +1,474 @@
+{
+	"testId": "day_02",
+	"title": "DAY 02 — CRM-M2 — FIMS (OMS) PANEL FUNDAMENTALS",
+	"questions": [
+		{
+			"id": "day_02_q1",
+			"number": 1,
+			"question": "What is the canonical navigation path to reach the Shopify orders list in FIMS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Online → Shopify → Orders"
+				},
+				{
+					"key": "B",
+					"text": "Dashboard → Orders → Shopify"
+				},
+				{
+					"key": "C",
+					"text": "OMS → Shopify → Orders"
+				},
+				{
+					"key": "D",
+					"text": "Support → OMS → Orders"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "FIMS Navigation & Panel Structure",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_02_q2",
+			"number": 2,
+			"question": "A CRM Executive sees an order in the Follow Up tab in FIMS. What does this indicate?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The order has been confirmed and is ready for packing"
+				},
+				{
+					"key": "B",
+					"text": "The order has been permanently cancelled and needs no further action"
+				},
+				{
+					"key": "C",
+					"text": "The order requires CRM action and must be addressed the same day"
+				},
+				{
+					"key": "D",
+					"text": "The order is in transit and needs monitoring only"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "FIMS Navigation & Panel Structure",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_02_q3",
+			"number": 3,
+			"question": "An order in FIMS displays a red SLA Breached tag. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Flag the order for the CRM Asst Manager and continue processing new orders first"
+				},
+				{
+					"key": "B",
+					"text": "Cancel the order — SLA Breached means the delivery window has expired"
+				},
+				{
+					"key": "C",
+					"text": "Action the SLA Breached order immediately, above all other orders in the current queue"
+				},
+				{
+					"key": "D",
+					"text": "Move the order to the Claims tab and escalate to the Asst Manager"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "FIMS Navigation & Panel Structure",
+				"weightContribution": "6.6%"
+			}
+		},
+		{
+			"id": "day_02_q4",
+			"number": 4,
+			"question": "A COD customer answers the call and verbally confirms their order. The address on file is complete and verified. Which action button is correct?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Auto Confirmed"
+				},
+				{
+					"key": "B",
+					"text": "Self Approved"
+				},
+				{
+					"key": "C",
+					"text": "Register Communication"
+				},
+				{
+					"key": "D",
+					"text": "Confirmation Call (Confirmed)"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "COD Order Processing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_02_q5",
+			"number": 5,
+			"question": "For which of the following COD scenarios should Auto Confirmed be selected instead of Confirmation Call (Confirmed)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer verbally confirmed on phone call; address is complete"
+				},
+				{
+					"key": "B",
+					"text": "Customer confirmed via WhatsApp message; address is complete and traceable"
+				},
+				{
+					"key": "C",
+					"text": "Customer did not respond to the call or WhatsApp message"
+				},
+				{
+					"key": "D",
+					"text": "Customer requested to cancel the order after confirming verbally"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "COD Order Processing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_02_q6",
+			"number": 6,
+			"question": "A COD customer sends a WhatsApp confirmation, but the address on file has no flat number. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Auto Confirmed — the customer has already confirmed via WhatsApp"
+				},
+				{
+					"key": "B",
+					"text": "Cancellation Request — address issues always require cancellation"
+				},
+				{
+					"key": "C",
+					"text": "Call Attempted — contact the customer to verify and correct the address"
+				},
+				{
+					"key": "D",
+					"text": "Convert to Self Pickup — incomplete address means the customer must collect"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "COD Order Processing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_02_q7",
+			"number": 7,
+			"question": "A CRM Executive calls a COD customer three times and gets no answer. What is the correct action sequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel the order immediately after the third unanswered call"
+				},
+				{
+					"key": "B",
+					"text": "Select Auto Confirmed — an unreachable COD customer is treated as implicit confirmation"
+				},
+				{
+					"key": "C",
+					"text": "Select Call Attempted → Initiate WhatsApp Flow"
+				},
+				{
+					"key": "D",
+					"text": "Select Self Approved and move the order to To Pack"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "COD Order Processing",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_02_q8",
+			"number": 8,
+			"question": "A Prepaid order arrives. The CRM Executive calls the customer and gets no answer. The address on file is complete and traceable. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Call Attempted — wait for the customer to call back before confirming"
+				},
+				{
+					"key": "B",
+					"text": "Auto Confirmed → To Pack, with remark: Prepaid order – address verified, customer not reachable"
+				},
+				{
+					"key": "C",
+					"text": "Cancellation Request — an unreachable customer cannot confirm delivery intent"
+				},
+				{
+					"key": "D",
+					"text": "Initiate WhatsApp Flow — confirmation call is required for all orders"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prepaid Order Processing",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_02_q9",
+			"number": 9,
+			"question": "Which statement correctly describes the address verification requirement for Prepaid orders?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Address verification is not required — payment is already received, so delivery is attempted regardless"
+				},
+				{
+					"key": "B",
+					"text": "Address verification is mandatory for Prepaid orders, even though a verbal confirmation call is not required"
+				},
+				{
+					"key": "C",
+					"text": "Address verification is only required if the pincode falls outside the courier's serviceable area"
+				},
+				{
+					"key": "D",
+					"text": "Address verification is handled by the courier partner, not by CRM"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prepaid Order Processing",
+				"weightContribution": "6.7%"
+			}
+		},
+		{
+			"id": "day_02_q10",
+			"number": 10,
+			"question": "A Prepaid order has an incomplete address. The CRM Executive calls the customer and gets no answer. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Auto Confirmed — the payment is received; attempt delivery with the partial address"
+				},
+				{
+					"key": "B",
+					"text": "Call Attempted → Initiate WhatsApp Flow → wait for customer response before confirming"
+				},
+				{
+					"key": "C",
+					"text": "Cancellation Request — incomplete address means the order cannot be delivered"
+				},
+				{
+					"key": "D",
+					"text": "Convert to Self Pickup — the customer must collect since address cannot be verified remotely"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Prepaid Order Processing",
+				"weightContribution": "6.6%"
+			}
+		},
+		{
+			"id": "day_02_q11",
+			"number": 11,
+			"question": "Why must a CRM Executive always review the Order History in FIMS before taking any action on an order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "To verify the customer's phone number before making a confirmation call"
+				},
+				{
+					"key": "B",
+					"text": "To check if another team member has already actioned the order, preventing duplicate entries or conflicting status updates"
+				},
+				{
+					"key": "C",
+					"text": "To confirm the product name and SKU before writing the remark"
+				},
+				{
+					"key": "D",
+					"text": "Order History review is required only for SLA Breached orders, not for all orders"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remarks & SOP Compliance",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_02_q12",
+			"number": 12,
+			"question": "After selecting Call Attempted on a COD order where the customer did not answer and a WhatsApp message was sent, which remark is correct?",
+			"options": [
+				{
+					"key": "A",
+					"text": "COD order – no response received"
+				},
+				{
+					"key": "B",
+					"text": "Customer unreachable – order pending confirmation"
+				},
+				{
+					"key": "C",
+					"text": "WhatsApp sent – confirmation awaited"
+				},
+				{
+					"key": "D",
+					"text": "Call attempt – no response, WhatsApp message sent"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remarks & SOP Compliance",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_02_q13",
+			"number": 13,
+			"question": "A CRM Executive clicks Auto Confirmed on a Prepaid order and immediately navigates to the next order without adding a remark. Which rule has been violated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The FIFO processing rule — the Executive must complete all steps on one order before moving to the next"
+				},
+				{
+					"key": "B",
+					"text": "The KRA 4 SOP Adherence rule — a remark is mandatory after every action and this is audited"
+				},
+				{
+					"key": "C",
+					"text": "The escalation protocol — Auto Confirmed orders require Asst Manager review before processing"
+				},
+				{
+					"key": "D",
+					"text": "No rule has been violated — remarks are optional for Prepaid orders"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remarks & SOP Compliance",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_02_q14",
+			"number": 14,
+			"question": "A COD order is confirmed by the customer via WhatsApp and the address is fully verified. What is the correct remark to add?",
+			"options": [
+				{
+					"key": "A",
+					"text": "COD confirmed – WhatsApp verification received"
+				},
+				{
+					"key": "B",
+					"text": "Auto Confirmed – WhatsApp reply received"
+				},
+				{
+					"key": "C",
+					"text": "Customer confirmed on WhatsApp – address verified"
+				},
+				{
+					"key": "D",
+					"text": "WhatsApp confirmation noted – order dispatched"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Remarks & SOP Compliance",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_02_q15",
+			"number": 15,
+			"question": "A CRM Executive opens FIMS and finds the following orders: 4 new COD orders, 1 overdue COD order, and 1 SLA Breached order. In what order should these be processed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "New COD orders → Overdue COD → SLA Breached (red tags are flagged for manager attention)"
+				},
+				{
+					"key": "B",
+					"text": "SLA Breached → Overdue COD → New COD orders"
+				},
+				{
+					"key": "C",
+					"text": "Overdue COD → New COD orders → SLA Breached"
+				},
+				{
+					"key": "D",
+					"text": "Process all orders in the order they appear in the FIMS order list, top to bottom"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Processing Sequence & Priority",
+				"weightContribution": "7.5%"
+			}
+		},
+		{
+			"id": "day_02_q16",
+			"number": 16,
+			"question": "Which of the following best describes the FIFO processing rule as applied in FIMS order management?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process the most recently added orders first, regardless of SLA or urgency"
+				},
+				{
+					"key": "B",
+					"text": "Process the oldest orders first within each priority tier, with SLA Breached orders always processed before all others"
+				},
+				{
+					"key": "C",
+					"text": "Process all orders in creation order without any exceptions for SLA or overdue status"
+				},
+				{
+					"key": "D",
+					"text": "The FIFO rule applies only to Prepaid orders; COD orders are processed based on call-attempt availability"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "Processing Sequence & Priority",
+				"weightContribution": "7.5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

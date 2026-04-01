@@ -1,0 +1,590 @@
+{
+	"testId": "day_09",
+	"title": "DAY 09 — CRM-M7 — RETURN & REPLACEMENT — DAY 2 OF 2",
+	"questions": [
+		{
+			"id": "day_09_q1",
+			"number": 1,
+			"question": "What is the correct WhatsApp notification to send after a return (refund) request has been submitted in FIMS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Your return has been approved and the refund has been processed. Please allow 7–10 business days for it to reflect."
+				},
+				{
+					"key": "B",
+					"text": "We are sorry to hear that the product didn't meet your expectations. Your return request has been created. Pickup will be attempted within 24–48 hours (if serviceable). The process may take 10–15 business days. Once the product reaches our warehouse, a refund link will be shared."
+				},
+				{
+					"key": "C",
+					"text": "Your return request is under review. Once approved by our team, a pickup will be scheduled within 48 hours."
+				},
+				{
+					"key": "D",
+					"text": "We are processing your return. The refund will be issued within 5–7 business days from today."
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — All 3 Variants",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q2",
+			"number": 2,
+			"question": "What is the key difference in the WhatsApp notification between a return (refund) and a replacement?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The return notification states the refund amount; the replacement notification states the estimated dispatch date"
+				},
+				{
+					"key": "B",
+					"text": "The return notification mentions \"a refund link will be shared\" after warehouse receipt; the replacement notification mentions \"a replacement will be shipped\" after warehouse receipt"
+				},
+				{
+					"key": "C",
+					"text": "The replacement notification includes a 24-hour pickup timeline; the return notification uses a 48-hour timeline"
+				},
+				{
+					"key": "D",
+					"text": "There is no difference — both use the same notification script with only the word \"return\" or \"replacement\" changed"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — All 3 Variants",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q3",
+			"number": 3,
+			"question": "A customer's pincode is not serviceable. Which of the following correctly describes the notification they should receive?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Your pickup has been scheduled — our courier partner will attempt delivery within 24–48 hours."
+				},
+				{
+					"key": "B",
+					"text": "We are sorry for the inconvenience. As your pincode is not serviceable, we cannot process your return at this time."
+				},
+				{
+					"key": "C",
+					"text": "If your pincode is not serviceable, you will need to self-ship the product at your own cost.\" — followed by the warehouse addre"
+				},
+				{
+					"key": "D",
+					"text": "Your return request has been created. Self-ship pickup will be attempted within 72 hours."
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — All 3 Variants",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q4",
+			"number": 4,
+			"question": "In the ReturnReplace sheet, what are the three valid values for the \"Return/Replace\" column?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Return / Replace / Repair"
+				},
+				{
+					"key": "B",
+					"text": "Prepaid Return / COD Return / Replace"
+				},
+				{
+					"key": "C",
+					"text": "Refund / Replacement / Exchange"
+				},
+				{
+					"key": "D",
+					"text": "Online Return / COD Return / Replace"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q5",
+			"number": 5,
+			"question": "A return request has been created in FIMS and the customer has been notified. The ReturnReplace sheet currently shows Status = \"Pending\". What is the next status update, and when is it applied?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Delivered\" — updated when the customer ships the produ"
+				},
+				{
+					"key": "B",
+					"text": "Pickup Initiated\" — updated when the courier is assigned and the reverse pickup is schedul"
+				},
+				{
+					"key": "C",
+					"text": "Refunded\" — updated when the refund link is generated in FI"
+				},
+				{
+					"key": "D",
+					"text": "Completed\" — updated when the FIMS request is successfully submitt"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q6",
+			"number": 6,
+			"question": "For a return request, the ReturnReplace sheet shows Status = \"Delivered\". What must happen next, and which column is updated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The replacement is dispatched — update the \"Gateway Link / Replace Order Id\" column with the new order ID"
+				},
+				{
+					"key": "B",
+					"text": "The warehouse conducts a QC inspection — if passed, a refund link is generated and shared; update \"Gateway Link / Replace Order Id\" with the refund link and Status to \"Refunded\""
+				},
+				{
+					"key": "C",
+					"text": "The customer is asked to confirm receipt of their refund — Status is updated to \"Completed\" after confirmation"
+				},
+				{
+					"key": "D",
+					"text": "CRM initiates the bank transfer directly — update the \"Amount\" column with the transferred amount"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q7",
+			"number": 7,
+			"question": "For a replacement request that has been delivered to the warehouse and verified, what is entered in the \"Gateway Link / Replace Order Id\" column?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The refund gateway URL — replacements use the same refund system as returns"
+				},
+				{
+					"key": "B",
+					"text": "The original order ID — to link the replacement back to the source order"
+				},
+				{
+					"key": "C",
+					"text": "The new replacement order ID — the ID of the newly dispatched replacement unit"
+				},
+				{
+					"key": "D",
+					"text": "The AWB (tracking number) of the returned product — for traceability"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q8",
+			"number": 8,
+			"question": "When is the \"Tracking Id\" column in the ReturnReplace sheet filled?",
+			"options": [
+				{
+					"key": "A",
+					"text": "At the time of FIMS request generation — the tracking ID is auto-assigned immediately"
+				},
+				{
+					"key": "B",
+					"text": "When the customer self-ships the product — they provide the tracking number"
+				},
+				{
+					"key": "C",
+					"text": "Once the reverse pickup is assigned by the courier partner and a tracking number is generated"
+				},
+				{
+					"key": "D",
+					"text": "Only for replacement orders — return orders do not require tracking ID entry"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q9",
+			"number": 9,
+			"question": "A CRM Executive processes a COD order return. Which \"Return/Replace\" value is entered in the sheet?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Prepaid Return"
+				},
+				{
+					"key": "B",
+					"text": "COD Replace"
+				},
+				{
+					"key": "C",
+					"text": "COD Return"
+				},
+				{
+					"key": "D",
+					"text": "Replace"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q10",
+			"number": 10,
+			"question": "For which request type is the \"Amount\" column in the ReturnReplace sheet filled?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Both return and replacement requests — the amount is the product value in both cases"
+				},
+				{
+					"key": "B",
+					"text": "Replacement requests only — the amount records the value of the replacement unit dispatched"
+				},
+				{
+					"key": "C",
+					"text": "Return requests only — the amount records the refund value to be returned to the customer"
+				},
+				{
+					"key": "D",
+					"text": "Neither — the Amount column is auto-populated from FIMS and is not manually entered"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q11",
+			"number": 11,
+			"question": "A customer contacts CRM claiming their product was delivered 12 days ago, but they insist the actual delivery was only 4 days ago (the tracking shows 12 days). They want a return. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Decline immediately — the tracking record is the authoritative delivery date and the 10-day window has passed"
+				},
+				{
+					"key": "B",
+					"text": "Approve the return — customer's self-reported delivery date takes precedence over the tracking record"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack before declining — the customer is disputing the 10-day window"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to provide proof of a later delivery and resubmit the request once received"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q12",
+			"number": 12,
+			"question": "A customer has sent a video, but the issue is not clearly visible — it is too dark and the angle doesn't show the problem. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reject the claim — if the video does not clearly show the issue, the claim cannot be processed"
+				},
+				{
+					"key": "B",
+					"text": "Accept the claim based on the customer's description — video is supplementary, not mandatory"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Senior Executive before rejecting — video not sufficient to verify the issue triggers escalation"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to send another video, and if the second video also fails, escalate to CRM Asst Manager"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q13",
+			"number": 13,
+			"question": "A customer has requested a replacement for a verified defect, but the same SKU is currently out of stock. What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Offer the customer a different model of equivalent value as a direct replacement"
+				},
+				{
+					"key": "B",
+					"text": "Inform the customer that replacement is not currently possible and offer a refund instead"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack before informing the customer"
+				},
+				{
+					"key": "D",
+					"text": "Place the customer on a waitlist and reconfirm when stock is available — no escalation needed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q14",
+			"number": 14,
+			"question": "A customer at a non-serviceable pincode says they are unwilling to pay for self-shipping and demands that Sylvi cover the cost. The CRM Executive is about to close the case as unresolvable. What must they do first?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Close the case — the policy is clear that self-ship is at the customer's own cost; no escalation is needed"
+				},
+				{
+					"key": "B",
+					"text": "Offer to cover half the shipping cost as a goodwill gesture and update the Amount column accordingly"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to the CRM Asst Manager via `after-sale-services` Slack before closing the case"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to use a different pincode and regenerate the FIMS request as a Free Pickup"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers — All 4 Conditions",
+				"weightContribution": "6.25%"
+			}
+		},
+		{
+			"id": "day_09_q15",
+			"number": 15,
+			"question": "A CRM Executive generates a FIMS return request but sends the WhatsApp notification to the customer first, before checking that the FIMS submission was successful. The FIMS submission had actually failed. Which common mistake does this represent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Skipping the video verification step before generating the request"
+				},
+				{
+					"key": "B",
+					"text": "Proceeding without T&C confirmation — the customer did not confirm in writing"
+				},
+				{
+					"key": "C",
+					"text": "Sending the customer notification before the FIMS request was confirmed as submitted"
+				},
+				{
+					"key": "D",
+					"text": "Generating the FIMS request without verifying the address — causing a pickup failure"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6 Identified & Avoided",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q16",
+			"number": 16,
+			"question": "A CRM Executive finishes their shift without updating the ReturnReplace sheet for two requests processed earlier in the day. What common mistake has been committed?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Skipping the video verification step — both requests were processed without evidence"
+				},
+				{
+					"key": "B",
+					"text": "Updating the sheet after the shift ends instead of immediately after each request is generated"
+				},
+				{
+					"key": "C",
+					"text": "Wrong Return Type selected in FIMS — COD and Prepaid were confused"
+				},
+				{
+					"key": "D",
+					"text": "Sending customer notifications before FIMS confirmation on both requests"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6 Identified & Avoided",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q17",
+			"number": 17,
+			"question": "A CRM Executive is about to generate a FIMS replacement request. The customer verbally confirmed their preference on a call, but a WhatsApp T&C confirmation has not yet been received. The Executive proceeds to FIMS. Which common mistake applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Skipping address verification — the address was not confirmed before FIMS action"
+				},
+				{
+					"key": "B",
+					"text": "Proceeding without T&C confirmation — written confirmation from the customer is required before FIMS action"
+				},
+				{
+					"key": "C",
+					"text": "Selecting the wrong Return Type — verbal confirmation of replacement is not sufficient for FIMS type selection"
+				},
+				{
+					"key": "D",
+					"text": "Video verification skipped — the issue was confirmed verbally, not via video"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6 Identified & Avoided",
+				"weightContribution": "5.00%"
+			}
+		},
+		{
+			"id": "day_09_q18",
+			"number": 18,
+			"question": "An RTO-confirmed Prepaid order from NDR management is now being processed as a refund case. Which SOP governs the refund process from this point?",
+			"options": [
+				{
+					"key": "A",
+					"text": "NDR Management — Standard Operating Procedure — the refund is tracked in the NDR sheet Refund Status column"
+				},
+				{
+					"key": "B",
+					"text": "Return & Replacement — Standard Operating Procedure — Prepaid RTO refunds follow the same refund path as standard return refunds"
+				},
+				{
+					"key": "C",
+					"text": "The RMA Repair & Warranty SOP — RTO orders are treated as warranty claims"
+				},
+				{
+					"key": "D",
+					"text": "No additional SOP is needed — Shiprocket automatically processes the refund when RTO is confirmed"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_09_q19",
+			"number": 19,
+			"question": "A customer placed a return request for a Prepaid watch. The pickup has been completed and the product has arrived at the warehouse. The QC passes. What should the CRM Executive do next regarding the sheet?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Update Status to \"Completed\" — QC pass means the case is closed"
+				},
+				{
+					"key": "B",
+					"text": "Update Status to \"Refunded\" and fill the \"Gateway Link / Replace Order Id\" column with the refund link once generated; also fill \"Amount\""
+				},
+				{
+					"key": "C",
+					"text": "Update Status to \"Pickup Initiated\" — this stage is updated only when the product leaves the warehouse after repair"
+				},
+				{
+					"key": "D",
+					"text": "No sheet update needed — FIMS auto-updates the ReturnReplace sheet status when QC passes"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "ReturnReplace Sheet — Complete Entry & Status Lifecycle",
+				"weightContribution": "3.88%"
+			}
+		},
+		{
+			"id": "day_09_q20",
+			"number": 20,
+			"question": "Which of the following correctly states the full pickup timeline communicated to the customer in both Return and Replacement notifications?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Pickup within 24 hours; process takes 7–10 business days"
+				},
+				{
+					"key": "B",
+					"text": "Pickup within 24–48 hours (if serviceable); process takes 10–15 business days"
+				},
+				{
+					"key": "C",
+					"text": "Pickup within 48–72 hours; process takes 5–7 business days"
+				},
+				{
+					"key": "D",
+					"text": "Pickup within 24–48 hours; process takes 7–14 business days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — All 3 Variants",
+				"weightContribution": "6.25%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

@@ -1,0 +1,590 @@
+{
+	"testId": "day_06",
+	"title": "DAY 06 — CRM-M6 — NDR (NON-DELIVERY REPORT) MANAGEMENT — DAY 1 OF 2",
+	"questions": [
+		{
+			"id": "day_06_q1",
+			"number": 1,
+			"question": "What does NDR stand for, and what triggers it?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Non-Dispatch Report — raised by the warehouse when an order is not packed within the SLA window"
+				},
+				{
+					"key": "B",
+					"text": "Non-Delivery Report — raised by the courier when a delivery attempt fails"
+				},
+				{
+					"key": "C",
+					"text": "New Dispatch Request — raised by CRM when a COD order needs re-confirmation before shipping"
+				},
+				{
+					"key": "D",
+					"text": "Non-Delivery Receipt — raised by the customer when they have not received their order within 7 days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "NDR Identification & Daily Priority",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q2",
+			"number": 2,
+			"question": "What is the consequence if an NDR is not actioned within 24 hours?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The shipment is placed on hold and the customer is automatically refunded"
+				},
+				{
+					"key": "B",
+					"text": "The NDR is escalated to the CRM Asst Manager for manual review"
+				},
+				{
+					"key": "C",
+					"text": "The shipment is marked RTO (Return to Origin) — the order is returned to the warehouse and the customer does not receive their watch"
+				},
+				{
+					"key": "D",
+					"text": "The courier partner charges an additional re-attempt fee to Sylvi"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "NDR Identification & Daily Priority",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q3",
+			"number": 3,
+			"question": "Which of the following is NOT one of the four documented NDR failure reasons?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Customer not available"
+				},
+				{
+					"key": "B",
+					"text": "Wrong address"
+				},
+				{
+					"key": "C",
+					"text": "Payment failure at delivery"
+				},
+				{
+					"key": "D",
+					"text": "Refused delivery"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "NDR Identification & Daily Priority",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q4",
+			"number": 4,
+			"question": "At the start of the day, before opening Shiprocket, what must the CRM Executive do first?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Send the day-start Shopify screenshot to the `customer-care` Slack channel"
+				},
+				{
+					"key": "B",
+					"text": "Log in to FIMS and check the Follow Up tab for pending orders"
+				},
+				{
+					"key": "C",
+					"text": "Check the NDR sheet for any open items from the previous day — these are the highest priority"
+				},
+				{
+					"key": "D",
+					"text": "Open BIK and clear all pending chats from the previous day before actioniing NDRs"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "NDR Identification & Daily Priority",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q5",
+			"number": 5,
+			"question": "What is the correct sequence of steps to reach the NDR action panel in Shiprocket?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Shiprocket → Orders → Failed Deliveries → Select NDR → Act"
+				},
+				{
+					"key": "B",
+					"text": "Shiprocket → Delivery Boost → Unsuccessful Deliveries → Filter (Input Required = Yes) → View Details → Act on Shipment"
+				},
+				{
+					"key": "C",
+					"text": "Shiprocket → Reports → NDR Summary → Open NDR → Action Required → Proceed"
+				},
+				{
+					"key": "D",
+					"text": "Shiprocket → Dashboard → Active Shipments → Filter NDR → View → Action"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q6",
+			"number": 6,
+			"question": "Why must the filter \"Select Input Required = Yes\" be applied in the Unsuccessful Deliveries panel?",
+			"options": [
+				{
+					"key": "A",
+					"text": "To see only NDRs assigned to the current agent — other agents' NDRs are filtered out"
+				},
+				{
+					"key": "B",
+					"text": "To display only NDRs that have already been resolved — for daily reporting purposes"
+				},
+				{
+					"key": "C",
+					"text": "To show only NDRs that require CRM action — filtering out those already actioned or not yet requiring input"
+				},
+				{
+					"key": "D",
+					"text": "The filter has no functional effect — it is applied for UI display purposes only"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q7",
+			"number": 7,
+			"question": "When using Path A (Call Buyer) in Shiprocket, which phone number must be selected for the outbound call?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The agent's personal mobile number — for faster customer identification"
+				},
+				{
+					"key": "B",
+					"text": "The customer's registered mobile number from FIMS"
+				},
+				{
+					"key": "C",
+					"text": "Company's Contact — never use a personal number"
+				},
+				{
+					"key": "D",
+					"text": "The CRM Manager's number — all outbound NDR calls must originate from the manager's line"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "4%"
+			}
+		},
+		{
+			"id": "day_06_q8",
+			"number": 8,
+			"question": "During a Path A call, the customer provides a new mobile number they want the courier to use. What must the Executive do in Shiprocket?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Note the new number in the NDR sheet Comments column only — Shiprocket does not support number updates"
+				},
+				{
+					"key": "B",
+					"text": "Update the Alternate Mobile Number field in Shiprocket before initiating the call action"
+				},
+				{
+					"key": "C",
+					"text": "Cancel this NDR and create a new one with the updated number"
+				},
+				{
+					"key": "D",
+					"text": "Share the new number with the courier directly via the `after-sale-services` Slack channel"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "4%"
+			}
+		},
+		{
+			"id": "day_06_q9",
+			"number": 9,
+			"question": "What is mandatory after every Path A (Call Buyer) action in Shiprocket, before clicking \"Update Details\"?",
+			"options": [
+				{
+					"key": "A",
+					"text": "A screenshot of the FIMS order status taken at the time of the call"
+				},
+				{
+					"key": "B",
+					"text": "Uploading Proof of Communication — a screenshot or recording of the conversation with the buyer"
+				},
+				{
+					"key": "C",
+					"text": "Sending a WhatsApp follow-up message to the customer confirming the call was made"
+				},
+				{
+					"key": "D",
+					"text": "Notifying the CRM Asst Manager via Slack that a call was made on the NDR"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "4%"
+			}
+		},
+		{
+			"id": "day_06_q10",
+			"number": 10,
+			"question": "A customer is called on an NDR and confirms they want to proceed — they will be home for the next delivery attempt. What is the correct action in Shiprocket?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Path C — Mark RTO, as the customer has not received the package yet"
+				},
+				{
+					"key": "B",
+					"text": "Path B — Update Delivery Details with the customer's re-confirmation"
+				},
+				{
+					"key": "C",
+					"text": "Select re-attempt in the failed delivery options and add the re-attempt date; remark: \"Customer confirmed — re-attempt on [date]\""
+				},
+				{
+					"key": "D",
+					"text": "Close the NDR as resolved — no further action needed once the customer confirms"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "4%"
+			}
+		},
+		{
+			"id": "day_06_q11",
+			"number": 11,
+			"question": "A customer called on an NDR says the address on the shipment has the wrong pincode. They provide the correct pincode. Which action path is used?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Path A — Call Buyer again to re-confirm the full corrected address verbally"
+				},
+				{
+					"key": "B",
+					"text": "Path C — Mark RTO, as the original order had an address error"
+				},
+				{
+					"key": "C",
+					"text": "Path D — Report a Shipment Issue, as address errors are a courier problem"
+				},
+				{
+					"key": "D",
+					"text": "Path B — Update Delivery Details with the corrected address, with a remark explaining the change"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "4%"
+			}
+		},
+		{
+			"id": "day_06_q12",
+			"number": 12,
+			"question": "A customer tells the CRM Executive on an NDR call that they no longer want the order and want it cancelled. Which action path applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Path A — note the customer's request as a remark and initiate a re-attempt anyway"
+				},
+				{
+					"key": "B",
+					"text": "Path B — update the delivery address to a different location per the customer's request"
+				},
+				{
+					"key": "C",
+					"text": "Path C — Mark RTO with reason: \"Customer refused delivery — RTO initiated\""
+				},
+				{
+					"key": "D",
+					"text": "Path D — report this as a shipment issue and request a re-delivery attempt from the courier"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Shiprocket Navigation & Action Path Selection",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_06_q13",
+			"number": 13,
+			"question": "Which path is used when a fake delivery attempt is suspected?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Path A — Call Buyer and ask the customer to wait for the next re-attempt"
+				},
+				{
+					"key": "B",
+					"text": "Path B — Update Delivery Details with the correct address to ensure the courier finds it next time"
+				},
+				{
+					"key": "C",
+					"text": "Path D — Report a Shipment Issue, selecting \"Fake Attempt\" as the issue type, with Proof of Buyer Intent uploaded"
+				},
+				{
+					"key": "D",
+					"text": "Path C — Mark RTO, as fake attempts indicate the courier will not successfully deliver"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fake Attempt Detection & Path D Execution",
+				"weightContribution": "3.89%"
+			}
+		},
+		{
+			"id": "day_06_q14",
+			"number": 14,
+			"question": "Which of the following is a sign that a delivery attempt may have been fake?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The customer placed a COD order and the NDR reason is \"Wrong address\""
+				},
+				{
+					"key": "B",
+					"text": "The customer confirms they were home, the courier never called, and the address is correct and traceable"
+				},
+				{
+					"key": "C",
+					"text": "The courier attempted delivery at the correct address but the customer was not home"
+				},
+				{
+					"key": "D",
+					"text": "The NDR was raised on the same day the order was dispatched"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fake Attempt Detection & Path D Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q15",
+			"number": 15,
+			"question": "After using Path D to report a fake attempt, where must the escalation also be logged (in addition to the NDR sheet)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "FIMS → OMS → Shopify → Order Comments section"
+				},
+				{
+					"key": "B",
+					"text": "The `customer-care` Slack channel, with the AWB number and fake attempt details"
+				},
+				{
+					"key": "C",
+					"text": "Style Feathers Web Tracker → NDR tab — with agent name, status, escalation via, and issue type"
+				},
+				{
+					"key": "D",
+					"text": "Daily Work — CRM-2026.xlsx → IBC Calls tab — as a separate complaint entry"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Fake Attempt Detection & Path D Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q16",
+			"number": 16,
+			"question": "In the NDR sheet, what does the \"BPR\" column record?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Whether the buyer's payment was received (Bank Payment Record)"
+				},
+				{
+					"key": "B",
+					"text": "Whether Proof of Communication with the buyer was uploaded during this NDR attempt (Buyer Proof of communication — Yes/No)"
+				},
+				{
+					"key": "C",
+					"text": "The buyer's preferred re-delivery time window (Buyer Preference for Re-delivery)"
+				},
+				{
+					"key": "D",
+					"text": "Whether the buyer was physically present during the delivery attempt (Buyer Presence Record)"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "NDR Sheet Compliance",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_06_q17",
+			"number": 17,
+			"question": "An order has received two failed NDR attempts. The Executive is logging the second attempt in the NDR sheet. Which columns belong specifically to this second attempt?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Date NDR 2, NDR 2 Reason, Note NDR 2, Fake Attempt 2, BPR NDR 2, NDR 2 By"
+				},
+				{
+					"key": "B",
+					"text": "Date NDR 2, NDR 2 Reason, Status, RTO Reason"
+				},
+				{
+					"key": "C",
+					"text": "NDR 2 Reason, Note NDR 2, All BPR, Escalated Date"
+				},
+				{
+					"key": "D",
+					"text": "Date NDR 2, NDR 2 Reason, Note NDR 2, Tracking Status Update Date"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "NDR Sheet Compliance",
+				"weightContribution": "6.67%"
+			}
+		},
+		{
+			"id": "day_06_q18",
+			"number": 18,
+			"question": "What condition must be true for the \"All BPR\" column in the NDR sheet to show \"Yes\"?",
+			"options": [
+				{
+					"key": "A",
+					"text": "At least one of the three BPR fields is Yes"
+				},
+				{
+					"key": "B",
+					"text": "The order has been delivered successfully after the NDR was resolved"
+				},
+				{
+					"key": "C",
+					"text": "All three BPR fields (BPR NDR 1, BPR NDR 2, BPR NDR 3) must be Yes — it is auto-calculated"
+				},
+				{
+					"key": "D",
+					"text": "The Asst Manager has reviewed and approved all three NDR attempts"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "NDR Sheet Compliance",
+				"weightContribution": "6.66%"
+			}
+		},
+		{
+			"id": "day_06_q19",
+			"number": 19,
+			"question": "After an RTO is confirmed, what is the difference in customer notification between a COD order and a Prepaid order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "COD orders require a full refund via bank transfer; Prepaid orders require the customer to place a new order"
+				},
+				{
+					"key": "B",
+					"text": "Both require the same communication — delivery failed and the order is being returned"
+				},
+				{
+					"key": "C",
+					"text": "COD orders require no further action (no payment was collected); Prepaid orders require a refund to be initiated as per the Return & Replacement SOP"
+				},
+				{
+					"key": "D",
+					"text": "Prepaid orders are auto-refunded by Shiprocket; COD orders must be manually marked as closed"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "RTO Conditions, Customer Notification & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_06_q20",
+			"number": 20,
+			"question": "Which of the following is a documented common mistake in NDR handling?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Uploading a screenshot of the customer's WhatsApp reply as proof of communication"
+				},
+				{
+					"key": "B",
+					"text": "Calling the customer using the Company's Contact option in Shiprocket"
+				},
+				{
+					"key": "C",
+					"text": "Initiating RTO without calling the customer first — always attempt a call before marking RTO"
+				},
+				{
+					"key": "D",
+					"text": "Filling the Fake Attempt column as Yes when the customer reports a fake delivery"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R5",
+				"criteria": "RTO Conditions, Customer Notification & Common Mistakes",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

@@ -1,0 +1,590 @@
+{
+	"testId": "day_12",
+	"title": "DAY 12 — CRM-M9 — CANCELLATION RETENTION (DAY 1 OF 2)",
+	"questions": [
+		{
+			"id": "day_12_q1",
+			"number": 1,
+			"question": "A customer calls to cancel their order. The executive checks FIMS and the order status is \"Packed.\" What is the correct next step?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inform the customer cancellation is not possible because the order has been packed"
+				},
+				{
+					"key": "B",
+					"text": "Cancel the order immediately in FIMS — packed orders can be cancelled without retention"
+				},
+				{
+					"key": "C",
+					"text": "Ask the customer for the cancellation reason and proceed with a retention attempt"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager before proceeding — packed orders require manager approval"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Decision Flow & Order Status Gate",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q2",
+			"number": 2,
+			"question": "A customer wants to cancel their order. The order status in FIMS is \"Shipped.\" What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceed with the cancellation — shipped orders can still be cancelled before delivery"
+				},
+				{
+					"key": "B",
+					"text": "Inform that cancellation is not possible once dispatched, but the customer can return or replace within 10 days of delivery"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager to request a special exception for shipped-order cancellation"
+				},
+				{
+					"key": "D",
+					"text": "Ask the customer to refuse delivery, then cancel from FIMS after the order is returned"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Decision Flow & Order Status Gate",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q3",
+			"number": 3,
+			"question": "Which order statuses allow the executive to proceed with the cancellation flow (retention attempt followed by FIMS cancellation if needed)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Confirmed and Packed only"
+				},
+				{
+					"key": "B",
+					"text": "Confirmed, Packed, and Shipped"
+				},
+				{
+					"key": "C",
+					"text": "Confirmed only — Packed orders must be escalated"
+				},
+				{
+					"key": "D",
+					"text": "Confirmed, Packed, Shipped, and Delivered"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Decision Flow & Order Status Gate",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q4",
+			"number": 4,
+			"question": "When a customer requests cancellation of a delivered order, which module's process should the executive redirect them to?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM-M6 NDR Management for redelivery"
+				},
+				{
+					"key": "B",
+					"text": "CRM-M8 RMA Repair & Warranty for assessment"
+				},
+				{
+					"key": "C",
+					"text": "CRM-M7 Return & Replacement within 10 days of delivery"
+				},
+				{
+					"key": "D",
+					"text": "CRM-M3 Order Confirmation for address correction"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Decision Flow & Order Status Gate",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q5",
+			"number": 5,
+			"question": "A customer says \"I found the same watch cheaper on Amazon.\" Which retention reason applies, and what is the unique retention point for this reason?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 1 (Changed Mind) — highlight loyalty points and out-of-stock risk"
+				},
+				{
+					"key": "B",
+					"text": "Reason 2 (Found a Better Deal) — recommend experiencing the watch firsthand, highlight premium quality, 10-day return option, and 1-year warranty"
+				},
+				{
+					"key": "C",
+					"text": "Reason 11 (Price Increased) — explain pricing factors and exclusive offers"
+				},
+				{
+					"key": "D",
+					"text": "Reason 13 (Doubts About Quality) — emphasise strict quality control and warranty"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q6",
+			"number": 6,
+			"question": "A customer says \"I placed the order by accident, I didn't mean to buy it.\" Which retention script applies, and what is a key point specific to this reason?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 4 (Wrong Product) — offer to modify the order to the correct product"
+				},
+				{
+					"key": "B",
+					"text": "Reason 1 (Changed Mind) — highlight loyalty points and future collection access"
+				},
+				{
+					"key": "C",
+					"text": "Reason 3 (Ordered by Mistake) — explain that no modifications can be made, but recommend experiencing the watch and highlight the 10-day return option"
+				},
+				{
+					"key": "D",
+					"text": "Reason 3 (Ordered by Mistake) — offer to cancel immediately since the order was unintentional"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q7",
+			"number": 7,
+			"question": "A customer says they can no longer afford the purchase. Which retention reason applies, and which unique retention point must be mentioned?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 5 (Not Needed) — highlight premium quality and loyalty points"
+				},
+				{
+					"key": "B",
+					"text": "Reason 6 (Financial Issues) — mention easy EMI options with flexible installments"
+				},
+				{
+					"key": "C",
+					"text": "Reason 1 (Changed Mind) — highlight exclusive offers and out-of-stock risk"
+				},
+				{
+					"key": "D",
+					"text": "Reason 6 (Financial Issues) — offer a discount code to reduce the price"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q8",
+			"number": 8,
+			"question": "A customer says \"I bought it as a gift but the occasion has been cancelled.\" What is the unique retention suggestion in the Reason 7 script that differs from all other reasons?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Offer to change the delivery address to the gift recipient"
+				},
+				{
+					"key": "B",
+					"text": "Suggest keeping it for future gifting occasions or gifting it to themselves"
+				},
+				{
+					"key": "C",
+					"text": "Offer an extended return window beyond the standard 10 days"
+				},
+				{
+					"key": "D",
+					"text": "Offer to convert the order to a gift voucher"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q9",
+			"number": 9,
+			"question": "A customer says \"My order is taking too long, I need it by this weekend.\" In the Reason 8 (Delayed Delivery) script, what specific delivery timeline is communicated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Delivery within 3–5 business days after dispatch"
+				},
+				{
+					"key": "B",
+					"text": "Delivery within 5–7 business days after dispatch"
+				},
+				{
+					"key": "C",
+					"text": "Delivery within 7–10 business days after dispatch"
+				},
+				{
+					"key": "D",
+					"text": "No specific timeline — only promise to deliver \"at the earliest\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q10",
+			"number": 10,
+			"question": "A customer says \"I ordered the wrong colour — I wanted the black variant, not silver.\" Which retention reason applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reason 3 (Ordered by Mistake) — the customer placed the order accidentally"
+				},
+				{
+					"key": "B",
+					"text": "Reason 1 (Changed Mind) — the customer changed their preference"
+				},
+				{
+					"key": "C",
+					"text": "Reason 4 (Wrong Product Ordered) — incorrect model, size, or colour; explain no modifications once placed but 10-day return/replace available"
+				},
+				{
+					"key": "D",
+					"text": "Reason 5 (Not Needed) — the customer no longer requires this specific product"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q11",
+			"number": 11,
+			"question": "How many core retention points are listed in the SOP for the executive to draw from during any retention attempt?",
+			"options": [
+				{
+					"key": "A",
+					"text": "4 — return policy, warranty, loyalty points, EMI"
+				},
+				{
+					"key": "B",
+					"text": "5 — return policy, warranty, loyalty points, quality, customer base"
+				},
+				{
+					"key": "C",
+					"text": "7 — 10-day return/replace, 1-year warranty, loyalty points, EMI, premium quality, growing customer base, out-of-stock risk"
+				},
+				{
+					"key": "D",
+					"text": "9 — one core point per retention reason"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Retention Scripts — Reasons 1–9",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q12",
+			"number": 12,
+			"question": "What is the correct FIMS path to cancel an order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "OMS → Shopify → Returns → Cancel"
+				},
+				{
+					"key": "B",
+					"text": "OMS → Shopify → Order → select Cancellation Request → add reason → move status to Cancelled"
+				},
+				{
+					"key": "C",
+					"text": "OMS → RMA → Orders → Cancel Request"
+				},
+				{
+					"key": "D",
+					"text": "OMS → Shopify → Order → Delete Order"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FIMS Cancellation & Post-Cancellation Communication",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q13",
+			"number": 13,
+			"question": "After cancelling a prepaid order in FIMS, what refund timeline must be communicated to the customer?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Refund within 3–5 business days to their bank account"
+				},
+				{
+					"key": "B",
+					"text": "Refund within 7–10 business days to the original payment method"
+				},
+				{
+					"key": "C",
+					"text": "Refund within 24–48 hours as store credit"
+				},
+				{
+					"key": "D",
+					"text": "Refund within 15 business days — same as the repair turnaround"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FIMS Cancellation & Post-Cancellation Communication",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q14",
+			"number": 14,
+			"question": "After cancelling a COD order in FIMS, what is the correct post-cancellation message?",
+			"options": [
+				{
+					"key": "A",
+					"text": "\"Your order has been cancelled. Your refund will be processed within 7–10 business days.\""
+				},
+				{
+					"key": "B",
+					"text": "\"Your order has been cancelled. No payment was collected, so no refund is required.\""
+				},
+				{
+					"key": "C",
+					"text": "\"Your order has been cancelled. Please confirm your bank details for the refund.\""
+				},
+				{
+					"key": "D",
+					"text": "\"Your order has been cancelled. A store credit has been added to your account.\""
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FIMS Cancellation & Post-Cancellation Communication",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q15",
+			"number": 15,
+			"question": "What is the correct sequence of actions after the customer confirms they want to cancel (retention attempt failed)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Update Cancellation Order sheet → Cancel in FIMS → Inform refund status"
+				},
+				{
+					"key": "B",
+					"text": "Cancel in FIMS → Update Cancellation Order sheet → Inform refund status"
+				},
+				{
+					"key": "C",
+					"text": "Cancel in FIMS → Inform refund status (if prepaid) → Update Cancellation Order sheet"
+				},
+				{
+					"key": "D",
+					"text": "Inform refund status → Cancel in FIMS → Update Cancellation Order sheet"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FIMS Cancellation & Post-Cancellation Communication",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q16",
+			"number": 16,
+			"question": "A customer is successfully retained and agrees to keep their order. What two actions must the executive perform?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel the retention attempt in FIMS and update the sheet with \"Cancelled Order\""
+				},
+				{
+					"key": "B",
+					"text": "Verify the customer's address (per CRM-M3 SOP) and update the Cancellation Order sheet with Order Status = \"Retained Order\""
+				},
+				{
+					"key": "C",
+					"text": "Send a WhatsApp confirmation message and close the ticket — no sheet update needed for retained orders"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager for confirmation and then update the sheet"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "FIMS Cancellation & Post-Cancellation Communication",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q17",
+			"number": 17,
+			"question": "What are the only two valid entries for the \"Order Status\" column in the Cancellation Order sheet?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancelled / Not Cancelled"
+				},
+				{
+					"key": "B",
+					"text": "Retained Order / Cancelled Order"
+				},
+				{
+					"key": "C",
+					"text": "Active / Cancelled"
+				},
+				{
+					"key": "D",
+					"text": "Retained / Rejected"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Cancellation Order Sheet — All Columns",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q18",
+			"number": 18,
+			"question": "In the Cancellation Order sheet, what are the valid entries for the \"Attempt\" column (first attempt)?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Connected / Not Connected"
+				},
+				{
+					"key": "B",
+					"text": "Call Rejected / Call Unanswered / Busy / Connected / Self Approved"
+				},
+				{
+					"key": "C",
+					"text": "Success / Failed / Pending"
+				},
+				{
+					"key": "D",
+					"text": "Answered / Missed / Voicemail"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Cancellation Order Sheet — All Columns",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q19",
+			"number": 19,
+			"question": "What are the two valid entries for the \"Call Type\" column in the Cancellation Order sheet, and what do they represent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Inbound / Outbound — general call direction"
+				},
+				{
+					"key": "B",
+					"text": "OBC (outbound call) / IBC (inbound call) — distinguishes whether CRM initiated or customer initiated the cancellation interaction"
+				},
+				{
+					"key": "C",
+					"text": "Retention / Cancellation — distinguishes the call outcome"
+				},
+				{
+					"key": "D",
+					"text": "First / Follow-up — distinguishes initial vs repeat contact"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Cancellation Order Sheet — All Columns",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_12_q20",
+			"number": 20,
+			"question": "An executive handles an OBC cancellation call. The first attempt was \"Call Unanswered,\" the second was \"Busy,\" and on the third attempt the customer connected and the order was cancelled (COD). How should the Attempt, Attempt-2, Attempt-3, Order Status, Call Type, DNC last Attempt, and Payment Mode columns be filled?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Attempt: Call Unanswered | Attempt-2: Busy | Attempt-3: Connected | Order Status: Cancelled Order | Call Type: OBC | DNC last Attempt: Success | Payment Mode: COD"
+				},
+				{
+					"key": "B",
+					"text": "Attempt: Missed | Attempt-2: Busy | Attempt-3: Answered | Order Status: Cancelled | Call Type: Outbound | DNC last Attempt: Connected | Payment Mode: COD"
+				},
+				{
+					"key": "C",
+					"text": "Attempt: Call Unanswered | Attempt-2: Busy | Attempt-3: Connected | Order Status: Cancelled Order | Call Type: IBC | DNC last Attempt: Success | Payment Mode: COD"
+				},
+				{
+					"key": "D",
+					"text": "Attempt: Unanswered | Attempt-2: Busy | Attempt-3: Success | Order Status: Cancelled Order | Call Type: OBC | DNC last Attempt: Success | Payment Mode: Cash"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Cancellation Order Sheet — All Columns",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

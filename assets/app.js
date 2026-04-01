@@ -2,6 +2,7 @@
 	const qs = new URLSearchParams(location.search);
 	const testId = qs.get("testId");
 	if (!testId) return; // index page uses its own script
+	const dept = qs.get("dept") || "tech";
 
 	// -------- CONFIG ----------
 	// Later you will set this to your Apps Script URL:
@@ -72,7 +73,7 @@
 	let idx = 0;
 	let timerInterval = null;
 
-	let identity = { employeeId: "", fullName: "" };
+	let identity = { employeeId: "", fullName: "", department: dept };
 
 	// attempt state stored locally
 	let attempt = {
@@ -92,7 +93,7 @@
 
 	function storageKey() {
 		const keyPart = (identity.employeeId || identity.fullName || "anon").toUpperCase().replace(/\s+/g, "_");
-		return `mcq:${testId}:${keyPart}`;
+		return `mcq:${dept}:${testId}:${keyPart}`;
 	}
 
 	function nowIso() {
@@ -131,7 +132,7 @@
 	function ensureAttemptId() {
 		if (!attempt.attemptId) {
 			const ident = (identity.employeeId || identity.fullName).toUpperCase().replace(/\s+/g, "_");
-			attempt.attemptId = `${testId}_${ident}_${Date.now()}`;
+			attempt.attemptId = `${dept}_${testId}_${ident}_${Date.now()}`;
 		}
 	}
 
@@ -379,6 +380,7 @@
 		const payload = {
 			employeeId: attempt.employeeId || identity.employeeId || "",
 			fullName: attempt.fullName || identity.fullName || "",
+			department: dept,
 			testId,
 			startedAt: attempt.startedAt || "",
 			submittedAt: attempt.submittedAt || new Date().toISOString(),
@@ -579,13 +581,13 @@
 	// -------- INIT ----------
 	(async function init() {
 		// Load test JSON
-		const res = await fetch(`../data/${testId}.json`, { cache: "no-store" });
+		const res = await fetch(`../data/${dept}/${testId}.json`, { cache: "no-store" });
 		test = await res.json();
 
 		// ---- Meta fallback from tests.json (duration/title) ----
 		if (!test.title || typeof test.durationSeconds !== "number") {
 			try {
-				const metaRes = await fetch(`../data/tests.json`, { cache: "no-store" });
+				const metaRes = await fetch(`../data/${dept}/tests.json`, { cache: "no-store" });
 				const all = await metaRes.json();
 				const meta = Array.isArray(all) ? all.find(t => t.testId === testId) : null;
 
@@ -604,7 +606,16 @@
 		}
 
 		hdrTitle.textContent = "Sylvi MCQ";
-		hdrSub.textContent = `${test.title} • ${test.questions.length} questions`;
+		hdrSub.textContent = `${dept.toUpperCase()} • ${test.title} • ${test.questions.length} questions`;
+
+		// Set department badge
+		const deptBadge = el("deptBadge");
+		if (deptBadge) deptBadge.textContent = `Department: ${dept.toUpperCase()}`;
+
+		// Update back-links to preserve department
+		document.querySelectorAll('a[href="../index.html"]').forEach(a => {
+			a.href = `../index.html?dept=${encodeURIComponent(dept)}`;
+		});
 
 		introTitle.textContent = test.title;
 		introQCount.textContent = `Questions: ${test.questions.length}`;

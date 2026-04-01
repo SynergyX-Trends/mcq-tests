@@ -367,6 +367,39 @@ a {
   color: #FFB1B1;
 }
 
+/* Department tabs */
+.deptTabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 26px 0;
+  flex-wrap: wrap;
+}
+
+.deptTab {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-200);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+
+.deptTab:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.deptTab.active {
+  border-color: rgba(109, 91, 255, 0.55);
+  background: rgba(109, 91, 255, 0.14);
+  color: var(--text-100);
+  box-shadow: var(--ring);
+}
+
 /* Index grid cards */
 .grid {
   display: grid;
@@ -618,7 +651,7 @@ a {
 }
 
 /* Screens */
-.screen.hidden {
+.hidden {
   display: none;
 }
 

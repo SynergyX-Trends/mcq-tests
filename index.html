@@ -22,43 +22,111 @@
   </header>
 
   <main class="container section">
-    <div class="card">
+    <!-- Screen 1: Department picker -->
+    <div id="screenDept" class="card max480">
+      <div class="card__header">
+        <h1 class="h2">Select Department</h1>
+        <p class="muted">Pick your department to see available tests.</p>
+      </div>
+      <div id="deptList" class="stack"></div>
+    </div>
+
+    <!-- Screen 2: Tests grid (hidden until dept is picked) -->
+    <div id="screenTests" class="card hidden">
       <div class="card__header">
         <h1 class="h2">Available Tests</h1>
-        <p class="muted">Select a day to start. You will be asked for Employee ID or Full Name.</p>
+        <p class="muted" id="testsSubtitle">-</p>
       </div>
 
       <div id="testsGrid" class="grid"></div>
 
-      <div class="card__footer">
-        <p class="tiny muted">Hosted on GitHub Pages (static). Submissions will be sent to Google Sheets via Apps Script
-          later.</p>
+      <div class="card__footer row spaceBetween">
+        <button class="btn btn--secondary" id="btnChangeDept">Change Department</button>
+        <p class="tiny muted">Submissions sent to Google Sheets via Apps Script.</p>
       </div>
     </div>
   </main>
 
   <script>
     (async function () {
-      const res = await fetch("./data/tests.json", { cache: "no-store" });
-      const tests = await res.json();
+      const deptsRes = await fetch("./data/departments.json", { cache: "no-store" });
+      const departments = await deptsRes.json();
 
+      const screenDept = document.getElementById("screenDept");
+      const screenTests = document.getElementById("screenTests");
+      const deptList = document.getElementById("deptList");
       const grid = document.getElementById("testsGrid");
-      grid.innerHTML = "";
+      const testsSubtitle = document.getElementById("testsSubtitle");
+      const btnChangeDept = document.getElementById("btnChangeDept");
 
-      tests.forEach(t => {
-        const el = document.createElement("a");
-        el.className = "testCard";
-        el.href = `./pages/test.html?testId=${encodeURIComponent(t.testId)}`;
-        el.innerHTML = `
-          <div class="testCard__title">${escapeHtml(t.title)}</div>
-          <div class="testCard__meta">
-            <span class="chip">Questions: ${t.questionCount}</span>
-            <span class="chip">Time: ${Math.round(t.durationSeconds / 60)} min</span>
+      let activeDept = null;
+
+      // Render department options as big clickable cards
+      departments.forEach(d => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.innerHTML = `
+          <div class="optLeft">
+            <div class="optKey">${escapeHtml(d.label.charAt(0))}</div>
+            <div class="optText">${escapeHtml(d.label)}</div>
           </div>
-          <div class="testCard__cta">Start →</div>
+          <div class="optRight">→</div>
         `;
-        grid.appendChild(el);
+        btn.addEventListener("click", () => selectDept(d.id));
+        deptList.appendChild(btn);
       });
+
+      async function selectDept(deptId) {
+        activeDept = deptId;
+        localStorage.setItem("mcq:dept", deptId);
+        history.replaceState(null, "", `?dept=${deptId}`);
+
+        const dept = departments.find(d => d.id === deptId);
+        testsSubtitle.textContent = `${dept.label} Department`;
+
+        screenDept.classList.add("hidden");
+        screenTests.classList.remove("hidden");
+
+        grid.innerHTML = '<div class="muted" style="padding:26px;text-align:center;">Loading...</div>';
+        let tests = [];
+        try {
+          const res = await fetch(`./data/${deptId}/tests.json`, { cache: "no-store" });
+          tests = await res.json();
+        } catch {}
+
+        grid.innerHTML = "";
+        if (tests.length === 0) {
+          grid.innerHTML = '<div class="muted" style="padding:26px;text-align:center;">No tests available for this department yet.</div>';
+          return;
+        }
+        tests.forEach(t => {
+          const el = document.createElement("a");
+          el.className = "testCard";
+          el.href = `./pages/test.html?testId=${encodeURIComponent(t.testId)}&dept=${encodeURIComponent(deptId)}`;
+          el.innerHTML = `
+            <div class="testCard__title">${escapeHtml(t.title)}</div>
+            <div class="testCard__meta">
+              <span class="chip">Questions: ${t.questionCount}</span>
+              <span class="chip">Time: ${Math.round(t.durationSeconds / 60)} min</span>
+            </div>
+            <div class="testCard__cta">Start →</div>
+          `;
+          grid.appendChild(el);
+        });
+      }
+
+      btnChangeDept.addEventListener("click", () => {
+        screenTests.classList.add("hidden");
+        screenDept.classList.remove("hidden");
+        history.replaceState(null, "", location.pathname);
+      });
+
+      // Auto-select if dept is in URL
+      const qs = new URLSearchParams(location.search);
+      const urlDept = qs.get("dept");
+      if (urlDept && departments.find(d => d.id === urlDept)) {
+        await selectDept(urlDept);
+      }
 
       function escapeHtml(s) {
         return String(s).replace(/[&<>"']/g, m => ({

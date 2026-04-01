@@ -1,0 +1,122 @@
+[
+	{
+		"testId": "day_01",
+		"title": "DAY 01 — CRM-M1 — SYLVI BRAND & PRODUCT ORIENTATION",
+		"questionCount": 15,
+		"durationSeconds": 900
+	},
+	{
+		"testId": "day_02",
+		"title": "DAY 02 — CRM-M2 — FIMS (OMS) PANEL FUNDAMENTALS",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_03",
+		"title": "DAY 03 — CRM-M3 — ORDER CONFIRMATION & FIMS PROCESSING",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_04",
+		"title": "DAY 04 — CRM-M4 — IBC CALL HANDLING (MYOPERATOR)",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_05",
+		"title": "DAY 05 — CRM-M5 — BIK WHATSAPP & CAMPAIGN OPERATIONS + CRM-M13 — CUSTOMER FAQ BANK",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_06",
+		"title": "DAY 06 — CRM-M6 — NDR (NON-DELIVERY REPORT) MANAGEMENT — DAY 1 OF 2",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_07",
+		"title": "DAY 07 — CRM-M6 — NDR (NON-DELIVERY REPORT) MANAGEMENT — DAY 2 OF 2",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_08",
+		"title": "DAY 08 — CRM-M7 — RETURN & REPLACEMENT — DAY 1 OF 2",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_09",
+		"title": "DAY 09 — CRM-M7 — RETURN & REPLACEMENT — DAY 2 OF 2",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_10",
+		"title": "DAY 10 — CRM-M8 — RMA REPAIR & WARRANTY (DAY 1 OF 2)",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_11",
+		"title": "DAY 11 — CRM-M8 — RMA REPAIR & WARRANTY (DAY 2 OF 2)",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_12",
+		"title": "DAY 12 — CRM-M9 — CANCELLATION RETENTION (DAY 1 OF 2)",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_13",
+		"title": "DAY 13 — CRM-M9 — CANCELLATION RETENTION (DAY 2 OF 2)",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	},
+	{
+		"testId": "day_14",
+		"title": "DAY 14 — CRM-M12 — CALLBACK & FOLLOW-UP MANAGEMENT (FULL) + CRM-M10 — EMAIL HANDLING / FRESHDESK (DAY 1 OF 2)",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_15",
+		"title": "DAY 15 — CRM-M10 — EMAIL HANDLING / FRESHDESK (DAY 2 OF 2) + CRM-M14 — SHIPROCKET OPERATIONS & WEB TRACKER ESCALATIONS",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_16",
+		"title": "DAY 16 — CRM-M11 — SOCIAL MEDIA OPERATIONS (INSTAGRAM / FACEBOOK / YOUTUBE / REVIEWS)",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_17",
+		"title": "DAY 17 — CRM-M15 — PROTOTYPE FEEDBACK PROGRAM",
+		"questionCount": 15,
+		"durationSeconds": 900
+	},
+	{
+		"testId": "day_18",
+		"title": "DAY 18 — CRM-M16 — KRA / KPI SELF-MONITORING",
+		"questionCount": 15,
+		"durationSeconds": 900
+	},
+	{
+		"testId": "day_19",
+		"title": "DAY 19 — CRM-M17 — EOD OPERATIONS & DAILY REPORTING",
+		"questionCount": 16,
+		"durationSeconds": 960
+	},
+	{
+		"testId": "day_20",
+		"title": "DAY 20 — FINAL SYNTHESIS ASSESSMENT — ALL 17 MODULES (CRM-M1 THROUGH CRM-M17)",
+		"questionCount": 20,
+		"durationSeconds": 1200
+	}
+]

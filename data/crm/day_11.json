@@ -1,0 +1,590 @@
+{
+	"testId": "day_11",
+	"title": "DAY 11 — CRM-M8 — RMA REPAIR & WARRANTY (DAY 2 OF 2)",
+	"questions": [
+		{
+			"id": "day_11_q1",
+			"number": 1,
+			"question": "In the Standard Repair Pickup notification message, within what time frame does the SOP state the pickup will be attempted?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Within 12–24 hours"
+				},
+				{
+					"key": "B",
+					"text": "Within 24–48 hours (if serviceable)"
+				},
+				{
+					"key": "C",
+					"text": "Within 48–72 hours"
+				},
+				{
+					"key": "D",
+					"text": "Within 2–3 business days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — Both Variants",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q2",
+			"number": 2,
+			"question": "According to the Standard Repair Pickup notification script, what is the stated timeline for the entire repair process end-to-end?",
+			"options": [
+				{
+					"key": "A",
+					"text": "5–7 business days"
+				},
+				{
+					"key": "B",
+					"text": "7–10 business days"
+				},
+				{
+					"key": "C",
+					"text": "10–15 business days"
+				},
+				{
+					"key": "D",
+					"text": "15–20 business days"
+				}
+			],
+			"answer": "D",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — Both Variants",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q3",
+			"number": 3,
+			"question": "In the Self-Ship notification script, what is the correct sequence of events communicated to the customer after the product reaches the warehouse?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Quality check → repair → payment link → dispatch"
+				},
+				{
+					"key": "B",
+					"text": "Payment link (if charges apply) → repair → quality check → ship back"
+				},
+				{
+					"key": "C",
+					"text": "Repair → payment link → quality check → ship back"
+				},
+				{
+					"key": "D",
+					"text": "Payment link → quality check → repair → ship back"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — Both Variants",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q4",
+			"number": 4,
+			"question": "At which point in the RMA procedure is the customer notification message (Step 9) sent?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Immediately after the customer confirms they want to proceed (Step 5)"
+				},
+				{
+					"key": "B",
+					"text": "Immediately after FIMS submission but before sharing the RMA number"
+				},
+				{
+					"key": "C",
+					"text": "After the RMA number has been shared on WhatsApp (Step 8), before the RMA sheet update"
+				},
+				{
+					"key": "D",
+					"text": "After the RMA sheet has been updated (Step 10)"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — Both Variants",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q5",
+			"number": 5,
+			"question": "The Self-Ship notification script differs from the Standard Repair Pickup script in one critical way regarding timelines. What is that difference?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Self-Ship promises a faster turnaround of 5–7 business days"
+				},
+				{
+					"key": "B",
+					"text": "Self-Ship includes a specific pickup timeline of 24–48 hours"
+				},
+				{
+					"key": "C",
+					"text": "Self-Ship does not commit to any specific timeline — only describes the process sequence"
+				},
+				{
+					"key": "D",
+					"text": "Self-Ship guarantees delivery within 10 business days of warehouse receipt"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Customer Notification Scripts — Both Variants",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q6",
+			"number": 6,
+			"question": "What is the correct FIMS path to detect a pickup exception for an RMA order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "OMS → Shopify → Returns → Pickup Exception"
+				},
+				{
+					"key": "B",
+					"text": "OMS → RMA → Create → Exception Log"
+				},
+				{
+					"key": "C",
+					"text": "OMS → RMA → Orders → Pickup Pending / Pickup Exception → View Order"
+				},
+				{
+					"key": "D",
+					"text": "OMS → Returns → Pickup Exception → View Details"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q7",
+			"number": 7,
+			"question": "A pickup is marked as \"Cancelled\" by the courier with the reason \"customer not available.\" Before taking any action, what must the executive do first?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reassign the pickup immediately from the FIMS panel to avoid further delay"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `after-sale-services` Slack"
+				},
+				{
+					"key": "C",
+					"text": "Call the customer to verify whether they cancelled the pickup and whether it was actually attempted"
+				},
+				{
+					"key": "D",
+					"text": "Update the Pickup Exception tab with the courier's stated reason and mark the action as \"Reassign\""
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q8",
+			"number": 8,
+			"question": "What is the maximum number of pickup attempts allowed for an RMA order before the customer is asked to self-ship?",
+			"options": [
+				{
+					"key": "A",
+					"text": "2 attempts"
+				},
+				{
+					"key": "B",
+					"text": "3 attempts"
+				},
+				{
+					"key": "C",
+					"text": "4 attempts"
+				},
+				{
+					"key": "D",
+					"text": "5 attempts"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q9",
+			"number": 9,
+			"question": "After 3 failed pickup attempts, the customer is informed to self-ship. Within what time period must the customer self-ship the product?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Within 2 weeks"
+				},
+				{
+					"key": "B",
+					"text": "Within 1 month"
+				},
+				{
+					"key": "C",
+					"text": "Within 7 business days"
+				},
+				{
+					"key": "D",
+					"text": "No time limit — the customer may ship when ready"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q10",
+			"number": 10,
+			"question": "A customer refuses to self-ship after 3 failed pickup attempts. The order is an RMA order (not a Shopify return). What is the correct action?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Cancel the RMA in FIMS immediately and update the Pickup Exception tab"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `after-sale-services` Slack before cancelling, then cancel RMA in FIMS"
+				},
+				{
+					"key": "C",
+					"text": "Continue reassigning pickups beyond the 3-attempt limit until the customer agrees"
+				},
+				{
+					"key": "D",
+					"text": "Convert the RMA order to a Shopify Return for easier cancellation"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q11",
+			"number": 11,
+			"question": "A customer refuses to self-ship and the order is a Shopify Return (not RMA). What is cancelled in FIMS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The RMA request"
+				},
+				{
+					"key": "B",
+					"text": "The Shopify order entirely"
+				},
+				{
+					"key": "C",
+					"text": "The Return in FIMS"
+				},
+				{
+					"key": "D",
+					"text": "Both the RMA and the Return"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q12",
+			"number": 12,
+			"question": "What are the 4 fields that must be updated in the Pickup Exception tab after handling a pickup exception?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Agent, Date, Order ID, Action Taken"
+				},
+				{
+					"key": "B",
+					"text": "Order ID, Tracking ID, Reason for Exception, Action Taken"
+				},
+				{
+					"key": "C",
+					"text": "Order ID, RMA ID, Customer Name, Pickup Date"
+				},
+				{
+					"key": "D",
+					"text": "Tracking ID, Courier Name, Reason, Reassignment Date"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q13",
+			"number": 13,
+			"question": "What are the valid \"Action Taken\" entries in the Pickup Exception tab?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reassign / Self-ship / Cancelled"
+				},
+				{
+					"key": "B",
+					"text": "Retry / Ship / Close"
+				},
+				{
+					"key": "C",
+					"text": "Reassign / Escalate / Cancel"
+				},
+				{
+					"key": "D",
+					"text": "Pending / Resolved / Cancelled"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "Pickup Exception Handling — Full Flow",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q14",
+			"number": 14,
+			"question": "Before raising a Re-RMA request, which tab must the executive check first to verify previous RMA history for the same order?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Daily Work - CRM-2026 → RMA tab → filter by Order ID"
+				},
+				{
+					"key": "B",
+					"text": "Re RMA Report → Repeated Rma tab"
+				},
+				{
+					"key": "C",
+					"text": "FIMS → OMS → RMA → Orders → search by Order ID"
+				},
+				{
+					"key": "D",
+					"text": "Daily Work - CRM-2026 → Pickup Exception tab"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & Re-RMA Process",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q15",
+			"number": 15,
+			"question": "When creating a Re-RMA in the RMA sheet, what two entries differentiate it from a standard RMA?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Re-RMA = Yes in the Re-RMA column; previous RMA ID entered in the Comment column"
+				},
+				{
+					"key": "B",
+					"text": "Re-RMA = Repeat in the Re-RMA column; previous Order ID in the Agent column"
+				},
+				{
+					"key": "C",
+					"text": "Re-RMA = Yes in the Re-RMA column; \"REPEAT\" entered in the Order Status column"
+				},
+				{
+					"key": "D",
+					"text": "Re-RMA = 2 (indicating second attempt) in the Re-RMA column; no Comment needed"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & Re-RMA Process",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q16",
+			"number": 16,
+			"question": "A customer is submitting their 3rd RMA for the same product. At what point must the executive escalate, and to whom?",
+			"options": [
+				{
+					"key": "A",
+					"text": "After creating the RMA in FIMS → escalate to CRM Manager via `customer-care` Slack"
+				},
+				{
+					"key": "B",
+					"text": "Before creating the Re-RMA → escalate to CRM Asst Manager via `after-sale-services` Slack"
+				},
+				{
+					"key": "C",
+					"text": "After the product arrives at the warehouse → escalate to CRM Asst Manager via email"
+				},
+				{
+					"key": "D",
+					"text": "No escalation required — the 3-attempt rule applies only to pickup exceptions, not Re-RMA"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & Re-RMA Process",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q17",
+			"number": 17,
+			"question": "A customer disputes the warranty coverage determination — they insist the issue is covered when it is not. What is the correct escalation?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Decline the customer's claim and proceed with the chargeable repair estimate"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `after-sale-services` Slack before declining"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Manager via `customer-care` Slack after informing the customer"
+				},
+				{
+					"key": "D",
+					"text": "Transfer the call to a Senior Executive for a second opinion"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & Re-RMA Process",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q18",
+			"number": 18,
+			"question": "A customer disputes the repair cost estimate and wants to cancel. What must happen before the RMA is cancelled in FIMS?",
+			"options": [
+				{
+					"key": "A",
+					"text": "The executive can cancel immediately — customer consent to cancel is sufficient"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `after-sale-services` Slack before cancelling the RMA"
+				},
+				{
+					"key": "C",
+					"text": "Inform the customer the cost is non-negotiable and close the ticket"
+				},
+				{
+					"key": "D",
+					"text": "Transfer to CRM Manager for a final cost review"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Escalation Triggers & Re-RMA Process",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q19",
+			"number": 19,
+			"question": "Which of the following is a common mistake identified in the SOP?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Sharing the RMA number on WhatsApp before the customer confirms they want to proceed"
+				},
+				{
+					"key": "B",
+					"text": "Proceeding to FIMS without the customer's written approval for chargeable repair"
+				},
+				{
+					"key": "C",
+					"text": "Asking the customer for a video before acknowledging their concern"
+				},
+				{
+					"key": "D",
+					"text": "Entering \"12\" in the warranty period field when it is empty"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_11_q20",
+			"number": 20,
+			"question": "The SOP lists 6 common mistakes. Which of the following correctly identifies THREE of them?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Not uploading the customer video in FIMS; leaving the warranty period field blank; not sharing the RMA number on WhatsApp after submission"
+				},
+				{
+					"key": "B",
+					"text": "Committing to free repair before verifying warranty coverage; entering the wrong Repair Status value; not checking the Re RMA Report"
+				},
+				{
+					"key": "C",
+					"text": "Not updating the RMA sheet after generating the request; entering the wrong pickup type; skipping the address verification step"
+				},
+				{
+					"key": "D",
+					"text": "Skipping the QC image upload; not escalating after 2 failed pickups; using verbal instead of written approval"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Common Mistakes — All 6",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}

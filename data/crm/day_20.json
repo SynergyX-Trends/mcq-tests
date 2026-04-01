@@ -1,0 +1,590 @@
+{
+	"testId": "day_20",
+	"title": "DAY 20 — FINAL SYNTHESIS ASSESSMENT — ALL 17 MODULES (CRM-M1 THROUGH CRM-M17)",
+	"questions": [
+		{
+			"id": "day_20_q1",
+			"number": 1,
+			"question": "A customer calls saying they received the wrong product 3 days after delivery. They want a replacement. Which module's process applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM-M8 (RMA Repair & Warranty) — the product is defective"
+				},
+				{
+					"key": "B",
+					"text": "CRM-M9 (Cancellation Retention) — the customer is unhappy and may cancel"
+				},
+				{
+					"key": "C",
+					"text": "CRM-M7 (Return & Replacement) — within 10 days of delivery, wrong product received"
+				},
+				{
+					"key": "D",
+					"text": "CRM-M15 (Prototype Feedback) — all product issues route through feedback first"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Cross-Module Decision Routing",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q2",
+			"number": 2,
+			"question": "A customer's standard watch has a movement issue. The watch was delivered 4 months ago and the customer has registered for extended warranty. Which module and condition apply?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM-M7 — replacement within 10 days"
+				},
+				{
+					"key": "B",
+					"text": "CRM-M8, Condition A — under warranty (within 1-year total), covered component (movement); free repair"
+				},
+				{
+					"key": "C",
+					"text": "CRM-M8, Condition B — under warranty, not covered issue; chargeable repair"
+				},
+				{
+					"key": "D",
+					"text": "CRM-M15 — repair deferred until final version release"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Cross-Module Decision Routing",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q3",
+			"number": 3,
+			"question": "A customer wants to cancel an order. The executive checks FIMS — order status is \"Shipped.\" What happens?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process the cancellation in FIMS → inform refund timeline"
+				},
+				{
+					"key": "B",
+					"text": "Inform cancellation is not possible once dispatched; redirect to return within 10 days of delivery per the \"Return & Replacement — Standard Operating Procedure\""
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager for a shipped-order cancellation exception"
+				},
+				{
+					"key": "D",
+					"text": "Mark as NDR and process RTO"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Cross-Module Decision Routing",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q4",
+			"number": 4,
+			"question": "Shiprocket tracking shows \"Delivered\" but the customer says they never received the order. Which module handles this?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM-M6 (NDR Management) — the delivery failed"
+				},
+				{
+					"key": "B",
+					"text": "CRM-M7 (Return & Replacement) — the customer wants a refund"
+				},
+				{
+					"key": "C",
+					"text": "CRM-M14 (Shiprocket Operations) — missing shipment; raise platform ticket + Gmail escalation requesting POD"
+				},
+				{
+					"key": "D",
+					"text": "CRM-M9 (Cancellation Retention) — cancel and refund"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Cross-Module Decision Routing",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q5",
+			"number": 5,
+			"question": "A customer DMs on Instagram asking \"What size strap does the Sylvi Hawk have?\" Which module and template apply?",
+			"options": [
+				{
+					"key": "A",
+					"text": "CRM-M13 (FAQ Bank) — product specification question"
+				},
+				{
+					"key": "B",
+					"text": "CRM-M11 (Social Media Operations) — reply via BIK using template A-12 (Size / Wrist Measurement) from the Modified Comment Reply tab"
+				},
+				{
+					"key": "C",
+					"text": "CRM-M5 (BIK WhatsApp) — route to WhatsApp for detailed response"
+				},
+				{
+					"key": "D",
+					"text": "CRM-M10 (Freshdesk) — create a Freshdesk ticket for product queries"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R1",
+				"criteria": "Cross-Module Decision Routing",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q6",
+			"number": 6,
+			"question": "A COD order is received. The customer doesn't answer 3 confirmation call attempts. The executive makes a DNC call — also unanswered. BIK WhatsApp shows no response. What is the complete action sequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Wait 24 more hours → retry → if still no response → escalate to Asst Manager"
+				},
+				{
+					"key": "B",
+					"text": "After 3 attempts + DNC unanswered + no BIK response → Cancellation Request in FIMS → log in OBC tab (Agent/Date/Order#/Attempts/Status) → log in Cancellation Order tab (all 11 columns)"
+				},
+				{
+					"key": "C",
+					"text": "After 3 attempts → mark as \"Unreachable\" in the Callback Request Sheet → no further action"
+				},
+				{
+					"key": "D",
+					"text": "After 3 attempts + DNC call → Auto Confirmed → move to To Pack"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q7",
+			"number": 7,
+			"question": "A prototype customer contacts CRM requesting a return and full refund. The watch was delivered 5 days ago. It has a cosmetic scratch — not a manufacturing defect. What is the correct response?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Process the return — within 10-day window"
+				},
+				{
+					"key": "B",
+					"text": "Process replacement — within 10 days, defect reported"
+				},
+				{
+					"key": "C",
+					"text": "Inform the customer: no return or refund for prototype watches; cosmetic issues do not qualify for replacement (defect/damage only); redirect to the Prototype Feedback Programme for a free upgrade if feedback is submitted within 45 days"
+				},
+				{
+					"key": "D",
+					"text": "Escalate to CRM Asst Manager — all prototype complaints require manager approval"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q8",
+			"number": 8,
+			"question": "An NDR shows \"customer unavailable\" — 22 hours have passed since the NDR was logged. The executive calls the customer, who confirms they are now available. What are ALL the required steps?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Mark BPR in Shiprocket → done"
+				},
+				{
+					"key": "B",
+					"text": "Confirm availability → update Shiprocket panel (reattempt delivery) → update FIMS General Comment (\"NDR — Customer unavailable — Reattempt initiated — [date]\") → update NDR Sheet → update Shiprocket Web Tracker"
+				},
+				{
+					"key": "C",
+					"text": "Call customer → escalate to Shiprocket WhatsApp Group → update Web Tracker"
+				},
+				{
+					"key": "D",
+					"text": "Confirm availability → cancel the order since NDR occurred → process refund"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q9",
+			"number": 9,
+			"question": "A customer emails Freshdesk about a prepaid refund for a cancelled order. It has been 12 business days since cancellation. What should the executive do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Reply with the standard refund timeline (7–10 business days) and close the ticket"
+				},
+				{
+					"key": "B",
+					"text": "Verify in FIMS → confirm refund is overdue (>10 business days) → escalate to CRM Asst Manager via `after-sale-services` Slack → reply to customer acknowledging the delay → add FIMS General Comment → log in Mails tab"
+				},
+				{
+					"key": "C",
+					"text": "Forward the email to the finance department and close the Freshdesk ticket"
+				},
+				{
+					"key": "D",
+					"text": "Inform the customer refunds take up to 15 business days and ask them to wait"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q10",
+			"number": 10,
+			"question": "A prototype customer submits feedback 40 days after delivery. The feedback is visible in FIMS. The final version is in stock. What is the complete upgrade sequence?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Confirm eligibility → ship the final version directly — no need to collect the prototype"
+				},
+				{
+					"key": "B",
+					"text": "Confirm 4 conditions met → FIMS → Tools → Prototype Reviews → Actions → Select Models → SKUs → Submit → notify customer (15-day return window, pickup 24–48h) → update Prototype Feedback.xlsx"
+				},
+				{
+					"key": "C",
+					"text": "Confirm eligibility → create an RMA in FIMS → OMS → RMA → Create → process as repair"
+				},
+				{
+					"key": "D",
+					"text": "Confirm eligibility → send BIK campaign to the customer → wait for customer to initiate return"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q11",
+			"number": 11,
+			"question": "A callback request arrives at 2:00 PM. The executive calls at 3:45 PM — no answer. Retries at 4:30 PM — no answer. Retries at 5:15 PM — no answer. What must they do?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Leave the request open for the next shift"
+				},
+				{
+					"key": "B",
+					"text": "Mark as \"Unreachable — 3 attempts\" in Comments → set Call Back Done = Yes → log in Callback Request Sheet"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to CRM Asst Manager for a 4th attempt authorisation"
+				},
+				{
+					"key": "D",
+					"text": "Send a WhatsApp message and wait for customer response — do not mark as Unreachable"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R2",
+				"criteria": "End-to-End Scenario Execution",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q12",
+			"number": 12,
+			"question": "Match each timeline to its correct value: (a) Callback SLA, (b) NDR action window before automatic RTO, (c) Standard return/replacement window, (d) Prototype feedback deadline, (e) Prepaid refund processing.",
+			"options": [
+				{
+					"key": "A",
+					"text": "(a) 4 hours, (b) 48 hours, (c) 15 days, (d) 30 days, (e) 5–7 business days"
+				},
+				{
+					"key": "B",
+					"text": "(a) 2 hours, (b) 24 hours, (c) 10 days from delivery, (d) 45 days from delivery, (e) 7–10 business days"
+				},
+				{
+					"key": "C",
+					"text": "(a) 1 hour, (b) 24 hours, (c) 10 days from purchase, (d) 45 days from purchase, (e) 7–10 business days"
+				},
+				{
+					"key": "D",
+					"text": "(a) 2 hours, (b) 48 hours, (c) 10 days from delivery, (d) 60 days from delivery, (e) 10–15 business days"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Policy Boundaries & Timeline Mastery",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q13",
+			"number": 13,
+			"question": "A standard watch has a cracked glass. The watch is 2 months old. The customer requests a free repair under warranty. What is the correct determination?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Condition A — under warranty, covered issue; process free repair"
+				},
+				{
+					"key": "B",
+					"text": "Condition B — under warranty, not covered issue; glass is excluded from warranty coverage; offer chargeable repair with written WhatsApp approval before FIMS action"
+				},
+				{
+					"key": "C",
+					"text": "Condition C — out of warranty; chargeable repair"
+				},
+				{
+					"key": "D",
+					"text": "Condition D — Certified Imperfect path"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Policy Boundaries & Timeline Mastery",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q14",
+			"number": 14,
+			"question": "A 4-star Judge.me review says \"Beautiful watch, great quality!\" Should it be published?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Yes — the text is positive, and 4-star is close to 5-star"
+				},
+				{
+					"key": "B",
+					"text": "No — only 5-star reviews are published; 4-star must be hidden regardless of positive text content"
+				},
+				{
+					"key": "C",
+					"text": "Escalate to Asst Manager — borderline case"
+				},
+				{
+					"key": "D",
+					"text": "Yes — publish but add a note acknowledging the 4-star rating"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Policy Boundaries & Timeline Mastery",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q15",
+			"number": 15,
+			"question": "A prototype customer's watch has a manufacturing defect. It is 15 days since delivery. What applies?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Replacement under the 10-day window — same model, subject to stock"
+				},
+				{
+					"key": "B",
+					"text": "Return and refund — defective products can always be returned"
+				},
+				{
+					"key": "C",
+					"text": "Replacement is not available (past 10-day window); repair is deferred until final version release; redirect to Prototype Feedback Programme"
+				},
+				{
+					"key": "D",
+					"text": "Standard warranty repair under CRM-M8 Condition A"
+				}
+			],
+			"answer": "C",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Policy Boundaries & Timeline Mastery",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q16",
+			"number": 16,
+			"question": "A customer cancels a prepaid order worth ₹3,500. The order status is \"Shipped.\" Before informing the customer that cancellation is not possible, what must the executive do first?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Proceed with the standard shipped-order script — value does not matter"
+				},
+				{
+					"key": "B",
+					"text": "Escalate to CRM Asst Manager via `customer-care` Slack — the order is ₹3,000+ and shipped; escalation is required before informing"
+				},
+				{
+					"key": "C",
+					"text": "Process the cancellation as an exception — high-value prepaid orders get priority"
+				},
+				{
+					"key": "D",
+					"text": "Redirect to the return process immediately without the shipped-order script"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R3",
+				"criteria": "Policy Boundaries & Timeline Mastery",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q17",
+			"number": 17,
+			"question": "Match each action to its correct FIMS path: (a) Create a new RMA repair request, (b) Cancel an order, (c) Verify prototype feedback visibility, (d) Look up an order for a callback.",
+			"options": [
+				{
+					"key": "A",
+					"text": "(a) OMS → RMA → Create, (b) OMS → Shopify → Order → Cancellation Request, (c) Tools → Prototype Reviews, (d) OMS → Shopify → Orders"
+				},
+				{
+					"key": "B",
+					"text": "(a) OMS → Shopify → Returns, (b) OMS → RMA → Cancel, (c) OMS → Prototype, (d) Tools → Orders"
+				},
+				{
+					"key": "C",
+					"text": "(a) Tools → RMA → Create, (b) OMS → Shopify → Delete Order, (c) OMS → Shopify → Feedback, (d) OMS → Shopify → Search"
+				},
+				{
+					"key": "D",
+					"text": "(a) OMS → RMA → Orders, (b) OMS → Shopify → Order → Cancel, (c) Tools → Prototype Reviews, (d) OMS → RMA → Orders"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tool & Sheet Routing Across Modules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q18",
+			"number": 18,
+			"question": "A customer raises a return request via Freshdesk email. After processing, which THREE data entry points must be updated?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Mails tab, Return/Replace Sheet, FIMS General Comment on the order"
+				},
+				{
+					"key": "B",
+					"text": "BIK tab, NDR Sheet, Shiprocket Web Tracker"
+				},
+				{
+					"key": "C",
+					"text": "IBC tab, Cancellation Order tab, Callback Request Sheet"
+				},
+				{
+					"key": "D",
+					"text": "Mails tab, OBC tab, Prototype Feedback.xlsx"
+				}
+			],
+			"answer": "A",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tool & Sheet Routing Across Modules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q19",
+			"number": 19,
+			"question": "Match each escalation type to the correct Slack channel: (a) Prepaid refund not processed after 10 days, (b) QA review of an agent's response quality, (c) Day-start order snapshot posting.",
+			"options": [
+				{
+					"key": "A",
+					"text": "(a) #customer-care, (b) #after-sale-services, (c) #qaqc-crm"
+				},
+				{
+					"key": "B",
+					"text": "(a) #after-sale-services, (b) #qaqc-crm, (c) #customer-care"
+				},
+				{
+					"key": "C",
+					"text": "(a) #qaqc-crm, (b) #customer-care, (c) #after-sale-services"
+				},
+				{
+					"key": "D",
+					"text": "(a) #after-sale-services, (b) #customer-care, (c) #qaqc-crm"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tool & Sheet Routing Across Modules",
+				"weightContribution": "5%"
+			}
+		},
+		{
+			"id": "day_20_q20",
+			"number": 20,
+			"question": "An executive needs to send a Shiprocket escalation email about a wrong product delivery. Which Gmail account must be used, and who must be CC'd?",
+			"options": [
+				{
+					"key": "A",
+					"text": "Personal Gmail account; CC: CRM Asst Manager"
+				},
+				{
+					"key": "B",
+					"text": "Style Feathers Customer Care Gmail; CC: Shiprocket Mail ID + Style Feathers Mail ID"
+				},
+				{
+					"key": "C",
+					"text": "Any Gmail account; CC: Shiprocket Executives"
+				},
+				{
+					"key": "D",
+					"text": "Style Feathers Customer Care Gmail; CC: CRM Manager + #after-sale-services Slack"
+				}
+			],
+			"answer": "B",
+			"meta": {
+				"rubricCode": "R4",
+				"criteria": "Tool & Sheet Routing Across Modules",
+				"weightContribution": "5%"
+			}
+		}
+	],
+	"config": {
+		"optionsPerQuestion": 4,
+		"singleSelect": true
+	}
+}
